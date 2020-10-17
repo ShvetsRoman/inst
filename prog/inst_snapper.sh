@@ -6,7 +6,7 @@ sudo umount /.snapshots
 sudo rm -rfv /.snapshots/
 sudo snapper -c root create-config /
 
-sudo sed -i 's/^HALLOW_USERS=.*/HALLOW_USERS="'$USER'"/g' /etc/snapper/configs/root
+sudo sed -i 's/^ALLOW_USERS=.*/ALLOW_USERS="'$USER'"/g' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_HOURLY=.*/HTIMELINE_LIMIT_HOURLY="0"/g' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_DAILY=.*/HTIMELINE_LIMIT_DAILY="8"/g' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY=.*/HTIMELINE_LIMIT_WEEKLY="10"/g' /etc/snapper/configs/root
