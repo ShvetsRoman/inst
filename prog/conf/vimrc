@@ -1,0 +1,225 @@
+" vimrc
+" ============================================================================
+"               vim-plug установится при первом старте Vim'а
+" ============================================================================
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+" ============================================================================
+"                           Плагины VIM
+" ============================================================================
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree' " Отображения дерева каталога
+Plug 'ErichDonGubler/vim-sublime-monokai' " Цветовая тема
+Plug 'vim-airline/vim-airline' " Улучшенная строка состояния status bar
+Plug 'vim-airline/vim-airline-themes' " Темы status bar
+Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
+Plug 'tc50cal/vim-terminal' " Терминал
+call plug#end()
+
+" ============================================================================
+"                           Настройки редактора
+" ============================================================================
+set nopaste                 " Режим без принудительной вставки отступов
+set modifiable              " Сделает буфер модифицируемым
+set noautowrite             " Не автосохранять                             
+set ignorecase              " Игнорировать регистр букв при поиске
+set nobackup                " Без автоматического создания файлов отмены
+set noswapfile              " Не создаём swp-файлы
+set fileformat=unix         " Формат файла (влияет на окончание строк) 
+set fencs=utf8,cp1251       " Автоопределение кодировки
+set nocompatible
+set hidden
+set encoding=utf-8
+set backspace=indent,eol,start      " Исправить «неработающий» backspace в режиме вставки
+set path+=**                " Для поиска во всех подкаталогах
+set wrap linebreak nolist   " Данная вариация работает как wrap...но переносит строчки не посимвольно, а по словам
+
+" ============================================================================
+"                     Настройки внешнего вида  редактора
+" ============================================================================
+set number relativenumber                " Нумерация строк
+"set textwidth=80            " Ширина текста - 80 симполов
+"set colorcolumn=80          " Подсветка того,что вылезает за 80 символов
+"set cursorline              " подсвечивать строку с курсором
+colorscheme sublimemonokai  " Цветовая тема
+let g:airline_theme='papercolor' " Цветовая тема строки состояния status bar
+
+" Улучшенная строка состояния status bar
+let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
+let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
+let g:Powerline_symbols='unicode' "Поддержка unicode
+let g:airline#extensions#xkblayout#enabled = 0
+
+" Терминал в VIM по команде :terminal
+let g:slime_target = "vimterminal" " Терминал
+
+
+" ============================================================================
+"                   Редактирование и навигация по коду
+" ============================================================================
+set autoindent              " Автоматический отступ
+set smartindent             " Умные отступы (например, автоотступ после {)
+set tabstop=4               " Пробелами 
+set shiftwidth=4            " По 4 штуки
+set expandtab               " Заменять табы на пробелы и обратно                    
+set showmatch               " Показывать первую парную скобку после ввода второй
+set mps+=<:>                " показывать совпадающие скобки для HTML-тегов
+set mps+=(:)                " показывать совпадающие скобки для HTML-тегов
+set mps+={:}                " показывать совпадающие скобки для HTML-тегов
+set mps+=[:]                " показывать совпадающие скобки для HTML-тегов
+set mps+=':'                " показывать совпадающие скобки для HTML-тегов
+set mps+=":"                " показывать совпадающие скобки для HTML-тегов
+set foldmethod=manual       " Выделяем участок с помощью v
+syntax on                   " Подсветка синтаксиса
+
+"Если вы используете обычный терминальный Вим, а не NeoVim, то...
+"... для изменения курсора в разных режимах используйте это:
+set ttimeoutlen=10          "Понижаем задержку ввода escape последовательностей
+let &t_SI.="\e[5 q"         "SI = режим вставки
+let &t_SR.="\e[3 q"         "SR = режим замены
+let &t_EI.="\e[1 q"         "EI = нормальный режим
+"Где 1 - это мигающий прямоугольник
+"2 - обычный прямоугольник
+"3 - мигающее подчёркивание
+"4 - просто подчёркивание
+"5 - мигающая вертикальная черта
+"6 - просто вертикальная черта
+
+"set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+"Если вы используете обычную qwerty, то поменяте mac на win
+set keymap=russian-jcukenwin
+
+"Язык ввода при старте Вима - Английский
+set iminsert=0
+
+"Аналогично настраивается режим поиска
+set imsearch=0
+
+" ============================================================================
+"                                  Меню
+"   * Инсталяция плагинов
+"   * Кодировка файла
+"   * Вкл/Откл проверки орфографии
+"   * Вкл/Откл автодополнения ввода
+" ============================================================================
+nmap <F12> :emenu <tab>
+imap <F12> <Esc>:emenu <tab>
+menu PlugInstall.Install_Plug       :PlugInstall<cr> 
+menu Encoding.CP1251   :e ++enc=cp1251<cr>
+menu Encoding.CP866    :e ++enc=cp866<cr>
+menu Encoding.UTF-8    :e ++enc=utf-8<cr>
+menu Encoding.KOI8-U   :e ++enc=koi8-u<cr>
+menu Spell.Off         :set nospell<cr>
+menu Spell.On          :spell spelllang=ru,en<cr>
+menu Autocomplete.Off  :NeoComplCacheDisable<cr>
+menu Autocomplete.On   :NeoComplCacheEnable<cr>
+
+"set spell spelllang=ru,en  " Языки проверки орфографии
+set nospell                 " По умолчанию - без проверки орфографии
+set wildmenu                " при нажатии Tab в командном режиме для авто дополнения варианты будут отображаться в меню, а не появляться по-одному.
+set wcm=<Tab>               " Кодировки выбираются через меню
+
+" ============================================================================
+"                                  Файл 
+"   F1 - Для отображения дерева каталога
+"   F2 - сохранить
+"   F3 - Поиск по файлам
+"   F4 - Замена в файле
+"   Ctrl + F - поиск в открытом буфере
+"   Ctrl + F2 - Сохранить если не хватает прав
+"   F8 - make
+"   Ctrl+F10 - выйти
+"   Ctrl+z - отмена
+"   Ctrl+y - отмена отмены
+" ============================================================================
+" Для отображения/скрытия NERDTreeToggle
+nmap <F1> :NERDTreeToggle<cr>
+imap <F1> <Esc>:NERDTreeToggle<cr>
+
+" Сохранить
+nmap <F2> :w<cr>                        
+imap <F2> <Esc>:w<cr>i
+
+" Поиск по файлам
+imap <F3> <Esc>:Rgrep<cr>
+nmap <F3> :Rgrep<cr>
+
+" Замена в открытом буфере
+imap <F4> <Esc>:%s///<left><left>
+nmap <F4> :%s///<left><left>
+
+" Ctrl + F Поиск в открытом буфере
+imap <C-f> <Esc>/
+nmap <C-f> <Esc>/
+
+" Ctrl + F2 охранить если не хватает прав
+nmap <C-F2> :w !sudo tee %<cr>                        
+imap <C-F2> <Esc>:w !sudo tee %<cr>i
+
+" F8 - make
+map <F8> :make<cr>
+imap <F8> <Esc>:make<cr>
+
+" Ctrl+F11 - выйти
+map <C-F11> :q<cr>
+imap <C-F11> <Esc>:q<cr>
+
+" Ctrl+z - отмена
+map <C-z> u
+imap <C-z> <Esc>u
+
+" Ctrl+y - отмена отмены
+map <C-y> <C-r>
+imap <C-y> <Esc><C-r>
+
+" Ctrl+t - terminal
+map <C-t> :terminal<cr>
+
+" ============================================================================
+"                                  Окна 
+"   * Ctrl + rigth - окно вправо
+"   * Ctrl + left - окно влево 
+"   * Ctrl + up - окно вверх 
+"   * Ctrl + down - окно вниз 
+" ============================================================================
+" Перемещение по окнам
+map <C-right> <C-w>l    
+map <C-left> <C-w>h
+map <C-up> <C-w>k
+map <C-down> <C-w>j
+
+imap <C-right> <C-w>l
+imap <C-left> <C-w>h
+imap <C-up> <C-w>k
+imap <C-down> <C-w>j
+
+" ============================================================================
+"                                   Табы
+"   * Alt + right - следующий таб
+"   * Alt + left - следующий таб
+"   * Alt + up - Новый таб
+"   * Alt + down - Закрыть таб
+" ============================================================================
+map <A-right> :tabn<cr>
+map <A-left> :tabp<cr>
+imap <A-right> <Esc>:tabn<cr>i
+imap <A-left> <Esc>:tabp<cr>i
+map <A-up> :tabnew<cr>
+map <A-down> :tabclose<cr>i
+
+" ============================================================================
+"                                   Скобки
+" ============================================================================
+" Автоматическое закрытие скобок
+imap [ []<LEFT>
+imap ( ()<LEFT>
+imap { {}<LEFT>
+imap < <><LEFT>
+
+" ============================================================================
+"
+" ============================================================================
