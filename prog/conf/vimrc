@@ -16,6 +16,9 @@ Plug 'vim-airline/vim-airline' " Улучшенная строка состоя�
 Plug 'vim-airline/vim-airline-themes' " Темы status bar
 Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
 Plug 'tc50cal/vim-terminal' " Терминал
+Plug 'Valloric/YouCompleteMe'   "автодополнения по табу
+Plug 'neomake/neomake'  "
+
 call plug#end()
 
 " ============================================================================
@@ -55,6 +58,16 @@ let g:airline#extensions#xkblayout#enabled = 0
 
 " Терминал в VIM по команде :terminal
 let g:slime_target = "vimterminal" " Терминал
+
+" Aвтодополнения по табу
+"Не забудьте, что YCM нужно компилировать после каждого обновления
+"Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+let g:ycm_show_diagnostics_ui = 0 "Обрубаем YCM
+"А вот пример настройки работы Neomake
+let g:neomake_cpp_clang_maker = {
+   \ 'exe': 'clang++',
+   \ 'args': ['-I/usr/local/include/wx-3.0', '-std=c++17'],
+   \ }
 
 
 " ============================================================================

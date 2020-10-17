@@ -550,6 +550,9 @@ packages=''
 # Browser
 packages+=' firefox firefox-i18n-ru'
 
+# Torrent
+packages+=' ktorrent'
+
 # Image viewer
 packages+=' gwenview gimp inkscape'
 
