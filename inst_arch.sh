@@ -580,6 +580,9 @@ sleep 5s
 # Hostname, localtime, locale, vconsole, username, sudo
 arch-chroot /mnt /bin/bash <<EOF  
 echo $hostname > /etc/hostname
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1 localhost" >> /etc/hosts
+echo "127.0.1.1 '$hostname'.localdomain '$hostname'" >> /etc/hosts
 ln -svf /usr/share/zoneinfo/$region/$city /etc/localtime
 hwclock --systohc
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
