@@ -61,7 +61,7 @@ let g:slime_target = "vimterminal" " Терминал
 
 " Aвтодополнения по табу
 "Не забудьте, что YCM нужно компилировать после каждого обновления
-"Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+"!!! Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 let g:ycm_show_diagnostics_ui = 0 "Обрубаем YCM
 "А вот пример настройки работы Neomake
 let g:neomake_cpp_clang_maker = {

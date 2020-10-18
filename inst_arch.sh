@@ -849,7 +849,7 @@ echo "###################### ENABLE Service Avahi #######################"
     arch-chroot /mnt /bin/bash <<EOF
 systemctl enable avahi-daemon.service
 systemctl enable avahi-dnsconfd.service
-#systemctl disable systemd-resolved.service
+systemctl disable systemd-resolved.service
 EOF
 fi
 
