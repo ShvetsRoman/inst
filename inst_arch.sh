@@ -690,7 +690,9 @@ fi
 
 # Pacman multilib
 arch-chroot /mnt /bin/bash <<EOF
-sed -i "s/^#VerbosePkgLists/ILoveCandy\\n#VerbosePkgLists/g" /etc/pacman.conf
+sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
+sed -i "s/^#Color/Color/g" /etc/pacman.conf
+
 sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g}' /etc/pacman.conf
 sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 EOF
