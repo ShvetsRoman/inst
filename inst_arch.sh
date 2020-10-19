@@ -753,7 +753,6 @@ fi
 if [[ "$sambainst" == "1" ]]; then
 echo "##################### install Samba ########################"
     arch-chroot /mnt /bin/bash <<EOF
-
 # Открытие портов
 iptables -A INPUT -p udp -m udp --dport 137 -s 192.168.88.0/24 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 138 -s 192.168.88.0/24 -j ACCEPT
