@@ -96,7 +96,7 @@ for action in $progs; do
 done
 fi
 
-# Если папка ${HOME}/temp есть, тогда удаляем
+# Если папка ${HOME}/temp есть, тогда удаляем.
 if [[ -e ${HOME}/temp ]]; then
     rm -r ${HOME}/temp
 fi
