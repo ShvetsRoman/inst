@@ -724,7 +724,7 @@ if [[ "$avahiinst" == "1" ]]; then
 echo "##################### install Avahi ########################"
     arch-chroot /mnt /bin/bash <<EOF
 sed -i 's/^hosts:.*/hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 mdns/g' /etc/nsswitch.conf
-
+sed -i 's/^#enable-dbus=yes/enable-dbus=yes/g' /etc/avahi/avahi-daemon.conf
 sed -i 's/^noipv4ll/#noipv4ll/g' /etc/dhcpcd.conf
 
 iptables -A INPUT -p tcp -m tcp --dport 139 -s 192.168.88.0/24 -j ACCEPT
