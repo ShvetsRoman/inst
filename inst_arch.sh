@@ -831,7 +831,7 @@ mkdir /home/$username/Рабочий\ стол/
 cd /home/$username/Рабочий\ стол/
 curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/inst_prog.sh
 chmod +x /home/$username/Рабочий\ стол/inst_prog.sh
-chown -R $username:users /home/$username/Рабочий\ стол/inst_prog.sh
+chown -R $username:users /home/$username/Рабочий\ стол/
 EOF
 
 #  ENABLE Service
