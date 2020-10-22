@@ -22,7 +22,7 @@ alias c='clear'
 alias ln='ln -s'
 
 # Pacman
-alias spu='sudo pacman -Syu'
+alias spu='sudo pacman -Syyu'
 alias spi='sudo pacman -S'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
@@ -30,10 +30,17 @@ alias sprns='sudo pacman -Rns'
 # YAY
 alias yi='yay -S --noconfirm'
 alias yu='yay -Syu'
+alias yr='yay -R'
 
 # Trizen
 alias ti='trizen -S --noconfirm'
 alias tu='trizen -Syu'
+alias tr='trizen -R'
+
+# Pikaur
+alias pi='pikaur -S --noedit'
+alias pu='pikaur -Syu'
+alias pr='pikaur -R'
 
 # Mikrotik
 alias rebootmikrotik="ssh roman@192.168.88.1 reboot system"
@@ -43,7 +50,8 @@ alias mikrotikopen="ssh roman@192.168.88.1"
 alias ping='ping -c 4'
 
 # VIM
-#alias vim='sudo vim'
+alias v='vim'
+alias vi='vim'
 
 # SUDO
 sudo-command-line() {
