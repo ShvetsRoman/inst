@@ -21,7 +21,7 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
     "zshtheme" "THEMEs ZSH - Powerlevel10i" ON \
     "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" ON \
     "vim" "Vim - Консольный текстовый редактор + Theme" ON \
-    "sgb" "Snapper grub-btrfs Снимки snapshots в ФС BTRFS с загрузчиком GRUB" ON
+    "sgb" "Snapper grub-btrfs Снимки snapshots в ФС BTRFS с загрузчиком GRUB (нужен pikaur)" ON
     progs="$DIALOG_RESULT"
 
 ## Отмена установки

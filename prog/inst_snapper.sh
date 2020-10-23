@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo pacman -Syu --noconfirm --needed snapper grub-btrfs
+sudo pacman -Syu --noconfirm --needed snapper grub-btrfs snap-pac
+pikaur -S --neodit snap-pac-grub pacupg 
 
 sudo umount /.snapshots
 sudo rm -rfv /.snapshots/
