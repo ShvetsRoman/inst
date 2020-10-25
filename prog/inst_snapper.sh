@@ -17,6 +17,10 @@ sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY=.*/HTIMELINE_LIMIT_WEEKLY="7"/g' /etc/snap
 sudo sed -i 's/^TIMELINE_LIMIT_MONTHLY=.*/HTIMELINE_LIMIT_MONTHLY="4"/g' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_YEARLY=.*/HTIMELINE_LIMIT_YEARLY="0"/g' /etc/snapper/configs/root
 
+# Показать снимки, найденные при запуске "grub-mkconfig"
+# По умолчанию: "true"
+sudo sed -i 's/^#GRUB_BTRFS_SHOW_SNAPSHOTS_FOUND="false"/GRUB_BTRFS_SHOW_SNAPSHOTS_FOUND="false"/g' /etc/default/grub-btrfs/config
+
 sudo systemctl enable snapper-timeline.timer
 sudo systemctl start snapper-timeline.timer
 sudo systemctl enable snapper-cleanup.timer
