@@ -1,4 +1,3 @@
-" vimrc
 " ============================================================================
 "               vim-plug установится при первом старте Vim'а
 " ============================================================================
@@ -32,7 +31,7 @@ set nobackup                " Без автоматического создан
 set noswapfile              " Не создаём swp-файлы
 set fileformat=unix         " Формат файла (влияет на окончание строк) 
 set fencs=utf8,cp1251       " Автоопределение кодировки
-set nocompatible
+set nocompatible            " режим совместимости с Vi отключён
 set hidden
 set encoding=utf-8
 set backspace=indent,eol,start      " Исправить «неработающий» backspace в режиме вставки
@@ -47,13 +46,13 @@ set number relativenumber                " Нумерация строк
 "set colorcolumn=80          " Подсветка того,что вылезает за 80 символов
 "set cursorline              " подсвечивать строку с курсором
 colorscheme sublimemonokai  " Цветовая тема
-let g:airline_theme='papercolor' " Цветовая тема строки состояния status bar
 
 " Улучшенная строка состояния status bar
+let g:airline_theme='papercolor' " Цветовая тема строки состояния status bar
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
 let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
-let g:Powerline_symbols='unicode' "Поддержка unicode
+"let g:Powerline_symbols='unicode' "Поддержка unicode
 let g:airline#extensions#xkblayout#enabled = 0
 
 " Терминал в VIM по команде :terminal
@@ -61,15 +60,13 @@ let g:slime_target = "vimterminal" " Терминал
 
 " Aвтодополнения по табу
 "Не забудьте, что YCM нужно компилировать после каждого обновления
-"!!! Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+"Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 let g:ycm_show_diagnostics_ui = 0 "Обрубаем YCM
 "А вот пример настройки работы Neomake
 let g:neomake_cpp_clang_maker = {
    \ 'exe': 'clang++',
    \ 'args': ['-I/usr/local/include/wx-3.0', '-std=c++17'],
    \ }
-
-
 " ============================================================================
 "                   Редактирование и навигация по коду
 " ============================================================================
