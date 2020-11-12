@@ -3,6 +3,7 @@
 " ============================================================================
 if empty(glob("~/.vim/autoload/plug.vim"))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall
 endif
 
 " ============================================================================
@@ -15,7 +16,7 @@ Plug 'vim-airline/vim-airline' " Улучшенная строка состоя�
 Plug 'vim-airline/vim-airline-themes' " Темы status bar
 Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
 Plug 'tc50cal/vim-terminal' " Терминал
-Plug 'Valloric/YouCompleteMe'   "автодополнения по табу
+Plug 'Valloric/YouCompleteMe'   " Автодополнения
 Plug 'neomake/neomake'  "
 
 call plug#end()
@@ -58,7 +59,7 @@ let g:airline#extensions#xkblayout#enabled = 0
 " Терминал в VIM по команде :terminal
 let g:slime_target = "vimterminal" " Терминал
 
-" Aвтодополнения по табу
+" Aвтодополнения
 "Не забудьте, что YCM нужно компилировать после каждого обновления
 "Например: python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 let g:ycm_show_diagnostics_ui = 0 "Обрубаем YCM
