@@ -22,7 +22,6 @@ fi
 
 # Install Theme
 sudo pacman -S --noconfirm zsh-theme-powerlevel10k
-# echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 
 # Copy configs
 cd ${HOME}/
