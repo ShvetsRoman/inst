@@ -2,7 +2,7 @@
 
 ## Функция меню диалога
 boot_dialog() {
-    DIALOG_RESULT=$(whiptail --clear --backtitle " INSTALL PROGRAMS " "$@" 3>&1 1>&2 2>&3)
+    DIALOG_RESULT=$(whiptail --clear --backtitle " INSTALL PROGRAMS Arch Linux & Manjaro Linux" "$@" 3>&1 1>&2 2>&3)
     DIALOG_CODE=$?
     if [[ $DIALOG_CODE -eq 1 ]]; then
         boot_dialog --title "Cancelled" --msgbox "\nScript was cancelled at your request." 10 60
