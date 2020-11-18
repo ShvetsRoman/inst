@@ -19,7 +19,7 @@ if [[ -e ${HOME}/.zsh_alias ]]; then
 fi
 
 # Установка ZSH
-sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting
+sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
 
 # Копирование config .zshrc
 cd ${HOME}/

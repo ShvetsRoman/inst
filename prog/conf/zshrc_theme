@@ -11,7 +11,7 @@ fi
 if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 fi
-# Подключение конфигурация p10k, если она есть
+# Подключение конфигурации p10k, если она есть
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #-----------------------------
@@ -19,6 +19,13 @@ fi
 #-----------------------------
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+#-----------------------------
+# Плагин автодополнения с истории
+#-----------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 #------------------------------
