@@ -15,7 +15,7 @@ fi
 #------------------------------
 # History stuff
 #------------------------------
-HISTFILE=~/.histfile
+HISTFILE=${HOME}/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -49,11 +49,8 @@ bindkey '^[[C' forward-char
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
-#------------------------------
-# Alias stuff
-#------------------------------
 # Alias
-source ~/.zsh_alias
+source ${HOME}/.zsh_alias
 
 # Короткий путь cd 
 export CDPATH=/run/media/notebook/MEDIA/setup/sh/
