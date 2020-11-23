@@ -614,7 +614,72 @@ fi
 #GRUB+btrfs
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
     arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm grub-btrfs
+pacman -Syu --noconfirm grub-btrfs cronie
+EOF
+fi
+
+#GRUB+btrfs snapshot
+if [[ "$bl" = "1" && "$fs" = "2" ]]; then
+    arch-chroot /mnt /bin/bash <<EOF
+cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
+#!/bin/bash
+
+# Parse arguments:
+SOURCE=$1
+TARGET=$2
+SNAP=$3
+COUNT=$4
+QUIET=$5
+
+# Basic argument checks:
+if [ -z "$COUNT" ] ; then
+	echo "COUNT is not provided."
+fi
+
+if [ ! -z "$6" ] ; then
+	echo "Too many options."
+fi
+
+if [ -n "$QUIET" ] && [ "x$QUIET" != "x-q"	] ; then
+	echo "Option 4 is either -q or empty. Given: \"$QUIET\""
+fi
+
+# $max_snap is the highest number of snapshots that will be kept for $SNAP.
+max_snap=$COUNT
+
+# Create new snapshot:
+cmd="btrfs subvolume snapshot $SOURCE $TARGET/$(date --iso-8601=seconds)-@${SNAP}"
+if [ -z "$QUIET" ]; then
+	echo "$cmd"
+	$cmd
+else
+	$cmd >/dev/null
+fi
+
+# Clean up older snapshots:
+for i in $(find "$TARGET" -maxdepth 1|sort |grep @"${SNAP}"\$|head -n -${max_snap}); do
+	cmd="btrfs subvolume delete $i"
+	if [ -z "$QUIET" ]; then
+		echo "$cmd"
+		$cmd
+	else
+		$cmd >/dev/null
+	fi
+done
+snap-shot
+
+chmod +x /usr/local/bin/btrfs-snapshot
+chown -R $username:users /usr/local/bin/btrfs-snapshot
+
+sudo cat << 'anacron-tab' > /etc/anacrontab
+1   3  daily_snap  /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
+7   5  weekly_snap /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
+@monthly    7  monthly_snap    /usr/local/bin/btrfs-snapshot / /.snapshots monthly 3
+1   9  grub_mkconfig   grub-mkconfig
+anacron-tab
+
+chmod +x /etc/anacrontab
+chown -R $username:users /etc/anacrontab
 EOF
 fi
 
@@ -730,7 +795,7 @@ sed -i 's/^noipv4ll/#noipv4ll/g' /etc/dhcpcd.conf
 iptables -A INPUT -p tcp -m tcp --dport 139 -s 192.168.88.0/24 -j ACCEPT
 iptables-save -f /etc/iptables/iptables.rules
 
-cat << avahismb > /etc/avahi/services/avahi.smb.service
+cat << 'avahismb' > /etc/avahi/services/avahi.smb.service
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <service-group>
@@ -771,7 +836,7 @@ chmod 1770 /var/lib/samba/usershares
 
 # Файл конфигурации
 mkdir -p /etc/samba/
-cat << samba > /etc/samba/smb.conf
+cat << 'samba' > /etc/samba/smb.conf
 [global]
     workgroup = HOME
     server string = Samba Server
@@ -844,6 +909,14 @@ systemctl enable org.cups.cupsd.service
 systemctl enable iptables.service
 EOF
 
+#ENABLE Service GRUB+btrfs Cronie
+if [[ "$bl" = "1" && "$fs" = "2" ]]; then
+echo "###################### ENABLE Service Cronie #######################"
+    arch-chroot /mnt /bin/bash <<EOF
+systemctl enable cronie.service
+EOF
+fi
+
 # ENABLE Service Avahi
 if [[ "$avahiinst" == "1" ]]; then
 echo "###################### ENABLE Service Avahi #######################"
@@ -863,7 +936,5 @@ systemctl enable nmb.service
 EOF
 fi
 
-#umount -R /mnt
-
 echo "####################### END ######################"
-printf "Скрипт завершил установку Arch Linux.\nВведите в терминале reboot для перезагрузки.\n"
+printf "Скрипт завершил установку Arch Linux.\nВведите в терминале\n umount -R /mnt\n reboot для перезагрузки.\n"

@@ -20,8 +20,7 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
     "zsh" "ZSH - командная оболочка UNIX" ON \
     "zshtheme" "THEMEs ZSH - Powerlevel10i" ON \
     "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" ON \
-    "vim" "Vim - Консольный текстовый редактор + Theme" ON \
-    "sgb" "Snapper grub-btrfs Снимки snapshots в ФС BTRFS с загрузчиком GRUB (нужен pikaur)" ON
+    "vim" "Vim - Консольный текстовый редактор + Theme" ON 
     progs="$DIALOG_RESULT"
 
 ## Отмена установки
@@ -56,12 +55,6 @@ for action in $progs; do
         cd ${HOME}/temp
         wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_vim.sh
         sh inst_vim.sh
-    ;;
-    '"sgb"')
-        mkdir ${HOME}/temp
-        cd ${HOME}/temp
-        wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_snapper.sh
-        sh inst_snapper.sh
     ;;
     esac
 done
