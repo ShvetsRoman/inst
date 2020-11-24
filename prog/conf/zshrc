@@ -12,6 +12,13 @@ if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+#-----------------------------
+# Alias
+#-----------------------------
+if [[ -f ${HOME}/.zsh_alias ]]; then
+    source ${HOME}/.zsh_alias
+fi
+
 #------------------------------
 # History stuff
 #------------------------------
@@ -48,9 +55,6 @@ bindkey '^[[B' down-line-or-search
 bindkey '^[[C' forward-char 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
-
-# Alias
-source ${HOME}/.zsh_alias
 
 # Короткий путь cd 
 export CDPATH=/run/media/notebook/MEDIA/setup/sh/

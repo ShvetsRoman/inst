@@ -15,7 +15,7 @@ fi
 #------------------------------
 # Подключение конфигурации p10k, если она есть
 #------------------------------
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ${HOME}/.p10k.zsh ]] || source ${HOME}/.p10k.zsh
 
 #-----------------------------
 # Плагин подсветки текста
@@ -29,6 +29,13 @@ fi
 #-----------------------------
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+#-----------------------------
+# Alias
+#-----------------------------
+if [[ -f ${HOME}/.zsh_alias ]]; then
+    source ${HOME}/.zsh_alias
 fi
 
 #------------------------------
@@ -67,9 +74,6 @@ bindkey '^[[B' down-line-or-search
 bindkey '^[[C' forward-char 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
-
-# Alias
-source ${HOME}/.zsh_alias
 
 # Короткий путь cd 
 export CDPATH=/run/media/notebook/MEDIA/setup/sh/

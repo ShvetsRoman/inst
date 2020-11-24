@@ -672,10 +672,10 @@ chmod +x /usr/local/bin/btrfs-snapshot
 chown -R $username:users /usr/local/bin/btrfs-snapshot
 
 sudo cat << 'anacron-tab' > /etc/anacrontab
-1   3  daily_snap  /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
-7   5  weekly_snap /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
-@monthly    7  monthly_snap    /usr/local/bin/btrfs-snapshot / /.snapshots monthly 3
-1   9  grub_mkconfig   grub-mkconfig
+1    5  daily_snap  /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
+7   10  weekly_snap /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
+30  15  monthly_snap    /usr/local/bin/btrfs-snapshot / /.snapshots monthly 3
+1   20  grub_mkconfig   grub-mkconfig
 anacron-tab
 
 chmod +x /etc/anacrontab
