@@ -15,7 +15,6 @@ Plug 'ErichDonGubler/vim-sublime-monokai' " Цветовая тема
 Plug 'vim-airline/vim-airline' " Улучшенная строка состояния status bar
 Plug 'vim-airline/vim-airline-themes' " Темы status bar
 Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
-Plug 'tc50cal/vim-terminal' " Терминал
 Plug 'neomake/neomake'  "
 Plug 'Shougo/neocomplcache' " Для выполнения заполнения ключевых слов путем создания кэша ключевых слов в буфере
 Plug 'Shougo/vimshell'  " Для выполнения заполнения ключевых слов в SHELL
@@ -140,20 +139,16 @@ set number relativenumber                " Нумерация строк
 "set cursorline              " подсвечивать строку с курсором
 colorscheme sublimemonokai  " Цветовая тема
 
-" Улучшенная строка состояния status bar
-"let g:airline_theme='papercolor' " Цветовая тема строки состояния status bar
+" Строка состояния AirLine
+set laststatus=2 
 let g:airline_theme='bubblegum' " Цветовая тема строки состояния status bar
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
-let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
-let g:Powerline_symbols='unicode' "Поддержка unicode
+let g:airline#extensions#whitespace#enabled = 0
 "let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
+let g:airline_skip_empty_sections = 1   "Не рисовать разделители для пустых разделов
 
-" Скрытые файлы в окне проводника NERDTree.
+" Отображать скрытые файлы в окне проводника NERDTree.
 let NERDTreeShowHidden=1
-
-" Терминал в VIM по команде :terminal
-let g:slime_target = "vimterminal" " Терминал
 
 " ============================================================================
 "                   Редактирование и навигация по коду
@@ -197,35 +192,29 @@ set iminsert=0
 "Аналогично настраивается режим поиска
 set imsearch=0
 
-" ============================================================================
-"                                  Меню
-"   * Инсталяция плагинов
-"   * Кодировка файла
-"   * Вкл/Откл проверки орфографии
-"   * Вкл/Откл автодополнения ввода
-" ============================================================================
-nmap <F12> :emenu <tab>
-imap <F12> <Esc>:emenu <tab>
-menu PlugInstall.Install_Plug       :PlugInstall<cr> 
-menu Encoding.CP1251   :e ++enc=cp1251<cr>
-menu Encoding.CP866    :e ++enc=cp866<cr>
-menu Encoding.UTF-8    :e ++enc=utf-8<cr>
-menu Encoding.KOI8-U   :e ++enc=koi8-u<cr>
-menu Spell.Off         :set nospell<cr>
-menu Spell.On          :spell spelllang=ru,en<cr>
-menu Autocomplete.Off  :NeoComplCacheDisable<cr>
-menu Autocomplete.On   :NeoComplCacheEnable<cr>
-
 "set spell spelllang=ru,en  " Языки проверки орфографии
 set nospell                 " По умолчанию - без проверки орфографии
 set wildmenu                " при нажатии Tab в командном режиме для авто дополнения варианты будут отображаться в меню, а не появляться по-одному.
 set wcm=<Tab>               " Кодировки выбираются через меню
 
 " ============================================================================
+"                                  Меню
+"   * Кодировка файла
+"   * Вкл/Откл автодополнения ввода
+" ============================================================================
+nmap <F12> :emenu <tab>
+imap <F12> <Esc>:emenu <tab>
+menu Encoding.CP1251   :e ++enc=cp1251<cr>
+menu Encoding.CP866    :e ++enc=cp866<cr>
+menu Encoding.UTF-8    :e ++enc=utf-8<cr>
+menu Encoding.KOI8-U   :e ++enc=koi8-u<cr>
+menu Autocomplete.Off  :NeoComplCacheDisable<cr>
+menu Autocomplete.On   :NeoComplCacheEnable<cr>
+
+" ============================================================================
 "                                  Файл 
 "   F1 - Для отображения дерева каталога
 "   F2 - сохранить
-"   F3 - Поиск по файлам
 "   F4 - Замена в файле
 "   Ctrl + F - поиск в открытом буфере
 "   Ctrl + F2 - Сохранить если не хватает прав
@@ -241,10 +230,6 @@ imap <F1> <Esc>:NERDTreeToggle<cr>
 " Сохранить
 nmap <F2> :w<cr>                        
 imap <F2> <Esc>:w<cr>i
-
-" Поиск по файлам
-imap <F3> <Esc>:Rgrep<cr>
-nmap <F3> :Rgrep<cr>
 
 " Замена в открытом буфере
 imap <F4> <Esc>:%s///<left><left>
@@ -273,9 +258,6 @@ imap <C-z> <Esc>u
 " Ctrl+y - отмена отмены
 map <C-y> <C-r>
 imap <C-y> <Esc><C-r>
-
-" Ctrl+t - terminal
-map <C-t> :terminal<cr>
 
 " ============================================================================
 "                                  Окна 
