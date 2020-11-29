@@ -133,7 +133,8 @@ let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " ============================================================================
 "                     Настройки внешнего вида  редактора
 " ============================================================================
-set number relativenumber                " Нумерация строк
+"set number relativenumber                " Нумерация строк
+set number                " Нумерация строк
 "set textwidth=80            " Ширина текста - 80 симполов
 "set colorcolumn=80          " Подсветка того,что вылезает за 80 символов
 "set cursorline              " подсвечивать строку с курсором
@@ -247,9 +248,9 @@ imap <C-F2> <Esc>:w !sudo tee %<cr>i
 map <F8> :make<cr>
 imap <F8> <Esc>:make<cr>
 
-" Ctrl+F11 - выйти
-map <C-F11> :q<cr>
-imap <C-F11> <Esc>:q<cr>
+" Ctrl+F10 - выйти
+map <C-F10> :q<cr>
+imap <C-F10> <Esc>:q<cr>
 
 " Ctrl+z - отмена
 map <C-z> u
