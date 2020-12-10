@@ -20,7 +20,8 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
     "zsh" "ZSH - командная оболочка UNIX" ON \
     "zshtheme" "THEMEs ZSH - Powerlevel10i" ON \
     "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" ON \
-    "vim" "Vim - Консольный текстовый редактор + Theme" ON 
+    "vim" "Vim - Консольный текстовый редактор + Themes" ON \
+    "nvim" "NeoVim - Консольный текстовый редактор + Themes" OFF
     progs="$DIALOG_RESULT"
 
 ## Отмена установки
@@ -56,7 +57,13 @@ for action in $progs; do
         wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_vim.sh
         sh inst_vim.sh
     ;;
-    esac
+    '"nvim"')
+        mkdir ${HOME}/temp
+        cd ${HOME}/temp
+        wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvim.sh
+        sh inst_nvim.sh
+    ;;
+     esac
 done
 
 ### OS Arch linux ###

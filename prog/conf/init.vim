@@ -1,15 +1,15 @@
 " ============================================================================
-"               vim-plug установится при первом старте Vim'а
+"               vim-plug установится при первом старте nVim'а
 " ============================================================================
-if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+if empty(glob("~/.config/nvim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall
 endif
 
 " ============================================================================
-"                           Плагины VIM
+"                           Плагины nVIM
 " ============================================================================
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/bundle')
 Plug 'scrooloose/nerdtree' " Отображения дерева каталога
 Plug 'ErichDonGubler/vim-sublime-monokai' " Цветовая тема
 Plug 'vim-airline/vim-airline' " Улучшенная строка состояния status bar
@@ -145,11 +145,19 @@ set laststatus=2
 let g:airline_theme='bubblegum' " Цветовая тема строки состояния status bar
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 let g:airline#extensions#whitespace#enabled = 0
-"let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
+let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
 let g:airline_skip_empty_sections = 1   "Не рисовать разделители для пустых разделов
 
-" Отображать скрытые файлы в окне проводника NERDTree.
+" NERDTree.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 " ============================================================================
 "                   Редактирование и навигация по коду
@@ -169,8 +177,7 @@ set mps+=":"                " показывать совпадающие ско
 set foldmethod=manual       " Выделяем участок с помощью v
 syntax on                   " Подсветка синтаксиса
 
-"Если вы используете обычный терминальный Вим, а не NeoVim, то...
-"... для изменения курсора в разных режимах используйте это:
+" для изменения курсора в разных режимах используйте это:
 set ttimeoutlen=10          "Понижаем задержку ввода escape последовательностей
 let &t_SI.="\e[5 q"         "SI = режим вставки
 let &t_SR.="\e[3 q"         "SR = режим замены
@@ -183,16 +190,9 @@ let &t_EI.="\e[1 q"         "EI = нормальный режим
 "6 - просто вертикальная черта
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
-"Если вы используете обычную qwerty, то поменяте mac на win
-set keymap=russian-jcukenwin
-
-"Язык ввода при старте Вима - Английский
-set iminsert=0
-
-"Аналогично настраивается режим поиска
-set imsearch=0
-
+set keymap=russian-jcukenwin    "Если вы используете обычную qwerty, то поменяте mac на win
+set iminsert=0  "Язык ввода при старте nVim - Английский
+set imsearch=0  "Аналогично настраивается режим поиска
 "set spell spelllang=ru,en  " Языки проверки орфографии
 set nospell                 " По умолчанию - без проверки орфографии
 set wildmenu                " при нажатии Tab в командном режиме для авто дополнения варианты будут отображаться в меню, а не появляться по-одному.
