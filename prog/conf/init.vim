@@ -37,6 +37,7 @@ set encoding=utf-8
 set backspace=indent,eol,start      " Исправить «неработающий» backspace в режиме вставки
 set path+=**                " Для поиска во всех подкаталогах
 set wrap linebreak nolist   " Данная вариация работает как wrap...но переносит строчки не посимвольно, а по словам
+set inccommand=nosplit      " Подсветка поиска-замены
 
 " ============================================================================
 "                           Neocomplcache
