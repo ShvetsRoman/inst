@@ -146,10 +146,10 @@ set laststatus=2
 let g:airline_theme='bubblegum' " Цветовая тема строки состояния status bar
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
+"let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
 let g:airline_skip_empty_sections = 1   "Не рисовать разделители для пустых разделов
 
-" NERDTree.
+" NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
