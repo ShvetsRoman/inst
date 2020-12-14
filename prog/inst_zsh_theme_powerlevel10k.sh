@@ -21,7 +21,8 @@ if [[ -e ${HOME}/.p10k.zsh ]]; then
 fi
 
 # Install Theme
-sudo pacman -S --noconfirm zsh-theme-powerlevel10k
+#sudo pacman -S --noconfirm zsh-theme-powerlevel10k
+pikaur -S --noedit zsh-theme-powerlevel10k-git
 
 # Copy configs
 cd ${HOME}/

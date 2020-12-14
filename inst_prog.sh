@@ -18,7 +18,7 @@ os="$DIALOG_RESULT"
 boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 15 70 10 \
     "pikaur" "pikaur - установщик пакетов из AUR" ON \
     "zsh" "ZSH - командная оболочка UNIX" ON \
-    "zshtheme" "THEMEs ZSH - Powerlevel10i" ON \
+    "zshtheme" "THEMEs ZSH - Powerlevel10i (для установки нужен pikaur)" ON \
     "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" ON \
     "vim" "Vim - Консольный текстовый редактор + Themes" ON \
     "nvim" "NeoVim - Консольный текстовый редактор + Themes" OFF
