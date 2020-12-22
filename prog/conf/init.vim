@@ -18,6 +18,8 @@ Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
 Plug 'neomake/neomake'  "
 Plug 'Shougo/neocomplcache' " Для выполнения заполнения ключевых слов путем создания кэша ключевых слов в буфере
 Plug 'Shougo/vimshell'  " Для выполнения заполнения ключевых слов в SHELL
+Plug 'airblade/vim-gitgutter'   " Показывает, какие строки были добавлены, изменены или удалены
+Plug 'tpope/vim-fugitive'   " Главный плагин Vim для Git
 call plug#end()
 
 " ============================================================================
@@ -37,7 +39,19 @@ set encoding=utf-8
 set backspace=indent,eol,start      " Исправить «неработающий» backspace в режиме вставки
 set path+=**                " Для поиска во всех подкаталогах
 set wrap linebreak nolist   " Данная вариация работает как wrap...но переносит строчки не посимвольно, а по словам
+"set inccommand=split      " Подсветка поиска-замены
 set inccommand=nosplit      " Подсветка поиска-замены
+
+" ====== GitGutter =====
+"set signcolumn=yes
+set updatetime=100
+let g:gitgutter_set_sign_backgrounds = 1 
+let g:gitgutter_sign_added = 'xx'
+let g:gitgutter_sign_modified = 'yy'
+let g:gitgutter_sign_removed = 'zz'
+let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_removed_above_and_below = '{'
+let g:gitgutter_sign_modified_removed = 'ww'
 
 " ============================================================================
 "                           Neocomplcache

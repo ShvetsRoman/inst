@@ -9,6 +9,4 @@ if [[ -e ${HOME}/.vimrc ]]; then
 fi
 
 # Копирование config .vimrc
-cd ${HOME}/
-wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/vimrc
-mv ${HOME}/vimrc ${HOME}/.vimrc
+curl -fLo ${HOME}/.vimrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/vimrc

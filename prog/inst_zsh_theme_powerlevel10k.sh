@@ -2,12 +2,10 @@
 
 # Copy font
 # Konsole: Open Settings → Edit Current Profile → Appearance, click Select Font and select MesloLGS NF Regular
-mkdir ${HOME}/.fonts
-cd ${HOME}/.fonts
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+curl -fLo ${HOME}/.fonts/MesloLGS%20NF%20Regular.ttf --create-dirs https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+curl -fLo ${HOME}/.fonts/MesloLGS%20NF%20Bold.ttf --create-dirs https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+curl -fLo ${HOME}/.fonts/MesloLGS%20NF%20Italic.ttf --create-dirs https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+curl -fLo ${HOME}/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf --create-dirs https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
 
 # Backup .zshrc
 if [[ -e ${HOME}/.zshrc ]]; then
@@ -25,17 +23,15 @@ fi
 pikaur -S --noedit zsh-theme-powerlevel10k-git
 
 # Copy configs
-cd ${HOME}/
-wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zshrc_theme
-mv ${HOME}/zshrc_theme ${HOME}/.zshrc
-wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zsh_alias
-mv ${HOME}/zsh_alias ${HOME}/.zsh_alias
-wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zsh_p10k.zsh
-mv ${HOME}/zsh_p10k.zsh ${HOME}/.p10k.zsh
+curl -fLo ${HOME}/.zshrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zshrc_theme
+curl -fLo ${HOME}/.zsh_alias --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zsh_alias
+curl -fLo ${HOME}/.p10k.zsh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zsh_p10k.zsh
 
 # Install configs ROOT
 sudo cp ${HOME}/.zshrc /root/
 sudo cp ${HOME}/.zsh_alias /root/
 sudo cp ${HOME}/.p10k.zsh /root/
 
-#source ${HOME}/.zshrc
+# Установка Zsh в качестве оболочки по умолчанию
+sudo chsh -s /bin/zsh ${USER}
+sudo chsh -s /bin/zsh root

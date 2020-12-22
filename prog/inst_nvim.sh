@@ -9,6 +9,4 @@ if [[ -e ${HOME}/.config/nvim/init.vim ]]; then
 fi
 
 # Копирование config init.vim
-mkdir -p ${HOME}/.config/nvim/
-cd ${HOME}/.config/nvim/
-wget https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/init.vim
+curl -fLo ${HOME}/.config/nvim/init.vim --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/init.vim
