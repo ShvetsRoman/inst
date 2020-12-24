@@ -14,8 +14,8 @@ sudo iptables-save -f /etc/iptables/iptables.rules
 # Файл конфигурации
 sudo mkdir -p /etc/avahi/services
 cd /etc/avahi/services
-sudo curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/avahi.smb.service
-sudo curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/ftp.service
+sudo curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/avahi.smb.service
+sudo curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/ftp.service
 
 sudo systemctl enable avahi-daemon.service
 sudo systemctl enable avahi-dnsconfd.service

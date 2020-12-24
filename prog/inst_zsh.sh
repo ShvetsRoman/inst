@@ -6,13 +6,13 @@ sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting 
 # Установка шриштов
 git clone https://github.com/powerline/fonts.gitss
 cd fonts
-./testall.sh
+./install.sh
 cd ..
 rm -rf fonts
 
 # Копирование config .zshrc
-curl -fLo ${HOME}/.zshrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zshrc
-curl -fLo ${HOME}/.zsh_alias --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zsh_alias
+curl -fLo ${HOME}/.zshrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zshrc
+curl -fLo ${HOME}/.zsh_alias --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zsh_alias
 
 # Копирование config .zshrc ROOT
 sudo cp ${HOME}/.zshrc /root/

@@ -41,49 +41,49 @@ for action in $progs; do
         '"pikaur"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_pikaur.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_pikaur.sh
             sh inst_pikaur.sh
             ;;
         '"po_kde"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_po_kde.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_po_kde.sh
             sh inst_po_kde.sh
             ;;
         '"avahi"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_avahi.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_avahi.sh
             sh inst_avahi.sh
             ;;
         '"samba"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_samba.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_samba.sh
             sh inst_samba.sh
             ;;
         '"zsh"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_zsh.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh.sh
             sh inst_zsh.sh
             ;;
         '"zshtheme"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_zsh_theme_powerlevel10k.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh_theme_powerlevel10k.sh
             sh inst_zsh_theme_powerlevel10k.sh
             ;;
         '"vim"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_vim.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_vim.sh
             sh inst_vim.sh
             ;;
         '"nvim"')
             mkdir ${HOME}/temp
             cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_nvim.sh
+            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvim.sh
             sh inst_nvim.sh
             ;;
     esac
@@ -97,7 +97,7 @@ if [[ "$os" == "Arch" ]]; then
             '"nvidiaopman"')
                 mkdir ${HOME}/temp
                 cd ${HOME}/temp
-                curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_nvidia_op_kde_arch.sh
+                curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_arch.sh
                 sh inst_nvidia_op_kde_arch.sh
                 ;;
         esac
@@ -112,7 +112,7 @@ if [[ "$os" == "Manjaro" ]]; then
             '"nvidiaopman"')
                 mkdir ${HOME}/temp
                 cd ${HOME}/temp
-                curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/inst_nvidia_op_kde_manjaro.sh
+                curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_manjaro.sh
                 sh inst_nvidia_op_kde_manjaro.sh
                 ;;
         esac

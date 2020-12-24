@@ -20,7 +20,7 @@ sudo chown root:sambashare /var/lib/samba/usershares
 sudo chmod 1770 /var/lib/samba/usershares
 
 # Файл конфигурации
-sudo curl -fLo /etc/samba/smb.conf --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/smb.conf
+sudo curl -fLo /etc/samba/smb.conf --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/smb.conf
 
 sudo systemctl enable smb.service
 sudo systemctl enable nmb.service

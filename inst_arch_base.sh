@@ -724,7 +724,7 @@ echo "##################### Копирование скрипта inst_prog_base
 arch-chroot /mnt /bin/bash <<EOF
 mkdir /home/$username/Рабочий\ стол/
 cd /home/$username/Рабочий\ стол/
-curl -LO https://raw.githubusercontent.com/ShvetsRoman/test/main/inst_prog.sh
+curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/inst_prog.sh
 chmod +x /home/$username/Рабочий\ стол/inst_prog.sh
 chown -R $username:users /home/$username/Рабочий\ стол/
 EOF

@@ -23,9 +23,9 @@ fi
 pikaur -S --noedit zsh-theme-powerlevel10k-git
 
 # Copy configs
-curl -fLo ${HOME}/.zshrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zshrc_theme
-curl -fLo ${HOME}/.zsh_alias --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zsh_alias
-curl -fLo ${HOME}/.p10k.zsh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/test/main/prog/conf/zsh_p10k.zsh
+curl -fLo ${HOME}/.zshrc --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zshrc_theme
+curl -fLo ${HOME}/.zsh_alias --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zsh_alias
+curl -fLo ${HOME}/.p10k.zsh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/conf/zsh_p10k.zsh
 
 # Install configs ROOT
 sudo cp ${HOME}/.zshrc /root/
