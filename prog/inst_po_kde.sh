@@ -49,7 +49,7 @@ sudo pacman -Syyuu --noconfirm --needed $core_packages
 pikaur -S --noconfirm --noedit $core_packages_aur
 
 # Themes GitHub McMojave-kde
-mkdir -r ${HOME}/.themes/github_themes/
+mkdir -p ${HOME}/.themes/github_themes/
 cd ${HOME}/.themes/github_themes/
 
 git clone https://github.com/vinceliuice/McMojave-kde
