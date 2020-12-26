@@ -47,3 +47,16 @@ core_packages_aur+=' '
 ### INSTALL Programs ###
 sudo pacman -Syyuu --noconfirm --needed $core_packages
 pikaur -S --noconfirm --noedit $core_packages_aur
+
+# Themes GitHub McMojave-kde
+mkdir -r ${HOME}/.themes/github_themes/
+cd ${HOME}/.themes/github_themes/
+
+git clone https://github.com/vinceliuice/McMojave-kde
+${HOME}/.themes/github_themes/McMojave-kde/install.sh
+
+git clone https://github.com/vinceliuice/Mojave-gtk-theme
+${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
+
+git clone https://github.com/vinceliuice/McMojave-circle
+${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue

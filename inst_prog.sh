@@ -39,52 +39,36 @@ sudo pacman -Syyuu
 for action in $progs; do
     case "$action" in
         '"pikaur"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_pikaur.sh
-            sh inst_pikaur.sh
+            curl -fLo ${HOME}/temp/inst_pikaur.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_pikaur.sh
+            sh ${HOME}/temp/inst_pikaur.sh
             ;;
         '"po_kde"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_po_kde.sh
-            sh inst_po_kde.sh
+            curl -fLo ${HOME}/temp/inst_po_kde.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_po_kde.sh
+            sh ${HOME}/temp/inst_po_kde.sh
             ;;
         '"avahi"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_avahi.sh
-            sh inst_avahi.sh
+            curl -fLo ${HOME}/temp/inst_avahi.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_avahi.sh
+            sh ${HOME}/temp/inst_avahi.sh
             ;;
         '"samba"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_samba.sh
-            sh inst_samba.sh
+            curl -fLo ${HOME}/temp/inst_samba.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_samba.sh
+            sh ${HOME}/temp/inst_samba.sh
             ;;
         '"zsh"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh.sh
-            sh inst_zsh.sh
+            curl -fLo ${HOME}/temp/inst_zsh.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh.sh
+            sh ${HOME}/temp/inst_zsh.sh
             ;;
         '"zshtheme"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh_theme_powerlevel10k.sh
-            sh inst_zsh_theme_powerlevel10k.sh
+            curl -fLo ${HOME}/temp/inst_zsh_theme_powerlevel10k.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_zsh_theme_powerlevel10k.sh
+            sh ${HOME}/temp/inst_zsh_theme_powerlevel10k.sh
             ;;
         '"vim"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_vim.sh
-            sh inst_vim.sh
+            curl -fLo ${HOME}/temp/inst_vim.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_vim.sh
+            sh ${HOME}/temp/inst_vim.sh
             ;;
         '"nvim"')
-            mkdir ${HOME}/temp
-            cd ${HOME}/temp
-            curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvim.sh
-            sh inst_nvim.sh
+            curl -fLo ${HOME}/temp/inst_nvim.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvim.sh
+            sh ${HOME}/temp/inst_nvim.sh
             ;;
     esac
 done
@@ -95,10 +79,8 @@ if [[ "$os" == "Arch" ]]; then
     for action in $progs; do
         case "$action" in
             '"nvidiaopman"')
-                mkdir ${HOME}/temp
-                cd ${HOME}/temp
-                curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_arch.sh
-                sh inst_nvidia_op_kde_arch.sh
+                curl -fLo ${HOME}/temp/inst_nvidia_op_kde_arch.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_arch.sh
+                sh ${HOME}/temp/inst_nvidia_op_kde_arch.sh
                 ;;
         esac
     done
@@ -110,10 +92,8 @@ if [[ "$os" == "Manjaro" ]]; then
     for action in $progs; do
         case "$action" in
             '"nvidiaopman"')
-                mkdir ${HOME}/temp
-                cd ${HOME}/temp
-                curl -LO https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_manjaro.sh
-                sh inst_nvidia_op_kde_manjaro.sh
+                curl -fLo ${HOME}/temp/inst_nvidia_op_kde_manjaro.sh --create-dirs https://raw.githubusercontent.com/ShvetsRoman/inst/main/prog/inst_nvidia_op_kde_manjaro.sh
+                sh ${HOME}/temp/inst_nvidia_op_kde_manjaro.sh
                 ;;
         esac
     done
