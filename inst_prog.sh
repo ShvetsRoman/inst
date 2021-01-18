@@ -24,8 +24,8 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
     "zsh" "ZSH - командная оболочка UNIX" ON \
     "zshtheme" "THEMEs ZSH - Powerlevel10i (для установки нужен pikaur)" ON \
     "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" ON \
-    "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
-    "nvim" "NeoVim - Консольный текстовый редактор + Themes" ON
+    "vim" "Vim - Консольный текстовый редактор + Themes" ON \
+    "nvim" "NeoVim - Консольный текстовый редактор + Themes" OFF
     progs="$DIALOG_RESULT"
 
 ## Отмена установки
