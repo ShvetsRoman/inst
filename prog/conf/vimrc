@@ -11,87 +11,101 @@ endif
 " ===========================================================================
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree' " Отображения дерева каталога
-Plug 'jistr/vim-nerdtree-tabs' "для работы в разных вкладках
+" ========== Дерево каталога ==========
+Plug 'scrooloose/nerdtree'	" Отображения дерева каталога
+Plug 'jistr/vim-nerdtree-tabs'	"для работы в разных вкладках
+
+" ========== Авто дополнение кода ===========
+
+" ========== Для подсветки синтаксиса ==========
+Plug 'sheerun/vim-polyglot'
 
 " ========== Цветовые темы подсветки ==========
 Plug 'ErichDonGubler/vim-sublime-monokai'
-Plug 'joshdick/onedark.vim'
 Plug 'danilo-augusto/vim-afterglow'
-Plug 'habamax/vim-gruvbit'
-" =============================================
+Plug 'lfenzo/vim-fusion'
+Plug 'MisanthropicBit/vim-warlock'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+" ========== Переключение темы подсветки ==========
+Plug 'kato-k/vim-colorscheme-settings'
 
-Plug 'vim-airline/vim-airline' " Улучшенная строка состояния status bar
-Plug 'vim-airline/vim-airline-themes' " Темы status bar
-Plug 'ryanoasis/vim-devicons' " Шрифт и иконки
+" ========== Airline ==========
+Plug 'vim-airline/vim-airline'	" Улучшенная строка состояния status bar
+Plug 'vim-airline/vim-airline-themes'	" Темы status bar
+Plug 'ryanoasis/vim-devicons'	" Шрифт и иконки
 
-Plug 'Shougo/neocomplcache' " Для выполнения заполнения ключевых слов путем создания кэша ключевых слов в буфере
-Plug 'Shougo/vimshell'  " Для выполнения заполнения ключевых слов в SHELL
+" ========== PYTHON ==========
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'vim-python/python-syntax'
+Plug 'jmcantrell/vim-virtualenv'	" User virtualenv for current python interpretor
 
-Plug 'VundleVim/Vundle.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-Plug 'tmhedberg/SimpylFold' " Сворачивание кода
-Plug 'vim-scripts/indentpython.vim' " Autoindent
+" ========== Cворачивание кода ==========
+Plug 'tmhedberg/SimpylFold'		" Сворачивание кода
+Plug 'Konfekt/FastFold'			" Нужно для сворачивания кода
 
 call plug#end()
 
 " ===========================================================================
 "                           Настройки редактора
 " ===========================================================================
-set nopaste                 " Режим без принудительной вставки отступов
-set modifiable              " Сделает буфер модифицируемым
-set noautowrite             " Не автосохранять
-set ignorecase              " Игнорировать регистр букв при поиске
-set nobackup                " Без автоматического создания файлов отмены
-set noswapfile              " Не создаём swp-файлы
-set fileformat=unix         " Формат файла (влияет на окончание строк) 
-set fencs=utf8,cp1251       " Автоопределение кодировки
+set nopaste					" Режим без принудительной вставки отступов
+set modifiable				" Сделает буфер модифицируемым
+set noautowrite				" Не автосохранять
+set ignorecase				" Игнорировать регистр букв при поиске
+set nobackup				" Без автоматического создания файлов отмены
+set noswapfile				" Не создаём swp-файлы
+set fileformat=unix			" Формат файла (влияет на окончание строк) 
+set fencs=utf8,cp1251		" Автоопределение кодировки
 set termencoding=utf-8		" Кодировка terminala UTF-8 
 set encoding=utf-8			" Кодировка file UTF-8 
 set nocompatible            " режим совместимости с Vi отключён
-set hidden	" Не выгружать буфер, когда переключаемся на другой файл, это позволяет редактировать несколько файлов без save.
-set backspace=indent,eol,start      " Исправить «неработающий» backspace в режиме вставки
-set path+=**                " Для поиска во всех подкаталогах
-set incsearch	" Поиск в процессе набора
-set hlsearch	" Подсвечивание результатов поиска
+set hidden					" Не выгружать буфер, когда переключаемся на другой файл, это позволяет редактировать несколько файлов без save.
+set backspace=indent,eol,start		" Исправить «неработающий» backspace в режиме вставки
+set path+=**				" Для поиска во всех подкаталогах
+"set incsearch				" Поиск в процессе набора
+set hlsearch				" Подсвечивание результатов поиска
 set nowrap		" Не переносить строки
-"set wrap linebreak nolist   " Данная вариация работает как wrap...но переносит строчки не посимвольно, а по словам
-
-" Настройка отображения специальных символов
-set list listchars=tab:→\ ,trail:·
+"set wrap linebreak nolist	" Данная вариация работает как wrap...но переносит строчки не посимвольно, а по словам
 
 " ========== Сворачивание ==========
-"zc                        свернуть блок
-"zo                        развернуть блок
-"zM                        закрыть все блоки
-"zR                        открыть все блоки
-"za                        инвертирование
-"zf                        см :set foldmethod=manual
-set foldenable           "включить свoрачивание
-set foldmethod=syntax    "сворачивание на основе синтаксиса
-set foldmethod=indent    "сворачивание на основе отступов
-set foldmethod=manual    "выделяем участок с помощью v и говорим zf
-set foldmethod=marker    "сворачивание на основе маркеров в тексте
-set foldmarker=bigin,end "задаем маркеры начала и конца блока
+"zc     свернуть блок
+"zo     развернуть блок
+"zM     закрыть все блоки
+"zR     открыть все блоки
+"za     инвертирование
+"zf     см :set foldmethod=manual
 
+set foldenable				"включить свoрачивание
+
+"set foldmethod=syntax		"сворачивание на основе синтаксиса
+set foldmethod=indent		"сворачивание на основе отступов
+"set foldmethod=manual		"выделяем участок с помощью v и говорим zf
+"set foldmethod=marker		"сворачивание на основе маркеров в тексте
+
+let g:SimpylFold_docstring_preview = 1	" Предварительный просмотр строки документации в свернутом тексте
+
+set foldmarker=bigin,end	"задаем маркеры начала и конца блока
 set foldlevel=99
 set foldlevelstart=1
 set foldnestmax=2
+set foldcolumn=0	" Полоса отображения свернутых/развернутых блоков
+"set foldlevel=0	" Уровень сверачивания блоков по умолчанию
+"set foldopen=all	" Автоматическое открытие сверток при заходе на них
+"set foldclose=all	" Автоматическое закрытие сверток при уходе с них
 
-let javaScript_fold=1         " JavaScript
-let perl_fold=1               " Perl
-let php_folding=1             " PHP
-let r_syntax_folding=1        " R
-let ruby_fold=1               " Ruby
-let sh_fold_enabled=1         " sh
-let vimsyn_folding='af'       " Vim script
-let xml_syntax_folding=1      " XML
-
-" работает по комбинации za. Меняю на пробел
-nnoremap <space> za
+" == Настройки сворачиваня FastFold ==
+let javaScript_fold=1		" JavaScript
+let perl_fold=1				" Perl
+let php_folding=1			" PHP
+let r_syntax_folding=1		" R
+let ruby_fold=1				" Ruby
+let sh_fold_enabled=1		" sh
+let vimsyn_folding='af'		" Vim script
+let xml_syntax_folding=1	" XML
+"autocmd BufWinEnter * normal! zM	" Закрыть все блоки при откытии фыйла
+nnoremap <space> za		" Работает по комбинации za. Меняю на пробел
 
 " ===========================================================================
 "                   Редактирование и навигация по коду
@@ -99,25 +113,10 @@ nnoremap <space> za
 set mousehide               "Спрятать курсор мыши когда набираем текст
 set mouse=a                 "Включить поддержку мыши
 set autoindent              " Автоматический отступ
-set tabstop=4               " Пробелами 
+set tabstop=4               " Пробелами
 set shiftwidth=4            " По 4 штуки
 set softtabstop=4
 "set expandtab               " Заменять табы на пробелы и обратно
-
-"============ Autoindent =============
-au BufRead,BufNewFile *.py,*pyw set tabstop=4
-au BufRead,BufNewFile *.py,*pyw set softtabstop=4
-au BufRead,BufNewFile *.py,*pyw set autoindent
-au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
-au BufRead,BufNewFile *.py,*.pyw set expandtab
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
-au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
-" for full stack development
-au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
-au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
-"=====================================
-
 set smartindent             " Умные отступы (например, автоотступ после {)
 set showmatch               " Показывать первую парную скобку после ввода второй
 set mps+=<:>                " показывать совпадающие скобки для HTML-тегов
@@ -126,22 +125,9 @@ set mps+={:}                " показывать совпадающие ско
 set mps+=[:]                " показывать совпадающие скобки для HTML-тегов
 set mps+=':'                " показывать совпадающие скобки для HTML-тегов
 set mps+=":"                " показывать совпадающие скобки для HTML-тегов
-set foldmethod=manual       " Выделяем участок с помощью v
 syntax on                   " Подсветка синтаксиса
-let python_highlight_all = 1    "Подсвечивать все в Python
 
-"===== PYTHON =====
-"отображение плохих пробелов
-highlight BadWhitespace ctermbg=red guibg=red
-"Помечать конечные пробелы как плохие
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-" Перед сохранением вырезаем пробелы на концах (только в .py файлах)
-autocmd BufWritePre *.py %s/\s\+$//e 
-" В .py файлах включаем умные отступы после ключевых слов
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-"===================
-
-"Соранение файлов только для чтения без SUDO
+" Соранение файлов только для чтения без SUDO
 cmap w!! w !sudo tee > /dev/null %
 
 "Если вы используете обычный терминальный Вим, а не NeoVim, то...
@@ -158,49 +144,82 @@ let &t_EI.="\e[1 q"         "EI = нормальный режим
 "6 - просто вертикальная черта
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
 "Если вы используете обычную qwerty, то поменяте mac на win
 set keymap=russian-jcukenwin
-
 "Язык ввода при старте Вима - Английский
 set iminsert=0
-
 "Аналогично настраивается режим поиска
 set imsearch=0
-
 "set spell spelllang=ru,en  " Языки проверки орфографии
 set nospell                 " По умолчанию - без проверки орфографии
 set wildmenu                " при нажатии Tab в командном режиме для авто дополнения варианты будут отображаться в меню, а не появляться по-одному.
-set wcm=<Tab>               " Кодировки выбираются через меню
+
+" ============= PYTHON ===============
+let python_highlight_all=1    "Подсвечивать все в Python
+" отображение плохих пробелов
+highlight BadWhitespace ctermbg=red guibg=red
+" Помечать конечные пробелы как плохие
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+" Перед сохранением вырезаем пробелы на концах (только в .py файлах)
+autocmd BufWritePre *.py %s/\s\+$//e
+" В .py файлах включаем умные отступы после ключевых слов
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+" python-mode
+let g:pymode_python = 'python3'
+
+"============ Autoindent =============
+au BufRead,BufNewFile *.py,*pyw set tabstop=4
+au BufRead,BufNewFile *.py,*pyw set softtabstop=4
+au BufRead,BufNewFile *.py,*pyw set autoindent
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
+au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=80
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set colorcolumn=80
+au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
+" for full stack development
+au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
+au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
 
 " ===========================================================================
 "                     Настройки внешнего вида  редактора
 " ===========================================================================
-set number relativenumber                " Нумерация строк
-"set number                " Нумерация строк
-
-"set textwidth=79            " Ширина текста - к-во симполов
-"set colorcolumn=79          " Подсветка того,что вылезает за к-во символов
-
-set cursorline              " подсвечивать строку с курсором
+"set number relativenumber	" Нумерация строк
+set number					" Нумерация строк
+"set cursorline				" подсвечивать строку с курсором
 
 "colorscheme sublimemonokai  " Цветовая тема
-"colorscheme onedark  " Цветовая тема
-colorscheme afterglow " Цветовая тема
-let g:afterglow_italic_comments=1
+"colorscheme afterglow
 
-" Строка состояния AirLine
-set laststatus=2 
+" ONE and ONEDARK - Цветовая тема настройки
+let g:one_allow_italics = 1 " I love italic for comments
+let g:onedark_terminal_italics = 1
+if (has("termguicolors"))
+	set termguicolors
+endif
+
+" ===== Переключение темы подсветки =====
+" :SwitchColorscheme
+" :SwitchBackGround
+let g:colorschemes_settings#rc_file_path = expand('~/.vim/colorrc.vim')
+
+let s:colorrcpath = expand('~/.vim/colorrc.vim')
+if filereadable(s:colorrcpath)
+  execute "source" s:colorrcpath
+endif
+
+" == Строка состояния AirLine ==
+set laststatus=2
+"let g:airline_theme='afterglow' " Цветовая тема строки состояния status bar
 "let g:airline_theme='bubblegum' " Цветовая тема строки состояния status bar
-"let g:airline_theme='onedark' " Цветовая тема строки состояния status bar
-let g:airline_theme='afterglow' " Цветовая тема строки состояния status bar
-
+"let g:airline_theme='one' " Цветовая тема строки состояния status bar
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 let g:airline#extensions#whitespace#enabled = 0
 "let g:airline#extensions#tabline#enabled = 1 "Автоматически отображает все буферы
-let g:airline_skip_empty_sections = 1   "Не рисовать разделители для пустых разделов
+let g:airline_skip_empty_sections = 1   " Не рисовать разделители для пустых разделов
+let g:airline#extensions#virtualenv#enabled = 1	" Python virtualenv
 
-" NERDTree
+" ========== NERDTree ==========
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
@@ -211,84 +230,19 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
-" ===========================================================================
-"                           Neocomplcache
-" ===========================================================================
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
-let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-" ===========================================================================
-"                                  Меню
-"   * Кодировка файла
-"   * Вкл/Откл автодополнения ввода
-" ===========================================================================
-nmap <F12> :emenu <tab>
-imap <F12> <Esc>:emenu <tab>
-menu Encoding.CP1251   :e ++enc=cp1251<cr>
-menu Encoding.CP866    :e ++enc=cp866<cr>
-menu Encoding.UTF-8    :e ++enc=utf-8<cr>
-menu Encoding.KOI8-U   :e ++enc=koi8-u<cr>
-menu Autocomplete.Off  :NeoComplCacheDisable<cr>
-menu Autocomplete.On   :NeoComplCacheEnable<cr>
+" ----------------------------------------
+" Невидимые символы (пробелы, табуляция)
+" ----------------------------------------
+" Включение отображения невидимых символов
+set list
+" Вид табуляции и пробела
+"set lcs=tab:│\ ,trail:·,extends:>,precedes:<,nbsp:&
+"set lcs=tab:└─,trail:·,extends:>,precedes:<,nbsp:&
+"set lcs=tab:│┈,trail:·,extends:>,precedes:<,nbsp:&
+set lcs=tab:▸\ ,trail:·,extends:>,precedes:<,nbsp:&
+"set lcs=tab:▸·,trail:·,extends:>,precedes:<,nbsp:&
+"set lcs=tab:\ \ ,trail:·,extends:>,precedes:<,nbsp:&
+"set lcs=tab:·\ ,trail:·,extends:>,precedes:<,nbsp:&
 
 " ===========================================================================
 "                                  Файл 
@@ -304,31 +258,36 @@ menu Autocomplete.On   :NeoComplCacheEnable<cr>
 " Для отображения/скрытия NERDTreeToggle
 nmap <F1> :NERDTreeToggle<cr>
 imap <F1> <Esc>:NERDTreeToggle<cr>
-
 " Сохранить
-nmap <F2> :w<cr>                        
+nmap <F2> :w<cr>
 imap <F2> <Esc>:w<cr>i
-
 " Замена в открытом буфере
 imap <F4> <Esc>:%s///<left><left>
 nmap <F4> :%s///<left><left>
-
 " Ctrl + F Поиск в открытом буфере
 imap <C-f> <Esc>/
 nmap <C-f> <Esc>/
-
 " Ctrl + F2 охранить если не хватает прав
-nmap <C-F2> :w !sudo tee %<cr>                        
+nmap <C-F2> :w !sudo tee %<cr>
 imap <C-F2> <Esc>:w !sudo tee %<cr>i
-
 " Ctrl+F10 - выйти
 map <C-F10> :q<cr>
 imap <C-F10> <Esc>:q<cr>
 
+" Для отображения выбора тем подсветки синтаксиза
+nmap <F8> :PlugClean<cr>
+imap <F8> <Esc>:PlugClean<cr>
+
+" Для отображения выбора тем подсветки синтаксиза
+nmap <F9> :PlugInstall<cr>
+imap <F9> <Esc>:PlugInstall<cr>
+
+" Для отображения выбора тем подсветки синтаксиза
+nmap <F12> :SwitchColorScheme<cr>
+imap <F12> <Esc>:SwitchColorScheme<cr>
 " Ctrl+z - отмена
 map <C-z> u
 imap <C-z> <Esc>u
-
 " Ctrl+y - отмена отмены
 map <C-y> <C-r>
 imap <C-y> <Esc><C-r>
@@ -338,10 +297,10 @@ imap <C-y> <Esc><C-r>
 "   * Ctrl + rigth - окно вправо
 "   * Ctrl + left - окно влево 
 "   * Ctrl + up - окно вверх 
-"   * Ctrl + down - окно вниз 
+"   * Ctrl + down - окно вниз
 " ===========================================================================
 " Перемещение по окнам
-map <C-right> <C-w>l    
+map <C-right> <C-w>l
 map <C-left> <C-w>h
 map <C-up> <C-w>k
 map <C-down> <C-w>j
@@ -372,6 +331,11 @@ vmap cc :norm i#<CR>
 vmap uc :norm ^x<CR>
 
 " ===========================================================================
+"   Enter вставить пустую строку ниже текущей, Shift+Enter вставить выше
+" ===========================================================================
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+" ===========================================================================
 "                                   Скобки
 " ===========================================================================
 " Автоматическое закрытие скобок
@@ -379,7 +343,3 @@ imap [ []<LEFT>
 imap ( ()<LEFT>
 imap { {}<LEFT>
 imap < <><LEFT>
-
-" ===========================================================================
-"                                   END
-" ===========================================================================
