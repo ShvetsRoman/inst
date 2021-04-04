@@ -9,9 +9,6 @@ sudo sed -i 's/^MODULES=.*/MODULES=(i915)/g' /etc/mkinitcpio.conf
 # Установка драйвера intell & Nvidia
 sudo pacman -S --noconfirm --needed xf86-video-intel nvidia nvidia-utils nvidia-settings lib32-nvidia-utils bbswitch
 
-# Автоматическая настройка
-sudo nvidia-xconfig
-
 # Установка Optimus Manager
 pikaur -S --noconfirm --noedit optimus-manager
 # Устанока утилиты для настройки графики и для переключения
