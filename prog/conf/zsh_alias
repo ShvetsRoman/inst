@@ -1,10 +1,10 @@
 # Alias
 
 # ls
-alias ls='ls --color=auto'
-alias lsa='ls -a --color=auto'
-alias ll='ls -l --color=auto'
-alias lla='ls -l -a --color=auto'
+alias ls='ls --color=auto --group-directories-first'
+alias lsa='ls -a -h --color=auto --group-directories-first'
+alias ll='ls -l --color=auto --group-directories-first'
+alias lla='ls -l -a -h --color=auto --group-directories-first'
 
 alias zshcon="vim ~/.zshrc"
 alias vimcon="vim ~/.vimrc"
@@ -53,6 +53,7 @@ alias ping='ping -c 4'
 # VIM
 alias v='vim'
 alias vi='vim'
+alias vim='vim'
 
 # SUDO
 sudo-command-line() {
