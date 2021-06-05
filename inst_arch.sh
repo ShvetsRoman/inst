@@ -571,7 +571,7 @@ packages+=' libreoffice-still libreoffice-still-ru'
 ## INSTALL BASE ##
 echo "##################### Install BASE System ########################"
 sleep 5s
-pacstrap /mnt base base-devel linux linux-firmware bash-completion $btrfs_progs
+pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib $btrfs_progs
 
 # Generate fstab
 echo "##################### Generate fstab ########################"
@@ -907,6 +907,7 @@ systemctl enable NetworkManager.service
 systemctl enable dhcpcd.service
 systemctl enable org.cups.cupsd.service
 systemctl enable iptables.service
+systemctl enable paccache.timer 
 EOF
 
 #ENABLE Service GRUB+btrfs Cronie
