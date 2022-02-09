@@ -1,0 +1,349 @@
+[colors]
+bg =#11121D
+bg-alt = #20212C 
+fg = #acb0d0 
+fg-alt = #5D5E72 
+
+red = #ff7a93 
+
+trans = #00000000
+semi-trans-black = #CC000000
+
+shade-1 = #32344a
+;shade-2 = #444b6a
+shade-3 = #787c99
+;shade-4 = #CACACE
+shade-5 = #acb0d0
+
+[bar/bar1]
+width = 100%
+height = 20
+offset-y = 0
+top = true
+fixed-center = true
+
+wm-restack = i3
+
+override-redirect = false
+
+scroll-up = next
+scroll-down = prev
+
+enable-ipc = true
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+padding-left = 2
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "JetBrains Mono Nerd Font:style=Medium:size=10;2"
+font-1 = "JetBrains Mono Nerd Font:style=Bold:size=10;2"
+font-2 = "JetBrains Mono Nerd Font:size=19;5"
+font-3 = "Material Icons Outlined:9;4"
+font-4 = "Material Icons Round:9;4"
+font-5 = "Source Han Sans CN:size=9;2"
+
+;font-0 = Droid Sans Mono:style=Regular:pixelsize=10;2
+;; font-1 = Font Awesome 5 Brands Regular:style=Regular:pixelsize=12;2
+;font-1 = unifont:fontformat=truetype:size=14:antialias=false;2
+;font-2 = siji:style=Regular:pixelsize=24;2
+;font-3 = Font Awesome 5 Free:pixelsize=12;2
+;font-4 = Font Awesome 5 Free Solid:pixelsize=12;2
+;font-5 = Font Awesome 5 Brands:pixelsize=12;2
+
+modules-left = apps date title
+modules-center = i3 
+modules-right = updates-pacman-aur wlan2 eth battery pulseaudio xkeyboard session
+
+cursor-click = pointer
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background = ${colors.bg}
+format-foreground = ${colors.fg} 
+format-padding = 1
+
+label = %title%
+label-maxlen = 40
+
+[module/updates-pacman-aur]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/updates-pacman-aur.sh
+interval = 300
+format-foreground = ${colors.fg}
+click-left = sh $HOME/.config/polybar/scripts/up_system.sh
+
+; Put this module on your polybar config, make sure enable-ipc=true
+[module/dunst]
+type = custom/ipc
+initial = 1
+format-foreground-1 = ${colors.red}
+hook-0 = echo "%{A1:"dunstctl set-paused true" && polybar-msg hook dunst 2:}%{A}" &
+hook-1 = echo "%{A1:"dunstctl set-paused false" && polybar-msg hook dunst 1:}%{A}" &
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
+
+[module/xkeyboard]
+type = internal/xkeyboard
+format =  <label-layout><label-indicator>
+format-foreground = ${colors.fg}
+
+label-layout = %icon%
+
+label-indicator = %name%
+
+layout-icon-default = some-icon
+layout-icon-0 = us;US
+layout-icon-1 = ru;RU
+layout-icon-2 = ua;UA
+
+label-indicator-on = %icon%
+label-indicator-off = %icon%
+
+label-indicator-on-capslock = " "
+label-indicator-off-capslock = ""
+label-indicator-on-numlock = " " 
+label-indicator-off-numlock = ""
+
+[module/i3]
+type = internal/i3
+strip-wsnumbers = true
+index-sort = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+format = <label-state><label-mode>
+format-foreground = ${colors.fg}
+
+label-mode = %mode%
+;label-mode-padding = 2
+label-mode-foreground = ${colors.fg}
+label-mode-background = ${colors.bg}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-foreground = ${colors.shade-5}
+label-focused-background = ${colors.shade-1}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.shade-3}
+label-unfocused-padding = 1
+
+label-visible = %name%
+label-visible-background = ${colors.shade-1}
+label-visible-underline = ${colors.red} 
+label-visible-padding = 1
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-foreground = ${colors.shade-3}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0f0
+interval = 1.0
+
+format-connected = <label-connected>
+;format-connected-padding = 1
+label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:} %essid%%{A}
+label-connected-foreground = ${colors.fg}
+;label-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+;format-disconnected-padding = 1
+label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}睊%{A}
+label-disconnected-foreground = ${colors.shade-1}
+;label-disconnected-padding = 1
+
+[module/wlan2]
+type = internal/network
+interface = wlp3s0f0
+interval = 3.0
+udspeed-minwidth = 5
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+format-connected-prefix =
+format-connected-prefix-foreground = ${colors.fg}
+
+; Available tags:
+format-disconnected = <label-disconnected>
+
+format-packetloss = <label-connected>
+
+; All labels support the following tokens:
+label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%essid%%{A}
+label-connected-foreground = ${colors.fg}
+
+; Default: (none)
+label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}"睊"%{A}
+label-disconnected-foreground = ${colors.shade-1}
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = "直 "
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = "直 "
+;ramp-signal-1-foreground = #ff3300
+ramp-signal-2 = "直 "
+;ramp-signal-2-foreground = #ffcc00
+ramp-signal-3 = " "
+;ramp-signal-3-foreground = #ffcc00
+ramp-signal-4 = " "
+;ramp-signal-4-foreground = #00ff00
+ramp-signal-5 = " "
+;ramp-signal-5-foreground = #00ff00
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+animation-packetloss-framerate = 500
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.fg-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%d.%m.%Y"
+time = " %H:%M"
+
+format = <label>
+format-foreground = ${colors.fg}
+
+label = %{A1:$HOME/.config/rofi/bin/time.sh:} %date% %time%%{A}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+
+use-ui-max = false
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.fg}
+
+label-muted = 婢 %percentage%%
+label-muted-foreground = ${colors.fg-alt}
+
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 =  
+ramp-volume-3 =  
+ramp-volume-4 = 墳 
+ramp-volume-5 = 墳 
+ramp-volume-6 = 墳 
+ramp-volume-7 =  
+ramp-volume-8 =  
+ramp-volume-9 =  
+ramp-volume-foreground = ${colors.fg}
+
+click-right = pavucontrol
+
+[module/battery]
+type = internal/battery
+; ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = AC0
+full-at = 100
+
+poll-interval = 5
+
+format-charging = %{A1:$HOME/.config/rofi/bin/battery.sh:} <animation-charging> <label-charging>%{A}
+format-charging-foreground = ${colors.fg}
+
+format-discharging = %{A1:$HOME/.config/rofi/bin/battery.sh:}<animation-discharging> <label-discharging>%{A}
+format-discharging-foreground = ${colors.fg}
+
+format-full = %{A1:$HOME/.config/rofi/bin/battery.sh:}<ramp-capacity><label-full>%{A}
+format-full-foreground = ${colors.fg}
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = "100%"
+
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+ramp-capacity-5 =  
+ramp-capacity-6 =  
+ramp-capacity-7 =  
+ramp-capacity-8 =  
+ramp-capacity-9 =  
+ramp-capacity-0-foreground = ${colors.red}
+
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+animation-charging-5 =  
+animation-charging-6 =  
+animation-charging-7 =  
+animation-charging-8 =  
+animation-charging-9 =  
+animation-charging-framerate = 750
+
+animation-discharging-0 =  
+animation-discharging-1 =  
+animation-discharging-2 =  
+animation-discharging-3 =  
+animation-discharging-4 =  
+animation-discharging-5 =  
+animation-discharging-6 =  
+animation-discharging-7 =  
+animation-discharging-8 =  
+animation-discharging-9 =  
+animation-discharging-framerate = 500
+
+[module/session]
+type = custom/text
+
+click-left = $HOME/.config/rofi/bin/powermenu.sh
+
+content = 
+;content-background = ${colors.shade-2}
+content-foreground = ${colors.shade-5}
+;content-padding = 1
+
+[module/apps]
+type = custom/text
+
+click-left = $HOME/.config/rofi/bin/apps.sh
+
+content = 
+;content-background = ${colors.shade-2}
+content-foreground = ${colors.shade-5}
+;content-padding = 1

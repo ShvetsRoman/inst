@@ -1,0 +1,127 @@
+# Alias LARAVEL
+alias laravel='$HOME/.config/composer/vendor/bin/laravel'
+
+alias ls='ls --color=auto --group-directories-first'
+alias lsa='ls -a -h --color=auto --group-directories-first'
+alias ll='ls -l --color=auto --group-directories-first'
+alias lla='ls -l -a -h --color=auto --group-directories-first'
+
+alias zshcon="vim ~/.zshrc"
+alias vimcon="vim ~/.vimrc"
+
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
+alias cp="cp -i -v"	# подтвердите, прежде чем перезаписывать что-либо
+alias mv="mv -i -v"	# Выводить информацию о каждом файле, который обрабатывает команда mv
+alias rm="rm -I -v -f"
+alias md="mkdir"
+
+alias c='clear'
+alias ln='ln -s'
+alias sshadd='eval $(ssh-agent) && ssh-add ~/.ssh/git_rsa'
+alias cdm='cd /run/media/notebook/MEDIA/'
+
+# Pacman
+alias spu='sudo pacman -Syu'
+alias spi='sudo pacman -S'
+alias spr='sudo pacman -R'
+alias sprns='sudo pacman -Rns'
+
+# YAY
+alias yi='yay -S --noconfirm'
+alias yu='yay -Syu'
+alias yr='yay -R'
+
+# Trizen
+alias ti='trizen -S --noconfirm'
+alias tu='trizen -Syu'
+alias tr='trizen -R'
+
+# Pikaur
+alias pi='pikaur -S --noedit'
+alias pu='pikaur -Syu'
+alias pr='pikaur -R'
+
+# Mikrotik
+alias mikrotikreboot="ssh roman@192.168.88.1 reboot system"
+alias mikrotikopen="ssh roman@192.168.88.1"
+
+# Ping
+alias ping='ping -c 4'
+
+# VIM
+# alias v='vim'
+# alias vi='vim'
+# alias vm='vim'
+
+# NEOVIM
+# alias n='nvim'
+# alias nv='nvim'
+# alias nvi='nvim'
+# alias vi='nvim'
+# alias vim='nvim'
+# alias vm='nvim'
+
+# SUDO
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
+}
+zle -N sudo-command-line
+# Defined shortcut keys: [Esc] [Esc]
+bindkey -M emacs '\e\e' sudo-command-line
+bindkey -M vicmd '\e\e' sudo-command-line
+bindkey -M viins '\e\e' sudo-command-line
+
+# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2
+ex () {
+ if [ -f $1 ] ; then
+   case $1 in
+     *.tar.bz2) tar xvjf $1   ;;
+     *.tar.gz)  tar xvzf $1   ;;
+     *.tar.xz)  tar xvfJ $1   ;;
+     *.bz2)     bunzip2 $1    ;;
+     *.rar)     unrar x $1    ;;
+     *.gz)      gunzip $1     ;;
+     *.tar)     tar xvf $1    ;;
+     *.tbz2)    tar xvjf $1   ;;
+     *.tgz)     tar xvzf $1   ;;
+     *.zip)     unzip $1      ;;
+     *.Z)       uncompress $1 ;;
+     *.7z)      7z x $1       ;;
+     *)         echo "'$1' Не может быть распакован при помощи >ex<" ;;
+   esac
+ else
+   echo "'$1' не является допустимым файлом"
+ fi
+}
+# Упаковка в архив командой pk 7z /что/мы/пакуем имя_файла.7z
+# при этом архив будет в Домашней папке.
+pk () {
+if [ $1 ] ; then
+case $1 in
+tbz)       tar cjvf $2.tar.bz2 $2      ;;
+tgz)       tar czvf $2.tar.gz  $2       ;;
+tar)      tar cpvf $2.tar  $2       ;;
+bz2)    bzip $2 ;;
+gz)        gzip -c -9 -n $2 > $2.gz ;;
+zip)       zip -r $2.zip $2   ;;
+7z)        7z a $2.7z $2    ;;
+*)         echo "'$1' не может быть упакован с помощью pk()" ;;
+esac
+else
+echo "'$1' не является допустимым файлом"
+fi
+}

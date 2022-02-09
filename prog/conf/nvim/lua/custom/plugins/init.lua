@@ -1,0 +1,8 @@
+-- return {
+--   { 
+--     "norcalli/nvim-colorizer.lua",
+--     event = "BufRead",
+--     config = require('custom.configs.nvim-colorizer')
+--   },
+--     
+-- }
