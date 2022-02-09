@@ -125,7 +125,7 @@ mkdir -p ${DIR_COPY_CONF}/xinitrc
 cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
  
 # Copy config .xinitrc
-echo -e "\n[*] Copy config .xinitrc..."
+echo -e "\n[*] Copy config .fehbg..."
 rm -rf ${DIR_COPY_CONF}/fehbg
 mkdir -p ${DIR_COPY_CONF}/fehbg
 cp ${HOME}/.fehbg ${DIR_COPY_CONF}/fehbg/

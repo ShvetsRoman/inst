@@ -142,6 +142,8 @@ cp -rfv ${DIR_TEMP_CONF}/xresources/.Xresources ${HOME}/
 # Copy config .xinitrc
 cp -rfv ${DIR_TEMP_CONF}/xinitrc/.xinitrc ${HOME}/
 chmod -R +x ${HOME}/.xinitrc
+# Copy config .fehbg
+cp -rfv ${DIR_TEMP_CONF}/fehbg/.fehbg ${HOME}/
 
 ##### PROGRAMs #####
 # Font 

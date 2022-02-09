@@ -772,13 +772,6 @@ sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g
 sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 EOF
 
-# INSTALL PACKAGES
-echo -e "\n[*] INSTALL PACKAGES..."
-arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm --needed $core_packages
-xdg-user-dirs-update
-EOF
-
 # Копирование скрипта inst_prog_base.sh на рабочий стол для установки pikaur, zsh, nVidia_optimus_manager...
 echo -e "\n[*] Копирование скрипта inst_prog_base.sh..."
 arch-chroot /mnt /bin/bash <<EOF
@@ -813,13 +806,31 @@ EOF
 fi
 
 # Nunlock ON i3-WM
-if [[ "$de" = "4" ]]; then
-echo -e "\n[*] Nunlock ON i3-WM..."
+echo -e "\n[*] Nunlock ON..."
 arch-chroot /mnt /bin/bash <<EOF
-echo '' >> /etc/X11/xinit/xinitrc
-echo '/usr/bin/numlockx on' >> /etc/X11/xinit/xinitrc
+cat << 'num_lock_on' > /usr/local/bin/numlock
+#!/bin/bash
+
+for tty in /dev/tty{1..6}
+do
+    /usr/bin/setleds -D +num < "$tty";
+done
+num_lock_on
+chmod +x /usr/local/bin/numlock
+ 
+cat << 'num_lock_service' > /usr/local/bin/numlock
+[Unit]
+Description=numlock
+
+[Service]
+ExecStart=/usr/local/bin/numlock
+StandardInput=tty
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+num_lock_service
 EOF
-fi
 
 # LightDM i3-WM
 if [[ "$de" = "4" ]]; then
@@ -831,9 +842,15 @@ echo 'icon-theme-name = breeze-dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'background = #11121D' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo '[Desktop]' >> /home/$username/.dmrc
 echo 'Session=i3' >> /home/$username/.dmrc
-echo 'greeter-setup-script=/usr/bin/numlockx on' >> /etc/lightdm/lightdm.conf
 EOF
 fi
+
+# INSTALL PACKAGES
+echo -e "\n[*] INSTALL PACKAGES..."
+arch-chroot /mnt /bin/bash <<EOF
+pacman -Syu --noconfirm --needed $core_packages
+xdg-user-dirs-update
+EOF
  
 #  ENABLE Service
 echo -e "\n[*] ENABLE Service..."
@@ -843,6 +860,7 @@ systemctl enable NetworkManager.service
 systemctl enable dhcpcd.service
 systemctl enable iptables.service
 systemctl enable paccache.timer 
+systemctl enable numlock.service 
 EOF
 
 #ENABLE Service GRUB+btrfs Cronie
