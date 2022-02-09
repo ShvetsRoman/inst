@@ -20,7 +20,7 @@ alias md="mkdir"
 
 alias c='clear'
 alias ln='ln -s'
-alias sshadd='eval $(ssh-agent) && ssh-add ~/.ssh/git_rsa'
+alias sshadd='eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa'
 alias cdm='cd /run/media/notebook/MEDIA/'
 
 # Pacman

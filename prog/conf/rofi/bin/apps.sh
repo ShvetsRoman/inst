@@ -23,8 +23,8 @@ case $chosen in
     $terminal)
 		if [[ -f /usr/bin/konsole ]]; then
 			konsole &
-		elif [[ -f /usr/bin/urxvt ]]; then
-			urxvt &
+		elif [[ -f /usr/bin/alacritty ]]; then
+			alacritty &
 		elif [[ -f /usr/bin/kitty ]]; then
 			kitty &
 		elif [[ -f /usr/bin/xterm ]]; then
@@ -40,6 +40,9 @@ case $chosen in
     $files)
 		if [[ -f /usr/bin/dolphin ]]; then
 			dolphin &
+		elif [[ -f /usr/bin/lf ]]; then
+			 alacritty -e lf  &
+                          
 		elif [[ -f /usr/bin/pcmanfm ]]; then
 			pcmanfm &
 		else
@@ -49,6 +52,8 @@ case $chosen in
     $editor)
 		if [[ -f /usr/bin/kate ]]; then
 			kate &
+		elif [[ -f /usr/bin/nvim ]]; then
+			alacritty -e nvim &
 		elif [[ -f /usr/bin/leafpad ]]; then
 			leafpad &
 		elif [[ -f /usr/bin/mousepad ]]; then

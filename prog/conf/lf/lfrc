@@ -122,3 +122,4 @@ map gD cd ~/downloads
 map gp cd ~/pictures
 map gc cd ~/.config
 map gs cd ~/.local/bin
+map gm cd /run/media/notebook/MEDIA/

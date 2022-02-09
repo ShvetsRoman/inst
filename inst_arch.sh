@@ -513,7 +513,7 @@ if [[ "$de" = "4" ]]; then
     display_manager=" lightdm.service"
 
     # General utilities/libraries
-    core_packages+=' nitrogen neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
+    core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
      
     # GTK
     core_packages+=' gtk2 gtk3 dconf-editor lxappearance librsvg'

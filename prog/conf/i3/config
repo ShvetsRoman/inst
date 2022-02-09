@@ -13,7 +13,9 @@ set $fileManager dolphin
 
 ### АВТОЗАПУСК ###
 # Nitrogen
-exec --no-startup-id nitrogen --restore
+#exec --no-startup-id nitrogen --restore
+# feh
+exec --no-startup-id ~/.fehbg &
 # Dunts
 exec --no-startup-id /usr/bin/dunst
 # set desktop background with custom effect
@@ -147,7 +149,7 @@ focus_follows_mouse no
 bindsym $mod+Return exec $terminal
 
 # ЗАКРЫТЬ ОКНО
-#bindsym $mod+Shift+q kill
+bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # ЗАПУСК АПЛЕТОВ ROFI
@@ -273,7 +275,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 
 # ПЕРЕЗАГРУСКА I3 ПОСЛЕ ПРАВОК КОНФИГА С СОХРАНЕНИЕМ СЕАНСА
-bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r restart && killall -q pilybar
 
 # ВЫХОД ИЗ I3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
