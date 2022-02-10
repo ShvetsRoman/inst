@@ -42,7 +42,6 @@ case $chosen in
 			dolphin &
 		elif [[ -f /usr/bin/lf ]]; then
 			 alacritty -e lf  &
-                          
 		elif [[ -f /usr/bin/pcmanfm ]]; then
 			pcmanfm &
 		else

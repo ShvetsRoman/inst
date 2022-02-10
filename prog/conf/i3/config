@@ -8,7 +8,8 @@ set $terminal alacritty
 # Браузер
 set $browser google-chrome-stable 
 # Файл менеджер
-set $fileManager dolphin
+#set $fileManager dolphin
+set $fileManager alacritty -e lf &
 ####################################
 
 ### АВТОЗАПУСК ###
@@ -45,8 +46,8 @@ exec --no-startup-id $terminal
 
 bindsym $mod + F1 exec $browser 
 bindsym $mod + F2 exec $fileManager 
-bindsym $mod + F3 exec /opt/Twitch/Twitch
-bindsym $mod + F4 exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@
+#bindsym $mod + F3 exec /opt/Twitch/Twitch
+#bindsym $mod + F4 exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@
 bindsym $mod + F5 exec deadbeef
 bindsym $mod + F6 exec gimp
 

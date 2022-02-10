@@ -7,7 +7,7 @@ local M = {}
 
 M.ui = {
    theme = "monokai",
-   transparency = true,
+   transparency = false,
 }
 
 -- Install plugins
