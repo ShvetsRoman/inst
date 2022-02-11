@@ -156,6 +156,9 @@ bindsym $mod+q kill
 bindsym $mod+n exec --no-startup-id $HOME/.config/rofi/bin/network.sh
 bindsym $mod+p exec --no-startup-id $HOME/.config/rofi/bin/powermenu.sh
 
+# ЗАПУСК Update system
+bindsym $mod+u exec --no-startup-id $HOME/.config/polybar/scripts/up_system.sh
+
 # ЗАПУСК DMENU ИЛИ ROFI
 bindcode $mod+40 exec $HOME/.config/rofi/bin/launcher.sh
 
@@ -236,7 +239,7 @@ client.focused			#12121e #787c99 #011b28 #011b28
 #client.focused			#d2d9ec #0298db #011b28 #011b28
 #client.focused			#d1d9ec #ffffff #011b28 #011b28
 client.focused_inactive         #011b28 #262626 #011b28 #011b28
-client.unfocused		#12121e #12121e  #12121e #12121e
+client.unfocused		#12121e #12121e #12121e #12121e
 #client.unfocused		#011b28 #262626 #011b28 #011b28
 client.urgent			#d1d9ec #262626 #011b28 #011b28
 client.placeholder		#d1d9ec #262626 #011b28 #011b28
