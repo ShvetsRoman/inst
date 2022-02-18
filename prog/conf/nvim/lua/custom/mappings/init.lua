@@ -13,4 +13,6 @@ map("i", "<F4>", "<ESC>:%s ///<LEFT><LEFT>")
 map("n", "<F10>", ":PackerSync <CR>")
  
 map("n", "<F12>", ":Telescope themes <CR>")
-
+ 
+map("n", "<C-s>", ":w <CR>")
+map("i", "<C-s>", "<ESC>:w <CR> i")

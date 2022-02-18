@@ -4,12 +4,11 @@ set $mod Mod4
 # Терминал
 set $terminal alacritty
 #set $terminal konsole
-#set $terminal terminator
 # Браузер
 set $browser google-chrome-stable 
 # Файл менеджер
-#set $fileManager dolphin
-set $fileManager alacritty -e lf &
+set $fileManager doublecmd
+#set $fileManager alacritty -e lf &
 ####################################
 
 ### АВТОЗАПУСК ###
@@ -28,7 +27,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id picom --experimental-backends -b --backend glx --vsync --xrender-sync-fence --glx-no-rebind-pixmap --use-damage --glx-no-stencil --config $HOME/.config/picom/picom.conf
 #exec_always --no-startup-id picom --experimental-backends -b --config $HOME/.config/picom/picom.conf
 #exec_always --no-startup-id picom -b
-# numlockx ON
+# Numlockx ON
 exec --no-startup-id numlockx on
 # Touchpad OFF
 exec --no-startup-id xinput disable 18
@@ -43,17 +42,17 @@ exec --no-startup-id $terminal
 # Browser
 #exec --no-startup-id $browser 
 ####################################
-
+#for_window [all] title_window_icon on
+ 
 bindsym $mod + F1 exec $browser 
 bindsym $mod + F2 exec $fileManager 
-#bindsym $mod + F3 exec /opt/Twitch/Twitch
-#bindsym $mod + F4 exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@
+bindsym $mod + F3 exec gimp
+#bindsym $mod + F4 exec /opt/Twitch/Twitch
 bindsym $mod + F5 exec deadbeef
-bindsym $mod + F6 exec gimp
+#bindsym $mod + F6 exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@
 
 
 # ИМЕНА ВОРКСПЕЙСОВ И ИХ НОМЕРА
-
 # Для Polibar
 set $ws1 "1:1:"
 set $ws2 "2:2:"
@@ -68,13 +67,13 @@ set $ws10 "10:10:"
 
 # ПРИВЯЗКА К ВОРКСПЕЙСАМ
 # 1
-#assign [class="Terminator"] number "1:1:"
+#assign [class="Alacritty"] number "1:1:"
 #assign [class="konsole"] number "1:1:"
 # 2
-#assign [class="Google-chrome"] number "2:2:"
+assign [class="Google-chrome"] number "2:2:"
+assign [class="Double Commander"] number "2:2:"
 # 3
-assign [class="Gimp"] number "3:3:" 
-#assign [class="Pcmanfm"] number "3:3:" 
+assign [class="Gimp"] number "3:3:" 
 # 4
 assign [class="Twitch"] number "4:4:" 
 # 5
@@ -112,6 +111,9 @@ for_window [class="qt5ct"] floating_minimum_size 250 x 250, floating_maximum_siz
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Nm-connection-editor"] move absolute position center
 for_window [class="Nm-connection-editor"] floating_minimum_size 200 x 100, floating_maximum_size -1 x -1
+ 
+#for_window [class="Double Commander"] floating enable
+#for_window [class="Double Commander"] move absolute position center
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl --all-players play-pause
@@ -209,10 +211,6 @@ bindsym $mod+Shift+space floating toggle
 # ПЕРЕКЛЮЧЕНИЕ ФОКУСА С ПЛАВАЮЩИХ ОКОН НА ТАЙЛИНГ
 bindsym $mod+space focus mode_toggle
 
-# ЭТО НЕ НУЖНО РАСКОМЕНТИРОВАТЬ, КОМБИНАЦИЯ КЛАВИШ КОПИРУЕТ
-# КОМБИНАЦИЮ КЛАВИШЬ ЗАПУСКА DMENU
-#bindsym $mod+d focus child
-
 # ГАПСЫ
 gaps inner 6
 gaps outer 3
@@ -236,8 +234,8 @@ font pango:MesloLGS NF Bold Mono 10
 
 # ЦВЕТ РАМОК
 #                                Рамка   Фон   Индикатор Родительская_рамка
-client.focused			#12121e #787c99 #011b28 #011b28
-#client.focused			#d2d9ec #0298db #011b28 #011b28
+#client.focused			#12121e #787c99 #011b28 #011b28
+client.focused			#d2d9ec #0298db #011b28 #011b28
 #client.focused			#d1d9ec #ffffff #011b28 #011b28
 client.focused_inactive         #011b28 #262626 #011b28 #011b28
 client.unfocused		#12121e #12121e #12121e #12121e
@@ -287,6 +285,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # ИЗМЕНЕНИЕ РАЗМЕРА ОКНА
 # СЛЕДУЮЩИЕ КОМБИНАЦИИ РАБОТАЮТ СРАЗУ ПОСЛЕ ВХОДА В РЕЖИМ ИЗМЕНЕНИЯ РАЗМЕРА
+bindsym $mod+r mode "resize"
 mode "resize" {
         # ВЛЕВО УМЕНЬШИТЬ РАЗМЕР ОКНА
         # ВПРАВО УВЕЛИЧИТЬ РАЗМЕР ОКНА
@@ -308,5 +307,3 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
-bindsym $mod+r mode "resize"

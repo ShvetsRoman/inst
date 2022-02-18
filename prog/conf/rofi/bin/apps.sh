@@ -40,8 +40,8 @@ case $chosen in
     $files)
 		if [[ -f /usr/bin/dolphin ]]; then
 			dolphin &
-		elif [[ -f /usr/bin/lf ]]; then
-			 alacritty -e lf  &
+		elif [[ -f /usr/bin/doublecmd ]]; then
+			doublecmd
 		elif [[ -f /usr/bin/pcmanfm ]]; then
 			pcmanfm &
 		else
