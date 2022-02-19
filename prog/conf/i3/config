@@ -198,13 +198,6 @@ bindsym $mod+v split v
 # ФУЛЛСКРИН
 bindsym $mod+f fullscreen toggle
 
-# КОРОЧ ВЕЩЬ КОТОРАЯ МЕНЯЕТ ТИП КОНТЕЙНЕРА,
-# ЭТО КОГДА НЕСКОЛЬКО ОКОН КАК В БРАУЗЕРЕ СКЛАДЫВАЮТСЯ,
-# А ЗАГОЛОВКИ КАК ВКЛАДКИ
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
-
 # СДЕЛАТЬ ОКНО ПЛАВАЮЩИМ
 bindsym $mod+Shift+space floating toggle
 
@@ -214,21 +207,20 @@ bindsym $mod+space focus mode_toggle
 # ГАПСЫ
 gaps inner 6
 gaps outer 3
-smart_gaps on
+#smart_gaps on
 #smart_gaps inverse_outer
  
 # ОТКЛЮЧЕНИЕ ЗАГОЛОВКА ОКНА
 default_border pixel
  
 # РАЗМЕР РАМОК ОКНА
-for_window [tiling] border pixel 4
+for_window [tiling] border pixel 1
 
 # ОТКЛЮЧЕНИЕ РАМОК ДЛЯ ПОЛНОЭКРАННЫХ ПРИЛОЖЕНИЙ
 smart_borders on
 #smart_borders no_gaps
   
 #ШРИФТЫ
-#font pango:monospace 8
 font pango:JetBrains Mono 10
 font pango:MesloLGS NF Bold Mono 10
 
