@@ -623,7 +623,7 @@ fi
 #GRUB+btrfs snapshot
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
   echo -e "\n[*] GRUB+btrfs snapshot..."
-  arch-chroot /mnt /bin/bash <<EOF
+  arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
 
@@ -672,7 +672,7 @@ for i in $(find "$TARGET" -maxdepth 1|sort |grep @"${SNAP}"\$|head -n -${max_sna
 done
 snap-shot
 
-sudo cat << 'anacron-tab' > /etc/anacrontab
+cat << 'anacron-tab' > /etc/anacrontab
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin 
  
@@ -692,6 +692,7 @@ chown -R $username:users /usr/local/bin/btrfs-snapshot
 chmod +x /etc/anacrontab
 chown -R $username:users /etc/anacrontab
 EOF
+fi 
 
 # GRUB + Virtualbox
 if [[ "$bl" = "1" && "$dd" = "5" ]]; then
