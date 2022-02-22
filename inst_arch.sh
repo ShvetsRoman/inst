@@ -623,7 +623,7 @@ fi
 #GRUB+btrfs snapshot
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
   echo -e "\n[*] GRUB+btrfs snapshot..."
-  arch-chroot /mnt /bin/bash <<'EOF'
+  arch-chroot /mnt /bin/bash <<EOF
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
 
