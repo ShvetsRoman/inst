@@ -627,8 +627,6 @@ if [[ "$bl" = "1" && "$fs" = "2" ]]; then
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
 
-#!/bin/bash
-
 # Parse arguments:
 SOURCE=$1
 TARGET=$2
