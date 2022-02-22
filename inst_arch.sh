@@ -627,6 +627,8 @@ if [[ "$bl" = "1" && "$fs" = "2" ]]; then
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
 
+#!/bin/bash
+
 # Parse arguments:
 SOURCE=$1
 TARGET=$2
@@ -637,12 +639,17 @@ QUIET=$5
 # Basic argument checks:
 if [ -z "$COUNT" ] ; then
   echo "COUNT is not provided."
+  usage
 fi
+
 if [ ! -z "$6" ] ; then
   echo "Too many options."
+  usage
 fi
+
 if [ -n "$QUIET" ] && [ "x$QUIET" != "x-q"	] ; then
   echo "Option 4 is either -q or empty. Given: \"$QUIET\""
+  usage
 fi
 
 # $max_snap is the highest number of snapshots that will be kept for $SNAP.
