@@ -15,7 +15,7 @@ set $fileManager doublecmd
 # Nitrogen
 #exec --no-startup-id nitrogen --restore
 # feh
-exec --no-startup-id ~/.fehbg &
+exec_always --no-startup-id ~/.fehbg &
 # Dunts
 exec --no-startup-id /usr/bin/dunst
 # set desktop background with custom effect

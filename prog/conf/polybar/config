@@ -1,5 +1,5 @@
 [colors]
-bg =#11121D
+bg = #11121D
 bg-alt = #20212C 
 fg = #acb0d0 
 fg-alt = #5D5E72 
@@ -21,9 +21,8 @@ height = 20
 offset-y = 0
 top = true
 fixed-center = true
-
+ 
 wm-restack = i3
-
 override-redirect = false
 
 scroll-up = next
@@ -37,7 +36,7 @@ foreground = ${colors.fg}
 padding-left = 2
 padding-right = 2
 module-margin-left = 1
-module-margin-right = 1
+module-margin-right = 0
 
 font-0 = "JetBrains Mono Nerd Font:style=Medium:size=10;2"
 font-1 = "JetBrains Mono Nerd Font:style=Bold:size=10;2"
@@ -46,17 +45,9 @@ font-3 = "Material Icons Outlined:9;4"
 font-4 = "Material Icons Round:9;4"
 font-5 = "Source Han Sans CN:size=9;2"
 
-;font-0 = Droid Sans Mono:style=Regular:pixelsize=10;2
-;; font-1 = Font Awesome 5 Brands Regular:style=Regular:pixelsize=12;2
-;font-1 = unifont:fontformat=truetype:size=14:antialias=false;2
-;font-2 = siji:style=Regular:pixelsize=24;2
-;font-3 = Font Awesome 5 Free:pixelsize=12;2
-;font-4 = Font Awesome 5 Free Solid:pixelsize=12;2
-;font-5 = Font Awesome 5 Brands:pixelsize=12;2
-
-modules-left = apps date title
-modules-center = i3 
-modules-right = updates-pacman-aur wlan2 eth battery pulseaudio xkeyboard session
+modules-left = apps i3
+modules-center =
+modules-right = updates-pacman-aur wlan2 eth battery pulseaudio xkeyboard date session
 
 cursor-click = pointer
 
@@ -100,15 +91,13 @@ format-foreground = ${colors.fg}
 
 label-layout = %icon%
 
-label-indicator = %name%
-
 layout-icon-default = some-icon
 layout-icon-0 = us;US
 layout-icon-1 = ru;RU
 layout-icon-2 = ua;UA
 
-label-indicator-on = %icon%
-label-indicator-off = %icon%
+;label-indicator-on = %icon%
+;label-indicator-off = %icon%
 
 label-indicator-on-capslock = " "
 label-indicator-off-capslock = ""
@@ -131,14 +120,12 @@ label-mode = %mode%
 ;label-mode-padding = 2
 label-mode-foreground = ${colors.fg}
 label-mode-background = ${colors.bg}
-
-; focused = Active workspace on focused monitor
+ 
 label-focused = %name%
 label-focused-foreground = ${colors.shade-5}
 label-focused-background = ${colors.shade-1}
 label-focused-padding = 1
 
-; unfocused = Inactive workspace on any monitor
 label-unfocused = %name%
 label-unfocused-foreground = ${colors.shade-3}
 label-unfocused-padding = 1
@@ -148,7 +135,6 @@ label-visible-background = ${colors.shade-1}
 label-visible-underline = ${colors.red} 
 label-visible-padding = 1
 
-; urgent = Workspace with urgency hint set
 label-urgent = %name%
 label-urgent-foreground = ${colors.shade-3}
 label-urgent-background = ${colors.red}
@@ -174,48 +160,46 @@ label-disconnected-foreground = ${colors.shade-1}
 [module/wlan2]
 type = internal/network
 interface = wlp3s0f0
-interval = 3.0
-udspeed-minwidth = 5
+;interface = wlan0
+interval = 1.0
+;udspeed-minwidth = 5
 accumulate-stats = true
 unknown-as-up = true
 
+;format-connected = <label-connected>
 format-connected = <ramp-signal><label-connected>
-format-connected-prefix =
-format-connected-prefix-foreground = ${colors.fg}
+;format-connected-prefix = "WiFi "
+;format-connected-prefix-foreground = ${colors.fg}
 
-; Available tags:
 format-disconnected = <label-disconnected>
 
 format-packetloss = <label-connected>
 
-; All labels support the following tokens:
-label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%essid%%{A}
+label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%signal%% %essid%%{A}
 label-connected-foreground = ${colors.fg}
 
-; Default: (none)
-label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}"睊"%{A}
+label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}睊%{A}
 label-disconnected-foreground = ${colors.shade-1}
 
 ; Only applies if <ramp-signal> is used
-ramp-signal-0 = "直 "
-ramp-signal-0-foreground = ${colors.red}
-ramp-signal-1 = "直 "
-;ramp-signal-1-foreground = #ff3300
-ramp-signal-2 = "直 "
-;ramp-signal-2-foreground = #ffcc00
-ramp-signal-3 = " "
-;ramp-signal-3-foreground = #ffcc00
-ramp-signal-4 = " "
-;ramp-signal-4-foreground = #00ff00
-ramp-signal-5 = " "
-;ramp-signal-5-foreground = #00ff00
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 📶
-animation-packetloss-1-foreground = #000000
-animation-packetloss-framerate = 500
+ramp-signal-0 = "ﮙ "
+;ramp-signal-0 = "直"
+ramp-signal-0-foreground = #FF0000
+ 
+ramp-signal-1 = " "
+;ramp-signal-1 = "直"
+ 
+ramp-signal-2 = " "
+;ramp-signal-2 = "直"
+ 
+ramp-signal-3 = " "
+;ramp-signal-3 = " "
+ 
+ramp-signal-4 = ""
+;ramp-signal-4 = " "
+ 
+ramp-signal-5 = ""
+;ramp-signal-5 = " "
 
 [module/eth]
 type = internal/network
@@ -232,13 +216,14 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = "%d.%m.%Y"
+;date = "%d.%m.%Y"
 time = " %H:%M"
 
 format = <label>
 format-foreground = ${colors.fg}
 
-label = %{A1:$HOME/.config/rofi/bin/time.sh:} %date% %time%%{A}
+;label = %{A1:$HOME/.config/rofi/bin/time.sh:} %date% %time%%{A}
+label = %{A1:$HOME/.config/rofi/bin/time.sh:} %time%%{A}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -275,7 +260,7 @@ type = internal/battery
 ; ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = AC0
-full-at = 100
+full-at = 90
 
 poll-interval = 5
 

@@ -19,6 +19,11 @@ cp -r ${DIR_HOME_CONF}/i3 ${DIR_COPY_CONF}/
 # echo -e "\n[*] Copy config i3status..."
 # rm -rf ${DIR_COPY_CONF}/i3status
 # cp -r ${DIR_HOME_CONF}/i3status ${DIR_COPY_CONF}/
+ 
+# Copy config Polybar
+echo -e "\n[*] Copy config Polybar..."
+rm -rf ${DIR_COPY_CONF}/polybar
+cp -r ${DIR_HOME_CONF}/polybar ${DIR_COPY_CONF}/
 
 # Copy config Rofi
 echo -e "\n[*] Copy config Rofi..."

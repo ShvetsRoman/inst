@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/usr/share/backgrounds/archlinux/gritty.png' 
+feh --no-fehbg --bg-scale '/usr/share/backgrounds/archlinux/lone.jpg' 

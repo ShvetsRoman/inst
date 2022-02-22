@@ -1,5 +1,5 @@
 import:
-  - ~/.config/alacritty/colors/monokai_pro.yml
+  - ~/.config/alacritty/colors/breeze.yml
 
 window:
   padding:
