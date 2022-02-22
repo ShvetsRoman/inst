@@ -563,7 +563,7 @@ core_packages+=' print-manager cups'
 core_packages+=' ttf-dejavu ttf-liberation ttf-freefont noto-fonts awesome-terminal-fonts ttf-font-awesome'
 
 # Python билиотеки
-core_packages+=' python-requests python-dbus'
+core_packages+=' python-requests python-dbus python-pip python-pipenv'
 
 # BG
 core_packages+=' archlinux-wallpaper'
@@ -639,12 +639,10 @@ if [ -z "$COUNT" ] ; then
   echo "COUNT is not provided."
   usage
 fi
-
 if [ ! -z "$6" ] ; then
   echo "Too many options."
   usage
 fi
-
 if [ -n "$QUIET" ] && [ "x$QUIET" != "x-q"	] ; then
   echo "Option 4 is either -q or empty. Given: \"$QUIET\""
   usage
@@ -675,8 +673,11 @@ done
 snap-shot
 
 sudo cat << 'anacron-tab' > /etc/anacrontab
-1    5  daily_snap  /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
-7   10  weekly_snap /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin 
+ 
+1    5  daily_snap      /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
+7   10  weekly_snap     /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
 30  15  monthly_snap    /usr/local/bin/btrfs-snapshot / /.snapshots monthly 3
 1   20  grub_mkconfig   grub-mkconfig
 anacron-tab
@@ -818,7 +819,7 @@ cat << 'num_lock_on' > /usr/local/bin/numlock
 
 for tty in /dev/tty{1..6}
 do
-    /usr/bin/setleds -D +num < "$tty";
+  /usr/bin/setleds -D +num < "$tty";
 done
 num_lock_on
 chmod +x /usr/local/bin/numlock
