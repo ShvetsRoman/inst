@@ -623,8 +623,7 @@ fi
 #GRUB+btrfs snapshot
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
   echo -e "\n[*] GRUB+btrfs snapshot..."
-  arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm cronie
+  arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
 
@@ -639,11 +638,9 @@ QUIET=$5
 if [ -z "$COUNT" ] ; then
   echo "COUNT is not provided."
 fi
-
 if [ ! -z "$6" ] ; then
   echo "Too many options."
 fi
-
 if [ -n "$QUIET" ] && [ "x$QUIET" != "x-q"	] ; then
   echo "Option 4 is either -q or empty. Given: \"$QUIET\""
 fi
@@ -672,20 +669,23 @@ for i in $(find "$TARGET" -maxdepth 1|sort |grep @"${SNAP}"\$|head -n -${max_sna
 done
 snap-shot
 
-chmod +x /usr/local/bin/btrfs-snapshot
-chown -R $username:users /usr/local/bin/btrfs-snapshot
-
 sudo cat << 'anacron-tab' > /etc/anacrontab
 1    5  daily_snap  /usr/local/bin/btrfs-snapshot / /.snapshots daily 8
 7   10  weekly_snap /usr/local/bin/btrfs-snapshot / /.snapshots weekly 5
 30  15  monthly_snap    /usr/local/bin/btrfs-snapshot / /.snapshots monthly 3
 1   20  grub_mkconfig   grub-mkconfig
 anacron-tab
+EOF
+fi
+if [[ "$bl" = "1" && "$fs" = "2" ]]; then
+  arch-chroot /mnt /bin/bash <<EOF
+pacman -Syu --noconfirm cronie
+chmod +x /usr/local/bin/btrfs-snapshot
+chown -R $username:users /usr/local/bin/btrfs-snapshot
 
 chmod +x /etc/anacrontab
 chown -R $username:users /etc/anacrontab
 EOF
-fi
 
 # GRUB + Virtualbox
 if [[ "$bl" = "1" && "$dd" = "5" ]]; then
@@ -805,9 +805,9 @@ chown -R $username:users /home/$username/.xinitrc
 EOF
 fi
 
-# Nunlock ON i3-WM
+# Nunlock ON
 echo -e "\n[*] Nunlock ON..."
-arch-chroot /mnt /bin/bash <<EOF
+arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'num_lock_on' > /usr/local/bin/numlock
 #!/bin/bash
 
@@ -818,7 +818,7 @@ done
 num_lock_on
 chmod +x /usr/local/bin/numlock
  
-cat << 'num_lock_service' > /usr/local/bin/numlock
+cat << 'num_lock_service' > /etc/systemd/system/numlock.service
 [Unit]
 Description=numlock
 
