@@ -507,7 +507,7 @@ fi
 # Desktop environment BSPWM
 if [[ "$de" = "4" ]]; then
     # BSPWM 
-    core_packages+=' bspwm sxhkd'
+    core_packages+=' bspwm sxhkd dmenu'
     # Display manager
     core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
     display_manager=" lightdm.service"
@@ -810,16 +810,6 @@ echo 'Numlock=on' >> /etc/sddm.conf
 EOF
 fi
 
-# BSPWM
-if [[ "$de" = "4" ]]; then
-echo -e "\n[*] EXEC BSPWM..."
-arch-chroot /mnt /bin/bash <<EOF
-echo 'sxhkd &' >> /home/$username/.xinitrc
-echo 'exec bspwm' >> /home/$username/.xinitrc
-chown -R $username:users /home/$username/.xinitrc
-EOF
-fi
-
 # Nunlock ON
 echo -e "\n[*] Nunlock ON..."
 arch-chroot /mnt /bin/bash <<'EOF'
@@ -847,6 +837,26 @@ WantedBy=multi-user.target
 num_lock_service
 EOF
  
+# BSPWM + Copy config BSPWM
+if [[ "$de" = "4" ]]; then
+echo -e "\n[*] EXEC BSPWM + Copy config BSPWM..."
+arch-chroot /mnt /bin/bash <<EOF
+echo 'sxhkd &' >> /home/$username/.xinitrc
+echo 'exec bspwm' >> /home/$username/.xinitrc
+chown -R $username:users /home/$username/.xinitrc
+chmod +x $username:users /home/$username/.xinitrc
+ 
+mkdir -p /home/$username/.config/{bspwm,sxhkd}
+cp /usr/share/doc/bspwm/examples/bspwmrc /home/$username/.config/bspwm/bspwmrc
+cp /usr/share/doc/bspwm/examples/sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
+chown -R $username:users /home/$username/.config/bspwm/bspwmrc
+chmod +x /home/$username/.config/bspwm/bspwmrc
+chown -R $username:users /home/$username/.config/sxhkd/sxhkdrc
+sed -i 's/urxvt/alacritty/g' /home/$username/.config/sxhkd/sxhkdrc 
+sed -i 's/@space/d/g' /home/$username/.config/sxhkd/sxhkdrc 
+EOF
+fi
+ 
 # LightDM BSPWM
 if [[ "$de" = "4" ]]; then
 echo -e "\n[*] LightDM BSPWM..."
@@ -857,9 +867,6 @@ echo 'icon-theme-name = breeze-dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'background = #11121D' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo '[Desktop]' >> /home/$username/.dmrc
 echo 'Session=bspwm' >> /home/$username/.dmrc
-mkdir -p /home/$username/.config/{bspwm,sxhkd}
-install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc 
 EOF
 fi
 
