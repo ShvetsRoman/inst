@@ -133,8 +133,8 @@ cp -rfv ${DIR_TEMP_CONF}/profile/.profile ${HOME}/
 # Copy config .Xresources 
 cp -rfv ${DIR_TEMP_CONF}/xresources/.Xresources ${HOME}/
 # Copy config .xinitrc
-# cp -rfv ${DIR_TEMP_CONF}/xinitrc/.xinitrc ${HOME}/
-# chmod -R +x ${HOME}/.xinitrc
+cp -rfv ${DIR_TEMP_CONF}/xinitrc/.xinitrc ${HOME}/
+chmod -R +x ${HOME}/.xinitrc
 # Copy config .fehbg
 cp -rfv ${DIR_TEMP_CONF}/fehbg/.fehbg ${HOME}/
 

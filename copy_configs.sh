@@ -117,10 +117,10 @@ mkdir -p ${DIR_COPY_CONF}/xresources
 cp ${HOME}/.Xresources ${DIR_COPY_CONF}/xresources/
 
 # Copy config .xinitrc
-# echo -e "\n[*] Copy config .xinitrc..."
-# rm -rf ${DIR_COPY_CONF}/xinitrc
-# mkdir -p ${DIR_COPY_CONF}/xinitrc
-# cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
+echo -e "\n[*] Copy config .xinitrc..."
+rm -rf ${DIR_COPY_CONF}/xinitrc
+mkdir -p ${DIR_COPY_CONF}/xinitrc
+cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
  
 # Copy config .fehbg
 echo -e "\n[*] Copy config .fehbg..."

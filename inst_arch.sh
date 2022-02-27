@@ -602,6 +602,13 @@ echo "$username:$user_password" | chpasswd
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 EOF
 
+## INSTALL PACKAGES ##
+echo -e "\n[*] INSTALL PACKAGES..."
+arch-chroot /mnt /bin/bash <<EOF
+pacman -Syu --noconfirm --needed $core_packages
+xdg-user-dirs-update
+EOF
+ 
 # GRUB
 if [[ "$bl" = "1" ]]; then
   echo -e "\n[*] Install GRUB..."
@@ -803,14 +810,15 @@ echo 'Numlock=on' >> /etc/sddm.conf
 EOF
 fi
 
-# i3-WM
-# if [[ "$de" = "4" ]]; then
-# echo -e "\n[*] EXEC i3-WM..."
-# arch-chroot /mnt /bin/bash <<EOF
-# echo 'exec i3' >> /home/$username/.xinitrc
-# chown -R $username:users /home/$username/.xinitrc
-# EOF
-# fi
+# BSPWM
+if [[ "$de" = "4" ]]; then
+echo -e "\n[*] EXEC BSPWM..."
+arch-chroot /mnt /bin/bash <<EOF
+echo 'sxhkd &' >> /home/$username/.xinitrc
+echo 'exec bspwm' >> /home/$username/.xinitrc
+chown -R $username:users /home/$username/.xinitrc
+EOF
+fi
 
 # Nunlock ON
 echo -e "\n[*] Nunlock ON..."
@@ -837,13 +845,6 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 num_lock_service
-EOF
-
-# INSTALL PACKAGES
-echo -e "\n[*] INSTALL PACKAGES..."
-arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm --needed $core_packages
-xdg-user-dirs-update
 EOF
  
 # LightDM BSPWM
