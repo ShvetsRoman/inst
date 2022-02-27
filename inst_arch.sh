@@ -842,15 +842,14 @@ echo -e "\n[*] EXEC BSPWM + Copy config BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo 'sxhkd &' >> /home/$username/.xinitrc
 echo 'exec bspwm' >> /home/$username/.xinitrc
-chown -R $username:users /home/$username/.xinitrc
-chmod +x $username:users /home/$username/.xinitrc
+chown $username:users /home/$username/.xinitrc
+chmod +x /home/$username/.xinitrc
  
 mkdir -p /home/$username/.config/{bspwm,sxhkd}
 cp /usr/share/doc/bspwm/examples/bspwmrc /home/$username/.config/bspwm/bspwmrc
 cp /usr/share/doc/bspwm/examples/sxhkdrc /home/$username/.config/sxhkd/sxhkdrc
-chown -R $username:users /home/$username/.config/bspwm/bspwmrc
 chmod +x /home/$username/.config/bspwm/bspwmrc
-chown -R $username:users /home/$username/.config/sxhkd/sxhkdrc
+chown -R $username:users /home/$username/.config
 sed -i 's/urxvt/alacritty/g' /home/$username/.config/sxhkd/sxhkdrc 
 sed -i 's/@space/d/g' /home/$username/.config/sxhkd/sxhkdrc 
 EOF

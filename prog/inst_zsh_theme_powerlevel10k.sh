@@ -35,11 +35,7 @@ cp -rfv ${DIR_TEMP_CONF}/zsh/. ${HOME}/
 
 # Install configs ROOT
 echo -e "\n[*] Install configs ROOT ZSH..."
-sudo cp ${HOME}/.zshrc /root/
-sudo cp ${HOME}/.zsh_alias /root/
-sudo cp ${HOME}/.zsh_path /root/
-sudo cp ${HOME}/.p10k.zsh /root/
-sudo cp ${HOME}/.p10k-my-theme.zsh /root/
+cp -rfv ${DIR_TEMP_CONF}/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
 echo -e "\n[*] Установка Zsh в качестве оболочки по умолчанию..."
