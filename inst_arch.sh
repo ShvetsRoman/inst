@@ -601,12 +601,21 @@ useradd -m -g users -G wheel -s /bin/bash $username
 echo "$username:$user_password" | chpasswd
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 EOF
+ 
+# Pacman multilib
+echo -e "\n[*] Pacman multilib..."
+arch-chroot /mnt /bin/bash <<EOF
+sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
+sed -i "s/^#Color/Color/g" /etc/pacman.conf
+
+sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g}' /etc/pacman.conf
+sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
+EOF
 
 ## INSTALL PACKAGES ##
 echo -e "\n[*] INSTALL PACKAGES..."
 arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm --needed $core_packages
-xdg-user-dirs-update
 EOF
  
 # GRUB
@@ -775,16 +784,6 @@ sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block filesystems keyboa
 mkinitcpio -p linux
 EOF
 fi
-
-# Pacman multilib
-echo -e "\n[*] Pacman multilib..."
-arch-chroot /mnt /bin/bash <<EOF
-sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
-sed -i "s/^#Color/Color/g" /etc/pacman.conf
-
-sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g}' /etc/pacman.conf
-sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
-EOF
 
 # Копирование скрипта inst_prog_base.sh на рабочий стол для установки pikaur, zsh, nVidia_optimus_manager...
 echo -e "\n[*] Копирование скрипта inst_prog_base.sh..."
