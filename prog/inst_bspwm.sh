@@ -4,19 +4,21 @@
 DIR_HOME_CONF="${HOME}/.config" 
 DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
  
-##### i3-gaps #####
-echo -e "\n[*] Installing i3-gaps..."
-sudo pacman -S --noconfirm --needed i3-gaps
-# Copy config i3 
-if [[ -d "${DIR_HOME_CONF}/i3" ]]; then
-  rm -rf ${DIR_HOME_CONF}/i3
+##### BSPWM #####
+echo -e "\n[*] Installing bspwm + sxhkd..."
+sudo pacman -S --noconfirm --needed bspwm sxhkd
+# Copy config bspwm
+if [[ -d "${DIR_HOME_CONF}/bspwm" ]]; then
+  rm -rf ${DIR_HOME_CONF}/bspwm
 fi
-cp -rv ${DIR_TEMP_CONF}/i3 ${DIR_HOME_CONF}/ 
-chmod -R +x ${DIR_HOME_CONF}/i3/scripts
- 
-##### i3lock-color #####
-echo -e "\n[*] Installing i3lock-color..."
-pikaur -S --noconfirm --needed i3lock-color
+cp -rv ${DIR_TEMP_CONF}/bspwm ${DIR_HOME_CONF}/ 
+chmod -R +x ${DIR_HOME_CONF}/bspwm
+# Copy config sxhkd
+if [[ -d "${DIR_HOME_CONF}/sxhkd" ]]; then
+  rm -rf ${DIR_HOME_CONF}/sxhkd
+fi
+cp -rv ${DIR_TEMP_CONF}/sxhkd ${DIR_HOME_CONF}/ 
+chmod -R +x ${DIR_HOME_CONF}/sxhkd
  
 ##### Rofi #####
 echo -e "\n[*] Installing rofi..."
@@ -78,15 +80,6 @@ if [[ -d "${DIR_HOME_CONF}/alacritty" ]]; then
   rm -rf ${DIR_HOME_CONF}/alacritty
 fi
 cp -rv ${DIR_TEMP_CONF}/alacritty ${DIR_HOME_CONF}/
-
-# ##### nitrogen #####
-# echo -e "\n[*] Installing nitrogen..."
-# sudo pacman -S --noconfirm --needed nitrogen
-# # Copy config Nitrogen 
-# if [[ -d "${DIR_HOME_CONF}/nitrogen" ]]; then
-#   rm -rf ${DIR_HOME_CONF}/nitrogen
-# fi
-# cp -rv ${DIR_TEMP_CONF}/nitrogen ${DIR_HOME_CONF}/
  
 ##### Kvantum #####
 echo -e "\n[*] Installing kvantum..."
@@ -140,8 +133,8 @@ cp -rfv ${DIR_TEMP_CONF}/profile/.profile ${HOME}/
 # Copy config .Xresources 
 cp -rfv ${DIR_TEMP_CONF}/xresources/.Xresources ${HOME}/
 # Copy config .xinitrc
-cp -rfv ${DIR_TEMP_CONF}/xinitrc/.xinitrc ${HOME}/
-chmod -R +x ${HOME}/.xinitrc
+# cp -rfv ${DIR_TEMP_CONF}/xinitrc/.xinitrc ${HOME}/
+# chmod -R +x ${HOME}/.xinitrc
 # Copy config .fehbg
 cp -rfv ${DIR_TEMP_CONF}/fehbg/.fehbg ${HOME}/
 

@@ -20,16 +20,6 @@ echo -e "\n[*] Copy config sxhkd..."
 rm -rf ${DIR_COPY_CONF}/sxhkd 
 cp -r ${DIR_HOME_CONF}/sxhkd ${DIR_COPY_CONF}/
 
-# Copy config i3
-# echo -e "\n[*] Copy config i3..."
-# rm -rf ${DIR_COPY_CONF}/i3 
-# cp -r ${DIR_HOME_CONF}/i3 ${DIR_COPY_CONF}/
-
-# Copy config i3status
-# echo -e "\n[*] Copy config i3status..."
-# rm -rf ${DIR_COPY_CONF}/i3status
-# cp -r ${DIR_HOME_CONF}/i3status ${DIR_COPY_CONF}/
- 
 # Copy config Polybar
 echo -e "\n[*] Copy config Polybar..."
 rm -rf ${DIR_COPY_CONF}/polybar
@@ -127,10 +117,10 @@ mkdir -p ${DIR_COPY_CONF}/xresources
 cp ${HOME}/.Xresources ${DIR_COPY_CONF}/xresources/
 
 # Copy config .xinitrc
-echo -e "\n[*] Copy config .xinitrc..."
-rm -rf ${DIR_COPY_CONF}/xinitrc
-mkdir -p ${DIR_COPY_CONF}/xinitrc
-cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
+# echo -e "\n[*] Copy config .xinitrc..."
+# rm -rf ${DIR_COPY_CONF}/xinitrc
+# mkdir -p ${DIR_COPY_CONF}/xinitrc
+# cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
  
 # Copy config .fehbg
 echo -e "\n[*] Copy config .fehbg..."

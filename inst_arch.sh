@@ -126,7 +126,7 @@ boot_dialog --title "Display drivers" --menu "" 20 60 6 "1" "INTEL" "2" "ATI" "3
 dd="$DIALOG_RESULT"
 
 ## Desktop environment
-boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "i3WM"
+boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM"
 de="$DIALOG_RESULT"
 
 ## Localtime
@@ -504,10 +504,10 @@ if [[ "$de" = "3" ]]; then
 fi
 
 
-# Desktop environment i3WM
+# Desktop environment BSPWM
 if [[ "$de" = "4" ]]; then
-    # i3WM
-    core_packages+=' i3-gaps dmenu'
+    # BSPWM 
+    core_packages+=' bspwm sxhkd'
     # Display manager
     core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
     display_manager=" lightdm.service"
@@ -804,13 +804,13 @@ EOF
 fi
 
 # i3-WM
-if [[ "$de" = "4" ]]; then
-echo -e "\n[*] EXEC i3-WM..."
-arch-chroot /mnt /bin/bash <<EOF
-echo 'exec i3' >> /home/$username/.xinitrc
-chown -R $username:users /home/$username/.xinitrc
-EOF
-fi
+# if [[ "$de" = "4" ]]; then
+# echo -e "\n[*] EXEC i3-WM..."
+# arch-chroot /mnt /bin/bash <<EOF
+# echo 'exec i3' >> /home/$username/.xinitrc
+# chown -R $username:users /home/$username/.xinitrc
+# EOF
+# fi
 
 # Nunlock ON
 echo -e "\n[*] Nunlock ON..."
@@ -839,16 +839,19 @@ WantedBy=multi-user.target
 num_lock_service
 EOF
 
-# LightDM i3-WM
+# LightDM BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[*] LightDM i3-WM..."
+echo -e "\n[*] LightDM BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '[greeter]' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'theme-name = Breeze-Dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'icon-theme-name = breeze-dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'background = #11121D' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo '[Desktop]' >> /home/$username/.dmrc
-echo 'Session=i3' >> /home/$username/.dmrc
+echo 'Session=bspwm' >> /home/$username/.dmrc
+mkdir -p /home/$username/.config/{bspwm,sxhkd}
+install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
+install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc 
 EOF
 fi
 
