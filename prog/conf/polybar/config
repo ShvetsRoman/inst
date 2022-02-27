@@ -22,11 +22,14 @@ offset-y = 0
 top = true
 fixed-center = true
  
-wm-restack = i3
+wm-restack = bspwm
+;wm-restack = i3
 override-redirect = false
 
-scroll-up = next
-scroll-down = prev
+;scroll-up = next
+;scroll-down = prev
+scroll-up = #bspwm.prev
+scroll-down = #bspwm.next
 
 enable-ipc = true
 
@@ -45,7 +48,7 @@ font-3 = "Material Icons Outlined:9;4"
 font-4 = "Material Icons Round:9;4"
 font-5 = "Source Han Sans CN:size=9;2"
 
-modules-left = apps i3
+modules-left = apps bspwm
 modules-center =
 modules-right = updates-pacman-aur wlan2 eth battery pulseaudio xkeyboard date session
 
@@ -103,7 +106,29 @@ label-indicator-on-capslock = " "
 label-indicator-off-capslock = ""
 label-indicator-on-numlock = " " 
 label-indicator-off-numlock = ""
+ 
+[module/bspwm]
+type = internal/bspwm
 
+label-focused = %name%
+label-focused-background = ${colors.shade-1}
+label-focused-padding = 1
+label-focused-underline = ${colors.shade-5}
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%!
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.fg}
+label-empty-padding = 1
+
+; Separator in between workspaces
+; label-separator = |
+ 
 [module/i3]
 type = internal/i3
 strip-wsnumbers = true

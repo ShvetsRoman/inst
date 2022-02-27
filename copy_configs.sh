@@ -10,10 +10,20 @@ rm -rf ${DIR_COPY_CONF}/nvim/lua
 mkdir -p ${DIR_COPY_CONF}/nvim/lua 
 cp -r ${DIR_HOME_CONF}/nvim/lua/custom ${DIR_COPY_CONF}/nvim/lua/
 
+# Copy config bspwm
+echo -e "\n[*] Copy config bspwm..."
+rm -rf ${DIR_COPY_CONF}/bspwm 
+cp -r ${DIR_HOME_CONF}/bspwm ${DIR_COPY_CONF}/
+
+# Copy config sxhkd
+echo -e "\n[*] Copy config sxhkd..."
+rm -rf ${DIR_COPY_CONF}/sxhkd 
+cp -r ${DIR_HOME_CONF}/sxhkd ${DIR_COPY_CONF}/
+
 # Copy config i3
-echo -e "\n[*] Copy config i3..."
-rm -rf ${DIR_COPY_CONF}/i3 
-cp -r ${DIR_HOME_CONF}/i3 ${DIR_COPY_CONF}/
+# echo -e "\n[*] Copy config i3..."
+# rm -rf ${DIR_COPY_CONF}/i3 
+# cp -r ${DIR_HOME_CONF}/i3 ${DIR_COPY_CONF}/
 
 # Copy config i3status
 # echo -e "\n[*] Copy config i3status..."
@@ -40,7 +50,7 @@ echo -e "\n[*] Copy config Picom..."
 rm -rf ${DIR_COPY_CONF}/picom
 cp -r ${DIR_HOME_CONF}/picom ${DIR_COPY_CONF}/
 
-# Copy config Alacritty(terminal)
+# Copy config Alacritty (terminal)
 echo -e "\n[*] Copy config Alacritty..."
 rm -rf ${DIR_COPY_CONF}/alacritty
 cp -r ${DIR_HOME_CONF}/alacritty ${DIR_COPY_CONF}/
@@ -55,7 +65,6 @@ cp -r ${DIR_HOME_CONF}/alacritty ${DIR_COPY_CONF}/
 echo -e "\n[*] Copy config LF..."
 rm -rf ${DIR_COPY_CONF}/lf
 cp -r ${DIR_HOME_CONF}/lf ${DIR_COPY_CONF}/
-
 echo -e "\n[*] Copy config lf-ueberzug..."
 rm -rf ${DIR_COPY_CONF}/lf-ueberzug
 cp -r ${DIR_HOME_CONF}/lf-ueberzug ${DIR_COPY_CONF}/
@@ -94,13 +103,7 @@ echo -e "\n[*] Copy config gtkrc-2.0..."
 rm -rf ${DIR_COPY_CONF}/gtkrc
 mkdir -p ${DIR_COPY_CONF}/gtkrc
 cp ${HOME}/.gtkrc-2.0 ${DIR_COPY_CONF}/gtkrc/
-
-# Копирование config Vim
-# echo -e "\n[*] Copy config Vim..."
-# rm -rf ${DIR_COPY_CONF}/vim
-# mkdir -p ${DIR_COPY_CONF}/vim
-# cp ${HOME}/.vimrc ${DIR_COPY_CONF}/vim/
-
+ 
 # Копирование config ZSH
 echo -e "\n[*] Copy config ZSH..."
 rm -rf ${DIR_COPY_CONF}/zsh
@@ -129,12 +132,11 @@ rm -rf ${DIR_COPY_CONF}/xinitrc
 mkdir -p ${DIR_COPY_CONF}/xinitrc
 cp ${HOME}/.xinitrc ${DIR_COPY_CONF}/xinitrc/
  
-# Copy config .xinitrc
+# Copy config .fehbg
 echo -e "\n[*] Copy config .fehbg..."
 rm -rf ${DIR_COPY_CONF}/fehbg
 mkdir -p ${DIR_COPY_CONF}/fehbg
 cp ${HOME}/.fehbg ${DIR_COPY_CONF}/fehbg/
-
 
 # Copy config pikaur
 echo -e "\n[*] Copy config pikaur..."

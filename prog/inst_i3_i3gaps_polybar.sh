@@ -79,14 +79,14 @@ if [[ -d "${DIR_HOME_CONF}/alacritty" ]]; then
 fi
 cp -rv ${DIR_TEMP_CONF}/alacritty ${DIR_HOME_CONF}/
 
-##### nitrogen #####
-echo -e "\n[*] Installing nitrogen..."
-sudo pacman -S --noconfirm --needed nitrogen
-# Copy config Nitrogen 
-if [[ -d "${DIR_HOME_CONF}/nitrogen" ]]; then
-  rm -rf ${DIR_HOME_CONF}/nitrogen
-fi
-cp -rv ${DIR_TEMP_CONF}/nitrogen ${DIR_HOME_CONF}/
+# ##### nitrogen #####
+# echo -e "\n[*] Installing nitrogen..."
+# sudo pacman -S --noconfirm --needed nitrogen
+# # Copy config Nitrogen 
+# if [[ -d "${DIR_HOME_CONF}/nitrogen" ]]; then
+#   rm -rf ${DIR_HOME_CONF}/nitrogen
+# fi
+# cp -rv ${DIR_TEMP_CONF}/nitrogen ${DIR_HOME_CONF}/
  
 ##### Kvantum #####
 echo -e "\n[*] Installing kvantum..."
