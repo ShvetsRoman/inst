@@ -839,6 +839,13 @@ WantedBy=multi-user.target
 num_lock_service
 EOF
 
+# INSTALL PACKAGES
+echo -e "\n[*] INSTALL PACKAGES..."
+arch-chroot /mnt /bin/bash <<EOF
+pacman -Syu --noconfirm --needed $core_packages
+xdg-user-dirs-update
+EOF
+ 
 # LightDM BSPWM
 if [[ "$de" = "4" ]]; then
 echo -e "\n[*] LightDM BSPWM..."
@@ -855,13 +862,6 @@ install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 EOF
 fi
 
-# INSTALL PACKAGES
-echo -e "\n[*] INSTALL PACKAGES..."
-arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm --needed $core_packages
-xdg-user-dirs-update
-EOF
- 
 #  ENABLE Service
 echo -e "\n[*] ENABLE Service..."
 arch-chroot /mnt /bin/bash <<EOF
