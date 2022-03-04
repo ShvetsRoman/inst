@@ -49,8 +49,8 @@ font-4 = "Material Icons Round:9;4"
 font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = apps bspwm
-modules-center =
-modules-right = updates-pacman-aur wlan2 eth battery pulseaudio xkeyboard date session
+modules-center = title
+modules-right = updates-pacman-aur wlan eth battery pulseaudio xkeyboard date session
 
 cursor-click = pointer
 
@@ -172,13 +172,14 @@ interval = 1.0
 
 format-connected = <label-connected>
 ;format-connected-padding = 1
-label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:} %essid%%{A}
+label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:} %signal%%%{A}
+;label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:} %essid%%{A}
 label-connected-foreground = ${colors.fg}
 ;label-connected-padding = 1
 
 format-disconnected = <label-disconnected>
 ;format-disconnected-padding = 1
-label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}睊%{A}
+label-disconnected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}睊%{A}
 label-disconnected-foreground = ${colors.shade-1}
 ;label-disconnected-padding = 1
 
@@ -200,7 +201,8 @@ format-disconnected = <label-disconnected>
 
 format-packetloss = <label-connected>
 
-label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%signal%% %essid%%{A}
+label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%signal%%%{A}
+;label-connected = %{A1:$HOME/.config/rofi/bin/network.sh:}%signal%% %essid%%{A}
 label-connected-foreground = ${colors.fg}
 
 label-disconnected = %{A1:$HOME/.config/rofi/bin/network.sh:}睊%{A}
@@ -285,7 +287,7 @@ type = internal/battery
 ; ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = AC0
-full-at = 90
+full-at = 96
 
 poll-interval = 5
 
