@@ -204,25 +204,25 @@ fi
 is_intel_cpu=$(lscpu | grep 'Intel' &> /dev/null && echo 'yes' || echo '')
 
 ## Partitions
-echo -e "\n[*] Partitions..."
+echo -e "\n[***] Partitions..."
 sgdisk -Z /dev/"$df"     #очиска диска
 parted /dev/"$df" mklabel gpt #таблица разделов GPT
 lsblk #инфо
-echo -e "\n[*] INFO..."
+echo -e "\n[***] INFO..."
 fdisk -l /dev/"$df" #инфо
 sleep 5s
 
 ### FORMAT ###
-echo -e "\n[*] FORMAT..."
+echo -e "\n[***] FORMAT..."
 # FORMAT EFI
-echo -e "\n[*] FORMAT EFI..."
+echo -e "\n[***] FORMAT EFI..."
 volume_efi=/dev/"$df""1"
 sgdisk /dev/"$df" -n=1:0:+"$uefisize"M -t=1:ef00 --change-name=1:"efi"
 mkfs.vfat -F32 -n EFI "$volume_efi"
 
 # FORMAT EXT4
 if [[ "$fs" == "1" ]]; then
-echo -e "\n[*] FORMAT EXT4..."
+echo -e "\n[***] FORMAT EXT4..."
     volume_new=1
 
     # SWAP
@@ -281,7 +281,7 @@ fi
 
 # MOUNT EXT4
 if [[ "$fs" == "1" ]]; then
-echo -e "\n[*] MOUNT EXT4..."
+echo -e "\n[***] MOUNT EXT4..."
     volume_new=1
     # SWAP
     if [[ "$swapinstall" = "1" ]]; then
@@ -337,7 +337,7 @@ fi
 
 #Partitions BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[*] Partitions BTRFS..."
+echo -e "\n[***] Partitions BTRFS..."
     if [[ "$swapinstall" = "1" ]]; then
         volume_swap=/dev/"$df""2"
         sgdisk /dev/"$df" -n=2:0:+"$swapsize"M -t=2:8200
@@ -364,7 +364,7 @@ fi
 
 #Subvolumes BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[*] Subvolumes BTRFS..."
+echo -e "\n[***] Subvolumes BTRFS..."
     # /
     mount "$volume_root" /mnt
     btrfs subvolume create /mnt/@
@@ -398,7 +398,7 @@ fi
 
 #Mount BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[*] Mount BTRFS..."
+echo -e "\n[***] Mount BTRFS..."
     mount -o compress=zstd,noatime,ssd,subvol=@ "$volume_root" /mnt
 
     if [[ "$swapinstall" = "1" ]]; then
@@ -454,12 +454,12 @@ fi
 
 # Ati for older cards
 if [[ "$dd" = "2" ]]; then
-    core_packages+='  xf86-video-ati'
+    core_packages+=' xf86-video-ati'
 fi
 
 # Amdgpu for newer cards
 if [[ "$dd" = "3" ]]; then
-    core_packages+='  xf86-video-amdgpu'
+    core_packages+=' xf86-video-amdgpu'
 fi
 
 # Nvidia
@@ -482,6 +482,10 @@ if [[ "$de" = "1" ]]; then
     core_packages+=' konsole'
     # Kate
     core_packages+=' kate'
+    # QT 
+    core_packages+=' qt5ct kvantum'
+    # QT_Thems 
+    core_packages+=' breeze papirus-icon-theme'
     # Display manager
     core_packages+=' sddm'
     display_manager=" sddm.service"
@@ -511,35 +515,23 @@ if [[ "$de" = "4" ]]; then
     # Display manager
     core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
     display_manager=" lightdm.service"
-
     # General utilities/libraries
     core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
-     
     # GTK
     core_packages+=' gtk2 gtk3 dconf-editor lxappearance librsvg'
     # GTK_Thems 
     core_packages+=' breeze-gtk'
     # QT 
     core_packages+=' qt5ct kvantum'
-    #QT_Thems 
+    # QT_Thems 
     core_packages+=' breeze papirus-icon-theme'
-     
     # Konsole
     core_packages+=' alacritty'
     # Firefox
 #    core_packages+=' firefox firefox-i18n-ru'
-    # Image viewer
-    core_packages+=' gwenview gimp inkscape imagemagick feh scrot'
-    # Video, Audio
-    core_packages+=' playerctl ffmpeg ffmpegthumbnailer vlc'
-    # Office
-    core_packages+=' libreoffice-still libreoffice-still-ru'
     # File manager 
 #    core_packages+=' pcmanfm gvfs'
 fi
-
-# Xserver
-core_packages+=' xorg xorg-apps xorg-xinit'
 
 # linux-headers
 if [[ -n "$is_intel_cpu" ]]; then
@@ -547,41 +539,43 @@ if [[ -n "$is_intel_cpu" ]]; then
     core_packages+=' intel-ucode'
 fi
 
+# Xserver
+core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
 core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim'
-
 # Управление энергопотреблением
 core_packages+=' powerdevil'
-
 # Audio
 core_packages+=' pulseaudio pulseaudio-alsa pavucontrol alsa-utils'
-
 # Печать
 core_packages+=' print-manager cups'
-
+# Image viewer
+core_packages+=' gwenview gimp inkscape imagemagick feh scrot'
+# Video, Audio
+core_packages+=' playerctl ffmpeg ffmpegthumbnailer vlc'
+# Office
+core_packages+=' libreoffice-still libreoffice-still-ru'
 # Fonts
 core_packages+=' ttf-dejavu ttf-liberation ttf-freefont noto-fonts awesome-terminal-fonts ttf-font-awesome'
-
 # Python билиотеки
 core_packages+=' python-requests python-dbus python-pip python-pipenv'
-
 # BG
 core_packages+=' archlinux-wallpaper'
 
 ## Mirrorlist
-echo -e "\n[*] Mirrorlist..."
+echo -e "\n[***] Mirrorlist..."
 reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
 
 ## INSTALL BASE ##
-echo -e "\n[*] Install BASE System..."
+echo -e "\n[***] Install BASE System..."
 pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib $btrfs_progs
 
 # Generate fstab
-echo -e "\n[*] Generate fstab..."
+echo -e "\n[***] Generate fstab..."
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-echo -e "\n[*] Hostname, localtime, locale, vconsole, username, sudo..."
+echo -e "\n[***] Hostname, localtime, locale, vconsole, username, sudo..."
 # Hostname, localtime, locale, vconsole, username, sudo
 arch-chroot /mnt /bin/bash <<EOF  
 echo $hostname > /etc/hostname
@@ -599,28 +593,28 @@ locale-gen
 echo "root:$root_password" | chpasswd
 useradd -m -g users -G wheel -s /bin/bash $username
 echo "$username:$user_password" | chpasswd
-echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 EOF
  
 # Pacman multilib
-echo -e "\n[*] Pacman multilib..."
+echo -e "\n[***] Pacman config & multilib..."
 arch-chroot /mnt /bin/bash <<EOF
 sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
 sed -i "s/^#Color/Color/g" /etc/pacman.conf
-
+sed -i "s/^#ParallelDownloads = 5/ParallelDownloads = 5/g" /etc/pacman.conf
 sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g}' /etc/pacman.conf
 sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 EOF
 
 ## INSTALL PACKAGES ##
-echo -e "\n[*] INSTALL PACKAGES..."
+echo -e "\n[***] INSTALL PACKAGES..."
 arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm --needed $core_packages
 EOF
  
 # GRUB
 if [[ "$bl" = "1" ]]; then
-  echo -e "\n[*] Install GRUB..."
+  echo -e "\n[***] Install GRUB..."
   arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm grub efibootmgr os-prober hwinfo
 grub-install --target=x86_64-efi --efi-directory=/boot
@@ -630,7 +624,7 @@ fi
 
 #GRUB+btrfs
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-  echo -e "\n[*] Install GRUB+btrfs..."
+  echo -e "\n[***] Install GRUB+btrfs..."
   arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm grub-btrfs
 EOF
@@ -638,7 +632,7 @@ fi
 
 #GRUB+btrfs snapshot
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-  echo -e "\n[*] GRUB+btrfs snapshot..."
+  echo -e "\n[***] GRUB+btrfs snapshot..."
   arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
@@ -712,7 +706,7 @@ fi
 
 # GRUB + Virtualbox
 if [[ "$bl" = "1" && "$dd" = "5" ]]; then
-  echo -e "\n[*] GRUB + Virtualbox..."
+  echo -e "\n[***] GRUB + Virtualbox..."
   arch-chroot /mnt /bin/bash <<EOF
 mkdir /boot/EFI/boot
 cp /boot/EFI/arch/grubx64.efi /boot/EFI/boot/bootx64.efi
@@ -721,7 +715,7 @@ fi
 
 ## SYSTEMD-BOOT
 if [[ "$bl" = "2" ]]; then
-  echo -e "\n[*] SYSTEMD-BOOT..."
+  echo -e "\n[***] SYSTEMD-BOOT..."
   arch-chroot /mnt /bin/bash <<EOF
 bootctl install
 
@@ -749,7 +743,7 @@ fi
 
 # SYSTEMD-BOOT + INTEL CPU
 if [[ "$bl" = "2" && -n "$is_intel_cpu" ]]; then
-  echo -e "\n[*] SYSTEMD-BOOT + INTEL CPU..."
+  echo -e "\n[***] SYSTEMD-BOOT + INTEL CPU..."
   arch-chroot /mnt /bin/bash <<EOF
 sed -i "s/^initrd.*/initrd \/intel-ucode.img\\ninitrd \/initramfs-linux.img/g" /boot/loader/entries/arch.conf
 sed -i "s/^initrd.*/initrd \/intel-ucode.img\\ninitrd \/initrd \/initramfs-linux-fallback.img/g" /boot/loader/entries/arch-fallback.conf
@@ -758,7 +752,7 @@ fi
 
 # Автоматизация процесса обновления SYSTEMD-BOOT
 if [[ "$bl" = "2" ]]; then
-  echo -e "\n[*] Автоматизация процесса обновления SYSTEMD-BOOT..."
+  echo -e "\n[***] Автоматизация процесса обновления SYSTEMD-BOOT..."
   arch-chroot /mnt /bin/bash <<EOF
 mkdir -p /etc/pacman.d/hooks/
 cat << 'hook' > /etc/pacman.d/hooks/systemd-boot.hook
@@ -777,7 +771,7 @@ fi
 
 ## mkinitcpio + btrfs
 if [[ "$fs" = "2" ]]; then
-  echo -e "\n[*] mkinitcpio + btrfs..."
+  echo -e "\n[***] mkinitcpio + btrfs..."
   arch-chroot /mnt /bin/bash <<EOF
 sed -i 's/^BINARIES=.*/BINARIES=(\/usr\/bin\/btrfs)/g' /etc/mkinitcpio.conf
 sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block filesystems keyboard keymap consolefont fsck btrfs)/g' /etc/mkinitcpio.conf
@@ -786,7 +780,7 @@ EOF
 fi
 
 # Копирование скрипта inst_prog_base.sh на рабочий стол для установки pikaur, zsh, nVidia_optimus_manager...
-echo -e "\n[*] Копирование скрипта inst_prog_base.sh..."
+echo -e "\n[***] Копирование скрипта inst_prog_base.sh..."
 arch-chroot /mnt /bin/bash <<EOF
 mkdir /home/$username/
 curl -fLo /home/$username/inst_prog.sh https://raw.githubusercontent.com/ShvetsRoman/inst/main/inst_prog.sh
@@ -794,7 +788,8 @@ chmod +x /home/$username/inst_prog.sh
 chown -R $username:users /home/$username/inst_prog.sh
 EOF
  
-echo -e "\n[*] Отключение HandleLidSwitch..."
+# Игнорировать закрытие крышки ноутбука
+echo -e "\n[***] Отключение HandleLidSwitch..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '' >> /etc/systemd/logind.conf
 echo 'HandleLidSwitch=ignore' >> /etc/systemd/logind.conf
@@ -802,7 +797,7 @@ EOF
  
 # Numlock on KDE
 if [[ "$de" = "1" ]]; then
-echo -e "\n[*] Numlock on KDE..."
+echo -e "\n[***] Numlock on KDE..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '[General]' > /etc/sddm.conf
 echo 'Numlock=on' >> /etc/sddm.conf
@@ -810,7 +805,8 @@ EOF
 fi
 
 # Nunlock ON
-echo -e "\n[*] Nunlock ON..."
+if [[ "$de" = "4" ]]; then
+echo -e "\n[***] Nunlock ON..."
 arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'num_lock_on' > /usr/local/bin/numlock
 #!/bin/bash
@@ -835,10 +831,11 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 num_lock_service
 EOF
+fi
  
 # BSPWM + Copy config BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[*] EXEC BSPWM + Copy config BSPWM..."
+echo -e "\n[***] EXEC BSPWM + Copy config BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo 'sxhkd &' >> /home/$username/.xinitrc
 echo 'exec bspwm' >> /home/$username/.xinitrc
@@ -857,7 +854,7 @@ fi
  
 # LightDM BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[*] LightDM BSPWM..."
+echo -e "\n[***] LightDM BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '[greeter]' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'theme-name = Breeze-Dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
@@ -869,28 +866,32 @@ EOF
 fi
 
 #  ENABLE Service
-echo -e "\n[*] ENABLE Service..."
+echo -e "\n[***] ENABLE Service..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable$display_manager
 systemctl enable NetworkManager.service
 systemctl enable dhcpcd.service
 systemctl enable iptables.service
 systemctl enable paccache.timer 
-systemctl enable numlock.service 
 EOF
 
+#ENABLE Service Numlock BSPWM
+if [[ "$de" = "4" ]]; then
+echo -e "\n[***] ENABLE Service Numlock..."
+arch-chroot /mnt /bin/bash <<EOF
+systemctl enable numlock.service 
+EOF
+fi   
+   
 #ENABLE Service GRUB+btrfs Cronie
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-echo -e "\n[*] ENABLE Service Cronie..."
+echo -e "\n[***] ENABLE Service Cronie..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable cronie.service
 EOF
 fi
-
-echo -e "\n[*] #####################"
-echo -e "[*] ######## END ########"
-echo -e "[*] #####################"
  
-echo -e "\n[*] Скрипт завершил установку Arch Linux. Введите в терминале:"
-echo -e "[*] umount -R /mnt"
-echo -e "[*] reboot"
+echo -e "\n[*****] Скрипт завершил установку Arch Linux."
+echo "Введите в терминале:"
+echo "umount -R /mnt"
+echo "reboot"
