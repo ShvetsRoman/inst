@@ -21,7 +21,7 @@ sudo chown root:sambashare /var/lib/samba/usershares
 sudo chmod 1770 /var/lib/samba/usershares
 
 # Файл конфигурации
-sudo cp -rfv ${HOME}/temp/inst/prog/conf/smb/ /etc/ 
+sudo cp -rfv ${HOME}/temp/inst/prog/conf/smb/smb.conf /etc/ 
 
 sudo systemctl enable smb.service
 sudo systemctl enable nmb.service
