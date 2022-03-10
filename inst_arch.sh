@@ -479,7 +479,7 @@ if [[ "$de" = "1" ]]; then
     # Dolphin
     core_packages+=' dolphin'
     # Konsole
-    core_packages+=' konsole'
+    core_packages+=' konsole alacritty'
     # Kate
     core_packages+=' kate'
     # QT 
