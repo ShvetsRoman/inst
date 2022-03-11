@@ -8,7 +8,7 @@ core_packages_aur=''
 
 ### Install PACMAN ###
 # KDE 
-core_packages+=' packagekit-qt5 libappindicator-gtk2 libappindicator-gtk3 colord-kde kaccounts-integration kaccounts-providers kdeconnect kdenetwork-filesharing'
+core_packages+=' packagekit-qt5 libappindicator-gtk2 libappindicator-gtk3 colord-kde kaccounts-integration kaccounts-providers kdeconnect kdenetwork-filesharing kwalletmanager'
 
 # Latte-dock
 core_packages+=' latte-dock'
