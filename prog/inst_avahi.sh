@@ -6,7 +6,7 @@ DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
 # Установка AVAHI
 sudo pacman -S --noconfirm --needed avahi zeroconf-ioslave nss-mdns
 
-sudo sed -i 's/^hosts:.*/hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 mdns/g' /etc/nsswitch.conf
+sudo sed -i 's/^hosts:.*/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns/g' /etc/nsswitch.conf
 sudo sed -i 's/^#enable-dbus=yes/enable-dbus=yes/g' /etc/avahi/avahi-daemon.conf
 sudo sed -i 's/^noipv4ll/#noipv4ll/g' /etc/dhcpcd.conf
 
@@ -17,8 +17,10 @@ sudo iptables-save -f /etc/iptables/iptables.rules
 # Файл конфигурации
 sudo cp -rfv ${DIR_TEMP_CONF}/avahi /etc/
 
+sudo systemctl stop systemd-resolved.service
+sudo systemctl disable systemd-resolved.service
+ 
 sudo systemctl enable avahi-daemon.service
 sudo systemctl enable avahi-dnsconfd.service
 sudo systemctl start avahi-daemon.service
 sudo systemctl start avahi-dnsconfd.service
-sudo systemctl disable systemd-resolved.service
