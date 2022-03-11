@@ -4,7 +4,7 @@
 DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
  
 # Установка AVAHI
-sudo pacman -S --noconfirm --needed avahi zeroconf-ioslave nss-mdns
+sudo pacman -S --noconfirm --needed avahi zeroconf-ioslave nss-mdns gtk3 dbus-python python-gobject
 
 sudo sed -i 's/^hosts:.*/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns/g' /etc/nsswitch.conf
 sudo sed -i 's/^#enable-dbus=yes/enable-dbus=yes/g' /etc/avahi/avahi-daemon.conf
