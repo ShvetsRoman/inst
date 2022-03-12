@@ -627,6 +627,7 @@ if [[ "$bl" = "1" && "$fs" = "2" ]]; then
   echo -e "\n[***] Install GRUB+btrfs..."
   arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm grub-btrfs
+grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 fi
 
