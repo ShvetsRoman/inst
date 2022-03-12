@@ -8,7 +8,8 @@ sudo sed -i 's/^DisplayStopCommand/#DisplayStopCommand/g' /etc/sddm.conf
 sudo sed -i 's/^MODULES=.*/MODULES=(i915)/g' /etc/mkinitcpio.conf
 
 # Установка драйвера intell & Nvidia
-sudo pacman -S --noconfirm --needed xf86-video-intel nvidia nvidia-utils nvidia-settings lib32-nvidia-utils bbswitch
+sudo pacman -S --noconfirm --needed xf86-video-intel nvidia nvidia-utils nvidia-settings cuda lib32-nvidia-utils bbswitch
+sudo nvidia-modprobe
 
 # Установка Optimus Manager
 pikaur -S --noconfirm --noedit optimus-manager
