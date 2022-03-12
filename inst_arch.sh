@@ -886,8 +886,9 @@ fi
    
 #ENABLE Service GRUB+btrfs Cronie
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-echo -e "\n[***] ENABLE Service Cronie..."
+echo -e "\n[***] ENABLE Service grub-btrfs && Cronie..."
 arch-chroot /mnt /bin/bash <<EOF
+systemctl enable grub-btrfs.path
 systemctl enable cronie.service
 EOF
 fi
