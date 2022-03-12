@@ -14,16 +14,16 @@ boot_dialog() {
 
 # Меню установки программ
 boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 15 90 10 \
-  "pikaur" "PIKAUR - установщик пакетов из AUR" ON \
+  "pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
   "po_kde" "Установка дополнительного ПО для KDE (для установки нужен pikaur)" OFF \
   "avahi" "Установка AVAHI" OFF \
   "samba" "Установка SAMBA" OFF \
-  "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" ON \
+  "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
   "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" OFF \
   "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
-  "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" ON \
-  "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" ON \
-  "font" "FONTs" ON
+  "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
+  "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
+  "font" "FONTs" OFF
   progs="$DIALOG_RESULT"
 
 ## Отмена установки
@@ -97,7 +97,7 @@ for action in $progs; do
 done
 
 # Если папка temp есть, тогда удаляем.
-# if [[ -e "${HOME}/temp" ]]; then
-#     rm -rf ${HOME}/temp
-#     echo "### Папка ~/temp удалена ###"
-# fi
+if [[ -e "${HOME}/temp" ]]; then
+    rm -rf ${HOME}/temp
+    echo "### Папка ~/temp удалена ###"
+fi
