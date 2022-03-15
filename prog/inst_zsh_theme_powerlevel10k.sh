@@ -13,19 +13,25 @@ pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git
 # Install Font 
 echo -e "\n[*] Installing Font ZSH..."
 pikaur -S --noconfirm --noedit ttf-meslo-nerd-font-powerlevel10k
+ 
+# Delete .bashrc
+echo -e "\n[*] Delete .bashrc & .bash*..."
+if [[ -f "${HOME}/.bashrc" ]]; then
+  rm -r ${HOME}/.bash*
+fi
 
 # Backup .zshrc
 echo -e "\n[*] Installing Backup .zshrc..."
-if [[ -e "${HOME}/.zshrc" ]]; then
+if [[ -f "${HOME}/.zshrc" ]]; then
     mv ${HOME}/.zshrc ${HOME}/.zshrc.bak
 fi
-if [[ -e "${HOME}/.zsh_alias" ]]; then
+if [[ -f "${HOME}/.zsh_alias" ]]; then
     mv ${HOME}/.zsh_alias ${HOME}/.zsh_alias.bak
 fi
-if [[ -e "${HOME}/.zsh_path" ]]; then
+if [[ -f "${HOME}/.zsh_path" ]]; then
     mv ${HOME}/.zsh_path ${HOME}/.zsh_path.bak
 fi
-if [[ -e "${HOME}/.p10k.zsh" ]]; then
+if [[ -f "${HOME}/.p10k.zsh" ]]; then
     mv ${HOME}/.p10k.zsh ${HOME}/.p10k.zsh.bak
 fi
 

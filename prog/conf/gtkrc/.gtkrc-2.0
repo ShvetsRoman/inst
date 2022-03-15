@@ -1,20 +1,12 @@
-# DO NOT EDIT! This file will be overwritten by LXAppearance.
-# Any customization should be done in ~/.gtkrc-2.0.mine instead.
-
-include "/home/notebook/.gtkrc-2.0.mine"
 gtk-theme-name="Mojave-dark"
-gtk-icon-theme-name="McMojave-circle-blue-dark"
-gtk-font-name="JetBrainsMono Nerd Font,  10"
-gtk-cursor-theme-name="WhiteSur-cursors"
-gtk-cursor-theme-size=24
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-button-images=1
+gtk-enable-animations=1
+gtk-primary-button-warps-slider=0
+gtk-toolbar-style=0
 gtk-menu-images=1
-gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
-gtk-xft-antialias=1
-gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
-gtk-xft-rgba="rgb"
-gtk-modules="gail:atk-bridge"
+gtk-button-images=1
+gtk-cursor-theme-size=24
+gtk-cursor-theme-name="volantes_cursors"
+gtk-icon-theme-name="Breeze KDE-Story-Dark"
+gtk-font-name="JetBrainsMono Nerd Font,  10"
+
+gtk-modules=appmenu-gtk-module
