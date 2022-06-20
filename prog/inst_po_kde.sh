@@ -17,13 +17,13 @@ core_packages+=' latte-dock'
 core_packages+=' kvantum'
 
 # Dolphin
-core_packages+=' dolphin-plugins kompare kdegraphics-thumbnailers kimageformats qt5-imageformats kdesdk-thumbnailers ffmpegthumbs raw-thumbnailer taglib audiocd-kio kio-gdrive'
+core_packages+=' dolphin-plugins kompare kdegraphics-thumbnailers kimageformats qt5-imageformats kdesdk-thumbnailers ffmpegthumbs taglib audiocd-kio kio-gdrive'
 
 # Torrent
 core_packages+=' ktorrent'
 
 # Browser
-core_packages+=' firefox firefox-i18n-ru'
+#core_packages+=' firefox firefox-i18n-ru'
 
 # Image viewer
 core_packages+=' gwenview gimp inkscape okular'
@@ -32,7 +32,7 @@ core_packages+=' gwenview gimp inkscape okular'
 core_packages+=' ffmpeg ffmpegthumbnailer vlc'
 
 # General utilities/libraries
-core_packages+=' neofetch git openssh p7zip unace unrar unzip ark mc htop gparted vim kcalc'
+core_packages+=' neofetch git openssh p7zip unace unrar unzip ark mc htop gparted kcalc'
 
 # Office
 core_packages+=' libreoffice-still libreoffice-still-ru'
@@ -41,7 +41,7 @@ core_packages+=' libreoffice-still libreoffice-still-ru'
 
 ### Install AUR ###
 
-core_packages_aur+=' deadbeef'
+core_packages_aur+=' deadbeef google-chrome raw-thumbnailer'
 
 ### end packages aur ###
 
