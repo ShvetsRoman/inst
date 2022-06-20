@@ -54,10 +54,10 @@ mkdir -p ${HOME}/.themes/github_themes/
 cd ${HOME}/.themes/github_themes/
 
 git clone https://github.com/vinceliuice/McMojave-kde
-${HOME}/.themes/github_themes/McMojave-kde/install.sh
+sh ${HOME}/.themes/github_themes/McMojave-kde/install.sh
 
 git clone https://github.com/vinceliuice/Mojave-gtk-theme
-${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
+sh ${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
 
 git clone https://github.com/vinceliuice/McMojave-circle
-${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
+sh ${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
