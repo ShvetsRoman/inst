@@ -49,15 +49,30 @@ core_packages_aur+=' deadbeef google-chrome raw-thumbnailer'
 sudo pacman -Syyuu --noconfirm --needed $core_packages
 pikaur -S --noconfirm --noedit $core_packages_aur
 
-# Themes GitHub McMojave-kde
+### Themes
 mkdir -p ${HOME}/.themes/github_themes/
 cd ${HOME}/.themes/github_themes/
-
+## McMojave
+# McMojave KDE
 git clone https://github.com/vinceliuice/McMojave-kde
 sh ${HOME}/.themes/github_themes/McMojave-kde/install.sh
-
+# McMojave GTK-KDE
 git clone https://github.com/vinceliuice/Mojave-gtk-theme
 sh ${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
-
+# McMojave Icon Theme
 git clone https://github.com/vinceliuice/McMojave-circle
 sh ${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
+
+## PlagueSur icon themes
+git clone https://github.com/PlagaMedicum/PlagueSur-icon-theme.git ~/.local/share/icons/PlagueSur-icon-theme
+
+## WhiteSur
+# WhiteSur-kde
+git clone https://github.com/vinceliuice/WhiteSur-kde
+sh ${HOME}/.themes/github_themes/WhiteSur-kde/install.sh
+# WhiteSur-gtk-theme
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
+sh ${HOME}/.themes/github_themes/WhiteSur-gtk-theme/install.sh
+# WhiteSur-icon-theme
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme
+sh ${HOME}/.themes/github_themes/WhiteSur-icon-theme/install.sh
