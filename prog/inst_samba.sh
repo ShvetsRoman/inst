@@ -3,7 +3,7 @@
 
 # Установка SAMBA
 sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb smb4k
-pikaur -S --noconfirm --noedit wsdd2
+#pikaur -S --noconfirm --noedit wsdd2
 
 # Открытие портов
 sudo iptables -A INPUT -p udp -m udp --dport 137 -s 192.168.88.0/24 -j ACCEPT
@@ -26,7 +26,7 @@ sudo cp -rfv ${HOME}/temp/inst/prog/conf/smb/smb.conf /etc/samba/
 
 sudo systemctl enable smb.service
 sudo systemctl enable nmb.service
-sudo systemctl enable wsdd2.service
+#sudo systemctl enable wsdd2.service
 sudo systemctl start smb.service
 sudo systemctl start nmb.service
-sudo systemctl start wsdd2.service
+#sudo systemctl start wsdd2.service
