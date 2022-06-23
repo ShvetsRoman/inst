@@ -16,6 +16,8 @@ sudo iptables-save -f /etc/iptables/iptables.rules
 sudo smbpasswd -a -s ${USER}
 sudo groupadd -r sambashare
 sudo gpasswd sambashare -a ${USER}
+# Создание общего ресурса для анонимных пользователей
+sudo useradd guest -s /bin/nologin
 
 sudo mkdir -p /var/lib/samba/usershares
 sudo chown root:sambashare /var/lib/samba/usershares
