@@ -41,7 +41,7 @@ cp -rfv ${DIR_TEMP_CONF}/zsh/. ${HOME}/
 
 # Install configs ROOT
 echo -e "\n[*] Install configs ROOT ZSH..."
-cp -rfv ${DIR_TEMP_CONF}/zsh/. /root/
+sudo cp -rfv ${DIR_TEMP_CONF}/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
 echo -e "\n[*] Установка Zsh в качестве оболочки по умолчанию..."

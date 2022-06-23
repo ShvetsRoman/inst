@@ -3,7 +3,7 @@
 
 # Установка SAMBA
 sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb smb4k
-#pikaur -S --noconfirm --noedit wsdd2
+pikaur -S --noconfirm --noedit wsdd2
 
 # Открытие портов
 sudo iptables -A INPUT -p udp -m udp --dport 137 -s 192.168.88.0/24 -j ACCEPT
@@ -24,9 +24,13 @@ sudo chmod 1770 /var/lib/samba/usershares
 # Файл конфигурации
 sudo cp -rfv ${HOME}/temp/inst/prog/conf/smb/smb.conf /etc/samba/ 
 
+sudo sed -i 's/^hosts:.*/hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns wins/g' /etc/nsswitch.conf
+
 sudo systemctl enable smb.service
 sudo systemctl enable nmb.service
-#sudo systemctl enable wsdd2.service
+sudo systemctl enable winbind.service
+sudo systemctl enable wsdd2.service
 sudo systemctl start smb.service
 sudo systemctl start nmb.service
-#sudo systemctl start wsdd2.service
+sudo systemctl start winbind.service
+sudo systemctl start wsdd2.service
