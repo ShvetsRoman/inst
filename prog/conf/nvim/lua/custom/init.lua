@@ -1,3 +1,3 @@
-require "custom.mappings"
-require "custom.settings"
-require "custom.plugins.plugins_require"
+require "custom.autocmds"
+
+vim.cmd "silent! command! EnableShade lua require('shade').toggle()"

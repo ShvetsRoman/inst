@@ -1,18 +1,31 @@
 -- MAPPINGS
-local map = require("core.utils").map
+local M = {}
 
-map("n", "<CR>", "o <ESC>")
+M.NvimTree = {
+  n = {
+    ["<F1>"] = {":NvimTreeToggle <CR>", "NvimTreeToggle"}
+  },
+}
 
-map("n", "<F1>", ":NvimTreeToggle <CR>")
+M.Search = {
+  n = {
+    ["<F3>"] = {":Telescope find_files <CR>", "Search Telescope"}
+  },
+}
 
-map("n", "<F3>", ":Telescope find_files <CR>")
- 
-map("n", "<F4>", ":%s ///<LEFT><LEFT>")
-map("i", "<F4>", "<ESC>:%s ///<LEFT><LEFT>")
+M.SearchReplace = {
+  n = {
+    ["<F4>"] = {":%s ///<LEFT><LEFT>", "Search with replacement"}
+  },
+  i = {
+    ["<F4>"] = {"<ESC>:%s ///<LEFT><LEFT>", "Search with replacement"}
+  }
+}
 
-map("n", "<F10>", ":PackerSync <CR>")
- 
-map("n", "<F12>", ":Telescope themes <CR>")
- 
-map("n", "<C-s>", ":w <CR>")
-map("i", "<C-s>", "<ESC>:w <CR> i")
+M.InsertLineBelow= {
+  n = {
+    ["<CR>"] = {"o<ESC>", "Insert line below"}
+  },
+}
+
+return M
