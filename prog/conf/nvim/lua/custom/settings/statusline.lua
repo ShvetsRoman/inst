@@ -42,19 +42,37 @@ M.mode = function()
    return current_mode .. mode_sep1 .. "%#ST_EmptySpace#" .. sep_r
 end
 
+-- M.fileInfo = function()
+--    local icon = " "
+--    local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
+--
+--    if filename ~= "Empty " then
+--       local devicons_present, devicons = pcall(require, "nvim-web-devicons")
+--
+--       if devicons_present then
+--          local ft_icon = devicons.get_icon(filename)
+--          icon = (ft_icon ~= nil and " " .. ft_icon) or ""
+--       end
+--
+--       filename = " " .. filename .. " "
+--    end
+--
+--    return "%#St_file_info#" .. icon .. filename .. "%#St_file_sep#" .. sep_r
+-- end
+
 M.fileInfo = function()
-   local icon = "  "
-   local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%"
+   local icon = " "
+   local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
 
    if filename ~= "Empty " then
       local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
       if devicons_present then
          local ft_icon = devicons.get_icon(filename)
-         icon = (ft_icon ~= nil and " " .. ft_icon) or ""
+         icon = (ft_icon ~= nil and "" .. ft_icon) or ""
       end
 
-      filename = " " .. filename .. " "
+      filename = " " .. filename .. ""
    end
 
    return "%#St_file_info#" .. icon .. filename .. "%#St_file_sep#" .. sep_r
@@ -118,7 +136,7 @@ end
 
 M.cwd = function()
    local dir_icon = "%#St_cwd_icon#" .. " "
-   local dir_name = "%#St_cwd_text#" .. " " .. fn.fnamemodify(fn.getcwd(), ":t") .. " "
+   local dir_name = "%#St_cwd_text#" .. " " .. fn.fnamemodify(fn.getcwd(), ":p") .. " "
    return (vim.o.columns > 120 and ("%#St_cwd_sep#" .. sep_l .. dir_icon .. dir_name)) or ""
 end
 
@@ -138,6 +156,7 @@ end
 M.run = function()
    return table.concat {
       M.mode(),
+      M.cwd(),
       M.fileInfo(),
       M.git(),
 
@@ -147,7 +166,7 @@ M.run = function()
 
       M.LSP_Diagnostics(),
       M.LSP_status() or "",
-      M.cwd(),
+      -- M.cwd(),
       M.cursor_position(),
    }
 end
