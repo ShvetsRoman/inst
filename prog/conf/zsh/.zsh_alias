@@ -1,10 +1,15 @@
 # Alias LARAVEL
 alias laravel='$HOME/.config/composer/vendor/bin/laravel'
 
-alias ls='ls --color=auto --group-directories-first'
-alias lsa='ls -a -h --color=auto --group-directories-first'
-alias ll='ls -l --color=auto --group-directories-first'
-alias lla='ls -l -a -h --color=auto --group-directories-first'
+# alias ls='ls --color=auto --group-directories-first'
+# alias lsa='ls -a -h --color=auto --group-directories-first'
+# alias ll='ls -l --color=auto --group-directories-first'
+# alias lla='ls -l -a -h --color=auto --group-directories-first'
+
+alias ls='exa --icons'
+alias lsa='exa -a --icons'
+alias ll='exa -l -g --icons'
+alias lla='exa -l -a -g --icons'
 
 alias zshcon="vim ~/.zshrc"
 alias vimcon="vim ~/.vimrc"
@@ -21,7 +26,7 @@ alias md="mkdir -pv"
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
-alias sshadd='eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa'
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias cdm='cd /run/media/notebook/media/'
 
 # Pacman
@@ -41,7 +46,7 @@ alias mikreboot="ssh roman@192.168.88.1 reboot system"
 alias mikssh="ssh roman@192.168.88.1"
 
 # Ping
-alias ping='ping -c 4'
+# alias ping='ping -c 4'
 
 # VIM
 # alias v='vim'

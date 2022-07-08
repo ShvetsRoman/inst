@@ -4,7 +4,7 @@ DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
  
 # Установка ZSH
 echo -e "\n[*] Installing ZSH..."
-sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions exa
  
 # Install Theme ZSH
 echo -e "\n[*] Installing Theme ZSH..."
