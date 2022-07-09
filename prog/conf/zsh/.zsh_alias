@@ -14,6 +14,16 @@ alias lla='exa -l -a -g --icons'
 alias zshcon="vim ~/.zshrc"
 alias vimcon="vim ~/.vimrc"
 
+# Цветной вывод команд
+if [ -f /usr/bin/grc ]; then
+  alias gcc="grc --colour=auto gcc"
+  alias irclog="grc --colour=auto irclog"
+  alias log="grc --colour=auto log"
+  alias netstat="grc --colour=auto netstat"
+  alias ping="grc --colour=auto ping -c 4"
+  alias proftpd="grc --colour=auto proftpd"
+  alias traceroute="grc --colour=auto traceroute"
+fi
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
