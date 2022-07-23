@@ -33,7 +33,7 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
-#    prompt_char             # prompt symbol
+   # prompt_char             # prompt symbol
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -383,7 +383,7 @@
       local greenn='%76F'
       local bluee='%39F'
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
-      local git_skobka_lev="git:("  
+      local git_skobka_lev="git("  
       local git_skobka_prav=")"
       # If local branch name is at most 32 characters long, show it in full.
       # Otherwise show the first 12 … the last 12.

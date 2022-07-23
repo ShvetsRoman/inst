@@ -1,6 +1,6 @@
 # default apps
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="konsole"
 export TERM="xterm-256color"
 export BROWSER="google-chrome-stable"
 

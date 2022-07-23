@@ -30,7 +30,7 @@ double_click=false
 translucent_windows=true
 blurring=true
 popup_blurring=true
-opaque=kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,trojita,dragon,digikam,lyx,qcad,firefox
+opaque=kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,trojita,dragon,digikam,lyx
 vertical_spin_indicators=false
 fill_rubberband=false
 merge_menubar_with_toolbar=true
@@ -71,6 +71,8 @@ saturation=1.00
 scrollable_menu=true
 shadowless_popup=false
 drag_from_buttons=false
+menu_blur_radius=9
+tooltip_blur_radius=6
 
 [GeneralColors]
 window.color=#242424
@@ -124,6 +126,7 @@ scroll_jump_workaround=false
 centered_forms=false
 kinetic_scrolling=false
 noninteger_translucency=false
+blur_only_active_window=false
 style_vertical_toolbars=false
 
 [PanelButtonCommand]
@@ -343,10 +346,10 @@ frame.element=toolbar
 text.normal.color=#dedede
 text.focus.color=#ffffff
 text.normal.inactive.color=#dedede74
-frame.left=4
-frame.right=0
+frame.left=6
+frame.right=6
 frame.top=0
-frame.bottom=0
+frame.bottom=1
 frame.expansion=0
 
 [Slider]
