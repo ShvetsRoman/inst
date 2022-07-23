@@ -22,6 +22,17 @@ M.SearchReplace = {
   },
 }
 
+M.Sync = {
+  n = {
+    ["<F10>"] = {"<cmd> PackerSync <CR>", "Packer Sync"}
+  },
+}
+M.Themes = {
+  n = {
+    ["<F12>"] = {"<cmd> Telescope themes <CR>", "   nvchad themes"}
+  },
+}
+
 M.InsertLineBelow= {
   n = {
     ["<C-O>"] = {"O<ESC>", "Insert line below UP"},
