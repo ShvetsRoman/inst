@@ -542,7 +542,7 @@ fi
 # Xserver
 core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
-core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim'
+core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim scrot'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
