@@ -2,29 +2,28 @@ local M = {}
 
 M.options = {
   user = function()
-    require("custom.settings.options")
+    require("custom.options")
   end,
 }
 
+local pluginConfs = require "custom.plugins.configs"
+local pluginConfsUI = require "custom.plugins.configs_ui"
 M.plugins = {
   remove = {
     -- "feline-nvim/feline.nvim",
   },
 
--- Install User Plugins
-  -- user = require "custom.plugins",
+  override = {
+    ["NvChad/ui"] = pluginConfsUI.statusline,
+    ["kyazdani42/nvim-tree.lua"] = pluginConfs.nvimtree,
+  },
+
 }
 
 M.ui = {
 
 -- Default Theme
---   theme = "",
-
--- Settings StatusLine
-  statusline = {
-    separator_style = "block", -- default/round/block/arrow
-    config = "%!v:lua.require('custom.settings.statusline').run()",
-  }
+  -- theme = "one_light",
 }
 
 -- Mapping User
