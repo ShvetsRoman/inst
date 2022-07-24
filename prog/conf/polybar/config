@@ -171,7 +171,7 @@ interface = wlp3s0f0
 interval = 1.0
 
 format-connected = <label-connected>
-label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%netspeed:7%%{A}
+label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%netspeed:8%%{A}
 ;label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%upspeed:7% %downspeed:7%%{A}
 ;label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%downspeed:7% %upspeed:7%%{A}
 label-connected-foreground = ${colors.fg}
