@@ -139,6 +139,9 @@ chmod -R +x ${HOME}/.xinitrc
 cp -rfv ${DIR_TEMP_CONF}/fehbg/.fehbg ${HOME}/
 
 ##### PROGRAMs #####
+# Numlock ON
+echo -e "\n[*] Installing Numlock ON..."
+sudo pacman -S --noconfirm --needed numlockx 
 # Font 
 echo -e "\n[*] Installing ttf-font-icons..."
 pikaur -S --noconfirm --needed ttf-font-icons 
