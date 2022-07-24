@@ -1,3 +1,3 @@
 #!/bin/sh
 
-alacritty -e sudo pacman -Syu
+alacritty -e sudo pikaur -Syyuu

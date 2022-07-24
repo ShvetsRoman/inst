@@ -82,8 +82,8 @@ case $chosen in
 		fi
         ;;
     $settings)
-		if [[ -f /usr/bin/xfce4-settings-manager ]]; then
-			xfce4-settings-manager &
+		if [[ -f /usr/bin/qt5ct ]]; then
+			qt5ct &
 		else
 			msg "No suitable settings manager found!"
 		fi

@@ -38,6 +38,7 @@ alias x='exit'
 alias ln='ln -s'
 alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias cdm='cd /run/media/notebook/media/'
+alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
 # Pacman
 alias spu='sudo pacman -Syu'

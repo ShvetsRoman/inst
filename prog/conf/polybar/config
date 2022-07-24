@@ -1,5 +1,5 @@
 [colors]
-bg = #11121D
+bg = #9911121D
 bg-alt = #20212C 
 fg = #acb0d0 
 fg-alt = #5D5E72 
@@ -50,7 +50,7 @@ font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = apps bspwm
 modules-center = title
-modules-right = updates-pacman-aur wlan eth battery pulseaudio xkeyboard date session
+modules-right = updates-pacman-aur wlan_speed wlan eth battery pulseaudio xkeyboard date session
 
 cursor-click = pointer
 
@@ -165,6 +165,17 @@ label-urgent-foreground = ${colors.shade-3}
 label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
+[module/wlan_speed]
+type = internal/network
+interface = wlp3s0f0
+interval = 1.0
+
+format-connected = <label-connected>
+label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%netspeed:7%%{A}
+;label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%upspeed:7% %downspeed:7%%{A}
+;label-connected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}%downspeed:7% %upspeed:7%%{A}
+label-connected-foreground = ${colors.fg}
+
 [module/wlan]
 type = internal/network
 interface = wlp3s0f0
@@ -183,7 +194,7 @@ label-disconnected = %{A1:sh $HOME/.config/rofi/bin/network.sh:}睊%{A}
 label-disconnected-foreground = ${colors.shade-1}
 ;label-disconnected-padding = 1
 
-[module/wlan2]
+[module/wlan_2]
 type = internal/network
 interface = wlp3s0f0
 ;interface = wlan0
@@ -287,8 +298,8 @@ type = internal/battery
 ; ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = AC0
-full-at = 96
-
+full-at = 95
+low-at = 10 
 poll-interval = 5
 
 format-charging = %{A1:$HOME/.config/rofi/bin/battery.sh:} <animation-charging> <label-charging>%{A}
@@ -300,9 +311,13 @@ format-discharging-foreground = ${colors.fg}
 format-full = %{A1:$HOME/.config/rofi/bin/battery.sh:}<ramp-capacity><label-full>%{A}
 format-full-foreground = ${colors.fg}
 
+format-low = <animation-low> <label-low>
+format-low-foreground = ${colors.red}
+
 label-charging = %percentage%%
 label-discharging = %percentage%%
 label-full = "100%"
+label-low = %percentage%% 
 
 ramp-capacity-0 =  
 ramp-capacity-1 =  
@@ -339,6 +354,10 @@ animation-discharging-7 = 
 animation-discharging-8 =  
 animation-discharging-9 =  
 animation-discharging-framerate = 500
+
+animation-low-0 = !
+animation-low-1 = "  " 
+animation-low-framerate = 200
 
 [module/session]
 type = custom/text
