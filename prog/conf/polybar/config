@@ -68,6 +68,7 @@ label-maxlen = 40
 [module/updates-pacman-aur]
 type = custom/script
 exec = $HOME/.config/polybar/scripts/updates-pacman-aur.sh
+tail = true
 interval = 300
 format-foreground = ${colors.fg}
 click-left = sh $HOME/.config/polybar/scripts/up_system.sh

@@ -18,7 +18,11 @@ super + F3
 # deadbeef 
 super + F4
   deadbeef 
-  
+
+# Kcalc  
+XF86Calculator
+  kcalc
+
 # Media player controls
 XF86AudioPlay
   playerctl --all-players play-pause
@@ -73,89 +77,122 @@ super + p
 super + u
   $HOME/.config/polybar/scripts/up_system.sh
 
-# make sxhkd reload its configuration files:
+###########################################
+####          HOTKEYS BSPWM         ####
+###########################################
+
+# ПЕРЕЗАГРУЗИТЬ КОНФИГ SXHKD
 super + Escape
   pkill -USR1 -x sxhkd
 
-###--- bspwm hotkeys ---###
-# quit/restart bspwm
+# ВЫЙТИ/ПЕРЕЗАГРУЗИТЬ BSPWM
 super + alt + {q,r}
   bspc {quit,wm -r}
 
-# close and kill
+# ЗАКРЫТЬ ОКНО ИЛИ УБИТЬ ЕГО
 super + {_,shift + }q
   bspc node -{c,k}
 
-# alternate between the tiled and monocle layout
+# ПЕРЕХОД В РЕЖИМ МОНОКЛЯ И ОБРАТНО
 super + m
   bspc desktop -l next
 
-# send the newest marked node to the newest preselected node
+# отправить новейший отмеченный узел в новейший предварительно выбранный узел(яхз что это значит)
 super + y
   bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
+# ПОМЕНЯТЬ МЕСТАМИ ТЕКУЩЕЕ И САМОЕ БОЛЬШОЕ ОКНО
 super + g
   bspc node -s biggest.window
 
-###--- state/flags ---###
-# set the window state
+###########################################
+####         УПРАВЛЕНИЕ ФЛАГАМИ        ####
+###########################################
+
+# ПОМЕНЯТЬ СТАТУС ОКНА НА /ТАЙЛОВОЕ/ПСЕВДО ТАЙЛОВОЕ/ПЛАВАЮЩЕЕ/ПОЛНОЭКРАННОЕ
 super + {t,shift + t,s,f}
   bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
+# УСТАНОВИТЬ ФЛАГ УЗЛА /ОТМЕЧЕННЫЙ/ЗАЛОЧЕННЫЙ/ЛИПКИЙ/ПРИВАТНЫЙ
 super + ctrl + {m,x,y,z}
   bspc node -g {marked,locked,sticky,private}
 
-###--- focus/swap ---###
-# focus the node in the given direction
+###########################################
+####         УПРАВЛЕНИЕ ФОКУСОМ        ####
+###########################################
+
+# ПЕРЕМЕСТИТЬ ОКНО
 super + {_,shift + }{h,j,k,l}
   bspc node -{f,s} {west,south,north,east}
 super + {_,shift + }{Left,Down,Up,Right}
   bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
+# ВЫДЕЛИТЬ НЕСКОЛЬКО ПРИЛОЖЕНИЙ НАПРИМЕР ЧТО БЫ ПЕРЕМЕСТИТЬ ГРУППУ ПРИЛОЖЕНИЙ НА ДРУГОЙ ВОРКСПЕЙС
 super + {p,b,comma,period}
   bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous window in the current desktop
+# ПЕРЕКЛЮЧЕНИЕ ПО ОТКРЫТЫМ ПРИЛОЖЕНИЯМ В ПРЕДЕЛАХ ОДНОГО ВОРКСПЕЙСА
 super + {_,shift + }c
   bspc node -f {next,prev}.local.!hidden.window
 
-# focus the next/previous desktop in the current monitor
+# ПЕРЕХОД ПО ВОРКСПЕЙСАМ
 super + bracket{left,right}
   bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
+# ВЕРНУТСЯ НА ПРЕДЫДУЩИЙ АКТИВНЫЙ ВОРКСПЕЙС
 super + {grave,Tab}
   bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
+# ПЕРЕХОД НА ПО ИСТОРИИ ОТКРЫТЫХ ПРИЛОЖЕНИЙ
 super + {o,i}
   bspc wm -h off; \
   bspc node {older,newer} -f; \
   bspc wm -h on
 
-# focus or send to the given desktop
+# ПЕРЕКЛЮЧИТСЯ НА ВОРКСПЕЙС ИЛИ ПЕРЕТАЩИТЬ НА НЕГО АКТИВНОЕ ОКНО
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} '^{1-9,10}'
 
-###--- preselect ---###
-# preselect the direction
+###########################################
+####       ПРЕДВАРИТЕЛЬНЫМ ВЫБОР       ####
+###########################################
+
+#ВЫБРАТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
 super + ctrl + {h,j,k,l}
   bspc node -p {west,south,north,east}
 super + ctrl + {Left,Down,Up,Right} 
   bspc node -p {west,south,north,east}
 
-###--- move/resize ---###
-# expand a window by moving one of its side outward
+# ВЫБРАТЬ ВОРКСПЕЙС НА КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# ОТМЕНИТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + space
+	bspc node -p cancel
+
+# ОТМЕНИТЬ ВОРКСПЕЙС НА КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+###########################################
+####   ПЕРЕМЕЩЕНИЕ/ИЗМЕНЕНИЕ РАЗМЕРА   ####
+###########################################
+
+# УВЕЛИЧИТЬ ОКНО СДВИНУВ ОДНУ ИЗ ЕГО СТОРОН
 super + alt + {h,j,k,l}
   bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 super + alt + {Left,Down,Up,Right} 
   bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# contract a window by moving one of its side inward
+# УМЕНЬШИТЬ ОКНО СДВИНУВ ОДНУ ИЗ ЕГО СТОРОН
 super + alt + shift + {h,j,k,l}
   bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 super + alt + shift + {Left,Down,Up,Right} 
   bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# ПЕРЕМЕЩЕНИЕ ПЛАВАЮЩИХ ОКОН
+super + shift + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
