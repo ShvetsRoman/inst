@@ -49,7 +49,7 @@ font-3 = "Material Icons Outlined:9;4"
 font-4 = "Material Icons Round:9;4"
 font-5 = "Source Han Sans CN:size=9;2"
 
-modules-left = apps bspwm
+modules-left = apps bspwm info-softwarecounter
 modules-center = title
 modules-right = updates-pacman-aur wlan_speed wlan eth battery pulseaudio xkeyboard date dunst session
 
@@ -73,6 +73,11 @@ interval = 300
 format-foreground = ${colors.fg}
 click-left = sh $HOME/.config/polybar/scripts/up_system.sh
 ; Put this module on your polybar config, make sure enable-ipc=true
+
+[module/info-softwarecounter]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/info-softwarecounter.py
+interval = 10
 
 [module/dunst]
 type = custom/ipc
