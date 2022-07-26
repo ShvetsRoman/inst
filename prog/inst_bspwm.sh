@@ -52,7 +52,8 @@ chmod -R +x ${DIR_HOME_CONF}/polybar/scripts
 
 ##### Picom #####
 echo -e "\n[*] Installing picom-git..."
-pikaur -S --noconfirm --needed picom-git
+# pikaur -S --noconfirm --needed picom-git
+pikaur -S --noconfirm --needed picom-ibhagwan-git
 # Copy config Picom 
 if [[ -d "${DIR_HOME_CONF}/picom" ]]; then
   rm -rf ${DIR_HOME_CONF}/picom
