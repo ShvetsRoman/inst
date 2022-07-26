@@ -51,7 +51,7 @@ font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = apps bspwm
 modules-center = title
-modules-right = updates-pacman-aur wlan_speed wlan eth battery pulseaudio xkeyboard date session
+modules-right = updates-pacman-aur wlan_speed wlan eth battery pulseaudio xkeyboard date dunst session
 
 cursor-click = pointer
 
@@ -69,20 +69,17 @@ label-maxlen = 40
 [module/updates-pacman-aur]
 type = custom/script
 exec = $HOME/.config/polybar/scripts/updates-pacman-aur.sh
-tail = false
-format-fail = <label-fail>
-label-fail = %output:0:15:...%
 interval = 300
 format-foreground = ${colors.fg}
 click-left = sh $HOME/.config/polybar/scripts/up_system.sh
-
 ; Put this module on your polybar config, make sure enable-ipc=true
+
 [module/dunst]
 type = custom/ipc
 initial = 1
 format-foreground-1 = ${colors.red}
-hook-0 = echo "%{A1:"dunstctl set-paused true" && polybar-msg hook dunst 2:}%{A}" &
-hook-1 = echo "%{A1:"dunstctl set-paused false" && polybar-msg hook dunst 1:}%{A}" &
+hook-0 = echo "%{A1:"dunstctl set-paused true" && polybar-msg hook dunst 2:} %{A}" &
+hook-1 = echo "%{A1:"dunstctl set-paused false" && polybar-msg hook dunst 1:} %{A}" &
 
 [module/spotify]
 type = custom/script
@@ -122,7 +119,7 @@ label-focused-underline = ${colors.shade-5}
 label-occupied = %name%
 label-occupied-padding = 1
 
-label-urgent = %name%!
+label-urgent = %name%
 label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
