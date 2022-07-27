@@ -36,9 +36,20 @@ alias md="mkdir -pv"
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
-alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias cdm='cd /run/media/notebook/media/'
 alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
+
+# GIT
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias gits='git status'
+alias gs='git status'
+alias gita='git add .'
+alias ga='git add .'
+alias gitc='git commit -m "add"'
+alias gc='git commit -m "add"'
+alias gitp='git push'
+alias gp='git push'
 
 # Pacman
 alias spu='sudo pacman -Syu'

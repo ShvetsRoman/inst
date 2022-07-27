@@ -1,9 +1,9 @@
 configuration {
-	font:                      		"JetBrains Mono Nerd Font 12";
-    disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
-	sidebar-mode: 					false;
+	font:                      	  	  "JetBrains Mono Nerd Font 12";
+  disable-history:                  false;
+  fullscreen:                       false;
+	hide-scrollbar: 				          true;
+	sidebar-mode: 					          false;
 }
 
 @import "/color_applets/colors.rasi"
