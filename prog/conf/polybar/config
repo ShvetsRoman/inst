@@ -51,7 +51,7 @@ font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = apps bspwm info-softwarecounter
 modules-center = title
-modules-right = rofi-usb-mount updates-pacman-aur wlan_speed wlan eth battery pulseaudio xkeyboard date dunst session
+modules-right = updates-pacman-aur wlan_speed wlan eth rofi-usb-mount battery pulseaudio xkeyboard date dunst session
 
 cursor-click = pointer
 

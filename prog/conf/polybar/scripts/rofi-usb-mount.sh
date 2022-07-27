@@ -7,10 +7,10 @@ usbcheck(){ \
     mounteddrives="$(lsblk -rpo "name,type,size,mountpoint" | grep -v 'sda' | awk '$2=="part"&&$4!=""{printf "  %s (%s)\t  ",$1,$3}')"
     if [ $(echo "$mounteddrives" | wc -w) -gt 0 ]; then
         # echo "$mounteddrives"
-        echo "    "
+        echo " "
     else
         if [ $(echo "$usbdrives" | wc -w) -gt 0 ]; then
-            echo "    "
+            echo " "
         else
             echo ""
         fi
