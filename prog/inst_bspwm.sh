@@ -41,7 +41,7 @@ cp -rv ${DIR_TEMP_CONF}/dunst ${DIR_HOME_CONF}/
 
 ##### Polybar #####
 echo -e "\n[*] Installing polybar..."
-pikaur -S --noconfirm --needed polybar wmctrl
+pikaur -S --noconfirm --needed polybar wmctrl udiskie
 # Copy config Polybar
 if [[ -d "${DIR_HOME_CONF}/polybar" ]]; then
   rm -rf ${DIR_HOME_CONF}/polybar
