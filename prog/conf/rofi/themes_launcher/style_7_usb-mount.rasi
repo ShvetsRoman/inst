@@ -84,11 +84,13 @@ element {
     background-color:               @al;
     text-color:                     @fg;
     orientation:                    horizontal;
+    children: [ element-icon, element-text ];
     border-radius:                  0%;
     padding:                        0.5% 0.5% 0.5% 0.5%;
 }
 
 element-icon {
+    str: "";
     background-color:               transparent;
     text-color:                     inherit;
     size:                           24px;

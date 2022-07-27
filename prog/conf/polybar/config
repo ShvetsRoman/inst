@@ -51,7 +51,7 @@ font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = apps bspwm info-softwarecounter
 modules-center = title
-modules-right = updates-pacman-aur wlan_speed wlan eth rofi-usb-mount battery pulseaudio xkeyboard date dunst session
+modules-right = updates-pacman-aur wlan_speed wlan eth rofi-usb-umount rofi-usb-mount battery pulseaudio xkeyboard date dunst session
 
 cursor-click = pointer
 
@@ -79,13 +79,28 @@ type = custom/script
 exec = $HOME/.config/polybar/scripts/info-softwarecounter.py
 interval = 10
 
+[module/rofi-usb-umount]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/rofi-usb-umount.sh --check
+tail = true
+click-left = $HOME/.config/polybar/scripts/rofi-usb-umount.sh --umount
+click-right = $HOME/.config/polybar/scripts/rofi-usb-umount.sh --umount
+click-middle = $HOME/.config/polybar/scripts/rofi-usb-umount.sh --umount-all
+
 [module/rofi-usb-mount]
 type = custom/script
 exec = $HOME/.config/polybar/scripts/rofi-usb-mount.sh --check
 tail = true
 click-left = $HOME/.config/polybar/scripts/rofi-usb-mount.sh --mount
-click-right = $HOME/.config/polybar/scripts/rofi-usb-mount.sh --umount
-click-middle = $HOME/.config/polybar/scripts/rofi-usb-mount.sh --umount-all
+click-right = $HOME/.config/polybar/scripts/rofi-usb-mount.sh --mount
+
+[module/rofi-usb-mount_umount]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/rofi-usb-mount_umount.sh --check
+tail = true
+click-left = $HOME/.config/polybar/scripts/rofi-usb-mount_umount.sh --mount
+click-right = $HOME/.config/polybar/scripts/rofi-usb-mount_umount.sh --umount
+click-middle = $HOME/.config/polybar/scripts/rofi-usb-mount_umount.sh --umount-all
 
 [module/dunst]
 type = custom/ipc
