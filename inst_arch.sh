@@ -566,6 +566,7 @@ core_packages+=' archlinux-wallpaper'
 echo -e "\n[***] Mirrorlist..."
 reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
+pacman -Syy archlinux-keyring
 
 ## INSTALL BASE ##
 echo -e "\n[***] Install BASE System..."
