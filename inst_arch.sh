@@ -1,7 +1,7 @@
 #!/bin/bash
  
 set -e
-exec > inst_arch_error.log 2>&1
+# exec > inst_arch_error.log 2>&1
 
 timedatectl set-ntp true
 hwclock -w
