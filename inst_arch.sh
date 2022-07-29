@@ -1,6 +1,7 @@
 #!/bin/bash
  
 set -e
+> inst_arch_error.log 2>&1
 
 timedatectl set-ntp true
 hwclock -w
@@ -542,7 +543,7 @@ fi
 # Xserver
 core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
-core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim scrot'
+core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim hwinfo'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
@@ -566,7 +567,7 @@ core_packages+=' archlinux-wallpaper'
 echo -e "\n[***] Mirrorlist..."
 reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
-pacman -Syy archlinux-keyring
+pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 echo -e "\n[***] Install BASE System..."
@@ -617,7 +618,7 @@ EOF
 if [[ "$bl" = "1" ]]; then
   echo -e "\n[***] Install GRUB..."
   arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm grub efibootmgr os-prober hwinfo
+pacman -Syu --noconfirm grub efibootmgr os-prober
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
