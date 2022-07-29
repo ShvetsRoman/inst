@@ -152,8 +152,8 @@ processes = OrderedDict({
 })
 
 combine_proccesses = {
-    'vims': ('nvim', 'vim', 'atom'),
-    'updater': ('pacman', 'yay', 'trizen', 'yaourt', 'makepkg', 'auracle', 'pikaur'),
+    # 'vims': ('nvim', 'vim', 'atom'),
+    # 'updater': ('pacman', 'yay', 'trizen', 'yaourt', 'makepkg', 'auracle', 'pikaur'),
 }
 
 

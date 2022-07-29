@@ -1,7 +1,7 @@
 #! /bin/sh
 
-set -ET
-exec 1> ~/.bspwm.out 2> ~/.bspwm.err
+set -E
+exec > ~/.bspwm_error.log 2>&1
 
 bspc rule -r "*"
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -16,7 +16,7 @@ $HOME/.fehbg &
 # Polybar
 $HOME/.config/polybar/launch.sh &
 # Picom (Compton)
-# picom -b --experimental-backends --config $HOME/.config/picom/picom.conf &
+picom -b --experimental-backends --config $HOME/.config/picom/picom.conf &
 # picom --experimental-backends -b --backend glx --vsync --xrender-sync-fence --glx-no-rebind-pixmap --use-damage --glx-no-stencil --config $HOME/.config/picom/picom.conf &
 # Numlockx ON
 numlockx on &
