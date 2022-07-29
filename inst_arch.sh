@@ -863,8 +863,6 @@ echo '[greeter]' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'theme-name = Breeze-Dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'icon-theme-name = breeze-dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'background = #11121D' >> /etc/lightdm/lightdm-gtk-greeter.conf
-echo '[Desktop]' >> /home/$username/.dmrc
-echo 'Session=bspwm' >> /home/$username/.dmrc
 EOF
 fi
 
