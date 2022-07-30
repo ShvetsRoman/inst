@@ -626,16 +626,8 @@ color green "[***] Pacman config & multilib..."
 arch-chroot /mnt /bin/bash <<EOF
 sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
 sed -i "s/^#Color/Color/g" /etc/pacman.conf
-sed -i "s/^#ParallelDownloads = 5/ParallelDownloads = 5/g" /etc/pacman.conf
 sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g}' /etc/pacman.conf
 sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
-EOF
-
-## INSTALL PACKAGES ##
-color green "[***] INSTALL PACKAGES..."
-arch-chroot /mnt /bin/bash <<EOF
-pacman -Syu --noconfirm --needed $core_packages
-pikaur -Syu --noconfirm --needed $core_packages_aur 
 EOF
 
 ## INSTALL PIKAUR ##
@@ -647,6 +639,14 @@ makepkg -fsri
 cd ..
 rm -rf pikaur
 EOF
+
+## INSTALL PACKAGES ##
+color green "[***] INSTALL PACKAGES..."
+arch-chroot /mnt /bin/bash <<EOF
+pacman -Syu --noconfirm --needed $core_packages
+pikaur -Syu --noconfirm --needed $core_packages_aur 
+EOF
+
  
 # GRUB
 if [[ "$bl" = "1" ]]; then
