@@ -7,6 +7,21 @@ timedatectl set-ntp true
 hwclock -w
 loadkeys ru
 setfont cyr-sun16
+
+function color() {
+  case "$1" in
+    red)
+      echo -e "\n\033[31m$2\033[0m"
+    ;;
+    yellow)
+      echo -e "\n\033[33m$2\033[0m"
+    ;;
+    green)
+      echo -e "\n\033[32m$2\033[0m"
+    ;;
+  esac
+}
+
 clear
 
 ## Dialog function
@@ -205,25 +220,25 @@ fi
 is_intel_cpu=$(lscpu | grep 'Intel' &> /dev/null && echo 'yes' || echo '')
 
 ## Partitions
-echo -e "\n[***] Partitions..."
+color green "[***] Partitions..."
 sgdisk -Z /dev/"$df"     #очиска диска
 parted /dev/"$df" mklabel gpt #таблица разделов GPT
 lsblk #инфо
-echo -e "\n[***] INFO..."
+color green "[***] INFO..."
 fdisk -l /dev/"$df" #инфо
 sleep 5s
 
 ### FORMAT ###
-echo -e "\n[***] FORMAT..."
+color green "[***] FORMAT..."
 # FORMAT EFI
-echo -e "\n[***] FORMAT EFI..."
+color green "[***] FORMAT EFI..."
 volume_efi=/dev/"$df""1"
 sgdisk /dev/"$df" -n=1:0:+"$uefisize"M -t=1:ef00 --change-name=1:"efi"
 mkfs.vfat -F32 -n EFI "$volume_efi"
 
 # FORMAT EXT4
 if [[ "$fs" == "1" ]]; then
-echo -e "\n[***] FORMAT EXT4..."
+color green "[***] FORMAT EXT4..."
     volume_new=1
 
     # SWAP
@@ -282,7 +297,7 @@ fi
 
 # MOUNT EXT4
 if [[ "$fs" == "1" ]]; then
-echo -e "\n[***] MOUNT EXT4..."
+color green "[***] MOUNT EXT4..."
     volume_new=1
     # SWAP
     if [[ "$swapinstall" = "1" ]]; then
@@ -338,7 +353,7 @@ fi
 
 #Partitions BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[***] Partitions BTRFS..."
+color green "[***] Partitions BTRFS..."
     if [[ "$swapinstall" = "1" ]]; then
         volume_swap=/dev/"$df""2"
         sgdisk /dev/"$df" -n=2:0:+"$swapsize"M -t=2:8200
@@ -365,7 +380,7 @@ fi
 
 #Subvolumes BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[***] Subvolumes BTRFS..."
+color green "[***] Subvolumes BTRFS..."
     # /
     mount "$volume_root" /mnt
     btrfs subvolume create /mnt/@
@@ -399,7 +414,7 @@ fi
 
 #Mount BTRFS
 if [[ "$fs" == "2" ]]; then
-echo -e "\n[***] Mount BTRFS..."
+color green "[***] Mount BTRFS..."
     mount -o compress=zstd,noatime,ssd,subvol=@ "$volume_root" /mnt
 
     if [[ "$swapinstall" = "1" ]]; then
@@ -446,6 +461,8 @@ root_uuid=${root_systemd}
 
 ## Core_packages
 core_packages=''
+## Core_packages_aur
+core_packages_aur=''
 
 ## DISPLAY DRIVER
 # Intel
@@ -564,20 +581,20 @@ core_packages+=' python-requests python-dbus python-pip python-pipenv'
 core_packages+=' archlinux-wallpaper'
 
 ## Mirrorlist
-echo -e "\n[***] Mirrorlist..."
+color green "[***] Mirrorlist..."
 reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
 pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
-echo -e "\n[***] Install BASE System..."
+color green "[***] Install BASE System..."
 pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib $btrfs_progs
 
 # Generate fstab
-echo -e "\n[***] Generate fstab..."
+color green "[***] Generate fstab..."
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-echo -e "\n[***] Hostname, localtime, locale, vconsole, username, sudo..."
+color green "[***] Hostname, localtime, locale, vconsole, username, sudo..."
 # Hostname, localtime, locale, vconsole, username, sudo
 arch-chroot /mnt /bin/bash <<EOF  
 echo $hostname > /etc/hostname
@@ -599,7 +616,7 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 EOF
  
 # Pacman multilib
-echo -e "\n[***] Pacman config & multilib..."
+color green "[***] Pacman config & multilib..."
 arch-chroot /mnt /bin/bash <<EOF
 sed -i "s/^#VerbosePkgLists/ILoveCandy\\nVerbosePkgLists/g" /etc/pacman.conf
 sed -i "s/^#Color/Color/g" /etc/pacman.conf
@@ -609,14 +626,24 @@ sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 EOF
 
 ## INSTALL PACKAGES ##
-echo -e "\n[***] INSTALL PACKAGES..."
+color green "[***] INSTALL PACKAGES..."
 arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm --needed $core_packages
+EOF
+
+## INSTALL PIKAUR ##
+color green "[***] INSTALL PIKAUR..."
+arch-chroot /mnt /bin/bash <<EOF
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd ..
+rm -rf pikaur
 EOF
  
 # GRUB
 if [[ "$bl" = "1" ]]; then
-  echo -e "\n[***] Install GRUB..."
+  color green "[***] Install GRUB..."
   arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm grub efibootmgr os-prober
 grub-install --target=x86_64-efi --efi-directory=/boot
@@ -626,7 +653,7 @@ fi
 
 #GRUB+btrfs
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-  echo -e "\n[***] Install GRUB+btrfs..."
+  color green "[***] Install GRUB+btrfs..."
   arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm grub-btrfs
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -635,7 +662,7 @@ fi
 
 #GRUB+btrfs snapshot
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-  echo -e "\n[***] GRUB+btrfs snapshot..."
+  color green "[***] GRUB+btrfs snapshot..."
   arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'snap-shot' > /usr/local/bin/btrfs-snapshot
 #!/bin/bash
@@ -709,7 +736,7 @@ fi
 
 # GRUB + Virtualbox
 if [[ "$bl" = "1" && "$dd" = "5" ]]; then
-  echo -e "\n[***] GRUB + Virtualbox..."
+  color green "[***] GRUB + Virtualbox..."
   arch-chroot /mnt /bin/bash <<EOF
 mkdir /boot/EFI/boot
 cp /boot/EFI/arch/grubx64.efi /boot/EFI/boot/bootx64.efi
@@ -718,7 +745,7 @@ fi
 
 ## SYSTEMD-BOOT
 if [[ "$bl" = "2" ]]; then
-  echo -e "\n[***] SYSTEMD-BOOT..."
+  color green "[***] SYSTEMD-BOOT..."
   arch-chroot /mnt /bin/bash <<EOF
 bootctl install
 
@@ -746,7 +773,7 @@ fi
 
 # SYSTEMD-BOOT + INTEL CPU
 if [[ "$bl" = "2" && -n "$is_intel_cpu" ]]; then
-  echo -e "\n[***] SYSTEMD-BOOT + INTEL CPU..."
+  color green "[***] SYSTEMD-BOOT + INTEL CPU..."
   arch-chroot /mnt /bin/bash <<EOF
 sed -i "s/^initrd.*/initrd \/intel-ucode.img\\ninitrd \/initramfs-linux.img/g" /boot/loader/entries/arch.conf
 sed -i "s/^initrd.*/initrd \/intel-ucode.img\\ninitrd \/initrd \/initramfs-linux-fallback.img/g" /boot/loader/entries/arch-fallback.conf
@@ -755,7 +782,7 @@ fi
 
 # Автоматизация процесса обновления SYSTEMD-BOOT
 if [[ "$bl" = "2" ]]; then
-  echo -e "\n[***] Автоматизация процесса обновления SYSTEMD-BOOT..."
+  color green "[***] Автоматизация процесса обновления SYSTEMD-BOOT..."
   arch-chroot /mnt /bin/bash <<EOF
 mkdir -p /etc/pacman.d/hooks/
 cat << 'hook' > /etc/pacman.d/hooks/systemd-boot.hook
@@ -774,7 +801,7 @@ fi
 
 ## mkinitcpio + btrfs
 if [[ "$fs" = "2" ]]; then
-  echo -e "\n[***] mkinitcpio + btrfs..."
+  color green "[***] mkinitcpio + btrfs..."
   arch-chroot /mnt /bin/bash <<EOF
 sed -i 's/^BINARIES=.*/BINARIES=(\/usr\/bin\/btrfs)/g' /etc/mkinitcpio.conf
 sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block filesystems keyboard keymap consolefont fsck btrfs)/g' /etc/mkinitcpio.conf
@@ -783,7 +810,7 @@ EOF
 fi
 
 # Копирование скрипта inst_prog_base.sh на рабочий стол для установки pikaur, zsh, nVidia_optimus_manager...
-echo -e "\n[***] Копирование скрипта inst_prog_base.sh..."
+color green "[***] Копирование скрипта inst_prog_base.sh..."
 arch-chroot /mnt /bin/bash <<EOF
 mkdir /home/$username/
 curl -fLo /home/$username/inst_prog.sh https://raw.githubusercontent.com/ShvetsRoman/inst/main/inst_prog.sh
@@ -792,7 +819,7 @@ chown -R $username:users /home/$username/inst_prog.sh
 EOF
  
 # Игнорировать закрытие крышки ноутбука
-echo -e "\n[***] Отключение HandleLidSwitch..."
+color green "[***] Отключение HandleLidSwitch..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '' >> /etc/systemd/logind.conf
 echo 'HandleLidSwitch=ignore' >> /etc/systemd/logind.conf
@@ -800,7 +827,7 @@ EOF
  
 # Numlock on KDE
 if [[ "$de" = "1" ]]; then
-echo -e "\n[***] Numlock on KDE..."
+color green "[***] Numlock on KDE..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '[General]' > /etc/sddm.conf
 echo 'Numlock=on' >> /etc/sddm.conf
@@ -809,7 +836,7 @@ fi
 
 # Nunlock ON
 if [[ "$de" = "4" ]]; then
-echo -e "\n[***] Nunlock ON..."
+color green "[***] Nunlock ON..."
 arch-chroot /mnt /bin/bash <<'EOF'
 cat << 'num_lock_on' > /usr/local/bin/numlock
 #!/bin/bash
@@ -838,7 +865,7 @@ fi
  
 # BSPWM + Copy config BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[***] EXEC BSPWM + Copy config BSPWM..."
+color green "[***] EXEC BSPWM + Copy config BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo 'sxhkd &' >> /home/$username/.xinitrc
 echo 'exec bspwm' >> /home/$username/.xinitrc
@@ -857,17 +884,20 @@ fi
  
 # LightDM BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[***] LightDM BSPWM..."
+color green "[***] LightDM BSPWM..."
 arch-chroot /mnt /bin/bash <<EOF
 echo '[greeter]' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'theme-name = Breeze-Dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'icon-theme-name = breeze-dark' >> /etc/lightdm/lightdm-gtk-greeter.conf
 echo 'background = #11121D' >> /etc/lightdm/lightdm-gtk-greeter.conf
+echo '[Desktop]' >> /home/$username/.dmrc
+echo 'Session=bspwm' >> /home/$username/.dmrc
+chown -R $username:users /home/$username/.dmrc
 EOF
 fi
 
 #  ENABLE Service
-echo -e "\n[***] ENABLE Service..."
+color green "[***] ENABLE Service..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable$display_manager
 systemctl enable NetworkManager.service
@@ -878,7 +908,7 @@ EOF
 
 #ENABLE Service Numlock BSPWM
 if [[ "$de" = "4" ]]; then
-echo -e "\n[***] ENABLE Service Numlock..."
+color green "[***] ENABLE Service Numlock..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable numlock.service 
 EOF
@@ -886,14 +916,14 @@ fi
    
 #ENABLE Service GRUB+btrfs Cronie
 if [[ "$bl" = "1" && "$fs" = "2" ]]; then
-echo -e "\n[***] ENABLE Service grub-btrfs && Cronie..."
+color green "[***] ENABLE Service grub-btrfs && Cronie..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable grub-btrfs.path
 systemctl enable cronie.service
 EOF
 fi
  
-echo -e "\n[*****] Скрипт завершил установку Arch Linux."
-echo "Введите в терминале:"
-echo "umount -R /mnt"
-echo "reboot"
+color yellow "[*****] Скрипт завершил установку Arch Linux."
+color red "Введите в терминале:"
+color red "umount -R /mnt"
+color red "reboot"
