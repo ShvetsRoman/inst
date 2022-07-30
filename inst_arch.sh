@@ -461,8 +461,6 @@ root_uuid=${root_systemd}
 
 ## Core_packages
 core_packages=''
-## Core_packages_aur
-core_packages_aur=''
 
 ## DISPLAY DRIVER
 # Intel
@@ -531,10 +529,8 @@ if [[ "$de" = "4" ]]; then
     # BSPWM 
     core_packages+=' bspwm sxhkd dmenu'
     # Display manager
-    # core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
-    # display_manager=" lightdm.service"
-    core_packages_aur+=' ly'
-    display_manager=" ly.service"
+    core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
+    display_manager=" lightdm.service"
     # General utilities/libraries
     core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
     # GTK
@@ -582,9 +578,6 @@ core_packages+=' python-requests python-dbus python-pip python-pipenv'
 # BG
 core_packages+=' archlinux-wallpaper'
 
-## AUR
-core_packages_aur+=' '
-
 ## Mirrorlist
 color green "[***] Mirrorlist..."
 reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist
@@ -593,7 +586,7 @@ pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 color green "[***] Install BASE System..."
-pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib git $btrfs_progs
+pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib $btrfs_progs
 
 # Generate fstab
 color green "[***] Generate fstab..."
@@ -629,21 +622,10 @@ sed -i '/^#\[multilib\]/{n;s/^#Include.*/Include = \/etc\/pacman.d\/mirrorlist/g
 sed -i 's/^#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 EOF
 
-## INSTALL PIKAUR ##
-color green "[***] INSTALL PIKAUR..."
-arch-chroot /mnt /bin/bash <<EOF
-cd /home/$username
-git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
-makepkg -fsri
-EOF
-sleep 10s
-
 ## INSTALL PACKAGES ##
 color green "[***] INSTALL PACKAGES..."
 arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm --needed $core_packages
-pikaur -Syu --noconfirm --needed $core_packages_aur 
 EOF
 
  
@@ -917,7 +899,6 @@ if [[ "$de" = "4" ]]; then
 color green "[***] ENABLE Service Numlock..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable numlock.service 
-systemctl disable getty@tty2.service
 EOF
 fi   
    
