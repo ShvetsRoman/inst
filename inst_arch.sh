@@ -200,10 +200,10 @@ username="$DIALOG_RESULT"
 hostname="$username"-pc
 
 ## Password ROOT & USER
-boot_dialog --title "Root password" --passwordbox "Пожалуйста, введите пароль для root user.\n" 10 60
+boot_dialog --title "Root password" --inputbox "Пожалуйста, введите пароль для root user.\n" 10 60
 root_password="$DIALOG_RESULT"
 
-boot_dialog --title "User password" --passwordbox "Пожалуйста, введите пароль для user.\n" 10 60
+boot_dialog --title "User password" --inputbox "Пожалуйста, введите пароль для user.\n" 10 60
 user_password="$DIALOG_RESULT"
 
 ## Warning
@@ -531,8 +531,11 @@ if [[ "$de" = "4" ]]; then
     # BSPWM 
     core_packages+=' bspwm sxhkd dmenu'
     # Display manager
-    core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
-    display_manager=" lightdm.service"
+    # core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
+    # display_manager=" lightdm.service"
+    core_packages_aur+=' ly'
+    display_manager=" ly.service"
+
     # General utilities/libraries
     core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
     # GTK
@@ -579,6 +582,9 @@ core_packages+=' ttf-dejavu ttf-liberation ttf-freefont noto-fonts awesome-termi
 core_packages+=' python-requests python-dbus python-pip python-pipenv'
 # BG
 core_packages+=' archlinux-wallpaper'
+
+## AUR
+core_packages_aur+=' '
 
 ## Mirrorlist
 color green "[***] Mirrorlist..."
@@ -629,6 +635,7 @@ EOF
 color green "[***] INSTALL PACKAGES..."
 arch-chroot /mnt /bin/bash <<EOF
 pacman -Syu --noconfirm --needed $core_packages
+pikaur -Syu --noconfirm --needed $core_packages_aur 
 EOF
 
 ## INSTALL PIKAUR ##
@@ -911,6 +918,7 @@ if [[ "$de" = "4" ]]; then
 color green "[***] ENABLE Service Numlock..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable numlock.service 
+systemctl disable getty@tty2.service
 EOF
 fi   
    
