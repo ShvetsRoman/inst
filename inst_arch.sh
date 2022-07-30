@@ -637,6 +637,7 @@ git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 EOF
+sleep 10s
 
 ## INSTALL PACKAGES ##
 color green "[***] INSTALL PACKAGES..."
