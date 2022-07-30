@@ -535,7 +535,6 @@ if [[ "$de" = "4" ]]; then
     # display_manager=" lightdm.service"
     core_packages_aur+=' ly'
     display_manager=" ly.service"
-
     # General utilities/libraries
     core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
     # GTK
@@ -633,11 +632,10 @@ EOF
 ## INSTALL PIKAUR ##
 color green "[***] INSTALL PIKAUR..."
 arch-chroot /mnt /bin/bash <<EOF
+cd /home/$username
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
-cd ..
-rm -rf pikaur
 EOF
 
 ## INSTALL PACKAGES ##
