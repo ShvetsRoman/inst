@@ -2,26 +2,40 @@
 
 DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
  
+function color() {
+  case "$1" in
+    red)
+      echo -e "\n\033[31m$2\033[0m"
+    ;;
+    yellow)
+      echo -e "\n\033[33m$2\033[0m"
+    ;;
+    green)
+      echo -e "\n\033[32m$2\033[0m"
+    ;;
+  esac
+}
+
 # Установка ZSH
-echo -e "\n[*] Installing ZSH..."
+color green "[*] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions exa grc
  
 # Install Theme ZSH
-echo -e "\n[*] Installing Theme ZSH..."
+color green "[*] Installing Theme ZSH..."
 pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git
  
 # Install Font 
-echo -e "\n[*] Installing Font ZSH..."
+color green "[*] Installing Font ZSH..."
 pikaur -S --noconfirm --noedit ttf-meslo-nerd-font-powerlevel10k
  
 # Delete .bashrc
-echo -e "\n[*] Delete .bashrc & .bash*..."
+color green "[*] Delete .bashrc & .bash*..."
 if [[ -f "${HOME}/.bashrc" ]]; then
   rm -r ${HOME}/.bash*
 fi
 
 # Backup .zshrc
-echo -e "\n[*] Installing Backup .zshrc..."
+color green "[*] Installing Backup .zshrc..."
 if [[ -f "${HOME}/.zshrc" ]]; then
     mv ${HOME}/.zshrc ${HOME}/.zshrc.bak
 fi
@@ -36,14 +50,14 @@ if [[ -f "${HOME}/.p10k.zsh" ]]; then
 fi
 
 # Copy config
-echo -e "\n[*] Copy config ZSH..."
+color green "[*] Copy config ZSH..."
 cp -rfv ${DIR_TEMP_CONF}/zsh/. ${HOME}/
 
 # Install configs ROOT
-echo -e "\n[*] Install configs ROOT ZSH..."
+color green "[*] Install configs ROOT ZSH..."
 sudo cp -rfv ${DIR_TEMP_CONF}/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
-echo -e "\n[*] Установка Zsh в качестве оболочки по умолчанию..."
+color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
 sudo chsh -s /bin/zsh ${USER}
 sudo chsh -s /bin/zsh root
