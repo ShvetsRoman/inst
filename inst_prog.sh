@@ -54,6 +54,7 @@ if [[ -n "$progs" ]]; then
     # rm -rf ${HOME}/temp
     # color yellow "### Папка ~/temp удалена ###"
     # git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
+    echo ""
   else
     git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
   fi
@@ -67,47 +68,47 @@ for action in $progs; do
   case "$action" in
     '"pikaur"')
       color green "[*] Installing pikaur..."
-      sh ${DIR_TEMP_PROG}/inst_pikaur.sh |& tee ~/temp_install_log/inst_pikaur.log
+      sh ${DIR_TEMP_PROG}/inst_pikaur.sh
       ;;
     '"po_kde"')
       color green "[*] Installing po_kde..."
-      sh ${DIR_TEMP_PROG}/inst_po_kde.sh |& tee ~/temp_install_log/inst_po_kde.log
+      sh ${DIR_TEMP_PROG}/inst_po_kde.sh
       ;;
     '"avahi"')
       color green "[*] Installing avahi..."
-      sh ${DIR_TEMP_PROG}/inst_avahi.sh |& tee ~/temp_install_log/inst_avahi.log
+      sh ${DIR_TEMP_PROG}/inst_avahi.sh
       ;;
     '"samba"')
       color green "[*] Installing samba..."
-      sh ${DIR_TEMP_PROG}/inst_samba.sh |& tee ~/temp_install_log/inst_samba.log
+      sh ${DIR_TEMP_PROG}/inst_samba.sh
       ;;
     '"zsh"')
       color green "[*] Installing zsh..."
-      sh ${DIR_TEMP_PROG}/inst_zsh.sh |& tee ~/temp_install_log/inst_zsh.log
+      sh ${DIR_TEMP_PROG}/inst_zsh.sh
       ;;
     '"zshtheme"')
       color green "[*] Installing zsh_theme_powerlevel10k..."
-      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh |& tee ~/temp_install_log/inst_zsh_theme_powerlevel10k.log
+      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh
       ;;
     '"nvidiaopman"')
       color green "[*] Installing nvidia_op_kde_arch..."
-      sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh |& tee ~/temp_install_log/inst_nvidia_op_kde_arch.log
+      sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh
       ;;
     '"vim"')
       color green "[*] Installing vim..."
-      sh ${DIR_TEMP_PROG}/inst_vim.sh |& tee ~/temp_install_log/inst_vim.log
+      sh ${DIR_TEMP_PROG}/inst_vim.sh
       ;;
     '"nvim"')
       color green "[*] Installing nvim..."
-      sh ${DIR_TEMP_PROG}/inst_nvim.sh |& tee ~/temp_install_log/inst_nvim.log
+      sh ${DIR_TEMP_PROG}/inst_nvim.sh
       ;;
     '"bspwm"')
       color green "[*] Installing bspwm..."
-      sh ${DIR_TEMP_PROG}/inst_bspwm.sh |& tee ~/temp_install_log/inst_bspwm.log
+      sh ${DIR_TEMP_PROG}/inst_bspwm.sh
       ;;
     '"font"')
       color green "[*] Installing fonts..."
-      sh ${DIR_TEMP_PROG}/inst_font.sh |& tee ~/temp_install_log/inst_font.log
+      sh ${DIR_TEMP_PROG}/inst_font.sh
       ;;
   esac
 done
