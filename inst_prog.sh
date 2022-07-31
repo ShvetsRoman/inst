@@ -51,10 +51,12 @@ if [[ -n "$progs" ]]; then
   color green "[*] Cloning a repository - inst..."
   # Если папка temp есть, тогда удаляем.
   if [[ -d "${HOME}/temp" ]]; then
-    rm -rf ${HOME}/temp
-    color yellow "### Папка ~/temp удалена ###"
+    # rm -rf ${HOME}/temp
+    # color yellow "### Папка ~/temp удалена ###"
+    # git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
+  else
+    git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
   fi
-  git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
 else
   color red "Выберите программы для установки."
   exit 0
@@ -111,7 +113,7 @@ for action in $progs; do
 done
 
 # Если папка temp есть, тогда удаляем.
-if [[ -e "${HOME}/temp" ]]; then
-  rm -rf ${HOME}/temp
-  color yellow "### Папка ~/temp удалена ###"
-fi
+# if [[ -e "${HOME}/temp" ]]; then
+#   rm -rf ${HOME}/temp
+#   color yellow "### Папка ~/temp удалена ###"
+# fi
