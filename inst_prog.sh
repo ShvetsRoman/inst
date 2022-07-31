@@ -48,7 +48,7 @@ fi
  
 # Kлонировать, если выбран хоть один пункт меню утановки программ
 if [[ -n "$progs" ]]; then
-  clolor green "[*] Cloning a repository - inst..."
+  color green "[*] Cloning a repository - inst..."
   # Если папка temp есть, тогда удаляем.
   if [[ -d "${HOME}/temp" ]]; then
     rm -rf ${HOME}/temp
@@ -64,47 +64,47 @@ fi
 for action in $progs; do
   case "$action" in
     '"pikaur"')
-      clolor green "[*] Installing pikaur..."
+      color green "[*] Installing pikaur..."
       sh ${DIR_TEMP_PROG}/inst_pikaur.sh |& tee ~/temp_install_log/inst_pikaur.log
       ;;
     '"po_kde"')
-      clolor green "[*] Installing po_kde..."
+      color green "[*] Installing po_kde..."
       sh ${DIR_TEMP_PROG}/inst_po_kde.sh |& tee ~/temp_install_log/inst_po_kde.log
       ;;
     '"avahi"')
-      clolor green "[*] Installing avahi..."
+      color green "[*] Installing avahi..."
       sh ${DIR_TEMP_PROG}/inst_avahi.sh |& tee ~/temp_install_log/inst_avahi.log
       ;;
     '"samba"')
-      clolor green "[*] Installing samba..."
+      color green "[*] Installing samba..."
       sh ${DIR_TEMP_PROG}/inst_samba.sh |& tee ~/temp_install_log/inst_samba.log
       ;;
     '"zsh"')
-      clolor green "[*] Installing zsh..."
+      color green "[*] Installing zsh..."
       sh ${DIR_TEMP_PROG}/inst_zsh.sh |& tee ~/temp_install_log/inst_zsh.log
       ;;
     '"zshtheme"')
-      clolor green "[*] Installing zsh_theme_powerlevel10k..."
+      color green "[*] Installing zsh_theme_powerlevel10k..."
       sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh |& tee ~/temp_install_log/inst_zsh_theme_powerlevel10k.log
       ;;
     '"nvidiaopman"')
-      clolor green "[*] Installing nvidia_op_kde_arch..."
+      color green "[*] Installing nvidia_op_kde_arch..."
       sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh |& tee ~/temp_install_log/inst_nvidia_op_kde_arch.log
       ;;
     '"vim"')
-      clolor green "[*] Installing vim..."
+      color green "[*] Installing vim..."
       sh ${DIR_TEMP_PROG}/inst_vim.sh |& tee ~/temp_install_log/inst_vim.log
       ;;
     '"nvim"')
-      clolor green "[*] Installing nvim..."
+      color green "[*] Installing nvim..."
       sh ${DIR_TEMP_PROG}/inst_nvim.sh |& tee ~/temp_install_log/inst_nvim.log
       ;;
     '"bspwm"')
-      clolor green "[*] Installing bspwm..."
+      color green "[*] Installing bspwm..."
       sh ${DIR_TEMP_PROG}/inst_bspwm.sh |& tee ~/temp_install_log/inst_bspwm.log
       ;;
     '"font"')
-      clolor green "[*] Installing fonts..."
+      color green "[*] Installing fonts..."
       sh ${DIR_TEMP_PROG}/inst_font.sh |& tee ~/temp_install_log/inst_font.log
       ;;
   esac
