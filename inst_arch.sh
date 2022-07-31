@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# set -ue
-set -un
+set -ue
 # exec > inst_arch_error.log 2>&1
 
 timedatectl set-ntp true
@@ -529,7 +528,7 @@ if [[ "$de" = "4" ]]; then
   core_packages+=' lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings'
   display_manager=" lightdm.service"
   # General utilities/libraries
-  core_packages+=' neofetch git openssh p7zip unace unrar unzip ark htop xautolock numlockx udiskie udisks2'
+  core_packages+=' numlockx udiskie'
   # GTK
   core_packages+=' gtk2 gtk3 dconf-editor lxappearance librsvg'
   # GTK_Thems
@@ -555,7 +554,9 @@ fi
 # Xserver
 core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
-core_packages+=' iw xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dhcpcd networkmanager networkmanager-openvpn network-manager-applet ppp dialog wpa_supplicant gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neovim hwinfo'
+core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
+# NETWORK
+core_packages+=' networkmanager networkmanager-openvpn network-manager-applet wpa_supplicant iw ppp dhcpcd'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
