@@ -2,6 +2,20 @@
 
 DIR_TEMP_PROG="${HOME}/temp/inst/prog"
  
+function color() {
+  case "$1" in
+    red)
+      echo -e "\n\033[31m$2\033[0m"
+    ;;
+    yellow)
+      echo -e "\n\033[33m$2\033[0m"
+    ;;
+    green)
+      echo -e "\n\033[32m$2\033[0m"
+    ;;
+  esac
+}
+
 ## Функция меню диалога
 boot_dialog() {
   DIALOG_RESULT=$(whiptail --clear --backtitle " INSTALL PROGRAMS Arch Linux" "$@" 3>&1 1>&2 2>&3)
@@ -34,15 +48,15 @@ fi
  
 # Kлонировать, если выбран хоть один пункт меню утановки программ
 if [[ -n "$progs" ]]; then
-  echo -e "\n[*] Cloning a repository - inst..."
+  clolor green "[*] Cloning a repository - inst..."
   # Если папка temp есть, тогда удаляем.
   if [[ -d "${HOME}/temp" ]]; then
     rm -rf ${HOME}/temp
-    echo "### Папка ~/temp удалена ###"
+    color yellow "### Папка ~/temp удалена ###"
   fi
   git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
 else
-  echo "Выберите программы для установки."
+  color red "Выберите программы для установки."
   exit 0
 fi
  
@@ -50,54 +64,54 @@ fi
 for action in $progs; do
   case "$action" in
     '"pikaur"')
-      echo -e "\n[*] Installing pikaur..."
-      sh ${DIR_TEMP_PROG}/inst_pikaur.sh
+      clolor green "[*] Installing pikaur..."
+      sh ${DIR_TEMP_PROG}/inst_pikaur.sh |& tee ~/temp_install_log/inst_pikaur.log
       ;;
     '"po_kde"')
-      echo -e "\n[*] Installing po_kde..."
-      sh ${DIR_TEMP_PROG}/inst_po_kde.sh
+      clolor green "[*] Installing po_kde..."
+      sh ${DIR_TEMP_PROG}/inst_po_kde.sh |& tee ~/temp_install_log/inst_po_kde.log
       ;;
     '"avahi"')
-      echo -e "\n[*] Installing avahi..."
-      sh ${DIR_TEMP_PROG}/inst_avahi.sh
+      clolor green "[*] Installing avahi..."
+      sh ${DIR_TEMP_PROG}/inst_avahi.sh |& tee ~/temp_install_log/inst_avahi.log
       ;;
     '"samba"')
-      echo -e "\n[*] Installing samba..."
-      sh ${DIR_TEMP_PROG}/inst_samba.sh
+      clolor green "[*] Installing samba..."
+      sh ${DIR_TEMP_PROG}/inst_samba.sh |& tee ~/temp_install_log/inst_samba.log
       ;;
     '"zsh"')
-      echo -e "\n[*] Installing zsh..."
-      sh ${DIR_TEMP_PROG}/inst_zsh.sh
+      clolor green "[*] Installing zsh..."
+      sh ${DIR_TEMP_PROG}/inst_zsh.sh |& tee ~/temp_install_log/inst_zsh.log
       ;;
     '"zshtheme"')
-      echo -e "\n[*] Installing zsh_theme_powerlevel10k..."
-      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh
+      clolor green "[*] Installing zsh_theme_powerlevel10k..."
+      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh |& tee ~/temp_install_log/inst_zsh_theme_powerlevel10k.log
       ;;
     '"nvidiaopman"')
-      echo -e "\n[*] Installing nvidia_op_kde_arch..."
-      sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh
+      clolor green "[*] Installing nvidia_op_kde_arch..."
+      sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh |& tee ~/temp_install_log/inst_nvidia_op_kde_arch.log
       ;;
     '"vim"')
-      echo -e "\n[*] Installing vim..."
-      sh ${DIR_TEMP_PROG}/inst_vim.sh
+      clolor green "[*] Installing vim..."
+      sh ${DIR_TEMP_PROG}/inst_vim.sh |& tee ~/temp_install_log/inst_vim.log
       ;;
     '"nvim"')
-      echo -e "\n[*] Installing nvim..."
-      sh ${DIR_TEMP_PROG}/inst_nvim.sh
+      clolor green "[*] Installing nvim..."
+      sh ${DIR_TEMP_PROG}/inst_nvim.sh |& tee ~/temp_install_log/inst_nvim.log
       ;;
     '"bspwm"')
-      echo -e "\n[*] Installing bspwm..."
-      sh ${DIR_TEMP_PROG}/inst_bspwm.sh
+      clolor green "[*] Installing bspwm..."
+      sh ${DIR_TEMP_PROG}/inst_bspwm.sh |& tee ~/temp_install_log/inst_bspwm.log
       ;;
     '"font"')
-      echo -e "\n[*] Installing fonts..."
-      sh ${DIR_TEMP_PROG}/inst_font.sh
+      clolor green "[*] Installing fonts..."
+      sh ${DIR_TEMP_PROG}/inst_font.sh |& tee ~/temp_install_log/inst_font.log
       ;;
   esac
 done
 
 # Если папка temp есть, тогда удаляем.
 if [[ -e "${HOME}/temp" ]]; then
-    rm -rf ${HOME}/temp
-    echo "### Папка ~/temp удалена ###"
+  rm -rf ${HOME}/temp
+  color yellow "### Папка ~/temp удалена ###"
 fi
