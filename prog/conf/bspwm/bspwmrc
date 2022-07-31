@@ -32,8 +32,8 @@ xsetroot -cursor_name left_ptr &
 bspc monitor -d I II III IV V
  
 ###---Monitor And Desktop Settings----###
-bspc config border_width                  2
-bspc config window_gap                    8
+bspc config border_width                  3
+bspc config window_gap                    4
 bspc config top_padding                   16
 bspc config bottom_padding                0
 bspc config left_padding                  0
