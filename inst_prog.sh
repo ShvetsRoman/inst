@@ -2,7 +2,7 @@
 
 DIR_TEMP_PROG="${HOME}/temp/inst/prog"
  
-function color() {
+color() {
   case "$1" in
     red)
       echo -e "\n\033[31m$2\033[0m"
@@ -27,17 +27,18 @@ boot_dialog() {
 }
 
 # Меню установки программ
-boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 15 90 10 \
+boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 90 11 \
   "pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
+  "font" "FONTs" OFF \
+  "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
+  "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
+  "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
+  "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
   "po_kde" "Установка дополнительного ПО для KDE (для установки нужен pikaur)" OFF \
+  "themes" "Icons Themes" OFF \
   "avahi" "Установка AVAHI" OFF \
   "samba" "Установка SAMBA" OFF \
-  "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
-  "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" OFF \
-  "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
-  "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
-  "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
-  "font" "FONTs" OFF
+  "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" OFF
   progs="$DIALOG_RESULT"
 
 ## Отмена установки
@@ -70,9 +71,33 @@ for action in $progs; do
       color green "[*] Installing pikaur..."
       sh ${DIR_TEMP_PROG}/inst_pikaur.sh
       ;;
+    '"font"')
+      color green "[*] Installing fonts..."
+      sh ${DIR_TEMP_PROG}/inst_font.sh
+      ;;
+    '"bspwm"')
+      color green "[*] Installing bspwm..."
+      sh ${DIR_TEMP_PROG}/inst_bspwm.sh
+      ;;
+    '"zshtheme"')
+      color green "[*] Installing zsh_theme_powerlevel10k..."
+      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh
+      ;;
+    '"nvim"')
+      color green "[*] Installing nvim..."
+      sh ${DIR_TEMP_PROG}/inst_nvim.sh
+      ;;
+    '"vim"')
+      color green "[*] Installing vim..."
+      sh ${DIR_TEMP_PROG}/inst_vim.sh
+      ;;
     '"po_kde"')
       color green "[*] Installing po_kde..."
       sh ${DIR_TEMP_PROG}/inst_po_kde.sh
+      ;;
+    '"themes"')
+      color green "[*] Installing Icons Themes..."
+      sh ${DIR_TEMP_PROG}/inst_themes.sh
       ;;
     '"avahi"')
       color green "[*] Installing avahi..."
@@ -82,33 +107,9 @@ for action in $progs; do
       color green "[*] Installing samba..."
       sh ${DIR_TEMP_PROG}/inst_samba.sh
       ;;
-    '"zsh"')
-      color green "[*] Installing zsh..."
-      sh ${DIR_TEMP_PROG}/inst_zsh.sh
-      ;;
-    '"zshtheme"')
-      color green "[*] Installing zsh_theme_powerlevel10k..."
-      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh
-      ;;
     '"nvidiaopman"')
       color green "[*] Installing nvidia_op_kde_arch..."
       sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh
-      ;;
-    '"vim"')
-      color green "[*] Installing vim..."
-      sh ${DIR_TEMP_PROG}/inst_vim.sh
-      ;;
-    '"nvim"')
-      color green "[*] Installing nvim..."
-      sh ${DIR_TEMP_PROG}/inst_nvim.sh
-      ;;
-    '"bspwm"')
-      color green "[*] Installing bspwm..."
-      sh ${DIR_TEMP_PROG}/inst_bspwm.sh
-      ;;
-    '"font"')
-      color green "[*] Installing fonts..."
-      sh ${DIR_TEMP_PROG}/inst_font.sh
       ;;
   esac
 done

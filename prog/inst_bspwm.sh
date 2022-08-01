@@ -169,17 +169,3 @@ pikaur -S --noconfirm --needed google-chrome
 # Spotify 
 #color green "[*] Installing Spotify..."
 #flatpak install -y spotify
- 
-##### INSTALL THEMEs #####
-# Themes GitHub McMojave
-color green "[*] Installing Themes McMojave..."
-git clone https://github.com/PlagaMedicum/PlagueSur-icon-theme.git ~/.local/share/icons/PlagueSur
-mkdir -p ${HOME}/.themes/github_themes/
-cd ${HOME}/.themes/github_themes/
-git clone https://github.com/vinceliuice/McMojave-kde
-${HOME}/.themes/github_themes/McMojave-kde/install.sh
-git clone https://github.com/vinceliuice/Mojave-gtk-theme
-${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
-git clone https://github.com/vinceliuice/McMojave-circle
-${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
-rm -rf ${HOME}/.themes/github_themes

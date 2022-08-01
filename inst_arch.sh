@@ -8,7 +8,7 @@ hwclock -w
 loadkeys ru
 setfont cyr-sun16
 
-function color() {
+color() {
   case "$1" in
     red)
       echo -e "\n\033[31m$2\033[0m"

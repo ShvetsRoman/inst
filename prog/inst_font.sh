@@ -1,6 +1,5 @@
 #!/bin/bash
  
-# Dirs
 DIR_TEMP_CONF="$HOME/temp/inst/prog/conf"
 DIR_FONT="$HOME/.local/share/fonts"
 
