@@ -18,7 +18,9 @@ function color() {
 
 # Установка ZSH
 color green "[*] Installing ZSH..."
-sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions exa grc
+sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
+# Дополнительное ПО
+sudo pacman -S --noconfirm --needed exa grc
  
 # Install Theme ZSH
 color green "[*] Installing Theme ZSH..."
