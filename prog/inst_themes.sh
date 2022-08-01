@@ -27,13 +27,13 @@ cd ${HOME}/.themes/github_themes/
 ## McMojave
 color green "[*] Installing McMojave-kde"
 git clone https://github.com/vinceliuice/McMojave-kde
-${HOME}/.themes/github_themes/McMojave-kde/install.sh
+sh ${HOME}/.themes/github_themes/McMojave-kde/install.sh
 color green "[*] Installing Mojave-gtk-theme"
 git clone https://github.com/vinceliuice/Mojave-gtk-theme
-${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
+sh ${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
 color green "[*] Installing McMojave-circle"
 git clone https://github.com/vinceliuice/McMojave-circle
-${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
+sh ${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
 ## WhiteSur
 color green "[*] Installing MhiteSur-kde"
 git clone https://github.com/vinceliuice/WhiteSur-kde
