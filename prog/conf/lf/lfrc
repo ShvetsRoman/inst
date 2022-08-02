@@ -113,8 +113,7 @@ map R recol
 map C clear
 map mf mkfile
 map md mkdir
-# Новая папка с выбранными элементам. Функция, аналогичная macOS Finder
-map <a-m> newfold
+map <a-m> newfold # Новая папка с выбранными элементам. Функция, аналогичная macOS Finder
 
 # Movement
 map gd cd ~/documents
