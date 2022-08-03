@@ -31,14 +31,14 @@ sudo systemctl disable getty@tty2.service
 if [[ -d "/etc/lightdm" ]]; then
   color green "[*] Delete LightDM"
   sudo systemctl disable lightdm.service
-  sudo pacman -Rns --noconfirm --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  sudo pacman -Rns --noconfirm lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   sudo rm -rf /etc/lightdm
 fi
 
 if [[ -d "/usr/lib/sddm" ]]; then
   color green "[*] Delete SDDM"
   sudo systemctl disable sddm.service
-  sudo pacman -Rns --noconfirm --needed sddm
+  sudo pacman -Rns --noconfirm sddm
   sudo rm -rf /usr/lib/sddm
   sudo rm -rf /etc/sddm.conf.d
   sudo rm -rf /usr/share/sddm
