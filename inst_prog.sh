@@ -31,6 +31,7 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
   "pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
   "font" "FONTs" OFF \
   "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
+  "ly" "Install Ly - display manager" OFF \
   "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
   "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
   "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
@@ -78,6 +79,10 @@ for action in $progs; do
     '"bspwm"')
       color green "[*] Installing bspwm..."
       sh ${DIR_TEMP_PROG}/inst_bspwm.sh
+      ;;
+    '"ly"')
+      color green "[*] Installing Ly..."
+      sh ${DIR_TEMP_PROG}/inst_ly.sh
       ;;
     '"zshtheme"')
       color green "[*] Installing zsh_theme_powerlevel10k..."
