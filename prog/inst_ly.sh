@@ -18,7 +18,7 @@ color() {
 }
 
 color green "[*] Install Ly - display manager"
-pikaur -s --noconfirm --needed ly
+pikaur -S --noconfirm --needed ly
 color green "[*] Enable the service"
 sudo systemctl enable ly.service
 color green "[*] Ly's start you also have to disable getty"
