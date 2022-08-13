@@ -74,8 +74,10 @@ bspc rule -a Gimp desktop='^3' follow=on
 bspc rule -a Inkscape desktop='^4' follow=on
 bspc rule -a Deadbeef desktop='^5' follow=off
 bspc rule -a kcalc state=floating
+bspc rule -a Pavucontrol state=floating rectangle=670x350+685+24
 # bspc rule -a dolphin state=floating
 bspc rule -a dolphin desktop='^5' follow=on
+bspc rule -a xfreerdp rectangle=1350x744
 
 # bspc rule -a firefox state=floating follow=off rectangle=1350x900+50+90 desktop='^1'
 # bspc rule -a TelegramDesktop state=floating follow=off desktop='^1'

@@ -44,7 +44,7 @@ XF86AudioPrevexec
   playerctl --all-players previous
 XF86AudioStopexec
   playerctl --all-players stop
-p
+
 # Sreen brightness controls
 XF86MonBrightnessUp
   xbacklight -inc 20 # increase screen brightness
