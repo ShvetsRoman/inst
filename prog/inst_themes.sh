@@ -20,6 +20,9 @@ color green "[*] Installing Themes..."
 # PlagueSur-icons-theme
 color green "[*] Installing PlagueSur-icons-theme"
 git clone https://github.com/PlagaMedicum/PlagueSur-icon-theme.git ~/.local/share/icons/PlagueSur
+# Stylish-icon-theme
+color green "[*] Installing PlagueSur-icons-theme"
+git clone https://aur.archlinux.org/stylish-icon-theme.git ~/.local/share/icons/Stylish
 
 # Themes GitHub McMojave
 mkdir -p ${HOME}/.themes/github_themes/
