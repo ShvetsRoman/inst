@@ -1,20 +1,16 @@
-# Alias LARAVEL
-alias laravel='$HOME/.config/composer/vendor/bin/laravel'
-
-# alias ls='ls --color=auto --group-directories-first'
-# alias lsa='ls -a -h --color=auto --group-directories-first'
-# alias ll='ls -l --color=auto --group-directories-first'
-# alias lla='ls -l -a -h --color=auto --group-directories-first'
-
-alias ls='exa --icons'
-alias lsa='exa -a --icons'
-alias ll='exa -l -g --icons'
-alias lla='exa -l -a -g --icons'
-
-alias zshcon="vim ~/.zshrc"
-alias vimcon="vim ~/.vimrc"
-
 # Цветной вывод команд
+if [ -f /usr/bin/exa ]; then
+  alias ls='exa --icons'
+  alias lsa='exa -a --icons'
+  alias ll='exa -l -g --icons'
+  alias lla='exa -l -a -g --icons'
+else
+  alias ls='ls --color=auto --group-directories-first'
+  alias lsa='ls -a -h --color=auto --group-directories-first'
+  alias ll='ls -l --color=auto --group-directories-first'
+  alias lla='ls -l -a -h --color=auto --group-directories-first'
+fi
+
 if [ -f /usr/bin/grc ]; then
   alias gcc="grc --colour=auto gcc"
   alias irclog="grc --colour=auto irclog"
@@ -24,9 +20,17 @@ if [ -f /usr/bin/grc ]; then
   alias proftpd="grc --colour=auto proftpd"
   alias traceroute="grc --colour=auto traceroute"
 fi
+
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+
+# Alias LARAVEL
+alias laravel='$HOME/.config/composer/vendor/bin/laravel'
+
+# Alias
+alias zshcon="vim ~/.zshrc"
+alias vimcon="vim ~/.vimrc"
 
 alias cp="cp -iv"	# подтвердите, прежде чем перезаписывать что-либо
 alias mv="mv -iv"	# Выводить информацию о каждом файле, который обрабатывает команда mv
