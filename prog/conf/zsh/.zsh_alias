@@ -19,6 +19,8 @@ if [ -f /usr/bin/grc ]; then
   alias ping="grc --colour=auto ping -c 4"
   alias proftpd="grc --colour=auto proftpd"
   alias traceroute="grc --colour=auto traceroute"
+else
+  alias ping='ping -c 4'
 fi
 
 alias grep='grep --colour=auto'
@@ -70,9 +72,6 @@ alias pr='pikaur -R'
 # Mikrotik
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
 alias mikssh="ssh roman@192.168.88.1"
-
-# Ping
-# alias ping='ping -c 4'
 
 # VIM
 # alias v='vim'
