@@ -345,6 +345,7 @@ color green "[***] MOUNT EXT4..."
     esac
   done
   root_systemd=" root=UUID=$(blkid -s UUID -o value ${volume_root})"
+  btrfs_progs=" "
 fi
 
 #Partitions BTRFS
