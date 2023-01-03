@@ -345,7 +345,7 @@ color green "[***] MOUNT EXT4..."
     esac
   done
   root_systemd=" root=UUID=$(blkid -s UUID -o value ${volume_root})"
-  btrfs_progs=" "
+  btrfs_progs=" btrfs-progs"
 fi
 
 #Partitions BTRFS
@@ -488,7 +488,7 @@ fi
 ## DESKTOP ENVIRONMENT
 # Desktop environment KDE
 if [[ "$de" = "1" ]]; then
-  core_packages+=' plasma kmix plasma-pa'
+  core_packages+=' plasma plasma-pa'
   # Dolphin
   core_packages+=' dolphin'
   # Konsole
@@ -557,7 +557,7 @@ core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
 core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
 # NETWORK
-core_packages+=' networkmanager networkmanager-openvpn network-manager-applet wpa_supplicant iw ppp dhcpcd'
+core_packages+=' networkmanager networkmanager-openvpn network-manager-applet wpa_supplicant dhcpcd iwd'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
