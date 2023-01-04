@@ -47,6 +47,9 @@ fi
 if [[ -f "${HOME}/.zsh_path" ]]; then
     mv ${HOME}/.zsh_path ${HOME}/.zsh_path.bak
 fi
+if [[ -f "${HOME}/.zsh_icons" ]]; then
+    mv ${HOME}/.zsh_icons ${HOME}/.zsh_icons.bak
+fi
 if [[ -f "${HOME}/.p10k.zsh" ]]; then
     mv ${HOME}/.p10k.zsh ${HOME}/.p10k.zsh.bak
 fi

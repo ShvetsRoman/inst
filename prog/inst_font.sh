@@ -26,6 +26,7 @@ install_fonts() {
     mkdir -p "$DIR_FONT"
     cp -rf $DIR_TEMP_CONF/fonts/* "$DIR_FONT"
   fi
+  mv "$DIR_FONT"/.fonts.conf "$HOME"/
 }
  # Main
 main() {
