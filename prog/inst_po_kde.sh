@@ -36,15 +36,22 @@ core_packages+=' neofetch git openssh p7zip unace unrar unzip ark mc htop gparte
 
 # Office
 core_packages+=' libreoffice-still libreoffice-still-ru'
-
 ### end packages pacman ###
 
 ### Install AUR ###
-
-core_packages_aur+=' deadbeef google-chrome raw-thumbnailer'
-
+core_packages_aur+=' deadbeef google-chrome raw-thumbnailer lf'
 ### end packages aur ###
 
 ### INSTALL Programs ###
 sudo pacman -Syyuu --noconfirm --needed $core_packages
 pikaur -S --noconfirm --noedit $core_packages_aur
+
+# Copy config LF (terminal-file-manager) 
+if [[ -d "${DIR_HOME_CONF}/lf" ]]; then
+  rm -rf ${DIR_HOME_CONF}/lf
+fi
+cp -rv ${DIR_TEMP_CONF}/lf ${DIR_HOME_CONF}/ 
+if [[ -d "${DIR_HOME_CONF}/lf-ueberzug" ]]; then
+  rm -rf ${DIR_HOME_CONF}/lf-ueberzug
+fi
+cp -rv ${DIR_TEMP_CONF}/lf-ueberzug ${DIR_HOME_CONF}/ 
