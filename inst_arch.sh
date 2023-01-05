@@ -750,6 +750,7 @@ cat << MENU > /boot/loader/loader.conf
 default arch
 timeout 1
 editor 0
+console-mode auto
 MENU
 EOF
 fi
