@@ -45,6 +45,17 @@ alias ln='ln -s'
 alias cdm='cd /run/media/notebook/media/'
 alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
+# Systemctl run service
+alias sysservice='systemctl list-units  --type=service'
+alias sysrunservice='systemctl list-units  --type=service  --state=running'
+
+# IWCTL
+alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
+alias iwctlcon='iwctl station wlan0 connect'
+alias iwctlconhome='iwctl station wlan0 connect HOME_test'
+alias iwctldiscon='iwctl station wlan0 disconnect'
+alias iwctlinfo='iwctl station wlan0 show'
+
 # GIT
 alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
