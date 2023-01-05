@@ -27,7 +27,7 @@ boot_dialog() {
 }
 
 # Меню установки программ
-boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 90 11 \
+boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 90 13 \
   "pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
   "font" "FONTs" OFF \
   "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
@@ -36,6 +36,7 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
   "nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
   "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
   "po_kde" "Установка дополнительного ПО для KDE (для установки нужен pikaur)" OFF \
+  "lf" "lf (list files) — консольный файловый менеджер (для установки нужен pikaur)" OFF \
   "themes" "Icons Themes" OFF \
   "avahi" "Установка AVAHI" OFF \
   "samba" "Установка SAMBA" OFF \
@@ -99,6 +100,9 @@ for action in $progs; do
     '"po_kde"')
       color green "[*] Installing po_kde..."
       sh ${DIR_TEMP_PROG}/inst_po_kde.sh
+    '"lf"')
+      color green "[*] Installing LF..."
+      sh ${DIR_TEMP_PROG}/inst_lf.sh
       ;;
     '"themes"')
       color green "[*] Installing Icons Themes..."
@@ -118,9 +122,3 @@ for action in $progs; do
       ;;
   esac
 done
-
-# Если папка temp есть, тогда удаляем.
-# if [[ -e "${HOME}/temp" ]]; then
-#   rm -rf ${HOME}/temp
-#   color yellow "### Папка ~/temp удалена ###"
-# fi
