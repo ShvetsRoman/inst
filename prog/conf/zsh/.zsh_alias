@@ -1,9 +1,9 @@
 # Цветной вывод команд
 if [ -f /usr/bin/exa ]; then
-  alias ls='exa --icons'
-  alias lsa='exa -a --icons'
-  alias ll='exa -l -g --icons'
-  alias lla='exa -l -a -g --icons'
+  alias ls='exa --sort=type --icons'
+  alias lsa='exa -a --sort=type --icons'
+  alias ll='exa -l -g --sort=type --icons'
+  alias lla='exa -l -a -g --sort=type --icons'
 else
   alias ls='ls --color=auto --group-directories-first'
   alias lsa='ls -a -h --color=auto --group-directories-first'

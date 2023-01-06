@@ -54,6 +54,13 @@ if [[ -f ${HOME}/.zsh_path ]]; then
     source ${HOME}/.zsh_path
 fi
 
+#-----------------------------
+# lf icons 
+#-----------------------------
+if [[ -f ${HOME}/.config/lf/icons/lf_icons ]]; then
+  source ${HOME}/.config/lf/icons/lf_icons
+fi
+
 #------------------------------
 # History stuff
 #------------------------------
