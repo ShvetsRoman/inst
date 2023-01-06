@@ -488,7 +488,7 @@ fi
 ## DESKTOP ENVIRONMENT
 # Desktop environment KDE
 if [[ "$de" = "1" ]]; then
-  core_packages+=' plasma plasma-pa'
+  core_packages+=' plasma plasma-pa plasma-nm'
   # Dolphin
   core_packages+=' dolphin'
   # Konsole
@@ -557,7 +557,7 @@ core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
 core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
 # NETWORK
-core_packages+=' networkmanager networkmanager-openvpn network-manager-applet wpa_supplicant dhcpcd iwd'
+core_packages+=' networkmanager networkmanager-openvpn wpa_supplicant iwd'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
@@ -884,7 +884,6 @@ color green "[***] ENABLE Service..."
 arch-chroot /mnt /bin/bash <<EOF
 systemctl enable$display_manager
 systemctl enable NetworkManager.service
-systemctl enable dhcpcd.service
 systemctl enable iptables.service
 systemctl enable paccache.timer
 EOF
