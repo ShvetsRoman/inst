@@ -100,6 +100,7 @@ for action in $progs; do
     '"po_kde"')
       color green "[*] Installing po_kde..."
       sh ${DIR_TEMP_PROG}/inst_po_kde.sh
+      ;;
     '"lf"')
       color green "[*] Installing LF..."
       sh ${DIR_TEMP_PROG}/inst_lf.sh

@@ -30,7 +30,7 @@ sudo pacman -S --noconfirm --needed neovim
 
 # Установка конфига для NEOVIM NvChad !!!
 color green "[*] Installing NvChad..."
-git clone https://github.com/NvChad/NvChad ${DIR_HOME_CONF}/nvim && nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 # git clone https://github.com/NvChad/NvChad ~/.config/nvim
 
 # Копирование конфига
