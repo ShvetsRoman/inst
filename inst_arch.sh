@@ -557,7 +557,7 @@ core_packages+=' xorg xorg-apps xorg-xinit'
 # General utilities/libraries
 core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
 # NETWORK
-core_packages+=' networkmanager networkmanager-openvpn wpa_supplicant iwd'
+core_packages+=' networkmanager networkmanager-openvpn wpa_supplicant openresolv iwd'
 # Управление энергопотреблением
 core_packages+=' powerdevil'
 # Audio
