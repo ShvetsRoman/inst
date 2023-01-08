@@ -19,7 +19,7 @@ function color() {
 
  # Install Fonts
 install_fonts() {
-  color green -e "\n[*] Installing fonts..."
+  color green "\n[*] Installing fonts..."
   if [[ -d "$DIR_FONT" ]]; then
     cp -rf $DIR_TEMP_CONF/fonts/* "$DIR_FONT"
   else

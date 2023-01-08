@@ -48,17 +48,24 @@ if [[ -f ${HOME}/.zsh_alias ]]; then
 fi
  
 #-----------------------------
-# PATH 
+# PATH
 #-----------------------------
 if [[ -f ${HOME}/.zsh_path ]]; then
     source ${HOME}/.zsh_path
 fi
 
 #-----------------------------
-# lf icons 
+# LF ICONS 
 #-----------------------------
-if [[ -f ${HOME}/.config/lf/icons/lf_icons ]]; then
-  source ${HOME}/.config/lf/icons/lf_icons
+if [[ -f ${HOME}/.config/lf/icons ]]; then
+    source ${HOME}/.config/lf/icons
+fi
+
+#-----------------------------
+# LF COLORS 
+#-----------------------------
+if [[ -f ${HOME}/.config/lf/colors ]]; then
+    source ${HOME}/.config/lf/colors
 fi
 
 #------------------------------

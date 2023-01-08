@@ -563,7 +563,7 @@ core_packages+=' powerdevil'
 # Audio
 core_packages+=' pulseaudio pulseaudio-alsa pavucontrol alsa-utils'
 # Печать
-core_packages+=' print-manager cups'
+core_packages+=' print-manager cups system-config-printer'
 # Image viewer
 core_packages+=' gwenview gimp inkscape imagemagick feh scrot'
 # Video, Audio

@@ -13,6 +13,7 @@ set hidden true
 set ignorecase true
 set drawbox
 set icons true
+set colors true
 
 # Custom Functions
 cmd mkdir ${{
@@ -79,29 +80,45 @@ cmd delete ${{
 }}
  
  # Archive extract the current file with the right command
- cmd extract ${{
-    set -f
+cmd extract ${{
+  set -f
+  color_red() { echo -e "\n\033[31m$2\033[0m"; }
+  color_yellow() { echo -e "\n\033[33m$2\033[0m"; }
+  color_green() { echo -e "\n\033[32m$1\033[0m"; }
+  if [[ -f "$f" ]] ; then
+    name_dir="${f/.*}"
+    mkdir -p "$name_dir"
     case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
+     *.tar.bz2) tar xvjf $f -C "$name_dir"   ;;
+     *.tar.gz)  tar xvzf $f -C "$name_dir"   ;;
+     *.tar.xz)  tar xvjf $f -C "$name_dir"   ;;
+     *.bz2)     tar xvjf $f -C "$name_dir"   ;;
+     *.tar)     tar xvf $f -C "$name_dir"    ;;
+     *.tbz2)    tar xvjf $f -C "$name_dir"   ;;
+     *.tgz)     tar xvzf $f -C "$name_dir"   ;;
+     *.rar)     unrar e $f "$name_dir"       ;;
+     *.zip)     unzip $f -d "$name_dir"      ;;
+     *.7z)      7z x $f -o "$name_dir"       ;;
+     *) color_red "$f Неизвестный метод сжатия файлов" ;;
     esac
+    color_green "$f распакован в $name_dir"
+  else
+    color_yellow "$f не является архивом !!!"
+  fi
 }}
 
- # Bindings
+# Bindings
 # Remove some defaults
+map M
 map m
 map o
 map n
 map "'"
 map '"'
 map d
+map e
   
 # Bindings
-# Remove some defaults
 map ex extract
 map . set hidden!
 map DD delete
@@ -114,6 +131,7 @@ map C clear
 map mf mkfile
 map md mkdir
 map <a-m> newfold # Новая папка с выбранными элементам. Функция, аналогичная macOS Finder
+map MM newfold # Новая папка с выбранными элементам. Функция, аналогичная macOS Finder
 
 # Movement
 map gd cd ~/documents
