@@ -2,7 +2,7 @@
 #set -e
 
 # Установка SAMBA
-sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb smb4k
+sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb
 pikaur -S --noconfirm --noedit wsdd2
 
 # Открытие портов
