@@ -64,8 +64,24 @@ alias gits='git status'
 alias gs='git status'
 alias gita='git add .'
 alias ga='git add .'
-alias gitc='git commit -m "add"'
-alias gc='git commit -m "add"'
+# alias gitc='git commit -m "add"'
+# alias gc='git commit -m "add"'
+gitc() {
+  if [[ -z "$1" ]] ; then
+    com='"add"'
+  else
+    com='"'"$@"'"'
+  fi
+  git commit -m "$com"
+}
+gc() {
+  if [[ -z "$1" ]] ; then
+    com='"add"'
+  else
+    com='"'"$@"'"'
+  fi
+  git commit -m "$com"
+}
 alias gitp='git push'
 alias gp='git push'
 
@@ -119,8 +135,17 @@ bindkey -M emacs '\e\e' sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 bindkey -M viins '\e\e' sudo-command-line
 
-# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2
+# DD
+# ddcp () {
+  # dd bs=4M "$1" "$2" status=progress oflag=sync && sync
+# }
 
+#### mkdir + cd dir
+mkcd () {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2
 ex () {
   color_red() { echo -e "\n\033[31m$2\033[0m"; }
   color_yellow() { echo -e "\n\033[33m$2\033[0m"; }
