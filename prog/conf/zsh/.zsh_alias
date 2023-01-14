@@ -80,7 +80,7 @@ gc() {
   else
     com='"'"$@"'"'
   fi
-  git commit -m "$com"
+  git commit -m $com
 }
 alias gitp='git push'
 alias gp='git push'
