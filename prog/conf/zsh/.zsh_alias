@@ -78,7 +78,7 @@ gc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
   else
-    com='"'"$@"'"'
+    com="$@"
   fi
   git commit -m $com
 }
