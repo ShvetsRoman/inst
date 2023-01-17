@@ -16,7 +16,6 @@ M.nvimtree = {
     adaptive_size = false,
     width = 25,
   },
-
   renderer = {
     icons = {
       show = {
@@ -25,7 +24,6 @@ M.nvimtree = {
         folder_arrow = true,
         git = true,
       },
-
       glyphs = {
         default = "",
         symlink = "",

@@ -1,13 +1,10 @@
 local M = {}
 
 M.options = {
-  user = function()
-    require("custom.options")
-  end,
+  require "custom.options",
 }
 
 local pluginConfs = require "custom.plugins.configs"
-
 M.plugins = {
   remove = {
     -- "feline-nvim/feline.nvim",
@@ -20,9 +17,8 @@ M.plugins = {
 
 }
 
-M.ui = {
-
 -- Default Theme
+M.ui = {
   -- theme = "onedark",
 }
 
