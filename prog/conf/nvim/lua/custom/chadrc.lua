@@ -1,9 +1,5 @@
 local M = {}
 
-M.options = {
-  require "custom.options",
-}
-
 local pluginConfs = require "custom.plugins.configs"
 M.plugins = {
   remove = {
@@ -20,6 +16,7 @@ M.plugins = {
 -- Default Theme
 M.ui = {
   -- theme = "onedark",
+  -- transparency = true,
 }
 
 -- Mapping User

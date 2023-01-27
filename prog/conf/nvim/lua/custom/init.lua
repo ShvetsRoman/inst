@@ -1,3 +1,3 @@
-require "custom.autocmds"
-
-vim.cmd "silent! command! EnableShade lua require('shade').toggle()"
+require "custom.options"
+-- require "custom.autocmds"
+-- vim.cmd "silent! command! EnableShade lua require('shade').toggle()"
