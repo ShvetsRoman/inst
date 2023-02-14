@@ -1,21 +1,25 @@
 local M = {}
 
-local pluginConfs = require "custom.plugins.configs"
+local pluginConf = require "custom.plugins.configs"
 M.plugins = {
+-- Install plugin
+  install = {
+    -- ["Pocco81/TrueZen.nvim"] = {},
+  },
+-- remove plugin
   remove = {
     -- "feline-nvim/feline.nvim",
   },
-
+-- Override plugin config
   override = {
-    ["NvChad/ui"] = pluginConfs.statusline,
-    ["kyazdani42/nvim-tree.lua"] = pluginConfs.nvimtree,
+    ["NvChad/ui"] = pluginConf.statuslineMy,
+    ["nvim-tree/nvim-tree.lua"] = pluginConf.nvimtreeMy,
   },
-
 }
 
 -- Default Theme
 M.ui = {
-  -- theme = "onedark",
+  -- theme = "gatekeeper",
   -- transparency = true,
 }
 

@@ -7,10 +7,13 @@ export BROWSER="google-chrome-stable"
 export LC_ALL=ru_UA.UTF-8
 
 # path
-export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/.local/bin/:$PATH
+export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/.local/bin/:$PATH"
 
-# path Rofi
-export PATH=$HOME/.config/rofi/bin:$PATH
+# path rofi
+export PATH="$HOME/.config/rofi/bin:$PATH"
+
+# path laravel
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # cleaning up home folder
 export XDG_CONFIG_HOME="$HOME/.config"

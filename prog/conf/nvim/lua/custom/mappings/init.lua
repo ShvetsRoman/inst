@@ -27,6 +27,7 @@ M.Sync = {
     ["<F10>"] = {"<cmd> PackerSync <CR>", "Packer Sync"}
   },
 }
+
 M.Themes = {
   n = {
     ["<F12>"] = {"<cmd> Telescope themes <CR>", "   nvchad themes"}

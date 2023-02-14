@@ -12,13 +12,7 @@ else
 fi
 
 if [ -f /usr/bin/grc ]; then
-  alias gcc="grc --colour=auto gcc"
-  alias irclog="grc --colour=auto irclog"
-  alias log="grc --colour=auto log"
-  alias netstat="grc --colour=auto netstat"
   alias ping="grc --colour=auto ping -c 4"
-  alias proftpd="grc --colour=auto proftpd"
-  alias traceroute="grc --colour=auto traceroute"
 else
   alias ping='ping -c 4'
 fi
@@ -28,7 +22,12 @@ alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
 # Alias LARAVEL
-alias laravel='$HOME/.config/composer/vendor/bin/laravel'
+if [[ -d "${HOME}/.config/composer" ]]; then
+  alias laravel="{$HOME}/.config/composer/vendor/bin/laravel"
+fi
+
+# Upgrade pip
+alias up_pip='python -m pip install --upgrade pip'
 
 # Alias
 alias zshcon="vim ~/.zshrc"

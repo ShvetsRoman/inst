@@ -2,13 +2,13 @@
 
 local M = {}
 
-M.statusline = {
+M.statuslineMy = {
   statusline = {
-    separator_style = "block",
+    separator_style = "block",  -- default/round/block/arrow
   },
 }
 
-M.nvimtree = {
+M.nvimtreeMy = {
   git = {
     enable = true,
   },
