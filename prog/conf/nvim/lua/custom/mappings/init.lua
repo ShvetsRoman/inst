@@ -50,4 +50,21 @@ M.UndoAction= {
   },
 }
 
+M.Terminal = {
+  n = {
+    ["<C-h>"] = {
+      function()
+        require("nvterm.terminal").new "horizontal"
+      end,
+      "new horizontal term",
+    },
+
+    ["<C-v>"] = {
+      function()
+        require("nvterm.terminal").new "vertical"
+      end,
+      "new vertical term",
+    },
+  }
+}
 return M
