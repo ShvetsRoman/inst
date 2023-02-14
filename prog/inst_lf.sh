@@ -1,8 +1,8 @@
 #!/bin/bash
 #set -e
  
-DIR_HOME_CONF="${HOME}/.config" 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
+DIR_HOME_CONF="${HOME}"/.config 
+DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
  
 function color() {
   case "$1" in
@@ -22,11 +22,11 @@ function color() {
 color green "[*] Installing lf..."
 pikaur -S --noconfirm --needed lf
 # Copy config LF (terminal-file-manager) 
-if [[ -d "${DIR_HOME_CONF}/lf" ]]; then
-  rm -rf ${DIR_HOME_CONF}/lf
+if [[ -d "${DIR_HOME_CONF}"/lf ]]; then
+  rm -rf "${DIR_HOME_CONF}"/lf
 fi
-cp -rv ${DIR_TEMP_CONF}/lf ${DIR_HOME_CONF}/ 
-if [[ -d "${DIR_HOME_CONF}/lf-ueberzug" ]]; then
-  rm -rf ${DIR_HOME_CONF}/lf-ueberzug
+cp -rv "${DIR_TEMP_CONF}"/lf "${DIR_HOME_CONF}"/ 
+if [[ -d "${DIR_HOME_CONF}"/lf-ueberzug ]]; then
+  rm -rf "${DIR_HOME_CONF}"/lf-ueberzug
 fi
-cp -rv ${DIR_TEMP_CONF}/lf-ueberzug ${DIR_HOME_CONF}/ 
+cp -rv "${DIR_TEMP_CONF}"/lf-ueberzug "${DIR_HOME_CONF}"/ 

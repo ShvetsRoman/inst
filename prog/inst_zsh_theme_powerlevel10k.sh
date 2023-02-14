@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
+DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
  
 function color() {
   case "$1" in
@@ -32,37 +32,37 @@ pikaur -S --noconfirm --noedit ttf-meslo-nerd-font-powerlevel10k
  
 # Delete .bashrc
 color green "[*] Delete .bashrc & .bash*..."
-if [[ -f "${HOME}/.bashrc" ]]; then
-  rm -r ${HOME}/.bash*
+if [[ -f "${HOME}"/.bashrc ]]; then
+  rm -r "${HOME}"/.bash*
 fi
 
 # Backup .zshrc
 color green "[*] Installing Backup .zshrc..."
-if [[ -f "${HOME}/.zshrc" ]]; then
-    mv ${HOME}/.zshrc ${HOME}/.zshrc.bak
+if [[ -f "${HOME}"/.zshrc ]]; then
+    mv "${HOME}"/.zshrc "${HOME}"/.zshrc.bak
 fi
-if [[ -f "${HOME}/.zsh_alias" ]]; then
-    mv ${HOME}/.zsh_alias ${HOME}/.zsh_alias.bak
+if [[ -f "${HOME}"/.zsh_alias ]]; then
+    mv "${HOME}"/.zsh_alias "${HOME}"/.zsh_alias.bak
 fi
-if [[ -f "${HOME}/.zsh_path" ]]; then
-    mv ${HOME}/.zsh_path ${HOME}/.zsh_path.bak
+if [[ -f "${HOME}"/.zsh_path ]]; then
+    mv "${HOME}"/.zsh_path "${HOME}"/.zsh_path.bak
 fi
-if [[ -f "${HOME}/.zsh_icons" ]]; then
-    mv ${HOME}/.zsh_icons ${HOME}/.zsh_icons.bak
+if [[ -f "${HOME}"/.zsh_icons ]]; then
+    mv "${HOME}"/.zsh_icons "${HOME}"/.zsh_icons.bak
 fi
-if [[ -f "${HOME}/.p10k.zsh" ]]; then
-    mv ${HOME}/.p10k.zsh ${HOME}/.p10k.zsh.bak
+if [[ -f "${HOME}"/.p10k.zsh ]]; then
+    mv "${HOME}"/.p10k.zsh "${HOME}"/.p10k.zsh.bak
 fi
 
 # Copy config
 color green "[*] Copy config ZSH..."
-cp -rfv ${DIR_TEMP_CONF}/zsh/. ${HOME}/
+cp -rfv "${DIR_TEMP_CONF}"/zsh/. "${HOME}"/
 
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
-sudo cp -rfv ${DIR_TEMP_CONF}/zsh/. /root/
+sudo cp -rfv "${DIR_TEMP_CONF}"/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
-sudo chsh -s /bin/zsh ${USER}
+sudo chsh -s /bin/zsh "${USER}"
 sudo chsh -s /bin/zsh root

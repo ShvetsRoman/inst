@@ -1,8 +1,8 @@
 #!/bin/bash
 #set -e
 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
- 
+DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
+
 # Установка AVAHI
 sudo pacman -S --noconfirm --needed avahi nss-mdns dbus-python python-gobject
 
@@ -15,7 +15,7 @@ sudo iptables -A INPUT -p tcp -m tcp --dport 139 -s 192.168.88.0/24 -j ACCEPT
 sudo iptables-save -f /etc/iptables/iptables.rules
 
 # Файл конфигурации
-sudo cp -rfv ${DIR_TEMP_CONF}/avahi /etc/
+sudo cp -rfv "${DIR_TEMP_CONF}"/avahi /etc/
 
 sudo systemctl stop systemd-resolved.service
 sudo systemctl disable systemd-resolved.service

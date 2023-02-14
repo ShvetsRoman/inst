@@ -25,26 +25,26 @@ color green "[*] Installing PlagueSur-icons-theme"
 git clone https://aur.archlinux.org/stylish-icon-theme.git ~/.local/share/icons/Stylish
 
 # Themes GitHub McMojave
-mkdir -p ${HOME}/.themes/github_themes/
-cd ${HOME}/.themes/github_themes/
+mkdir -p "${HOME}"/.themes/github_themes/
+cd "${HOME}"/.themes/github_themes/ || exit
 ## McMojave
 color green "[*] Installing McMojave-kde"
 git clone https://github.com/vinceliuice/McMojave-kde
-sh ${HOME}/.themes/github_themes/McMojave-kde/install.sh
+sh "${HOME}"/.themes/github_themes/McMojave-kde/install.sh
 color green "[*] Installing Mojave-gtk-theme"
 git clone https://github.com/vinceliuice/Mojave-gtk-theme
-sh ${HOME}/.themes/github_themes/Mojave-gtk-theme/install.sh
+sh "${HOME}"/.themes/github_themes/Mojave-gtk-theme/install.sh
 color green "[*] Installing McMojave-circle"
 git clone https://github.com/vinceliuice/McMojave-circle
-sh ${HOME}/.themes/github_themes/McMojave-circle/install.sh -blue
+sh "${HOME}"/.themes/github_themes/McMojave-circle/install.sh -blue
 ## WhiteSur
 color green "[*] Installing MhiteSur-kde"
 git clone https://github.com/vinceliuice/WhiteSur-kde
-sh ${HOME}/.themes/github_themes/WhiteSur-kde/install.sh
+sh "${HOME}"/.themes/github_themes/WhiteSur-kde/install.sh
 color green "[*] Installing WhiteSur-gtk-theme"
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
-sh ${HOME}/.themes/github_themes/WhiteSur-gtk-theme/install.sh
+sh "${HOME}"/.themes/github_themes/WhiteSur-gtk-theme/install.sh
 color green "[*] Installing WhiteSur-icon-theme"
 git clone https://github.com/vinceliuice/WhiteSur-icon-theme
-sh ${HOME}/.themes/github_themes/WhiteSur-icon-theme/install.sh
-rm -rf ${HOME}/.themes/github_themes
+sh "${HOME}"/.themes/github_themes/WhiteSur-icon-theme/install.sh
+rm -rf "${HOME}"/.themes/github_themes

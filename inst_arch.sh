@@ -344,7 +344,7 @@ color green "[***] MOUNT EXT4..."
         ;;
     esac
   done
-  root_systemd=" root=UUID=$(blkid -s UUID -o value ${volume_root})"
+  root_systemd=" root=UUID=$(blkid -s UUID -o value "${volume_root}")"
   btrfs_progs=" "
 fi
 
@@ -452,9 +452,9 @@ if [[ "$fs" == "2" ]]; then
     esac
   done
   btrfs_progs=" btrfs-progs"
-  root_systemd=" root=UUID=$(blkid -s UUID -o value ${volume_root}) rootflags=subvol=@"
+  root_systemd=" root=UUID=$(blkid -s UUID -o value "${volume_root}") rootflags=subvol=@"
 fi
-root_uuid=${root_systemd}
+root_uuid="${root_systemd}"
 
 ## Core_packages
 core_packages=''
@@ -586,7 +586,7 @@ pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 color green "[***] Install BASE System..."
-pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib $btrfs_progs
+pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib "$btrfs_progs"
 
 # Generate fstab
 color green "[***] Generate fstab..."
@@ -595,14 +595,14 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 color green "[***] Hostname, localtime, locale, vconsole, username, sudo..."
 # Hostname, localtime, locale, vconsole, username, sudo
 arch-chroot /mnt /bin/bash <<EOF
-echo $hostname > /etc/hostname
+echo "$hostname" > /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1 localhost" >> /etc/hosts
 echo "127.0.1.1 '$hostname'.localdomain '$hostname'" >> /etc/hosts
-ln -svf /usr/share/zoneinfo/$region/$city /etc/localtime
+ln -svf /usr/share/zoneinfo/"$region"/"$city" /etc/localtime
 hwclock --systohc
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-echo $locale".UTF-8 UTF-8" >> /etc/locale.gen
+echo "$locale"".UTF-8 UTF-8" >> /etc/locale.gen
 echo 'LANG="'$locale'.UTF-8"' > /etc/locale.conf
 echo 'KEYMAP='$keymap'' >> /etc/vconsole.conf
 echo 'FONT='$font'' >> /etc/vconsole.conf

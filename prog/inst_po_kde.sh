@@ -43,5 +43,5 @@ core_packages_aur+=' deadbeef google-chrome raw-thumbnailer'
 ### end packages aur ###
 
 ### INSTALL Programs ###
-sudo pacman -Syyuu --noconfirm --needed $core_packages
-pikaur -S --noconfirm --noedit $core_packages_aur
+sudo pacman -Syyuu --noconfirm --needed "$core_packages"
+pikaur -S --noconfirm --noedit "$core_packages_aur"

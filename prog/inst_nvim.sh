@@ -1,8 +1,8 @@
 #!/bin/bash
 #set -e
 
-DIR_HOME_CONF="${HOME}/.config" 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
+DIR_HOME_CONF="${HOME}"/.config 
+DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
   
 function color() {
   case "$1" in
@@ -19,9 +19,12 @@ function color() {
 }
 
 # Del если есть nvim
-if [[ -d "${DIR_HOME_CONF}/nvim" ]]; then
-  color green "[*] Deleting a folder nvim..."
-  rm -rf ${DIR_HOME_CONF}/nvim
+if [[ -d "${DIR_HOME_CONF}"/nvim ]]; then
+  color red "[*] Deleting a folder nvim..."
+  rm -rf "${DIR_HOME_CONF}"/nvim
+  rm -rf ~/.local/share/nvim
+  rm -rf ~/.local/state/nvim
+  rm -rf ~/.cache/nvim
 fi
 
 # Установка NEOVIM
@@ -30,10 +33,11 @@ sudo pacman -S --noconfirm --needed neovim
 
 # Установка конфига для NEOVIM NvChad !!!
 color green "[*] Installing NvChad..."
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 # git clone https://github.com/NvChad/NvChad ~/.config/nvim
 
 # Копирование конфига
 color green "[*] Copy settings custom..."
-mkdir -p ${DIR_HOME_CONF}/nvim/lua/custom
-cp -rfv ${DIR_TEMP_CONF}/nvim ${DIR_HOME_CONF}/
+mkdir -p "${DIR_HOME_CONF}"/nvim/lua/custom
+cp -rfv "${DIR_TEMP_CONF}"/nvim "${DIR_HOME_CONF}"/
+nvim

@@ -1,7 +1,7 @@
 #!/bin/bash
  
-DIR_HOME_CONF="${HOME}/.config" 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
+DIR_HOME_CONF="${HOME}"/.config 
+DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
  
 function color() {
   case "$1" in
@@ -20,14 +20,14 @@ function color() {
 # Установка pikaur
 color green "[*] Installing pikaur..."
 git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
+cd pikaur || exit
 makepkg -fsri
 
 ##### Copy config Pikaur #####
 color green "[*] Copy config Pikaur..."
-cp -rfv ${DIR_TEMP_CONF}/pikaur/pikaur.conf ${DIR_HOME_CONF}/ 
+cp -rfv "${DIR_TEMP_CONF}"/pikaur/pikaur.conf "${DIR_HOME_CONF}"/ 
  
 # Если папка pikaur есть, тогда удаляем.
-if [[ -e "${HOME}/pikaur" ]]; then
-    rm -rf ${HOME}/pikaur
+if [[ -e "${HOME}"/pikaur ]]; then
+    rm -rf "${HOME}"/pikaur
 fi

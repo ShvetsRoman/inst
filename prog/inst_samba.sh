@@ -13,9 +13,9 @@ sudo iptables -A INPUT -p tcp -m tcp --dport 445 -s 192.168.88.0/24 -j ACCEPT
 sudo iptables-save -f /etc/iptables/iptables.rules
 
 # Пользовательские ресурсы
-sudo smbpasswd -a -s ${USER}
+sudo smbpasswd -a -s "${USER}"
 sudo groupadd -r sambashare
-sudo gpasswd sambashare -a ${USER}
+sudo gpasswd sambashare -a "${USER}"
 # Создание общего ресурса для анонимных пользователей
 sudo useradd guest -s /bin/nologin
 
@@ -24,7 +24,7 @@ sudo chown root:sambashare /var/lib/samba/usershares
 sudo chmod 1770 /var/lib/samba/usershares
 
 # Файл конфигурации
-sudo cp -rfv ${HOME}/temp/inst/prog/conf/smb/smb.conf /etc/samba/ 
+sudo cp -rfv "${HOME}"/temp/inst/prog/conf/smb/smb.conf /etc/samba/ 
 
 sudo sed -i 's/^hosts:.*/hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns wins/g' /etc/nsswitch.conf
 

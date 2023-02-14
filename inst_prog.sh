@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR_TEMP_PROG="${HOME}/temp/inst/prog"
+DIR_TEMP_PROG="${HOME}"/temp/inst/prog
  
 color() {
   case "$1" in
@@ -53,13 +53,13 @@ fi
 if [[ -n "$progs" ]]; then
   color green "[*] Cloning a repository - inst..."
   # Если папка temp есть, тогда удаляем.
-  if [[ -d "${HOME}/temp" ]]; then
+  if [[ -d "${HOME}"/temp ]]; then
     # rm -rf ${HOME}/temp
     # color yellow "### Папка ~/temp удалена ###"
     # git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
     echo ""
   else
-    git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
+    git clone https://github.com/ShvetsRoman/inst.git "${HOME}"/temp/inst
   fi
 else
   color red "Выберите программы для установки."
@@ -71,55 +71,55 @@ for action in $progs; do
   case "$action" in
     '"pikaur"')
       color green "[*] Installing pikaur..."
-      sh ${DIR_TEMP_PROG}/inst_pikaur.sh
+      sh "${DIR_TEMP_PROG}"/inst_pikaur.sh
       ;;
     '"font"')
       color green "[*] Installing fonts..."
-      sh ${DIR_TEMP_PROG}/inst_font.sh
+      sh "${DIR_TEMP_PROG}"/inst_font.sh
       ;;
     '"bspwm"')
       color green "[*] Installing bspwm..."
-      sh ${DIR_TEMP_PROG}/inst_bspwm.sh
+      sh "${DIR_TEMP_PROG}"/inst_bspwm.sh
       ;;
     '"ly"')
       color green "[*] Installing Ly..."
-      sh ${DIR_TEMP_PROG}/inst_ly.sh
+      sh "${DIR_TEMP_PROG}"/inst_ly.sh
       ;;
     '"zshtheme"')
       color green "[*] Installing zsh_theme_powerlevel10k..."
-      sh ${DIR_TEMP_PROG}/inst_zsh_theme_powerlevel10k.sh
+      sh "${DIR_TEMP_PROG}"/inst_zsh_theme_powerlevel10k.sh
       ;;
     '"nvim"')
       color green "[*] Installing nvim..."
-      sh ${DIR_TEMP_PROG}/inst_nvim.sh
+      sh "${DIR_TEMP_PROG}"/inst_nvim.sh
       ;;
     '"vim"')
       color green "[*] Installing vim..."
-      sh ${DIR_TEMP_PROG}/inst_vim.sh
+      sh "${DIR_TEMP_PROG}"/inst_vim.sh
       ;;
     '"po_kde"')
       color green "[*] Installing po_kde..."
-      sh ${DIR_TEMP_PROG}/inst_po_kde.sh
+      sh "${DIR_TEMP_PROG}"/inst_po_kde.sh
       ;;
     '"lf"')
       color green "[*] Installing LF..."
-      sh ${DIR_TEMP_PROG}/inst_lf.sh
+      sh "${DIR_TEMP_PROG}"/inst_lf.sh
       ;;
     '"themes"')
       color green "[*] Installing Icons Themes..."
-      sh ${DIR_TEMP_PROG}/inst_themes.sh
+      sh "${DIR_TEMP_PROG}"/inst_themes.sh
       ;;
     '"avahi"')
       color green "[*] Installing avahi..."
-      sh ${DIR_TEMP_PROG}/inst_avahi.sh
+      sh "${DIR_TEMP_PROG}"/inst_avahi.sh
       ;;
     '"samba"')
       color green "[*] Installing samba..."
-      sh ${DIR_TEMP_PROG}/inst_samba.sh
+      sh "${DIR_TEMP_PROG}"/inst_samba.sh
       ;;
     '"nvidiaopman"')
       color green "[*] Installing nvidia_op_kde_arch..."
-      sh ${DIR_TEMP_PROG}/inst_nvidia_op_kde_arch.sh
+      sh "${DIR_TEMP_PROG}"/inst_nvidia_op_kde_arch.sh
       ;;
   esac
 done

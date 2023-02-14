@@ -1,7 +1,7 @@
 #!/bin/bash
  
-DIR_TEMP_CONF="$HOME/temp/inst/prog/conf"
-DIR_FONT="$HOME/.local/share/fonts"
+DIR_TEMP_CONF="$HOME"/temp/inst/prog/conf
+DIR_FONT="$HOME"/.local/share/fonts
 
 function color() {
   case "$1" in
@@ -21,10 +21,10 @@ function color() {
 install_fonts() {
   color green "\n[*] Installing fonts..."
   if [[ -d "$DIR_FONT" ]]; then
-    cp -rf $DIR_TEMP_CONF/fonts/* "$DIR_FONT"
+    cp -rf "$DIR_TEMP_CONF"/fonts/* "$DIR_FONT"
   else
     mkdir -p "$DIR_FONT"
-    cp -rf $DIR_TEMP_CONF/fonts/* "$DIR_FONT"
+    cp -rf "$DIR_TEMP_CONF"/fonts/* "$DIR_FONT"
   fi
   mv "$DIR_FONT"/.fonts.conf "$HOME"/
 }

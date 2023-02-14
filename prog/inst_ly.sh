@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DIR_HOME_CONF="${HOME}/.config" 
-DIR_TEMP_CONF="${HOME}/temp/inst/prog/conf"
+# DIR_HOME_CONF="${HOME}"/.config 
+# DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
  
 color() {
   case "$1" in
