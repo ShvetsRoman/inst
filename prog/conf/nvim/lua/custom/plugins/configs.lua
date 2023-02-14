@@ -2,34 +2,30 @@
 
 local M = {}
 
-M.hoverMy = {
-  -- ["lewis6991/hover.nvim"] = {
-    config = function()
-      require("hover").setup {
-        init = function()
-          -- Require providers
-          require("hover.providers.lsp")
-          -- require('hover.providers.gh')
-          -- require('hover.providers.gh_user')
-          -- require('hover.providers.jira')
-          -- require('hover.providers.man')
-          -- require('hover.providers.dictionary')
-        end,
-        preview_opts = {
-          border = nil
-        },
-        -- Whether the contents of a currently open hover window should be moved
-        -- to a :h preview-window when pressing the hover keymap.
-        preview_window = false,
-        title = true
-      }
+M.masonMy = {
+  ensure_installed = {
+    -- lua stuff
+    "lua-language-server",
+    "stylua",
 
-      -- Setup keymaps
-      vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-      vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
-    end
-  }
--- }
+    -- python
+    "pyright",
+    "python-lsp-server",
+
+    -- web dev
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "deno",
+    "prettier",
+    "emmet-ls",
+    "json-lsp",
+
+    -- shell
+    "shfmt",
+    "shellcheck",
+  },
+}
 
 M.statuslineMy = {
   statusline = {
@@ -63,8 +59,8 @@ M.nvimtreeMy = {
           open = "",
           symlink = "",
           symlink_open = "",
-          arrow_open = "",
-          arrow_closed = "",
+          arrow_open = "",
+          arrow_closed = "",
         },
         git = {
           unstaged = "✗",

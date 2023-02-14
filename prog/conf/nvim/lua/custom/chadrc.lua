@@ -4,14 +4,21 @@ local pluginConf = require "custom.plugins.configs"
 
 M.plugins = {
 -- Install plugin
-  ["lewis6991/hover.nvim"] = pluginConf.hoverMy,
+  -- ["lewis6991/hover.nvim"] = {},
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+       require "custom.plugins.null-ls"
+    end,
+ },
 
 -- remove plugin
   -- ["neovim/nvim-lspconfig"] = false
 
 -- Override plugin config
-  ["NvChad/ui"] = pluginConf.statuslineMy,
-  ["nvim-tree/nvim-tree.lua"] = pluginConf.nvimtreeMy,
+  ["NvChad/ui"] = { override_options = pluginConf.statuslineMy, },
+  ["nvim-tree/nvim-tree.lua"] = { override_options = pluginConf.nvimtreeMy, },
+  ["williamboman/mason.nvim"] = { override_options = pluginConf.masonMy, },
 }
 
 -- Default Theme
