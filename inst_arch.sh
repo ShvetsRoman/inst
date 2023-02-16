@@ -241,12 +241,12 @@ color green "[***] FORMAT EXT4..."
   volume_new=1
   # SWAP
   if [[ "$swapinstall" = "1" ]]; then
-    volume_new=$(($volume_new + 1))
+    volume_new=$(("$volume_new" + 1))
     volume_swap=/dev/"$df""$volume_new"
     sgdisk /dev/"$df" -n="$volume_new":0:+"$swapsize"M -t="$volume_new":8200 --change-name="$volume_new":"swap"
   fi
   # /
-  volume_new=$(($volume_new + 1))
+  volume_new=$(("$volume_new" + 1))
   volume_root=/dev/"$df""$volume_new"
   sgdisk /dev/"$df" -n="$volume_new":0:+"$korsize"M -t="$volume_new":8304 --change-name="$volume_new":"arch"
   mkfs.ext4 -L ROOT "$volume_root"
@@ -254,31 +254,31 @@ color green "[***] FORMAT EXT4..."
   for action in $fsdisk; do
     case "$action" in
       '"tmp"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_tmp=/dev/"$df""$volume_new"
         sgdisk /dev/"$df" -n="$volume_new":0:+"$tmpsize"M -t="$volume_new":8300 --change-name="$volume_new":"tmp"
         mkfs.ext4 -L TMP "$volume_tmp"
         ;;
       '"var"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var=/dev/"$df""$volume_new"
         sgdisk /dev/"$df" -n="$volume_new":0:+"$varsize"M -t="$volume_new":8310 --change-name="$volume_new":"var"
         mkfs.ext4 -L VAR "$volume_var"
         ;;
       '"var_tmp"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var_tmp=/dev/"$df""$volume_new"
         sgdisk /dev/"$df" -n="$volume_new":0:+"$var_tmpsize"M -t="$volume_new":8311 --change-name="$volume_new":"var_tmp"
         mkfs.ext4 -L VAR_TMP "$volume_var_tmp"
         ;;
       '"var_pkg"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var_pkg=/dev/"$df""$volume_new"
         sgdisk /dev/"$df" -n="$volume_new":0:+"$var_pkgsize"M -t="$volume_new":8300 --change-name="$volume_new":"var_pkg"
         mkfs.ext4 -L VAR_PKG "$volume_var_pkg"
         ;;
       '"home"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_home=/dev/"$df""$volume_new"
         if [[ "$ssd_hdd" = "0" ]]; then
           sgdisk /dev/"$df" -n="$volume_new":0:+"$homesize"M -t="$volume_new":8302 --change-name="$volume_new":"home"
@@ -297,13 +297,13 @@ color green "[***] MOUNT EXT4..."
   volume_new=1
   # SWAP
   if [[ "$swapinstall" = "1" ]]; then
-    volume_new=$(($volume_new + 1))
+    volume_new=$(("$volume_new" + 1))
     volume_swap=/dev/"$df""$volume_new"
     mkswap -L SWAP "$volume_swap"
     swapon "$volume_swap"
   fi
   # /
-  volume_new=$(($volume_new + 1))
+  volume_new=$(("$volume_new" + 1))
   volume_root=/dev/"$df""$volume_new"
   mount "$volume_root" /mnt
   # EFI
@@ -313,31 +313,31 @@ color green "[***] MOUNT EXT4..."
   for action in $fsdisk; do
     case "$action" in
       '"tmp"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_tmp=/dev/"$df""$volume_new"
         mkdir -p /mnt/tmp
         mount "$volume_tmp" /mnt/tmp
         ;;
       '"var"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var=/dev/"$df""$volume_new"
         mkdir -p /mnt/var
         mount "$volume_var" /mnt/var
         ;;
       '"var_tmp"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var_tmp=/dev/"$df""$volume_new"
         mkdir -p /mnt/var/tmp
         mount "$volume_var_tmp" /mnt/var/tmp
         ;;
       '"var_pkg"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_var_pkg=/dev/"$df""$volume_new"
         mkdir -p /mnt/var/cache/pacman/pkg
         mount "$volume_var_pkg" /mnt/var/cache/pacman/pkg
         ;;
       '"home"')
-        volume_new=$(($volume_new + 1))
+        volume_new=$(("$volume_new" + 1))
         volume_home=/dev/"$df""$volume_new"
         mkdir -p /mnt/home
         mount "$volume_home" /mnt/home

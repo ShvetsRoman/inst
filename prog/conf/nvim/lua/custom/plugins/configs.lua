@@ -38,6 +38,7 @@ M.nvimtreeMy = {
     enable = false,
   },
   view = {
+    hide_root_folder = false,
     adaptive_size = false,
     width = 25,
   },

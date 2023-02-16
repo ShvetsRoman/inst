@@ -7,10 +7,8 @@ M.plugins = {
   -- ["lewis6991/hover.nvim"] = {},
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
-    config = function()
-       require "custom.plugins.null-ls"
-    end,
- },
+    config = function() require "custom.plugins.null-ls" end,
+  },
 
 -- remove plugin
   -- ["neovim/nvim-lspconfig"] = false

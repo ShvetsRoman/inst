@@ -7,6 +7,12 @@ M.NvimTree = {
   },
 }
 
+M.UpdateNvCad = {
+  n = {
+    ["<F2>"] = {"<cmd> :NvChadUpdate <CR>", "Обновление NvChad"}
+  },
+}
+
 M.Search = {
   n = {
     ["<F3>"] = {"<cmd> Telescope find_files <CR>", "Search Telescope"}
@@ -15,10 +21,10 @@ M.Search = {
 
 M.SearchReplace = {
   n = {
-    ["<F4>"] = {":%s ///g<LEFT><LEFT><LEFT>", "Search with replacement"}
+    ["<F4>"] = {":%s///gc<LEFT><LEFT><LEFT><LEFT>", "Поиск и замена"}
   },
   i = {
-    ["<F4>"] = {"<ESC>:%s ///g<LEFT><LEFT><LEFT>", "Search with replacement"}
+    ["<F4>"] = {"<ESC>:%s///gc<LEFT><LEFT><LEFT><LEFT>", "Поиск и замена"}
   },
 }
 
@@ -67,4 +73,23 @@ M.Terminal = {
     },
   }
 }
+
+M.MoveCurrentLine = {
+  n = {
+    ["<A-j>"] = {":m .+1<CR>==>", "Перемистить строку вниз"},
+    ["<A-k>"] = {":m .-2<CR>==>", "Перемистить строку вверх"}
+  },
+  i = {
+    ["<A-j>"] = {"<Esc>:m .+1<CR>==>gi", "Перемистить строку вниз"},
+    ["<A-k>"] = {"<Esc>:m .-2<CR>==>gi", "Перемистить строку вверх"}
+  },
+}
+
+M.NewFile_NewDir = {
+  n = {
+    ["<A-d>"] = {":!mkdir -p ", "Новий папка"},
+    ["<A-f>"] = {":e ", "Новий файл"}
+  },
+}
+
 return M
