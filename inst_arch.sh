@@ -171,7 +171,7 @@ city="Kyiv"
 #done
 #boot_dialog --title "Locale" --menu "" 16 60 7 "${options[@]}"
 #locale="$DIALOG_RESULT"
-locale="uk_UA"
+locale="ru_UA"
 
 ## Keymap
 #items=$(find /usr/share/kbd/keymaps/ -type f -printf "%f\n" | sort -V | awk -F'.map' '{print $1}')
@@ -181,7 +181,7 @@ locale="uk_UA"
 #done
 #boot_dialog --title "Keymap console" --menu "" 16 60 7 "${options[@]}"
 #keymap="$DIALOG_RESULT"
-keymap="ua"
+keymap="ru"
 
 ## Font
 #items=$(find /usr/share/kbd/consolefonts/*.psfu.gz -printf "%f\n" | cut -f1 -d.)

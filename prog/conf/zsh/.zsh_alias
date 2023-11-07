@@ -16,7 +16,7 @@ if [ -f /usr/bin/grc ]; then
 else
   alias ping='ping -c 4'
 fi
-
+#
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
@@ -30,6 +30,10 @@ fi
 alias up_pip='python -m pip install --upgrade pip'
 
 # Alias
+alias .="cd .."
+alias ..="cd ../.."
+alias ...="cd ../../.."
+
 alias zshcon="vim ~/.zshrc"
 alias vimcon="vim ~/.vimrc"
 
@@ -145,8 +149,7 @@ mkcd () {
 }
 
 #### mkdir + new file
-mkdf ()
-{
+mkdf () {
 	mkdir -p -- "$1" && touch -- "$1"/"$2"
 }
 
