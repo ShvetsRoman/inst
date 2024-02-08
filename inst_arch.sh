@@ -453,13 +453,17 @@ if [[ "$fs" == "2" ]]; then
 			;;
 		esac
 	done
-	btrfs_progs=" btrfs-progs"
 	root_systemd=" root=UUID=$(blkid -s UUID -o value "${volume_root}") rootflags=subvol=@"
 fi
 root_uuid="${root_systemd}"
 
 ## Core_packages
 core_packages=''
+
+# BTRFS
+if [[ "$fs" == "2" ]]; then
+	 core_packages+=' btrfs-progs'
+fi
 
 ## DISPLAY DRIVER
 # Intel
