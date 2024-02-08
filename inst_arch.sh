@@ -604,7 +604,7 @@ pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 color green "[***] Install BASE System..."
-pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib"$btrfs_progs"
+pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib
 
 # Generate fstab
 color green "[***] Generate fstab..."
