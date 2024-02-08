@@ -143,7 +143,7 @@ boot_dialog --title "Display drivers" --menu "" 20 60 6 "1" "INTEL" "2" "ATI" "3
 dd="$DIALOG_RESULT"
 
 ## Desktop environment
-boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM" "5" "БЕЗ DE"
+boot_dialog --title "Desktop environment" --menu "" 10 60 5 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM" "5" "БЕЗ DE"
 de="$DIALOG_RESULT"
 
 ## Localtime
@@ -600,7 +600,7 @@ pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 color green "[***] Install BASE System..."
-pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib "$btrfs_progs"
+pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib"$btrfs_progs"
 
 # Generate fstab
 color green "[***] Generate fstab..."
