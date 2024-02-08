@@ -8,6 +8,8 @@ hwclock -w
 loadkeys ru
 setfont cyr-sun16
 
+gitinst=https://raw.githubusercontent.com/ShvetsRoman/inst/main
+
 color() {
 	case "$1" in
 	red)
@@ -141,7 +143,7 @@ boot_dialog --title "Display drivers" --menu "" 20 60 6 "1" "INTEL" "2" "ATI" "3
 dd="$DIALOG_RESULT"
 
 ## Desktop environment
-boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM"
+boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM" "5" "БЕЗ DE"
 de="$DIALOG_RESULT"
 
 ## Localtime
@@ -542,7 +544,45 @@ if [[ "$de" = "4" ]]; then
 	# Firefox
 	# core_packages+=' firefox firefox-i18n-ru'
 	# File manager
-# core_packages+=' pcmanfm gvfs'
+	# core_packages+=' pcmanfm gvfs'
+fi
+
+# БЕЗ DE
+if [[ "$de" = "5" ]]; then
+	core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
+	# NETWORK
+	core_packages+=' openresolv iwd'
+	# Управление энергопотреблением
+	core_packages+=' powerdevil'
+	# Python билиотеки
+	core_packages+=' python-requests python-dbus python-pip python-pipenv'
+fi
+
+if [[ "$de" != "5" ]]; then
+	# Xserver
+	core_packages+=' xorg xorg-apps xorg-xinit'
+	# General utilities/libraries
+	core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
+	# NETWORK
+	core_packages+=' networkmanager networkmanager-openvpn wpa_supplicant openresolv iwd'
+	# Управление энергопотреблением
+	core_packages+=' powerdevil'
+	# Audio
+	core_packages+=' pulseaudio pulseaudio-alsa pavucontrol alsa-utils'
+	# Печать
+	core_packages+=' print-manager cups system-config-printer'
+	# Image viewer
+	core_packages+=' gwenview gimp inkscape imagemagick feh scrot'
+	# Video, Audio
+	core_packages+=' playerctl ffmpeg ffmpegthumbnailer vlc'
+	# Office
+	core_packages+=' libreoffice-still libreoffice-still-ru'
+	# Fonts
+	core_packages+=' ttf-dejavu ttf-liberation ttf-freefont noto-fonts awesome-terminal-fonts ttf-font-awesome'
+	# Python билиотеки
+	core_packages+=' python-requests python-dbus python-pip python-pipenv'
+	# BG
+	core_packages+=' archlinux-wallpaper'
 fi
 
 # linux-headers
@@ -550,31 +590,6 @@ if [[ -n "$is_intel_cpu" ]]; then
 	# https://wiki.archlinux.org/index.php/microcode
 	core_packages+=' intel-ucode'
 fi
-
-# Xserver
-core_packages+=' xorg xorg-apps xorg-xinit'
-# General utilities/libraries
-core_packages+=' xterm xsel mesa lib32-mesa xf86-input-libinput xdg-user-dirs dialog gvfs-afc gvfs-mtp exfat-utils ntfs-3g sshfs wget curl git flatpak xbindkeys neofetch openssh p7zip unace unrar unzip ark htop xautolock hwinfo'
-# NETWORK
-core_packages+=' networkmanager networkmanager-openvpn wpa_supplicant openresolv iwd'
-# Управление энергопотреблением
-core_packages+=' powerdevil'
-# Audio
-core_packages+=' pulseaudio pulseaudio-alsa pavucontrol alsa-utils'
-# Печать
-core_packages+=' print-manager cups system-config-printer'
-# Image viewer
-core_packages+=' gwenview gimp inkscape imagemagick feh scrot'
-# Video, Audio
-core_packages+=' playerctl ffmpeg ffmpegthumbnailer vlc'
-# Office
-core_packages+=' libreoffice-still libreoffice-still-ru'
-# Fonts
-core_packages+=' ttf-dejavu ttf-liberation ttf-freefont noto-fonts awesome-terminal-fonts ttf-font-awesome'
-# Python билиотеки
-core_packages+=' python-requests python-dbus python-pip python-pipenv'
-# BG
-core_packages+=' archlinux-wallpaper'
 
 ## Mirrorlist
 color green "[***] Mirrorlist..."
@@ -585,7 +600,7 @@ pacman -Syy --noconfirm --needed archlinux-keyring
 
 ## INSTALL BASE ##
 color green "[***] Install BASE System..."
-pacstrap /mnt base base-devel linux linux-firmware bash-completion pacman-contrib "$btrfs_progs"
+pacstrap -K /mnt base base-devel linux linux-firmware bash-completion pacman-contrib "$btrfs_progs"
 
 # Generate fstab
 color green "[***] Generate fstab..."
@@ -795,7 +810,7 @@ fi
 color green "[***] Копирование скрипта inst_prog_base.sh..."
 arch-chroot /mnt /bin/bash <<EOF
 mkdir /home/$username/
-curl -fLo /home/$username/inst_prog.sh https://raw.githubusercontent.com/ShvetsRoman/inst/main/inst_prog.sh
+curl -fLo /home/$username/inst_prog.sh $gitinst/inst_prog.sh
 chmod +x /home/$username/inst_prog.sh
 chown -R $username:users /home/$username/inst_prog.sh
 EOF
@@ -877,11 +892,39 @@ chown -R $username:users /home/$username/.dmrc
 EOF
 fi
 
+# БЕЗ DE
+if [[ "$de" = "5" ]]; then
+	arch-chroot /mnt /bin/bash <<EOF
+cat << 'iwd_conf' > /etc/iwd/main.conf
+[Scan]
+DisablePeriodicScan=true
+
+[General]
+EnableNetworkConfiguration=true
+
+[Network]
+EnableIPv6=false
+NameResolvingService=resolvconf
+iwd_conf
+
+resolvconf -u
+EOF
+fi
+
 #  ENABLE Service
 color green "[***] ENABLE Service..."
-arch-chroot /mnt /bin/bash <<EOF
+if [[ "$de" != "5" ]]; then
+	arch-chroot /mnt /bin/bash <<EOF
 systemctl enable$display_manager
 systemctl enable NetworkManager.service
+EOF
+fi
+if [[ "$de" = "5" ]]; then
+	arch-chroot /mnt /bin/bash <<EOF
+systemctl enable iwd.service
+EOF
+fi
+arch-chroot /mnt /bin/bash <<EOF
 systemctl enable iptables.service
 systemctl enable paccache.timer
 EOF
