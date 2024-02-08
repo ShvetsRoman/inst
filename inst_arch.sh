@@ -4,7 +4,7 @@ set -ue
 # exec > inst_arch_error.log 2>&1
 
 timedatectl set-ntp true
-hwclock -w
+hwclock --systohc
 loadkeys ru
 setfont cyr-sun16
 
