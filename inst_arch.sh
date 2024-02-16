@@ -4,11 +4,15 @@ set -ue
 # exec > inst_arch_error.log 2>&1
 
 timedatectl set-ntp true
-hwclock --systohc
+hwclock -w
 loadkeys ru
 setfont cyr-sun16
 
 gitinst=https://raw.githubusercontent.com/ShvetsRoman/inst/main
+# linux-headers
+is_intel_cpu=$(lscpu | grep 'Intel' &>/dev/null && echo 'yes' || echo '')
+#nvme
+nvme=$(ls -l /dev/ | grep -E "nvme" &>/dev/null && echo 'yes' || echo '')
 
 color() {
 	case "$1" in
@@ -41,9 +45,17 @@ boot_dialog --title "ArchLinux" --yesno "  Для установки Arch Linux 
 
 ## Disk format
 lsblk_f=$(lsblk)
-boot_dialog --title "Disk" --inputbox "\n$lsblk_f\n\nПожалуйста, введите диск для разметки и форматирования.\nНапример sda\n\n" 25 60 sd
-df=$DIALOG_RESULT
-lsblk_dev=$(lsblk /dev/"$df")
+if [[ -n "$nvme" ]]; then
+	boot_dialog --title "Disk" --inputbox "\n$lsblk_f\n\nПожалуйста, введите диск для разметки и форматирования.\nНапример nvme0n1\n\n" 25 60 sd
+	df=$DIALOG_RESULT
+	dfd="$df""p"
+	lsblk_dev=$(lsblk /dev/"$df")
+else
+	boot_dialog --title "Disk" --inputbox "\n$lsblk_f\n\nПожалуйста, введите диск для разметки и форматирования.\nНапример sda\n\n" 25 60 sd
+	df=$DIALOG_RESULT
+	dfd="$df"
+	lsblk_dev=$(lsblk /dev/"$df")
+fi
 
 #SSD_HDD
 ssd_hdd=$(cat /sys/block/"$df"/queue/rotational)
@@ -143,7 +155,7 @@ boot_dialog --title "Display drivers" --menu "" 20 60 6 "1" "INTEL" "2" "ATI" "3
 dd="$DIALOG_RESULT"
 
 ## Desktop environment
-boot_dialog --title "Desktop environment" --menu "" 10 60 5 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM" "5" "БЕЗ DE"
+boot_dialog --title "Desktop environment" --menu "" 10 60 4 "1" "KDE" "2" "XFCE" "3" "MATE" "4" "BSPWM" "5" "БЕЗ DE"
 de="$DIALOG_RESULT"
 
 ## Localtime
@@ -217,9 +229,6 @@ if [[ $DIALOG_CODE -eq 1 ]]; then
 	exit 0
 fi
 
-# linux-headers
-is_intel_cpu=$(lscpu | grep 'Intel' &>/dev/null && echo 'yes' || echo '')
-
 ## Partitions
 color green "[***] Partitions..."
 sgdisk -Z /dev/"$df"          #очиска диска
@@ -229,11 +238,9 @@ color green "[***] INFO..."
 fdisk -l /dev/"$df" #инфо
 sleep 5s
 
-### FORMAT ###
-color green "[***] FORMAT..."
 # FORMAT EFI
 color green "[***] FORMAT EFI..."
-volume_efi=/dev/"$df""1"
+volume_efi=/dev/"$dfd""1"
 sgdisk /dev/"$df" -n=1:0:+"$uefisize"M -t=1:ef00 --change-name=1:"efi"
 mkfs.vfat -F32 -n EFI "$volume_efi"
 
@@ -244,12 +251,12 @@ if [[ "$fs" == "1" ]]; then
 	# SWAP
 	if [[ "$swapinstall" = "1" ]]; then
 		volume_new=$(("$volume_new" + 1))
-		volume_swap=/dev/"$df""$volume_new"
+		volume_swap=/dev/"$dfd""$volume_new"
 		sgdisk /dev/"$df" -n="$volume_new":0:+"$swapsize"M -t="$volume_new":8200 --change-name="$volume_new":"swap"
 	fi
 	# /
 	volume_new=$(("$volume_new" + 1))
-	volume_root=/dev/"$df""$volume_new"
+	volume_root=/dev/"$dfd""$volume_new"
 	sgdisk /dev/"$df" -n="$volume_new":0:+"$korsize"M -t="$volume_new":8304 --change-name="$volume_new":"arch"
 	mkfs.ext4 -L ROOT "$volume_root"
 	# home tmp ....
@@ -257,31 +264,31 @@ if [[ "$fs" == "1" ]]; then
 		case "$action" in
 		'"tmp"')
 			volume_new=$(("$volume_new" + 1))
-			volume_tmp=/dev/"$df""$volume_new"
+			volume_tmp=/dev/"$dfd""$volume_new"
 			sgdisk /dev/"$df" -n="$volume_new":0:+"$tmpsize"M -t="$volume_new":8300 --change-name="$volume_new":"tmp"
 			mkfs.ext4 -L TMP "$volume_tmp"
 			;;
 		'"var"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var=/dev/"$df""$volume_new"
+			volume_var=/dev/"$dfd""$volume_new"
 			sgdisk /dev/"$df" -n="$volume_new":0:+"$varsize"M -t="$volume_new":8310 --change-name="$volume_new":"var"
 			mkfs.ext4 -L VAR "$volume_var"
 			;;
 		'"var_tmp"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var_tmp=/dev/"$df""$volume_new"
+			volume_var_tmp=/dev/"$dfd""$volume_new"
 			sgdisk /dev/"$df" -n="$volume_new":0:+"$var_tmpsize"M -t="$volume_new":8311 --change-name="$volume_new":"var_tmp"
 			mkfs.ext4 -L VAR_TMP "$volume_var_tmp"
 			;;
 		'"var_pkg"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var_pkg=/dev/"$df""$volume_new"
+			volume_var_pkg=/dev/"$dfd""$volume_new"
 			sgdisk /dev/"$df" -n="$volume_new":0:+"$var_pkgsize"M -t="$volume_new":8300 --change-name="$volume_new":"var_pkg"
 			mkfs.ext4 -L VAR_PKG "$volume_var_pkg"
 			;;
 		'"home"')
 			volume_new=$(("$volume_new" + 1))
-			volume_home=/dev/"$df""$volume_new"
+			volume_home=/dev/"$dfd""$volume_new"
 			if [[ "$ssd_hdd" = "0" ]]; then
 				sgdisk /dev/"$df" -n="$volume_new":0:+"$homesize"M -t="$volume_new":8302 --change-name="$volume_new":"home"
 			else
@@ -300,13 +307,13 @@ if [[ "$fs" == "1" ]]; then
 	# SWAP
 	if [[ "$swapinstall" = "1" ]]; then
 		volume_new=$(("$volume_new" + 1))
-		volume_swap=/dev/"$df""$volume_new"
+		volume_swap=/dev/"$dfd""$volume_new"
 		mkswap -L SWAP "$volume_swap"
 		swapon "$volume_swap"
 	fi
 	# /
 	volume_new=$(("$volume_new" + 1))
-	volume_root=/dev/"$df""$volume_new"
+	volume_root=/dev/"$dfd""$volume_new"
 	mount "$volume_root" /mnt
 	# EFI
 	mkdir -p /mnt/boot
@@ -316,31 +323,31 @@ if [[ "$fs" == "1" ]]; then
 		case "$action" in
 		'"tmp"')
 			volume_new=$(("$volume_new" + 1))
-			volume_tmp=/dev/"$df""$volume_new"
+			volume_tmp=/dev/"$dfd""$volume_new"
 			mkdir -p /mnt/tmp
 			mount "$volume_tmp" /mnt/tmp
 			;;
 		'"var"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var=/dev/"$df""$volume_new"
+			volume_var=/dev/"$dfd""$volume_new"
 			mkdir -p /mnt/var
 			mount "$volume_var" /mnt/var
 			;;
 		'"var_tmp"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var_tmp=/dev/"$df""$volume_new"
+			volume_var_tmp=/dev/"$dfd""$volume_new"
 			mkdir -p /mnt/var/tmp
 			mount "$volume_var_tmp" /mnt/var/tmp
 			;;
 		'"var_pkg"')
 			volume_new=$(("$volume_new" + 1))
-			volume_var_pkg=/dev/"$df""$volume_new"
+			volume_var_pkg=/dev/"$dfd""$volume_new"
 			mkdir -p /mnt/var/cache/pacman/pkg
 			mount "$volume_var_pkg" /mnt/var/cache/pacman/pkg
 			;;
 		'"home"')
 			volume_new=$(("$volume_new" + 1))
-			volume_home=/dev/"$df""$volume_new"
+			volume_home=/dev/"$dfd""$volume_new"
 			mkdir -p /mnt/home
 			mount "$volume_home" /mnt/home
 			;;
@@ -354,21 +361,21 @@ fi
 if [[ "$fs" == "2" ]]; then
 	color green "[***] Partitions BTRFS..."
 	if [[ "$swapinstall" = "1" ]]; then
-		volume_swap=/dev/"$df""2"
+		volume_swap=/dev/"$dfd""2"
 		sgdisk /dev/"$df" -n=2:0:+"$swapsize"M -t=2:8200
 		if [[ "$ssd_hdd" = "0" ]]; then
 			sgdisk /dev/"$df" -n=3:0:+"$korsize"M -t=3:8300
 		else
 			sgdisk /dev/"$df" -n=3:0:0 -t=3:8300
 		fi
-		volume_root=/dev/"$df""3"
+		volume_root=/dev/"$dfd""3"
 	else
 		if [[ "$ssd_hdd" = "0" ]]; then
 			sgdisk /dev/"$df" -n=2:0:+"$korsize"M -t=2:8300
 		else
 			sgdisk /dev/"$df" -n=2:0:0 -t=2:8300
 		fi
-		volume_root=/dev/"$df""2"
+		volume_root=/dev/"$dfd""2"
 	fi
 fi
 
@@ -417,7 +424,7 @@ if [[ "$fs" == "2" ]]; then
 	mount -o compress=zstd,noatime,ssd,subvol=@ "$volume_root" /mnt
 
 	if [[ "$swapinstall" = "1" ]]; then
-		volume_swap=/dev/"$df""2"
+		volume_swap=/dev/"$dfd""2"
 		mkswap -L SWAP "$volume_swap"
 		swapon "$volume_swap"
 	fi
@@ -453,6 +460,7 @@ if [[ "$fs" == "2" ]]; then
 			;;
 		esac
 	done
+	btrfs_progs=" btrfs-progs"
 	root_systemd=" root=UUID=$(blkid -s UUID -o value "${volume_root}") rootflags=subvol=@"
 fi
 root_uuid="${root_systemd}"
