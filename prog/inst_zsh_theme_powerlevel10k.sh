@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
- 
+BASEDIR=$(dirname $(realpath "$0")) 
+
 function color() {
   case "$1" in
     red)
@@ -56,11 +56,11 @@ fi
 
 # Copy config
 color green "[*] Copy config ZSH..."
-cp -rfv "${DIR_TEMP_CONF}"/zsh/. "${HOME}"/
+cp -rfv "${BASEDIR}"conf/zsh/. "${HOME}"/
 
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
-sudo cp -rfv "${DIR_TEMP_CONF}"/zsh/. /root/
+sudo cp -rfv "${BASEDIR}"conf/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."

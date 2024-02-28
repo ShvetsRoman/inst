@@ -23,6 +23,9 @@ git clone https://github.com/PlagaMedicum/PlagueSur-icon-theme.git ~/.local/shar
 # Stylish-icon-theme
 color green "[*] Installing PlagueSur-icons-theme"
 git clone https://aur.archlinux.org/stylish-icon-theme.git ~/.local/share/icons/Stylish
+# Infinity-icon-theme
+color green "[*] Installing Infinity-icons-theme"
+git clone https://github.com/rogts/infinity-icon-theme.git ~/.local/share/icons/Infinity
 
 # Themes GitHub McMojave
 mkdir -p "${HOME}"/.themes/github_themes/
