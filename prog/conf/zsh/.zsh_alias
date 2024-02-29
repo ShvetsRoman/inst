@@ -100,6 +100,15 @@ alias pi='pikaur -S --noedit'
 alias pu='pikaur -Syu'
 alias pr='pikaur -R'
 
+# Apt Ubuntu
+alias sau='sudo apt update && sudo apt upgrade'
+alias sai='sudo apt -y install'
+alias sar='sudo apt -y remave'
+alias sap='sudo apt -y purge'
+alias saa='sudo apt autoclean'
+alias sas='sudo apt search'
+alias sal='sudo apt list --installed'
+
 # Mikrotik
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
 alias mikssh="ssh roman@192.168.88.1"
