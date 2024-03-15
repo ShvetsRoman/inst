@@ -52,6 +52,11 @@ alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 # Systemctl run service
 alias sysservice='systemctl list-units  --type=service'
 alias sysrunservice='systemctl list-units  --type=service  --state=running'
+alias syss='systemctl start'
+alias sysst='systemctl stop'
+alias sysr='systemctl restart'
+alias syse='systemctl enable'
+alias sysd='systemctl disable'
 
 # IWCTL
 alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
@@ -103,9 +108,9 @@ alias pr='pikaur -R'
 # Apt Ubuntu
 alias sau='sudo apt update && sudo apt upgrade'
 alias sai='sudo apt -y install'
-alias sar='sudo apt -y remave'
+alias sar='sudo apt -y remove'
 alias sap='sudo apt -y purge'
-alias saa='sudo apt autoclean'
+alias saa='sudo apt autoremove'
 alias sas='sudo apt search'
 alias sal='sudo apt list --installed'
 
@@ -114,17 +119,13 @@ alias mikreboot="ssh roman@192.168.88.1 reboot system"
 alias mikssh="ssh roman@192.168.88.1"
 
 # VIM
-# alias v='vim'
-# alias vi='vim'
-# alias vm='vim'
+alias v='vim'
+alias vi='vim'
+alias vm='vim'
 
-# NEOVIM
-alias n='nvim'
-alias nv='nvim'
-alias nvi='nvim'
-alias vi='nvim'
-alias vim='nvim'
-alias vm='nvim'
+# Ranger
+alias lf='ranger'
+alias ra='ranger'
 
 # SUDO
 sudo-command-line() {
