@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" }) -- enter cmd mode with ";"
@@ -32,3 +30,6 @@ map("n", "<F11>", "<cmd> :Lazy sync <CR>", { desc = "Lazy sync" })
 
 --   nvchad themes
 map("n", "<F12>", "<cmd> :Telescope themes <CR>", { desc = "Themes   nvchad themes" })
+
+-- Dismiss Noice Message
+map("n", "<leader>nd", "<cmd> :NoiceDismiss <CR>", { desc = "Noice Dismiss Noice Message" })

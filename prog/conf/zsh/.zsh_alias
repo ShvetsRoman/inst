@@ -45,8 +45,8 @@ alias md="mkdir -pv"
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
-alias media='/run/media/notebook/media/'
-alias cdm='cd /run/media/notebook/media/'
+alias media='/run/media/roman/media/'
+alias cdm='cd /run/media/roman/media/'
 alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
 # Systemctl run service
@@ -124,10 +124,6 @@ alias v='vim'
 alias vi='vim'
 alias vm='vim'
 
-# Ranger
-alias lf='ranger'
-alias ra='ranger'
-
 # SUDO
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
@@ -151,7 +147,7 @@ bindkey -M viins '\e\e' sudo-command-line
 
 # DD
 # ddcp () {
-  # dd bs=4M "$1" "$2" status=progress oflag=sync && sync
+  # dd bs=4M -- "$1" -- "$2" status=progress oflag=sync && sync
 # }
 
 #### mkdir + cd dir
@@ -160,7 +156,7 @@ mkcd () {
 }
 
 #### mkdir + new file
-mkdf () {
+mknf () {
 	mkdir -p -- "$1" && touch -- "$1"/"$2"
 }
 

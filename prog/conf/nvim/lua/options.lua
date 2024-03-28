@@ -13,3 +13,4 @@ opt.scrolloff = 5
 opt.sidescrolloff = 5
 opt.langmap =  "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж;:"
 opt.relativenumber = true
+-- opt.modifiable = true
