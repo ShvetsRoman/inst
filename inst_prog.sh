@@ -1,8 +1,6 @@
 #!/bin/bash
-#
-DIR_TEMP_PROG=$(dirname $(realpath "$0"))
-echo $DIR_TEMP_PROG/
-# DIR_TEMP_PROG="${HOME}"/temp/inst/prog
+
+DIR_TEMP_PROG="${HOME}"/temp/inst/prog
 GIT_CLONE="https://github.com/ShvetsRoman/inst.git"
 
 color() {

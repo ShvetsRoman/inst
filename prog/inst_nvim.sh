@@ -32,12 +32,11 @@ color green "[*] Installing NeoVim..."
 sudo pacman -S --noconfirm --needed neovim
 
 # Установка конфига для NEOVIM NvChad !!!
-color green "[*] Installing NvChad..."
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-# git clone https://github.com/NvChad/NvChad ~/.config/nvim
+# color green "[*] Installing NvChad..."
+# git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Копирование конфига
 color green "[*] Copy settings custom..."
-mkdir -p "${DIR_HOME_CONF}"/nvim/lua/custom
 cp -rfv "${DIR_TEMP_CONF}"/nvim "${DIR_HOME_CONF}"/
 nvim
