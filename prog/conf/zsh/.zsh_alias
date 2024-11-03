@@ -1,0 +1,214 @@
+# Цветной вывод команд
+if [ -f /usr/bin/exa ]; then
+  alias ls='exa --sort=type --icons'
+  alias lsa='exa -a --sort=type --icons'
+  alias ll='exa -l -g --sort=type --icons'
+  alias lla='exa -l -a -g --sort=type --icons'
+else
+  alias ls='ls --color=auto --group-directories-first'
+  alias lsa='ls -a -h --color=auto --group-directories-first'
+  alias ll='ls -l --color=auto --group-directories-first'
+  alias lla='ls -l -a -h --color=auto --group-directories-first'
+fi
+
+if [ -f /usr/bin/grc ]; then
+  alias ping="grc --colour=auto ping -c 4"
+else
+  alias ping='ping -c 4'
+fi
+#
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
+# Alias LARAVEL
+if [[ -d "${HOME}/.config/composer" ]]; then
+  alias laravel="{$HOME}/.config/composer/vendor/bin/laravel"
+fi
+
+# Upgrade pip
+alias up_pip='python -m pip install --upgrade pip'
+
+# Alias
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias n="nvim"
+alias nv="nvim"
+
+alias .="cd .."
+alias ..="cd ../.."
+alias ...="cd ../../.."
+
+alias nzcon="nvim ~/.zshrc"
+alias nzacon="nvim ~/.zsh_alias"
+
+alias cp="cp -iv"	# подтвердите, прежде чем перезаписывать что-либо
+alias mv="mv -iv"	# Выводить информацию о каждом файле, который обрабатывает команда mv
+alias rm="rm -Ivf"
+alias md="mkdir -pv"
+
+alias c='clear'
+alias x='exit'
+alias ln='ln -s'
+alias media='/run/media/roman/media/'
+alias cdm='cd /run/media/roman/media/'
+alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
+
+# Systemctl run service
+alias sysservice='systemctl list-units  --type=service'
+alias sysrunservice='systemctl list-units  --type=service  --state=running'
+alias syss='systemctl start'
+alias sysst='systemctl status'
+alias sysstop='systemctl stop'
+alias sysr='systemctl restart'
+alias syse='systemctl enable'
+alias sysd='systemctl disable'
+
+# IWCTL
+alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
+alias iwctlcon='iwctl station wlan0 connect'
+alias iwctlconhome='iwctl station wlan0 connect HOME_test'
+alias iwctldiscon='iwctl station wlan0 disconnect'
+alias iwctlinfo='iwctl station wlan0 show'
+
+# GIT
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias gits='git status'
+alias gs='git status'
+alias gita='git add .'
+alias ga='git add .'
+# alias gitc='git commit -m "add"'
+# alias gc='git commit -m "add"'
+gitc() {
+  if [[ -z "$1" ]] ; then
+    com='"add"'
+  else
+    com="$@"
+  fi
+  git commit -m "$com"
+}
+gc() {
+  if [[ -z "$1" ]] ; then
+    com='"add"'
+  else
+    com="$@"
+  fi
+  git commit -m "$com"
+}
+alias gitp='git push'
+alias gp='git push'
+
+# Pacman
+alias spu='sudo pacman -Syu'
+alias sps='sudo pacman -Ss'
+alias spi='sudo pacman -S'
+alias spr='sudo pacman -R'
+alias sprns='sudo pacman -Rns'
+alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
+
+# Pikaur
+alias pi='pikaur -S --noedit'
+alias pu='pikaur -Syu'
+alias pss='pikaur -Ss'
+alias pr='pikaur -R'
+
+# Apt Ubuntu
+alias sau='sudo apt update && sudo apt upgrade'
+alias sai='sudo apt -y install'
+alias sar='sudo apt -y remove'
+alias sap='sudo apt -y purge'
+alias saa='sudo apt autoremove'
+alias sas='sudo apt search'
+alias sal='sudo apt list --installed'
+
+# Mikrotik
+alias mikreboot="ssh roman@192.168.88.1 reboot system"
+
+# SUDO
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
+}
+zle -N sudo-command-line
+# Defined shortcut keys: [Esc] [Esc]
+bindkey -M emacs '\e\e' sudo-command-line
+bindkey -M vicmd '\e\e' sudo-command-line
+bindkey -M viins '\e\e' sudo-command-line
+
+# DD
+# ddcp () {
+  # dd bs=4M -- "$1" -- "$2" status=progress oflag=sync && sync
+# }
+
+#### mkdir + cd dir
+mkcd () {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+#### mkdir + new file
+mknf () {
+	mkdir -p -- "$1" && touch -- "$1"/"$2"
+}
+
+# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2
+ex () {
+  color_red() { echo -e "\n\033[31m$2\033[0m"; }
+  color_yellow() { echo -e "\n\033[33m$2\033[0m"; }
+  color_green() { echo -e "\n\033[32m$1\033[0m"; }
+  if [[ -f "$1" ]] ; then
+    if [[ -z "$2" ]] ; then
+      name_dir=${1/.*}
+      mkdir -p "$name_dir"
+    else
+      name_dir="$2"
+      mkdir -p "$name_dir"
+    fi
+    case $1 in
+     *.tar.bz2) tar xvjf $1 -C "$name_dir"   ;;
+     *.tar.gz)  tar xvzf $1 -C "$name_dir"   ;;
+     *.tar.xz)  tar xvjf $1 -C "$name_dir"   ;;
+     *.bz2)     tar xvjf $1 -C "$name_dir"   ;;
+     *.tar)     tar xvf $1 -C "$name_dir"    ;;
+     *.tbz2)    tar xvjf $1 -C "$name_dir"   ;;
+     *.tgz)     tar xvzf $1 -C "$name_dir"   ;;
+     *.rar)     unrar e $1 "$name_dir"       ;;
+     *.zip)     unzip $1 -d "$name_dir"      ;;
+     *.7z)      7z x $1 -o "$name_dir"       ;;
+     *) color_red "$1 Неизвестный метод сжатия файлов" ;;
+    esac
+    color_green "$1 распакован в $name_dir"
+  else
+    color_yellow "$1 не является архивом !!!"
+  fi
+}
+
+# Упаковка в архив командой pk 7z /что/мы/пакуем имя_файла.7z
+# при этом архив будет в Домашней папке.
+pk () {
+  if [ $1 ] ; then
+  case $1 in
+tbz)       tar cjvf $2.tar.bz2 $2      ;;
+tgz)       tar czvf $2.tar.gz  $2       ;;
+tar)      tar cpvf $2.tar  $2       ;;
+bz2)    bzip $2 ;;
+gz)        gzip -c -9 -n $2 > $2.gz ;;
+zip)       zip -r $2.zip $2   ;;
+7z)        7z a $2.7z $2    ;;
+*)         echo "'$1' не может быть упакован с помощью pk()" ;;
+  esac
+    else
+echo "'$1' не является допустимым файлом"
+fi
+}

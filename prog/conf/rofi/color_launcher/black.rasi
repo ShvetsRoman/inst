@@ -1,0 +1,26 @@
+* {
+  background:                     #11121D;
+  background-alt:                 #00000000;
+  background-bar:                 #32344a;
+  foreground:                     #acb0d0;
+  accent:			  #787c99;
+}
+ 
+/*  
+* {
+  al:  #00000000;
+  bg:  #000000ff;
+  se:  #101010ff;
+  fg:  #FFFFFFff;
+  ac:  #EC7875ff;
+}
+*/ 
+  
+* {
+  al:  #00000000;
+  bg:  #11121DE6;
+  se:  #32344a;
+  fg:  #acb0d0;
+  ac:  #787c99;
+}
+  

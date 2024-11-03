@@ -1,0 +1,30 @@
+# default apps
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
+export TERMINAL="kitty"
+# export TERMINAL="konsole"
+# export TERMINAL="alacritty"
+export TERM="xterm-256color"
+export BROWSER="google-chrome-stable"
+export LC_ALL=ru_UA.UTF-8
+
+# pip
+export PATH=$PATH:"$HOME/.local/bin"
+
+# path
+export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/.local/bin/:$PATH"
+
+# path rofi
+export PATH="$HOME/.config/rofi/bin:$PATH"
+
+# path laravel
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+# cleaning up home folder
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+#export ZDOTDIR="$HOME/.config/zsh"
+
+#Git автодополнения
+autoload -Uz compinit && compinit 

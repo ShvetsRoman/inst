@@ -1,0 +1,210 @@
+###--- wm independent hotkeys ---###
+# terminal emulator
+super + Return
+  alacritty
+   
+# chrome 
+super + F1
+  google-chrome-stable
+   
+# doublecmd 
+# super + F2
+#   doublecmd 
+
+# dolphin
+super + F2
+  dolphin 
+
+# gimp
+super + F3
+  gimp
+
+# deadbeef 
+super + F4
+  deadbeef 
+
+# Inkscape
+super + i
+  inkscape
+
+# Libreoffice 
+super + o
+  libreoffice
+
+# Kcalc  
+XF86Calculator
+  kcalc
+
+# Media player controls
+XF86AudioPlay
+  playerctl --all-players play-pause
+XF86AudioNextexec
+  playerctl --all-players next
+XF86AudioPrevexec
+  playerctl --all-players previous
+XF86AudioStopexec
+  playerctl --all-players stop
+
+# Sreen brightness controls
+XF86MonBrightnessUp
+  xbacklight -inc 20 # increase screen brightness
+XF86MonBrightnessDown
+  xbacklight -dec 20 # decrease screen ndbrightness
+
+# betterlockscreen
+XF86ScreenSaver
+  betterlockscreen -l blur
+super + shift + x
+  betterlockscreen -l blur
+#xautolock -time 15 -locker 'betterlockscreen -l blur' -detectsleep &
+#xautolock -time 30 -locker "systemctl suspend" &
+
+# Touchpad OFF
+XF86TouchpadToggle
+  $HOME/.config/bspwm/scripts/touchpad_toggle.sh
+
+# КНОПКИ УПРАВЛЕНИЯ ГРОМКОСТЬЮ ДЛЯ ПУЛЬСАУДИО
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMuteexec
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# screenshot
+super + z
+  scrot -s 
+
+# rofi
+super + d
+  $HOME/.config/rofi/bin/launcher.sh
+# АПЛЕТОВ ROFI
+super + n
+  $HOME/.config/rofi/bin/network.sh
+super + p
+  $HOME/.config/rofi/bin/powermenu.sh
+# Update system
+super + u
+  $HOME/.config/polybar/scripts/up_system.sh
+
+###########################################
+####          HOTKEYS BSPWM         ####
+###########################################
+
+# ПЕРЕЗАГРУЗИТЬ КОНФИГ SXHKD
+super + Escape
+  pkill -USR1 -x sxhkd
+
+# ВЫЙТИ/ПЕРЕЗАГРУЗИТЬ BSPWM
+super + alt + {q,r}
+  bspc {quit,wm -r}
+
+# ЗАКРЫТЬ ОКНО ИЛИ УБИТЬ ЕГО
+super + {_,shift + }q
+  bspc node -{c,k}
+
+# ПЕРЕХОД В РЕЖИМ МОНОКЛЯ И ОБРАТНО
+super + m
+  bspc desktop -l next
+
+# отправить новейший отмеченный узел в новейший предварительно выбранный узел(яхз что это значит)
+super + y
+  bspc node newest.marked.local -n newest.!automatic.local
+
+# ПОМЕНЯТЬ МЕСТАМИ ТЕКУЩЕЕ И САМОЕ БОЛЬШОЕ ОКНО
+super + g
+  bspc node -s biggest.window
+
+###########################################
+####         УПРАВЛЕНИЕ ФЛАГАМИ        ####
+###########################################
+
+# ПОМЕНЯТЬ СТАТУС ОКНА НА /ТАЙЛОВОЕ/ПСЕВДО ТАЙЛОВОЕ/ПЛАВАЮЩЕЕ/ПОЛНОЭКРАННОЕ
+super + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# УСТАНОВИТЬ ФЛАГ УЗЛА /ОТМЕЧЕННЫЙ/ЗАЛОЧЕННЫЙ/ЛИПКИЙ/ПРИВАТНЫЙ
+super + ctrl + {m,x,y,z}
+  bspc node -g {marked,locked,sticky,private}
+
+###########################################
+####         УПРАВЛЕНИЕ ФОКУСОМ        ####
+###########################################
+
+# ПЕРЕМЕСТИТЬ ОКНО
+super + {_,shift + }{h,j,k,l}
+  bspc node -{f,s} {west,south,north,east}
+super + {_,shift + }{Left,Down,Up,Right}
+  bspc node -{f,s} {west,south,north,east}
+
+# ВЫДЕЛИТЬ НЕСКОЛЬКО ПРИЛОЖЕНИЙ НАПРИМЕР ЧТО БЫ ПЕРЕМЕСТИТЬ ГРУППУ ПРИЛОЖЕНИЙ НА ДРУГОЙ ВОРКСПЕЙС
+super + {p,b,comma,period}
+  bspc node -f @{parent,brother,first,second}
+
+# ПЕРЕКЛЮЧЕНИЕ ПО ОТКРЫТЫМ ПРИЛОЖЕНИЯМ В ПРЕДЕЛАХ ОДНОГО ВОРКСПЕЙСА
+super + {_,shift + }c
+  bspc node -f {next,prev}.local.!hidden.window
+
+# ПЕРЕХОД ПО ВОРКСПЕЙСАМ
+super + bracket{left,right}
+  bspc desktop -f {prev,next}.local
+
+# ВЕРНУТСЯ НА ПРЕДЫДУЩИЙ АКТИВНЫЙ ВОРКСПЕЙС
+super + {grave,Tab}
+  bspc {node,desktop} -f last
+
+# ПЕРЕХОД НА ПО ИСТОРИИ ОТКРЫТЫХ ПРИЛОЖЕНИЙ
+super + {o,i}
+  bspc wm -h off; \
+  bspc node {older,newer} -f; \
+  bspc wm -h on
+
+# ПЕРЕКЛЮЧИТСЯ НА ВОРКСПЕЙС ИЛИ ПЕРЕТАЩИТЬ НА НЕГО АКТИВНОЕ ОКНО
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f,node -d} '^{1-9,10}'
+
+###########################################
+####       ПРЕДВАРИТЕЛЬНЫМ ВЫБОР       ####
+###########################################
+
+#ВЫБРАТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + {h,j,k,l}
+  bspc node -p {west,south,north,east}
+super + ctrl + {Left,Down,Up,Right} 
+  bspc node -p {west,south,north,east}
+
+# ВЫБРАТЬ ВОРКСПЕЙС НА КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# ОТМЕНИТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + space
+	bspc node -p cancel
+
+# ОТМЕНИТЬ ВОРКСПЕЙС НА КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+###########################################
+####   ПЕРЕМЕЩЕНИЕ/ИЗМЕНЕНИЕ РАЗМЕРА   ####
+###########################################
+
+# УВЕЛИЧИТЬ ОКНО СДВИНУВ ОДНУ ИЗ ЕГО СТОРОН
+super + alt + {h,j,k,l}
+  bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + alt + {Left,Down,Up,Right} 
+  bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# УМЕНЬШИТЬ ОКНО СДВИНУВ ОДНУ ИЗ ЕГО СТОРОН
+super + alt + shift + {h,j,k,l}
+  bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+super + alt + shift + {Left,Down,Up,Right} 
+  bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# ПЕРЕМЕЩЕНИЕ ПЛАВАЮЩИХ ОКОН
+super + shift + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
