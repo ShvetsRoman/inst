@@ -6,7 +6,10 @@ export TERMINAL="kitty"
 # export TERMINAL="alacritty"
 export TERM="xterm-256color"
 export BROWSER="google-chrome-stable"
-export LC_ALL=ru_UA.UTF-8
+# export LC_ALL=ua_UA.UTF-8
+
+# SSH-AGENT
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # pip
 export PATH=$PATH:"$HOME/.local/bin"

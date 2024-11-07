@@ -73,14 +73,15 @@ alias iwctldiscon='iwctl station wlan0 disconnect'
 alias iwctlinfo='iwctl station wlan0 show'
 
 # GIT
-alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
-alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_git'
+alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_git'
 alias gits='git status'
 alias gs='git status'
 alias gita='git add .'
 alias ga='git add .'
 # alias gitc='git commit -m "add"'
 # alias gc='git commit -m "add"'
+
 gitc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
@@ -89,7 +90,8 @@ gitc() {
   fi
   git commit -m "$com"
 }
-gc() {
+
+gtc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
   else
@@ -127,25 +129,21 @@ alias sal='sudo apt list --installed'
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
 
 # SUDO
-sudo-command-line() {
-    [[ -z $BUFFER ]] && zle up-history
-    if [[ $BUFFER == sudo\ * ]]; then
-        LBUFFER="${LBUFFER#sudo }"
-    elif [[ $BUFFER == $EDITOR\ * ]]; then
-        LBUFFER="${LBUFFER#$EDITOR }"
-        LBUFFER="sudoedit $LBUFFER"
-    elif [[ $BUFFER == sudoedit\ * ]]; then
-        LBUFFER="${LBUFFER#sudoedit }"
-        LBUFFER="$EDITOR $LBUFFER"
-    else
-        LBUFFER="sudo $LBUFFER"
-    fi
-}
-zle -N sudo-command-line
-# Defined shortcut keys: [Esc] [Esc]
-bindkey -M emacs '\e\e' sudo-command-line
-bindkey -M vicmd '\e\e' sudo-command-line
-bindkey -M viins '\e\e' sudo-command-line
+# sudo-command-line() {
+#     [[ -z $BUFFER ]] && zle up-history
+#     if [[ $BUFFER == sudo\ * ]]; then
+#         LBUFFER="${LBUFFER#sudo }"
+#     elif [[ $BUFFER == $EDITOR\ * ]]; then
+#         LBUFFER="${LBUFFER#$EDITOR }"
+#         LBUFFER="sudoedit $LBUFFER"
+#     elif [[ $BUFFER == sudoedit\ * ]]; then
+#         LBUFFER="${LBUFFER#sudoedit }"
+#         LBUFFER="$EDITOR $LBUFFER"
+#     else
+#         LBUFFER="sudo $LBUFFER"
+#     fi
+# }
+# zle -N sudo-command-line
 
 # DD
 # ddcp () {
