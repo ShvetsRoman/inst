@@ -52,16 +52,13 @@ fi
 
 # Kлонировать, если выбран хоть один пункт меню утановки программ
 if [[ -n "$progs" ]]; then
-	color green "[*] Cloning a repository - inst..."
-	# Если папка temp есть, тогда удаляем.
-	if [[ -d "${HOME}"/temp ]]; then
-		# rm -rf ${HOME}/temp
-		# color yellow "### Папка ~/temp удалена ###"
-		# git clone https://github.com/ShvetsRoman/inst.git ${HOME}/temp/inst
-		echo ""
-	else
-		git clone "${GIT_CLONE}" "${HOME}"/temp/inst
-	fi
+  if [[ ! -d "${HOME}"/01_project/sh/inst/prog ]]; then
+    # Если нет папки temp, тогда скачиваем.
+    if [[ ! -d "${HOME}"/temp ]]; then
+      color green "[*] Cloning a repository - inst..."
+      git clone "${GIT_CLONE}" "${HOME}"/temp/inst
+    fi
+  fi
 else
 	color red "Выберите программы для установки."
 	exit 0
