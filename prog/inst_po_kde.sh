@@ -8,16 +8,16 @@ core_packages_aur=''
 
 ### Install PACMAN ###
 # KDE 
-core_packages+=' packagekit-qt5 libappindicator-gtk2 libappindicator-gtk3 colord-kde kaccounts-integration kaccounts-providers kdeconnect kdenetwork-filesharing kwalletmanager'
+core_packages+=' packagekit-qt5 libappindicator-gtk2 colord-kde kaccounts-integration kaccounts-providers kdeconnect kdenetwork-filesharing kwalletmanager'
 
 # Latte-dock
-core_packages+=' latte-dock'
+# core_packages+=' latte-dock'
 
 # Kvantum
 core_packages+=' kvantum'
 
 # Dolphin
-core_packages+=' dolphin-plugins kompare kdegraphics-thumbnailers kimageformats qt5-imageformats kdesdk-thumbnailers ffmpegthumbs taglib audiocd-kio kio-gdrive'
+core_packages+=' dolphin-plugins kompare kimageformats qt5-imageformats kdesdk-thumbnailers ffmpegthumbs taglib audiocd-kio kio-gdrive'
 
 # Torrent
 core_packages+=' ktorrent'
@@ -39,9 +39,9 @@ core_packages+=' libreoffice-still libreoffice-still-uk'
 ### end packages pacman ###
 
 ### Install AUR ###
-core_packages_aur+=' deadbeef google-chrome raw-thumbnailer'
+# core_packages_aur+=' deadbeef google-chrome'
 ### end packages aur ###
 
 ### INSTALL Programs ###
-sudo pacman -Syyuu --noconfirm --needed "$core_packages"
-pikaur -S --noconfirm --noedit "$core_packages_aur"
+sudo pacman -Syu --noconfirm --needed "$core_packages"
+# pikaur -S --noconfirm --noedit "$core_packages_aur"
