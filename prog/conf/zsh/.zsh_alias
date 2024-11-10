@@ -90,10 +90,7 @@ gitc() {
   fi
   git commit -m "$com"
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ecd4545f0039bb29bc5b6620f1ec46d93fc834b
 gtc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
