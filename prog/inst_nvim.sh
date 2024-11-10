@@ -32,7 +32,7 @@ fi
 
 # Установка NEOVIM
 color green "[*] Installing NeoVim..."
-sudo pacman -S --noconfirm --needed neovim
+sudo pacman -S --noconfirm --needed neovim xclip
 
 # Установка конфига для NEOVIM NvChad !!!
 color green "[*] Installing NvChad..."

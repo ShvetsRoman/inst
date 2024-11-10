@@ -89,7 +89,7 @@ gitc() {
   fi
   git commit -m "$com"
 }
-gc() {
+gtc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
   else
