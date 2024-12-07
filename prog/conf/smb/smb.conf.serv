@@ -1,8 +1,9 @@
 [global]
   workgroup = HOME
   server string = Samba Server
-  netbios name = server-pc
+  netbios name = roman-pc
   server role = standalone server
+  security = user
 
 ## Логирование
   log file = /var/log/samba/%m.log
@@ -10,71 +11,13 @@
   max log size = 50
 
 ## Ограничение версии протокола
-  #server min protocol = SMB2_02
+# server min protocol = SMB2_02
   server max protocol = SMB3
 
-[serv_documents]
-  comment = Publicshare
-  path = /run/media/serv/media/Documents
-  usershare max shares = 10
-  public = yes
-  guest only = yes
+[server_media]
+  comment = Server
+  path = /run/media/serv/media/
+  valid users = @sambashare
+  guest ok = no
   writable = yes
-  force create mode = 0666
-  force directory mode = 0777
-  browseable = yes
-
-[serv_music]
-  comment = Publicshare
-  path = /run/media/serv/media/Music
-  usershare max shares = 10
-  public = yes
-  guest only = yes
-  writable = yes
-  force create mode = 0666
-  force directory mode = 0777
-  browseable = yes
-
-[serv_pictures]
-  comment = Publicshare
-  path = /run/media/serv/media/Pictures
-  usershare max shares = 10
-  public = yes
-  guest only = yes
-  writable = yes
-  force create mode = 0666
-  force directory mode = 0777
-  browseable = yes
-
-[serv_videos]
-  comment = Publicshare
-  path = /run/media/serv/media/Videos
-  usershare max shares = 10
-  public = yes
-  guest only = yes
-  writable = yes
-  force create mode = 0666
-  force directory mode = 0777
-  browseable = yes
-
-# [serv_00_setup]
-#   comment = Publicshare
-#   path = /run/media/serv/media/00_setup
-#   usershare max shares = 10
-#   public = yes
-#   guest only = yes
-#   writable = yes
-#   force create mode = 0666
-#   force directory mode = 0777
-#   browseable = yes
-
-# [serv_01_project]
-#   comment = Publicshare
-#   path = /run/media/serv/media/01_project
-#   usershare max shares = 10
-#   public = yes
-#   guest only = yes
-#   writable = yes
-#   force create mode = 0666
-#   force directory mode = 0777
-#   browseable = yes
+  browsable = yes

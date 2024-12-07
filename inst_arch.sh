@@ -659,22 +659,19 @@ QUIET=$5
 
 # Basic argument checks:
 if [ -z "$COUNT" ] ; then
-  echo "COUNT is not provided."
-  usage
+  echo "COUNT не вказано."
 fi
 if [ ! -z "$6" ] ; then
-  echo "Too many options."
-  usage
+  echo "Надто багато варіантів."
 fi
 if [ -n "$QUIET" ] && [ "x$QUIET" != "x-q"	] ; then
   echo "Option 4 is either -q or empty. Given: \"$QUIET\""
-  usage
 fi
 
-# $max_snap is the highest number of snapshots that will be kept for $SNAP.
+# $max_snap це найбільша кількість знімків, які зберігатимуться $SNAP.
 max_snap=$COUNT
 
-# Create new snapshot:
+# Створити новий snapshot:
 cmd="btrfs subvolume snapshot $SOURCE $TARGET/$(date --iso-8601=seconds)-@${SNAP}"
 if [ -z "$QUIET" ]; then
   echo "$cmd"
@@ -683,7 +680,7 @@ else
   $cmd >/dev/null
 fi
 
-# Clean up older snapshots:
+# Прибирати старше snapshots:
 for i in $(find "$TARGET" -maxdepth 1|sort |grep @"${SNAP}"\$|head -n -${max_snap}); do
   cmd="btrfs subvolume delete $i"
   if [ -z "$QUIET" ]; then
@@ -693,6 +690,7 @@ for i in $(find "$TARGET" -maxdepth 1|sort |grep @"${SNAP}"\$|head -n -${max_sna
     $cmd >/dev/null
   fi
 done
+
 snap-shot
 chmod +x /usr/local/bin/btrfs-snapshot
 chown -R $username:users /usr/local/bin/btrfs-snapshot

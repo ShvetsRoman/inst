@@ -133,3 +133,7 @@ for action in $progs; do
 		;;
 	esac
 done
+
+sudo pacman -S intel-ucode			# Intel
+sudo mkinitcpio -P 					# Обновляем образы initramfs
+sudo grub-mkconfig -o /boot/grub/grub.cfg

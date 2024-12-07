@@ -41,6 +41,13 @@ if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
 fi
 
 #-----------------------------
+# Плагин поиск в истории
+#-----------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
+
+#-----------------------------
 # Alias
 #-----------------------------
 if [[ -f ${HOME}/.zsh_alias ]]; then

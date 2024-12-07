@@ -20,14 +20,14 @@ fi
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+#
+alias cat='bat'
+alias df='duf'
 
-# Alias LARAVEL
-if [[ -d "${HOME}/.config/composer" ]]; then
-  alias laravel="{$HOME}/.config/composer/vendor/bin/laravel"
-fi
+alias hs='history -100 | grep'
 
 # Upgrade pip
-alias up_pip='python -m pip install --upgrade pip'
+alias pip_up='python -m pip install --upgrade pip'
 
 # Alias
 alias v="nvim"
@@ -40,8 +40,8 @@ alias .="cd .."
 alias ..="cd ../.."
 alias ...="cd ../../.."
 
-alias nzcon="nvim ~/.zshrc"
-alias nzacon="nvim ~/.zsh_alias"
+alias nzc="nvim ~/.zshrc"
+alias nza="nvim ~/.zsh_alias"
 
 alias cp="cp -iv"	# подтвердите, прежде чем перезаписывать что-либо
 alias mv="mv -iv"	# Выводить информацию о каждом файле, который обрабатывает команда mv
@@ -55,15 +55,34 @@ alias media='/run/media/roman/media/'
 alias cdm='cd /run/media/roman/media/'
 alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
+# Docker-compoce
+alias dcu='docker-compose up'
+alias dcud='docker-compose up -d'
+alias dcd='docker-compose down'
+alias dcdv='docker-compose down --volumes'
+alias dcps='docker-compose ps'
+alias dcpsa='docker-compose ps -a'
+alias dci='docker-compose images'
+alias dcst='docker-compose start'
+alias dcsp='docker-compose stop'
+alias dcr='docker-compose restart'
+alias dcl='docker-compose logs'
+
+# Docker
+alias dsp='docker system prune'
+alias dspa='docker system prune -a'
+
 # Systemctl run service
 alias sysservice='systemctl list-units  --type=service'
 alias sysrunservice='systemctl list-units  --type=service  --state=running'
-alias syss='systemctl start'
-alias sysst='systemctl status'
-alias sysstop='systemctl stop'
-alias sysr='systemctl restart'
-alias syse='systemctl enable'
-alias sysd='systemctl disable'
+alias sst='systemctl start'
+alias sstn='systemctl start --now'
+alias sss='systemctl status'
+alias ssp='systemctl stop'
+alias sspn='systemctl stop --now'
+alias srt='systemctl restart'
+alias see='systemctl enable'
+alias sde='systemctl disable'
 
 # IWCTL
 alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
@@ -73,15 +92,14 @@ alias iwctldiscon='iwctl station wlan0 disconnect'
 alias iwctlinfo='iwctl station wlan0 show'
 
 # GIT
-alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_git'
-alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_git'
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias gits='git status'
 alias gs='git status'
 alias gita='git add .'
 alias ga='git add .'
 # alias gitc='git commit -m "add"'
 # alias gc='git commit -m "add"'
-
 gitc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
@@ -90,7 +108,6 @@ gitc() {
   fi
   git commit -m "$com"
 }
-
 gtc() {
   if [[ -z "$1" ]] ; then
     com='"add"'
@@ -102,6 +119,11 @@ gtc() {
 alias gitp='git push'
 alias gp='git push'
 
+alias gitpl='git pull'
+alias gpl='git pull'
+
+alias mir_list='reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mir_list_nvim='sudoedit /etc/pacman.d/mirrorlist'
 # Pacman
 alias spu='sudo pacman -Syu'
 alias sps='sudo pacman -Ss'
@@ -129,21 +151,25 @@ alias sal='sudo apt list --installed'
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
 
 # SUDO
-# sudo-command-line() {
-#     [[ -z $BUFFER ]] && zle up-history
-#     if [[ $BUFFER == sudo\ * ]]; then
-#         LBUFFER="${LBUFFER#sudo }"
-#     elif [[ $BUFFER == $EDITOR\ * ]]; then
-#         LBUFFER="${LBUFFER#$EDITOR }"
-#         LBUFFER="sudoedit $LBUFFER"
-#     elif [[ $BUFFER == sudoedit\ * ]]; then
-#         LBUFFER="${LBUFFER#sudoedit }"
-#         LBUFFER="$EDITOR $LBUFFER"
-#     else
-#         LBUFFER="sudo $LBUFFER"
-#     fi
-# }
-# zle -N sudo-command-line
+# Defined shortcut keys: [Esc] [Esc]
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
+}
+zle -N sudo-command-line
+bindkey -M emacs '\e\e' sudo-command-line
+bindkey -M vicmd '\e\e' sudo-command-line
+bindkey -M viins '\e\e' sudo-command-line
 
 # DD
 # ddcp () {
@@ -210,3 +236,6 @@ zip)       zip -r $2.zip $2   ;;
 echo "'$1' не является допустимым файлом"
 fi
 }
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

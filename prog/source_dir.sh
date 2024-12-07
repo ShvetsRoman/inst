@@ -16,8 +16,8 @@ color() {
 
 DIR_HOME_CONF="${HOME}"/.config
 
-if [[ -d "${HOME}"/01_project/sh/inst/prog ]]; then 
-    DIR_TEMP_PROG="${HOME}"/01_project/sh/inst/prog
+if [[ -d "${HOME}"/00_setup/sh/inst/prog ]]; then 
+    DIR_TEMP_PROG="${HOME}"/00_setup/sh/inst/prog
 elif [[ -d "${HOME}"/temp/inst/prog ]]; then
     DIR_TEMP_PROG="${HOME}"/temp/inst/prog
 else
@@ -27,8 +27,8 @@ else
   sleep 5s
 fi
 
-if [[ -d "${HOME}"/01_project/sh/inst/prog/conf ]]; then 
-    DIR_TEMP_CONF="${HOME}"/01_project/sh/inst/prog/conf
+if [[ -d "${HOME}"/00_setup/sh/inst/prog/conf ]]; then 
+    DIR_TEMP_CONF="${HOME}"/00_setup/sh/inst/prog/conf
 elif [[ -d "${HOME}"/temp/inst/prog/conf ]]; then
     DIR_TEMP_CONF="${HOME}"/temp/inst/prog/conf
 else

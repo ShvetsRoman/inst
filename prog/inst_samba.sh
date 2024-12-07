@@ -1,14 +1,14 @@
 #!/bin/bash
 #set -e
 
-if [[ -f "${HOME}"/01_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/01_project/sh/inst/prog/source_dir.sh
+if [[ -f "${HOME}"/00_setup/sh/inst/prog/source_dir.sh ]]; then
+  source "${HOME}"/00_setup/sh/inst/prog/source_dir.sh
 elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
   source "${HOME}"/temp/inst/prog/source_dir.sh
 fi
 
 # Установка SAMBA
-sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb
+sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb kdenetwork-filesharing
 pikaur -S --noconfirm --noedit wsdd2
 
 # Открытие портов
