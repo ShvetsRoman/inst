@@ -15,13 +15,16 @@ fi
 #------------------------------
 # Название темы
 #------------------------------
-ZSH_THEME="p10k_my.zsh"
-# ZSH_THEME="p10k-my-theme"
+# ZSH_THEME="p10k"
+# ZSH_THEME="p10k_1"
+ZSH_THEME="p10k_2"
+# ZSH_THEME="p10k_3"
+# ZSH_THEME="p10k_4"
 #------------------------------
 # Подключение конфигурации, если она есть
 #------------------------------
-if [[ -f ${HOME}/.${ZSH_THEME} ]]; then 
-    source ${HOME}/.${ZSH_THEME}
+if [[ -f ${HOME}/.${ZSH_THEME}.zsh ]]; then 
+    source ${HOME}/.${ZSH_THEME}.zsh
 elif [[ -f ${HOME}/.p10k.zsh ]]; then
     source ${HOME}/.p10k.zsh
 fi
@@ -46,6 +49,13 @@ fi
 if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
+
+# #-----------------------------
+# # Плагин avto activate venv
+# #-----------------------------
+# if [[ -f /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh ]]; then
+#     source /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
+# fi
 
 #-----------------------------
 # Alias
@@ -94,3 +104,6 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 setopt APPEND_HISTORY            # append to history file (Default)
 setopt HIST_NO_STORE             # Don't store history commands
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history list.
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
