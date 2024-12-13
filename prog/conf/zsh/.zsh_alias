@@ -176,65 +176,73 @@ bindkey -M viins '\e\e' sudo-command-line
   # dd bs=4M -- "$1" -- "$2" status=progress oflag=sync && sync
 # }
 
-#### mkdir + cd dir
+#### mkcd newdir cd newdir
 mkcd () {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
-#### mkdir + new file
+#### mknf newdir + newfilename
 mknf () {
 	mkdir -p -- "$1" && touch -- "$1"/"$2"
 }
 
-# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2
+#### mkmv newdir + filename
+mkmv () {
+	mkdir -p -- "$1" && mv -- "$2" "$1"/"$2"
+}
+
+# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2 папка для распаковки (опционально)
 ex () {
-  color_red() { echo -e "\n\033[31m$2\033[0m"; }
-  color_yellow() { echo -e "\n\033[33m$2\033[0m"; }
-  color_green() { echo -e "\n\033[32m$1\033[0m"; }
-  if [[ -f "$1" ]] ; then
-    if [[ -z "$2" ]] ; then
+  color_red() { echo -e "\033[31m$1\033[0m"; }
+  color_yellow() { echo -e "\033[33m$1\033[0m"; }
+  color_green() { echo -e "\033[32m$1\033[0m"; }
+  if [[ -f $1 ]] ; then
+    if [[ -z $2 ]] ; then
       name_dir=${1/.*}
-      mkdir -p "$name_dir"
+      mkdir -p $name_dir
     else
-      name_dir="$2"
-      mkdir -p "$name_dir"
+      name_dir=$2
+      mkdir -p $name_dir
     fi
     case $1 in
-     *.tar.bz2) tar xvjf $1 -C "$name_dir"   ;;
-     *.tar.gz)  tar xvzf $1 -C "$name_dir"   ;;
-     *.tar.xz)  tar xvjf $1 -C "$name_dir"   ;;
-     *.bz2)     tar xvjf $1 -C "$name_dir"   ;;
-     *.tar)     tar xvf $1 -C "$name_dir"    ;;
-     *.tbz2)    tar xvjf $1 -C "$name_dir"   ;;
-     *.tgz)     tar xvzf $1 -C "$name_dir"   ;;
-     *.rar)     unrar e $1 "$name_dir"       ;;
-     *.zip)     unzip $1 -d "$name_dir"      ;;
-     *.7z)      7z x $1 -o "$name_dir"       ;;
-     *) color_red "$1 Неизвестный метод сжатия файлов" ;;
+     *.tar.bz2) tar xvjf $1 -C $name_dir   ;;
+     *.tar.gz)  tar xvzf $1 -C $name_dir   ;;
+     *.tar.xz)  tar xvjf $1 -C $name_dir   ;;
+     *.bz2)     tar xvjf $1 -C $name_dir   ;;
+     *.tar)     tar xvf $1 -C $name_dir    ;;
+     *.tbz2)    tar xvjf $1 -C $name_dir   ;;
+     *.tgz)     tar xvzf $1 -C $name_dir   ;;
+     *.rar)     unrar e $1 $name_dir       ;;
+     *.zip)     unzip $1 -d $name_dir      ;;
+     *.7z)      7z x $1 -o $name_dir       ;;
+     *) color_red "$1 Невідомий метод стиснення файлів";;
     esac
-    color_green "$1 распакован в $name_dir"
+    color_green "$1 розпакований у $name_dir"
   else
-    color_yellow "$1 не является архивом !!!"
+    color_red "$1 не є архівом!!!"
   fi
 }
 
-# Упаковка в архив командой pk 7z /что/мы/пакуем имя_файла.7z
-# при этом архив будет в Домашней папке.
+# Упаковка в архив командой pk метод зжатия /что/мы/пакуем
 pk () {
-  if [ $1 ] ; then
-  case $1 in
-tbz)       tar cjvf $2.tar.bz2 $2      ;;
-tgz)       tar czvf $2.tar.gz  $2       ;;
-tar)      tar cpvf $2.tar  $2       ;;
-bz2)    bzip $2 ;;
-gz)        gzip -c -9 -n $2 > $2.gz ;;
-zip)       zip -r $2.zip $2   ;;
-7z)        7z a $2.7z $2    ;;
-*)         echo "'$1' не может быть упакован с помощью pk()" ;;
-  esac
-    else
-echo "'$1' не является допустимым файлом"
-fi
+  color_red() { echo -e "\033[31m$1\033[0m"; }
+  color_yellow() { echo -e "\033[33m$1\033[0m"; }
+  color_green() { echo -e "\033[32m$1\033[0m"; }
+  if [ $2 ] ; then
+    fp="${2%%.*}"
+    case $1 in
+      tbz) tar cjvf $fp.tar.bz2 $2 && color_green "Був створений архів з назвою $fp.tar.bz2" ;;
+      tgz) tar czvf $fp.tar.gz $2 && color_green "Був створений архів з назвою $fp.tar.gz" ;;
+      tar) tar cpvf $fp.tar $2 && color_green "Був створений архів з назвою $fp.tar" ;;
+      bz) bzip $fp && color_green "Був створений архів з назвою $fp.bz" ;;
+      gz) gzip -c -9 -n $fp > $2.gz && color_green "Був створений архів з назвою $fp.gz" ;;
+      zip) zip -r $fp.zip $2 && color_green "Був створений архів з назвою $fp.zip" ;;
+      7z) 7z a $fp.7z $2 && color_green "Був створений архів з назвою $fp.7z" ;;
+      *) color_red "$2 не може бути упакований за допомогою pk, вкажіть правильний метод стиснення\n(tbz, tgz, tar, bz, gz, zip, 7z)" ;;
+    esac
+  else
+    color_red "$1 не може бути упакований за допомогою pk, вкажіть метод стиснення\n(tbz, tgz, tar, bz, gz, zip, 7z)"
+  fi
 }
 
 bindkey '^[[A' history-substring-search-up
