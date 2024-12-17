@@ -52,7 +52,7 @@ fi
 
 # Kлонировать, если выбран хоть один пункт меню утановки программ
 if [[ -n "$progs" ]]; then
-  if [[ ! -d "${HOME}"/01_project/sh/inst/prog ]]; then
+  if [[ ! -d "${HOME}"/00_project/sh/inst/prog ]]; then
     # Если нет папки temp, тогда скачиваем.
     if [[ ! -d "${HOME}"/temp ]]; then
       color green "[*] Cloning a repository - inst..."
@@ -64,8 +64,8 @@ else
 	exit 0
 fi
 
-if [[ -f "${HOME}"/01_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/01_project/sh/inst/prog/source_dir.sh
+if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
+  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
 elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
   source "${HOME}"/temp/inst/prog/source_dir.sh
 else
