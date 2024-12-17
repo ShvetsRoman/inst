@@ -22,6 +22,14 @@ map("n","<F1>","<cmd> :NvimTreeToggle <CR>",{ desc = "Nvim-tree" })
 map("n","<F4>",":%s///gc<LEFT><LEFT><LEFT><LEFT>",{ desc = "Search Пошук та заміна" })
 map("i","<F4>","<ESC>:%s///gc<LEFT><LEFT><LEFT><LEFT>",{ desc = "Search Пошук та заміна" })
 
+map("n","<F8>","<cmd> :NvCheatsheet <CR>",{ desc = "Mappings" })
+map("n","<laeder> + <F8>","<cmd> :Telescope keymaps <CR>",{ desc = "Mappings" })
+
+map("n", "<F9>", function()
+  require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
+
+
 -- Mason install all
 map("n","<F11>","<cmd> :MasonInstallAll <CR>",{ desc = "Mason install all" })
 
