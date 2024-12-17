@@ -1,3 +1,4 @@
+alias sz='source ~/.zshrc'
 # Цветной вывод команд
 if [ -f /usr/bin/exa ]; then
   alias ls='exa --sort=type --icons'
@@ -28,6 +29,7 @@ alias hs='history -100 | grep'
 
 # Upgrade pip
 alias pip_up='python -m pip install --upgrade pip'
+alias py='python'
 
 # Alias
 alias v="nvim"
@@ -36,17 +38,18 @@ alias vim="nvim"
 alias n="nvim"
 alias nv="nvim"
 
-alias .="cd .."
-alias ..="cd ../.."
-alias ...="cd ../../.."
+alias cd.="cd .."
+alias cd..="cd ../.."
+alias cd...="cd ../../.."
 
 alias nzc="nvim ~/.zshrc"
 alias nza="nvim ~/.zsh_alias"
 
 alias cp="cp -iv"	# подтвердите, прежде чем перезаписывать что-либо
 alias mv="mv -iv"	# Выводить информацию о каждом файле, который обрабатывает команда mv
-alias rm="rm -Ivf"
+alias rm="rm -Ivfr"
 alias md="mkdir -pv"
+alias mkdir="mkdir -pv"
 
 alias c='clear'
 alias x='exit'
@@ -63,6 +66,7 @@ alias dcdv='docker-compose down --volumes'
 alias dcps='docker-compose ps'
 alias dcpsa='docker-compose ps -a'
 alias dci='docker-compose images'
+alias dcv='docker-compose volumes'
 alias dcst='docker-compose start'
 alias dcsp='docker-compose stop'
 alias dcr='docker-compose restart'
