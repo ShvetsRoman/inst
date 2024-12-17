@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ -f "${HOME}"/01_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/01_project/sh/inst/prog/source_dir.sh
+if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
+  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
 elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
   source "${HOME}"/temp/inst/prog/source_dir.sh
 fi
