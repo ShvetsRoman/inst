@@ -72,6 +72,20 @@ alias dcsp='docker-compose stop'
 alias dcr='docker-compose restart'
 alias dcl='docker-compose logs'
 
+# Docker Desktop
+alias ddu='docker compose up'
+alias ddud='docker compose up -d'
+alias ddd='docker compose down'
+alias dddv='docker compose down --volumes'
+alias ddps='docker compose ps'
+alias ddpsa='docker compose ps -a'
+alias ddi='docker compose images'
+alias ddv='docker compose volumes'
+alias ddst='docker compose start'
+alias ddsp='docker compose stop'
+alias ddr='docker compose restart'
+alias ddl='docker compose logs'
+
 # Docker
 alias dsp='docker system prune'
 alias dspa='docker system prune -a'

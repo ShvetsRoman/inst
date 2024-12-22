@@ -24,11 +24,11 @@ function color() {
 color green "[*] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
 # Дополнительное ПО
-sudo pacman -S --noconfirm --needed exa grc
+sudo pacman -S --noconfirm --needed exa grc bat
  
 # Install Theme ZSH
 color green "[*] Installing Theme ZSH..."
-pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git
+pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git zsh-autocomplete
  
 # Install Font 
 color green "[*] Installing Font ZSH..."

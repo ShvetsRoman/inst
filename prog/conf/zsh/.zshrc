@@ -23,51 +23,35 @@ ZSH_THEME="p10k_2"
 #------------------------------
 # Подключение конфигурации, если она есть
 #------------------------------
-if [[ -f ${HOME}/.${ZSH_THEME}.zsh ]]; then 
-    source ${HOME}/.${ZSH_THEME}.zsh
-elif [[ -f ${HOME}/.p10k.zsh ]]; then
-    source ${HOME}/.p10k.zsh
+if [[ -f ${HOME}/.config/zsh/themes/${ZSH_THEME}.zsh ]]; then 
+    source ${HOME}/.config/zsh/themes/${ZSH_THEME}.zsh
+    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
+elif [[ -f ${HOME}/.config/zsh/themes/p10k.zsh ]]; then
+    source ${HOME}/.config/zsh/themes/p10k.zsh
+    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
+elif [[ -f ${HOME}/${ZSH_THEME}.zsh ]]; then 
+    source ${HOME}/${ZSH_THEME}.zsh
+    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
+elif [[ -f ${HOME}/p10k.zsh ]]; then
+    source ${HOME}/p10k.zsh
+    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
 fi
-
-#-----------------------------
-# Плагин подсветки текста
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-#-----------------------------
-# Плагин автодополнения с истории
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# #-----------------------------
-# # Плагин поиск в истории
-# #-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-fi
-
-# #-----------------------------
-# # Плагин avto activate venv
-# #-----------------------------
-# if [[ -f /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh ]]; then
-#     source /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
-# fi
 
 #-----------------------------
 # Alias
 #-----------------------------
-if [[ -f ${HOME}/.zsh_alias ]]; then
+if [[ -f ${HOME}/.config/zsh/zsh_alias ]]; then
+    source ${HOME}/.config/zsh/zsh_alias
+elif [[ -f ${HOME}/.zsh_alias ]]; then
     source ${HOME}/.zsh_alias
 fi
  
 #-----------------------------
 # PATH
 #-----------------------------
-if [[ -f ${HOME}/.zsh_path ]]; then
+if [[ -f ${HOME}/.config/zsh/zsh_path ]]; then
+    source ${HOME}/.config/zsh/zsh_path
+elif [[ -f ${HOME}/.zsh_path ]]; then
     source ${HOME}/.zsh_path
 fi
 
@@ -85,13 +69,55 @@ if [[ -f ${HOME}/.config/lf/colors ]]; then
     source ${HOME}/.config/lf/colors
 fi
 
+#-----------------------------
+# Плагин подсветки текста
+#-----------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+#-----------------------------
+# Плагин автодополнения
+#-----------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
+
+#-----------------------------
+# Плагин автодополнения с истории
+#-----------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# #-----------------------------
+# # Плагин поиск в истории
+# #-----------------------------
+# if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+#     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+#     bindkey '^[[A' history-substring-search-up
+#     bindkey '^[[B' history-substring-search-down
+# fi
+#
+# #-----------------------------
+# # Плагин avto activate venv
+# #-----------------------------
+# if [[ -f /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh ]]; then
+#     source /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
+# fi
+
 #------------------------------
 # History stuff
 #------------------------------
-HISTFILE=${HOME}/.zsh_history
+if [[ -f ${HOME}/.config/zsh/.zshrc ]]; then
+    HISTFILE=${HOME}/.config/zsh/zsh_history
+else
+    HISTFILE=${HOME}/.zsh_history
+fi
+
 HISTSIZE=1000
 SAVEHIST=1000
-HISTORY_IGNORE="(ls|lsa|ll|lla|pwd|exit|x|clear|c|cd)"
+HISTORY_IGNORE="(ls|lsa|ll|lla|pwd|exit|x|clear|c)"
 HIST_STAMPS="yyyy-mm-dd"
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
