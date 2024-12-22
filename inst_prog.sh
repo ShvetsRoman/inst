@@ -70,7 +70,7 @@ elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
   source "${HOME}"/temp/inst/prog/source_dir.sh
 else
   color red "##################################"
-  color red "Файл з PATH відсутній !!!"
+  color red "    Файл з PATH відсутній !!!"
   color red "##################################"
   sleep 5s
 	exit 0
