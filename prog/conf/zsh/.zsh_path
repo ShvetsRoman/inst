@@ -1,5 +1,6 @@
 # default apps
 export EDITOR="nvim"
+export VISUAL="nvim"
 export SUDO_EDITOR="nvim"
 export TERMINAL="kitty"
 # export TERMINAL="konsole"
@@ -7,7 +8,15 @@ export TERMINAL="kitty"
 export TERM="xterm-256color"
 export BROWSER="google-chrome-stable"
 export LC_ALL=uk_UA.UTF-8
+
 export BAT_THEME="OneHalfDark"
+
+# fzf
+# export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+
+# Themes ZSH starship
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 # pip
 export PATH=$PATH:"$HOME/.local/bin"
@@ -28,4 +37,4 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 #export ZDOTDIR="$HOME/.config/zsh"
 
 #Git автодополнения
-autoload -Uz compinit && compinit 
+# autoload -Uz compinit && compinit 

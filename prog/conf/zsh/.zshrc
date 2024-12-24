@@ -70,6 +70,13 @@ if [[ -f ${HOME}/.config/lf/colors ]]; then
 fi
 
 #-----------------------------
+# FZF
+#-----------------------------
+if (( ${+commands[fzf]} )); then
+    source <(fzf --zsh)
+fi
+
+#-----------------------------
 # Плагин подсветки текста
 #-----------------------------
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
@@ -89,22 +96,6 @@ fi
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-
-# #-----------------------------
-# # Плагин поиск в истории
-# #-----------------------------
-# if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
-#     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-#     bindkey '^[[A' history-substring-search-up
-#     bindkey '^[[B' history-substring-search-down
-# fi
-#
-# #-----------------------------
-# # Плагин avto activate venv
-# #-----------------------------
-# if [[ -f /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh ]]; then
-#     source /usr/share/zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
-# fi
 
 #------------------------------
 # History stuff
