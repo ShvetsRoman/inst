@@ -1,5 +1,6 @@
 require "nvchad.options"
 
+
 -- add yours here!
 
 -- local o = vim.o
@@ -12,6 +13,11 @@ o.ft = "conf" -- Для отображения цвета в *.conf (nvim-colori
 o.swapfile = false -- Отключение swapfile
 o.scrolloff = 5
 o.sidescrolloff = 5
-o.langmap =
-	"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
-o.relativenumber = true
+o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+o.relativenumber = false -- относительная нумерация строк
+
+o.smarttab = true
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
+o.autoindent = true
