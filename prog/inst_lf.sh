@@ -23,13 +23,18 @@ function color() {
 
 ##### lf #####
 color green "[*] Installing lf..."
-pikaur -S --noconfirm --needed lf
+sudo pacman -S --noconfirm --needed lf ueberzug graphicsmagick ghostscript trash-cli
 # Copy config LF (terminal-file-manager) 
 if [[ -d "${DIR_HOME_CONF}"/lf ]]; then
   rm -rf "${DIR_HOME_CONF}"/lf
 fi
+
 cp -rv "${DIR_TEMP_CONF}"/lf "${DIR_HOME_CONF}"/ 
+mkdir "${HOME}"/.local/bin/
+mv "${DIR_HOME_CONF}"/lf/lfrun "${HOME}"/.local/bin/
+
 if [[ -d "${DIR_HOME_CONF}"/lf-ueberzug ]]; then
   rm -rf "${DIR_HOME_CONF}"/lf-ueberzug
 fi
+
 cp -rv "${DIR_TEMP_CONF}"/lf-ueberzug "${DIR_HOME_CONF}"/ 
