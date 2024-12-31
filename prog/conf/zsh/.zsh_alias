@@ -55,8 +55,8 @@ alias nza="nvim ~/.config/zsh/zsh_alias"
 
 alias nzz="nvim ~/.config/zsh/.zimrc"
 
-alias cp="cp -iv"	# подтвердите, прежде чем перезаписывать что-либо
-alias mv="mv -iv"	# Выводить информацию о каждом файле, который обрабатывает команда mv
+alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
+alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
 alias rm="rm -Ivfr"
 alias md="mkdir -pv"
 alias mkdir="mkdir -pv"
@@ -178,6 +178,12 @@ alias sal='sudo apt list --installed'
 
 # Mikrotik
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
+
+
+if [[ ${+commands[lfrun]} ]]; then
+    alias lf='lfrun'
+fi
+
 
 # SUDO
 # Defined shortcut keys: [Esc] [Esc]

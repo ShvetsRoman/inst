@@ -37,7 +37,7 @@ sudo pacman -S --noconfirm --needed neovim xclip
 # Установка конфига для NEOVIM NvChad !!!
 color green "[*] Installing NvChad..."
 # git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Копирование конфига
 color green "[*] Copy settings custom..."
