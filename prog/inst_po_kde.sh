@@ -39,7 +39,7 @@ core_packages+=' libreoffice-still libreoffice-still-uk'
 ### end packages pacman ###
 
 ### Install AUR ###
-# core_packages_aur+=' deadbeef google-chrome'
+core_packages_aur+=' deadbeef google-chrome'
 ### end packages aur ###
 
 ### INSTALL Programs ###

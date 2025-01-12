@@ -12,11 +12,11 @@ sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb kdenetwork-fileshar
 pikaur -S --noconfirm --noedit wsdd2
 
 # Открытие портов
-sudo iptables -A INPUT -p udp -m udp --dport 137 -s 192.168.88.0/24 -j ACCEPT
-sudo iptables -A INPUT -p udp -m udp --dport 138 -s 192.168.88.0/24 -j ACCEPT
-sudo iptables -A INPUT -p tcp -m tcp --dport 139 -s 192.168.88.0/24 -j ACCEPT
-sudo iptables -A INPUT -p tcp -m tcp --dport 445 -s 192.168.88.0/24 -j ACCEPT
-sudo iptables-save -f /etc/iptables/iptables.rules
+# sudo iptables -A INPUT -p udp -m udp --dport 137 -s 192.168.88.0/24 -j ACCEPT
+# sudo iptables -A INPUT -p udp -m udp --dport 138 -s 192.168.88.0/24 -j ACCEPT
+# sudo iptables -A INPUT -p tcp -m tcp --dport 139 -s 192.168.88.0/24 -j ACCEPT
+# sudo iptables -A INPUT -p tcp -m tcp --dport 445 -s 192.168.88.0/24 -j ACCEPT
+# sudo iptables-save -f /etc/iptables/iptables.rules
 
 # Пользовательские ресурсы
 sudo smbpasswd -a -s "${USER}"
