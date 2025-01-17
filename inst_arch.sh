@@ -8,7 +8,7 @@ hwclock -w
 loadkeys ru
 setfont cyr-sun16
 
-gitinst=https://raw.githubusercontent.com/ShvetsRoman/inst/main
+gitinst=https://raw.githubusercontent.com/ShvetsRoman/inst/refs/heads/ShvetsRoman/inst/
 
 # linux-headers
 is_intel_cpu=$(lscpu | grep 'Intel' &>/dev/null && echo 'yes' || echo '')
