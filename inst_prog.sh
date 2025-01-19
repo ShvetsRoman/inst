@@ -28,7 +28,7 @@ boot_dialog() {
 }
 
 # Меню установки программ
-boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 130 15 \
+boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 100 15 \
 	"pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
 	"font" "FONTs" OFF \
 	"bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
