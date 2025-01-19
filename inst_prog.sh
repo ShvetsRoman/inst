@@ -28,7 +28,7 @@ boot_dialog() {
 }
 
 # Меню установки программ
-boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 90 13 \
+boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 130 15 \
 	"pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
 	"font" "FONTs" OFF \
 	"bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
@@ -37,7 +37,9 @@ boot_dialog --notags --title "Install programs" --checklist "Выберите п
 	"nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
 	"vim" "Vim - Консольный текстовый редактор + Themes" OFF \
 	"po_kde" "Установка дополнительного ПО для KDE (для установки нужен pikaur)" OFF \
-	"lf" "lf (list files) — консольный файловый менеджер (для установки нужен pikaur)" OFF \
+	"wezterm" "WezTerm — емулятор терміналу" OFF \
+	"yazi" "yazi (terminal files manager) — консольный файловый менеджер" OFF \
+	"lf" "lf (terminal files manager) — консольный файловый менеджер (для установки нужен pikaur)" OFF \
 	"themes" "Icons Themes" OFF \
 	"avahi" "Установка AVAHI" OFF \
 	"samba" "Установка SAMBA" OFF \
@@ -111,6 +113,14 @@ for action in $progs; do
 		color green "[*] Installing po_kde..."
 		sh "${DIR_TEMP_PROG}"/inst_po_kde.sh
 		;;
+	'"wezterm"')
+		color green "[*] Installing WezTerm..."
+		sh "${DIR_TEMP_PROG}"/inst_wezterm.sh
+		;;
+	'"yazi"')
+		color green "[*] Installing Yazi..."
+		sh "${DIR_TEMP_PROG}"/inst_yazi.sh
+		;;
 	'"lf"')
 		color green "[*] Installing LF..."
 		sh "${DIR_TEMP_PROG}"/inst_lf.sh
@@ -134,7 +144,7 @@ for action in $progs; do
 	esac
 done
 
-sudo pacman -S intel-ucode			# Intel
-
-sudo mkinitcpio -P 					# Обновляем образы initramfs
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+# sudo pacman -S intel-ucode			# Intel
+#
+# sudo mkinitcpio -P 					# Обновляем образы initramfs
+# sudo grub-mkconfig -o /boot/grub/grub.cfg
