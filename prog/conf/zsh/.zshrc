@@ -1,41 +1,52 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
 
-#------------------------------
-# Theme powerlevel10k (для настройки набрать терминале p10k configure)
-#------------------------------
-if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-fi
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -v
 
-#------------------------------
-# Название темы
-#------------------------------
-# ZSH_THEME="p10k"
-# ZSH_THEME="p10k_1"
-ZSH_THEME="p10k_2"
-# ZSH_THEME="p10k_3"
-# ZSH_THEME="p10k_4"
-#------------------------------
-# Подключение конфигурации, если она есть
-#------------------------------
-if [[ -f ${HOME}/.config/zsh/themes/${ZSH_THEME}.zsh ]]; then 
-    source ${HOME}/.config/zsh/themes/${ZSH_THEME}.zsh
-    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
-elif [[ -f ${HOME}/.config/zsh/themes/p10k.zsh ]]; then
-    source ${HOME}/.config/zsh/themes/p10k.zsh
-    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
-elif [[ -f ${HOME}/${ZSH_THEME}.zsh ]]; then 
-    source ${HOME}/${ZSH_THEME}.zsh
-    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
-elif [[ -f ${HOME}/p10k.zsh ]]; then
-    source ${HOME}/p10k.zsh
-    # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
+# Remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
+
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Set what highlighters will be used.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# ------------------
+# Initialize modules
+# ------------------
+
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
 fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+# zsh-history-substring-search
+zmodload -F zsh/terminfo +p:terminfo
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
+# }}} End configuration added by Zim install
+
 
 #-----------------------------
 # Alias
@@ -56,45 +67,24 @@ elif [[ -f ${HOME}/.zsh_path ]]; then
 fi
 
 #-----------------------------
-# LF ICONS 
+# ICONS 
 #-----------------------------
-if [[ -f ${HOME}/.config/lf/icons ]]; then
-    source ${HOME}/.config/lf/icons
+if [[ -f ${HOME}/.config/nvim/icons ]]; then
+    source ${HOME}/.config/nvim/icons
 fi
 
 #-----------------------------
-# LF COLORS 
+# COLORS 
 #-----------------------------
-if [[ -f ${HOME}/.config/lf/colors ]]; then
-    source ${HOME}/.config/lf/colors
+if [[ -f ${HOME}/.config/nvim/colors ]]; then
+    source ${HOME}/.config/nvim/colors
 fi
 
 #-----------------------------
 # FZF
 #-----------------------------
-if (( ${+commands[fzf]} )); then
+if [[ ${+commands[fzf]} ]]; then
     source <(fzf --zsh)
-fi
-
-#-----------------------------
-# Плагин подсветки текста
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-#-----------------------------
-# Плагин автодополнения
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-fi
-
-#-----------------------------
-# Плагин автодополнения с истории
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 #------------------------------

@@ -29,7 +29,6 @@ map("n", "<F9>", function()
   require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
-
 -- Mason install all
 map("n","<F11>","<cmd> :MasonInstallAll <CR>",{ desc = "Mason install all" })
 

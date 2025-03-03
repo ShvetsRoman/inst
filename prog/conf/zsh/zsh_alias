@@ -2,13 +2,19 @@
 if [ -f /usr/bin/exa ]; then
   alias ls='exa --sort=type --icons'
   alias lsa='exa -a --sort=type --icons'
-  alias ll='exa -l -g --sort=type --icons'
-  alias lla='exa -l -a -g --sort=type --icons'
+  alias ll='exa -lg --sort=type --icons'
+  alias ll1='exa -lTg --sort=type --level=1 --icons'
+  alias ll2='exa -lTg --sort=type --level=2 --icons'
+  alias ll3='exa -lTg --sort=type --level=3 --icons'
+  alias lla='exa -lag --sort=type --icons'
+  alias lla1='exa -lTag --sort=type --level=1 --icons'
+  alias lla2='exa -lTag --sort=type --level=2 --icons'
+  alias lla3='exa -lTag --sort=type --level=3 --icons'
 else
   alias ls='ls --color=auto --group-directories-first'
-  alias lsa='ls -a -h --color=auto --group-directories-first'
+  alias lsa='ls -ah --color=auto --group-directories-first'
   alias ll='ls -l --color=auto --group-directories-first'
-  alias lla='ls -l -a -h --color=auto --group-directories-first'
+  alias lla='ls -lah --color=auto --group-directories-first'
 fi
 
 if [ -f /usr/bin/grc ]; then
@@ -24,10 +30,13 @@ alias fgrep='fgrep --colour=auto'
 
 #
 alias cat='bat'
-alias df='duf'
+# alias df='duf'
 
 # fzf
 alias fzfn='nvim $(fzf)'
+
+# yazi
+alias y='yazi'
 
 #
 alias hs='history -100 | grep'
@@ -81,20 +90,6 @@ alias dcst='docker-compose start'
 alias dcsp='docker-compose stop'
 alias dcr='docker-compose restart'
 alias dcl='docker-compose logs'
-
-# Docker Desktop
-alias ddu='docker compose up'
-alias ddud='docker compose up -d'
-alias ddd='docker compose down'
-alias dddv='docker compose down --volumes'
-alias ddps='docker compose ps'
-alias ddpsa='docker compose ps -a'
-alias ddi='docker compose images'
-alias ddv='docker compose volumes'
-alias ddst='docker compose start'
-alias ddsp='docker compose stop'
-alias ddr='docker compose restart'
-alias ddl='docker compose logs'
 
 # Docker
 alias dsp='docker system prune'
@@ -162,28 +157,23 @@ alias sprns='sudo pacman -Rns'
 alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 
 # Pikaur
-alias pi='pikaur -S --noedit'
-alias pu='pikaur -Syu'
-alias pss='pikaur -Ss'
-alias pr='pikaur -R'
+# alias pi='pikaur -S --noedit'
+# alias pu='pikaur -Syu'
+# alias pss='pikaur -Ss'
+# alias pr='pikaur -R'
+# alias prns='pikaur -Rns'
 
 # Apt Ubuntu
-alias sau='sudo apt update && sudo apt upgrade'
-alias sai='sudo apt -y install'
-alias sar='sudo apt -y remove'
-alias sap='sudo apt -y purge'
-alias saa='sudo apt autoremove'
-alias sas='sudo apt search'
-alias sal='sudo apt list --installed'
+# alias sau='sudo apt update && sudo apt upgrade'
+# alias sai='sudo apt -y install'
+# alias sar='sudo apt -y remove'
+# alias sap='sudo apt -y purge'
+# alias saa='sudo apt autoremove'
+# alias sas='sudo apt search'
+# alias sal='sudo apt list --installed'
 
 # Mikrotik
 alias mikreboot="ssh roman@192.168.88.1 reboot system"
-
-
-if [[ ${+commands[lfrun]} ]]; then
-    alias lf='lfrun'
-fi
-
 
 # SUDO
 # Defined shortcut keys: [Esc] [Esc]
@@ -218,7 +208,7 @@ mkcd () {
 
 #### mknf newdir + newfilename
 mknf () {
-	mkdir -p -- "$1" && touch -- "$1"/"$2"
+	mkdir -p -- "$1" && touch -- "$1"/"$2" && nvim -- "$1"/"$2"
 }
 
 # Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2 папка для распаковки (опционально)

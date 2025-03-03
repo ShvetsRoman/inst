@@ -6,8 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "nord",
-
+	theme = "vscode_dark",
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
@@ -20,6 +19,21 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "block",
+    },
+
+    nvimtree = {
+    sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 20,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
     },
 }
 

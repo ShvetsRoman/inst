@@ -2,21 +2,20 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 export SUDO_EDITOR="nvim"
-export TERMINAL="kitty"
+export TERMINAL="wezterm"
+# export TERMINAL="kitty"
 # export TERMINAL="konsole"
 # export TERMINAL="alacritty"
 export TERM="xterm-256color"
 export BROWSER="google-chrome-stable"
 export LC_ALL=uk_UA.UTF-8
 
+# Bat themes
 export BAT_THEME="OneHalfDark"
 
 # fzf
 # export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
-
-# Themes ZSH starship
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 # pip
 export PATH=$PATH:"$HOME/.local/bin"
@@ -24,17 +23,7 @@ export PATH=$PATH:"$HOME/.local/bin"
 # path
 export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/.local/bin/:$PATH"
 
-# path rofi
-export PATH="$HOME/.config/rofi/bin:$PATH"
-
-# path laravel
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-
 # cleaning up home folder
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-#export ZDOTDIR="$HOME/.config/zsh"
-
-#Git автодополнения
-# autoload -Uz compinit && compinit 

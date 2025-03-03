@@ -10,16 +10,22 @@ if wezterm.config_builder then
 end
 
 -- Settings
-config.color_scheme = "nord"
+config.xcursor_theme = "capitaine-cursors"
+
+-- config.color_scheme = "nord"
+-- config.color_scheme = 'DotGov'
+-- config.color_scheme = 'Hardcore'
+config.color_scheme = 'Vs Code Dark+ (Gogh)'
 
 config.font = wezterm.font "JetBrainsMono Nerd Font"
 config.font_size = 12.5
+-- config.line_height = 1.2
 
 -- config.window_background_opacity = 0.9
 -- config.macos_window_background_blur = 50
 config.enable_tab_bar = false
--- config.window_decorations = "TITLE | RESIZE"
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
+-- config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.scrollback_lines = 3000
 config.default_workspace = "home"
