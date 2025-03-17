@@ -145,23 +145,23 @@ alias gp='git push'
 alias gitpl='git pull'
 alias gpl='git pull'
 
-alias mir_list='reflector --verbose -l 10 -p https --sort rate --save /etc/pacman.d/mirrorlist'
-alias mir_list_nvim='sudoedit /etc/pacman.d/mirrorlist'
-
 # Pacman
+alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mln='sudoedit /etc/pacman.d/mirrorlist'
+alias spfy='sudo pacman -Fy' # Sync data
 alias spu='sudo pacman -Syu'
-alias sps='sudo pacman -Ss'
+alias spss='sudo pacman -Ss'
 alias spi='sudo pacman -S'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
 alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 
 # Pikaur
-# alias pi='pikaur -S --noedit'
-# alias pu='pikaur -Syu'
-# alias pss='pikaur -Ss'
-# alias pr='pikaur -R'
-# alias prns='pikaur -Rns'
+alias pi='pikaur -S --noedit'
+alias pu='pikaur -Syu'
+alias pss='pikaur -Ss'
+alias pr='pikaur -R'
+alias prns='pikaur -Rns'
 
 # Apt Ubuntu
 # alias sau='sudo apt update && sudo apt upgrade'
