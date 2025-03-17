@@ -31,19 +31,19 @@ boot_dialog() {
 boot_dialog --notags --title "Install programs" --checklist "Выберите программы для установки." 20 100 15 \
 	"pikaur" "PIKAUR - установщик пакетов из AUR" OFF \
 	"font" "FONTs" OFF \
-	"bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
-	"ly" "Install Ly - display manager" OFF \
-	"zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
+	# "bspwm" "bspwm + Polybar + Rofi + Dunst + Picom + конфиг файлы (нужен pikaur)" OFF \
+	# "ly" "Install Ly - display manager" OFF \
+	# "zshtheme" "ZSH + THEMEs - Powerlevel10i (для установки нужен pikaur)" OFF \
 	"nvim" "NeoVim - Консольный текстовый редактор + Themes (нужен pikaur)" OFF \
-	"vim" "Vim - Консольный текстовый редактор + Themes" OFF \
+	# "vim" "Vim - Консольный текстовый редактор + Themes" OFF \
 	"po_kde" "Установка дополнительного ПО для KDE (для установки нужен pikaur)" OFF \
 	"wezterm" "WezTerm — емулятор терміналу" OFF \
 	"yazi" "yazi (terminal files manager) — консольный файловый менеджер" OFF \
-	"lf" "lf (terminal files manager) — консольный файловый менеджер (для установки нужен pikaur)" OFF \
+	# "lf" "lf (terminal files manager) — консольный файловый менеджер (для установки нужен pikaur)" OFF \
 	"themes" "Icons Themes" OFF \
 	"avahi" "Установка AVAHI" OFF \
 	"samba" "Установка SAMBA" OFF \
-	"nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" OFF
+	# "nvidiaopman" "Intell + nVidia Optimus Manager (для установки нужен pikaur)" OFF
 progs="$DIALOG_RESULT"
 
 ## Отмена установки
