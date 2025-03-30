@@ -11,16 +11,16 @@ SPACESHIP_TIME_SHOW=true
 # Колір часу
 SPACESHIP_TIME_COLOR=gray
 
-# Завжди показувати ім'я користувача
-SPACESHIP_USER_SHOW=always
-
 # Не скорочувати шлях в репозиторіях
 SPACESHIP_DIR_TRUNC_REPO=false
 
+# Показувати секцію user
+SPACESHIP_USER_SHOW=always
+
 # Відключення відображення з лівої сторони
 # spaceship remove user
-spaceship remove venv
-spaceship remove time
+# spaceship remove venv
+# spaceship remove time
 
 # Відображення з лівої сторони
 SPACESHIP_PROMPT_ORDER=(
@@ -88,10 +88,15 @@ SPACESHIP_RPROMPT_ORDER=(
 time
 )
 
-# SPACESHIP_USER_PREFIX=""
-# SPACESHIP_USER_SUFFIX=""
+# SPACESHIP_PROMPT_DEFAULT_PREFIX=""
+# SPACESHIP_PROMPT_DEFAULT_SUFFIX=" "
+SPACESHIP_USER_PREFIX=""
+SPACESHIP_USER_SUFFIX=" "
 SPACESHIP_GIT_PREFIX=""
+SPACESHIP_GIT_SUFFIX=" "
 SPACESHIP_DIR_PREFIX=""
+SPACESHIP_DIR_SUFFIX=" "
 SPACESHIP_VENV_PREFIX=""
-# SPACESHIP_TIME_PREFIX=""
+SPACESHIP_VENV_SUFFIX=" "
+SPACESHIP_TIME_PREFIX=""
 # SPACESHIP_RPROMPT_FIRST_PREFIX_SHOW=false
