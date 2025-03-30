@@ -15,7 +15,7 @@ SPACESHIP_TIME_COLOR=gray
 SPACESHIP_DIR_TRUNC_REPO=false
 
 # Показувати секцію user
-SPACESHIP_USER_SHOW=always
+SPACESHIP_USER_SHOW=true
 
 # Відключення відображення з лівої сторони
 # spaceship remove user
