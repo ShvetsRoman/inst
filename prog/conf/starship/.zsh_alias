@@ -1,0 +1,285 @@
+# Цветной вывод команд
+if [ -f /usr/bin/exa ]; then
+  alias ls='exa --sort=type --icons'
+  alias lsa='exa -a --sort=type --icons'
+  alias ll='exa -lg --sort=type --icons'
+  alias ll1='exa -lTg --sort=type --level=1 --icons'
+  alias ll2='exa -lTg --sort=type --level=2 --icons'
+  alias ll3='exa -lTg --sort=type --level=3 --icons'
+  alias lla='exa -lag --sort=type --icons'
+  alias lla1='exa -lTag --sort=type --level=1 --icons'
+  alias lla2='exa -lTag --sort=type --level=2 --icons'
+  alias lla3='exa -lTag --sort=type --level=3 --icons'
+else
+  alias ls='ls --color=auto --group-directories-first'
+  alias lsa='ls -ah --color=auto --group-directories-first'
+  alias ll='ls -l --color=auto --group-directories-first'
+  alias lla='ls -lah --color=auto --group-directories-first'
+fi
+
+if [ -f /usr/bin/grc ]; then
+  alias ping="grc --colour=auto ping -c 4"
+else
+  alias ping='ping -c 4'
+fi
+
+#
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
+#
+alias cat='bat'
+# alias df='duf'
+
+# fzf
+alias fzfn='nvim $(fzf)'
+
+# yazi
+alias y='yazi'
+
+#
+alias hs='history -100 | grep'
+
+# Upgrade pip
+alias pip_up='python -m pip install --upgrade pip'
+alias py='python'
+
+# Alias
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias n="nvim"
+alias nv="nvim"
+
+alias cd.="cd .."
+alias cd..="cd ../.."
+alias cd...="cd ../../.."
+
+alias ezsh='exec ~/.zshrc | echo "ZSH exec .zshrc!"'
+alias nzc="nvim ~/.zshrc"
+alias nza="nvim ~/.zsh_alias"
+#alias nzc="nvim ~/.config/zsh/.zshrc"
+#alias nza="nvim ~/.config/zsh/zsh_alias"
+
+#alias nzz="nvim ~/.config/zsh/.zimrc"
+
+alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
+alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
+alias rm="rm -Ivfr"
+alias md="mkdir -pv"
+alias mkdir="mkdir -pv"
+
+alias c='clear'
+alias x='exit'
+alias ln='ln -s'
+alias media='/run/media/roman/media/'
+alias cdm='cd /run/media/roman/media/'
+alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
+
+# Docker-compoce
+alias dcu='docker-compose up'
+alias dcud='docker-compose up -d'
+alias dcd='docker-compose down'
+alias dcdv='docker-compose down --volumes'
+alias dcps='docker-compose ps'
+alias dcpsa='docker-compose ps -a'
+alias dci='docker-compose images'
+alias dcv='docker-compose volumes'
+alias dcst='docker-compose start'
+alias dcsp='docker-compose stop'
+alias dcr='docker-compose restart'
+alias dcl='docker-compose logs'
+
+# Docker
+alias dsp='docker system prune'
+alias dspa='docker system prune -a'
+
+# Systemctl run service
+alias sysservice='systemctl list-units  --type=service'
+alias sysrunservice='systemctl list-units  --type=service  --state=running'
+alias sst='systemctl start'
+alias sstn='systemctl start --now'
+alias sss='systemctl status'
+alias ssp='systemctl stop'
+alias sspn='systemctl stop --now'
+alias srt='systemctl restart'
+alias see='systemctl enable'
+alias sde='systemctl disable'
+
+# IWCTL
+alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
+alias iwctlcon='iwctl station wlan0 connect'
+alias iwctlconhome='iwctl station wlan0 connect HOME_test'
+alias iwctldiscon='iwctl station wlan0 disconnect'
+alias iwctlinfo='iwctl station wlan0 show'
+
+# GIT
+alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
+alias gits='git status'
+alias gs='git status'
+alias gita='git add .'
+alias ga='git add .'
+# alias gitc='git commit -m "add"'
+# alias gc='git commit -m "add"'
+gitc() {
+  if [[ -z "$1" ]] ; then
+    com="add"
+  else
+    com="$@"
+  fi
+  git commit -m "$com"
+}
+gtc() {
+  if [[ -z "$1" ]] ; then
+    com="add"
+  else
+    com="$@"
+  fi
+  git commit -m "$com"
+}
+alias gitp='git push'
+alias gp='git push'
+
+alias gitpl='git pull'
+alias gpl='git pull'
+
+# Pacman
+alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mln='sudoedit /etc/pacman.d/mirrorlist'
+alias spfy='sudo pacman -Fy' # Sync data
+alias spu='sudo pacman -Syu'
+alias spss='sudo pacman -Ss'
+alias spi='sudo pacman -S'
+alias spr='sudo pacman -R'
+alias sprns='sudo pacman -Rns'
+alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
+
+# Pikaur
+alias pi='pikaur -S --noedit'
+alias pu='pikaur -Syu'
+alias pss='pikaur -Ss'
+alias pr='pikaur -R'
+alias prns='pikaur -Rns'
+
+# Apt Ubuntu
+# alias sau='sudo apt update && sudo apt upgrade'
+# alias sai='sudo apt -y install'
+# alias sar='sudo apt -y remove'
+# alias sap='sudo apt -y purge'
+# alias saa='sudo apt autoremove'
+# alias sas='sudo apt search'
+# alias sal='sudo apt list --installed'
+
+# Mikrotik
+alias mikreboot="ssh roman@192.168.88.1 reboot system"
+
+# SUDO
+# Defined shortcut keys: [Esc] [Esc]
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
+}
+zle -N sudo-command-line
+bindkey -M emacs '\e\e' sudo-command-line
+bindkey -M vicmd '\e\e' sudo-command-line
+bindkey -M viins '\e\e' sudo-command-line
+
+# DD
+# ddcp () {
+  # dd bs=4M -- "$1" -- "$2" status=progress oflag=sync && sync
+# }
+
+#### mkcd newdir cd newdir
+mkcd () {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+#### mknf newdir + newfilename
+mknf () {
+	mkdir -p -- "$1" && touch -- "$1"/"$2" && nvim -- "$1"/"$2"
+}
+
+# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2 папка для распаковки (опционально)
+ex () {
+  color_red() { echo -e "\033[31m$1\033[0m"; }
+  color_yellow() { echo -e "\033[33m$1\033[0m"; }
+  color_green() { echo -e "\033[32m$1\033[0m"; }
+  if [[ -f $1 ]] ; then
+    if [[ -z $2 ]] ; then
+      name_dir=${1/.*}
+      mkdir -p $name_dir
+    else
+      name_dir=$2
+      mkdir -p $name_dir
+    fi
+    case $1 in
+     *.tar.bz2) tar xvjf $1 -C $name_dir   ;;
+     *.tar.gz)  tar xvzf $1 -C $name_dir   ;;
+     *.tar.xz)  tar xvjf $1 -C $name_dir   ;;
+     *.bz2)     tar xvjf $1 -C $name_dir   ;;
+     *.tar)     tar xvf $1 -C $name_dir    ;;
+     *.tbz2)    tar xvjf $1 -C $name_dir   ;;
+     *.tgz)     tar xvzf $1 -C $name_dir   ;;
+     *.rar)     unrar e $1 $name_dir       ;;
+     *.zip)     unzip $1 -d $name_dir      ;;
+     *.7z)      7z x $1 -o $name_dir       ;;
+     *) color_red "$1 Невідомий метод стиснення файлів";;
+    esac
+    color_green "$1 розпакований у $name_dir"
+  else
+    color_red "$1 не є архівом!!!"
+  fi
+}
+
+# Упаковка в архив командой pk метод зжатия /что/мы/пакуем
+pk () {
+  color_red() { echo -e "\033[31m$1\033[0m"; }
+  color_yellow() { echo -e "\033[33m$1\033[0m"; }
+  color_green() { echo -e "\033[32m$1\033[0m"; }
+  if [ $2 ] ; then
+    fp="${2%%.*}"
+    case $1 in
+      tbz) tar cjvf $fp.tar.bz2 $2 && color_green "Був створений архів з назвою $fp.tar.bz2" ;;
+      tgz) tar czvf $fp.tar.gz $2 && color_green "Був створений архів з назвою $fp.tar.gz" ;;
+      tar) tar cpvf $fp.tar $2 && color_green "Був створений архів з назвою $fp.tar" ;;
+      bz) bzip $fp && color_green "Був створений архів з назвою $fp.bz" ;;
+      gz) gzip -c -9 -n $fp > $2.gz && color_green "Був створений архів з назвою $fp.gz" ;;
+      zip) zip -r $fp.zip $2 && color_green "Був створений архів з назвою $fp.zip" ;;
+      7z) 7z a $fp.7z $2 && color_green "Був створений архів з назвою $fp.7z" ;;
+      *) color_red "$2 не може бути упакований за допомогою pk, вкажіть правильний метод стиснення\n(tbz, tgz, tar, bz, gz, zip, 7z)" ;;
+    esac
+  else
+    color_red "$1 не може бути упакований за допомогою pk, вкажіть метод стиснення\n(tbz, tgz, tar, bz, gz, zip, 7z)"
+  fi
+}
+
+# ripgrep->fzf->vim [QUERY]
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)

@@ -1,12 +1,13 @@
 #!/bin/bash
 #set -e
  
-if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
- 
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
+
+# HOME .config
+HOME_DIR_CONF="${HOME}"/.config
+
 function color() {
   case "$1" in
     red)
@@ -26,10 +27,11 @@ color green "[*] Installing WezTerm..."
 sudo pacman -S --noconfirm --needed wezterm ttf-nerd-fonts-symbols-mono
 
 # Copy config WezTerm
-if [[ -d "${DIR_HOME_CONF}"/wezterm ]]; then
+if [[ -d "${HOME_DIR_CONF}"/wezterm ]]; then
   color green "[*] Removing old config..."
-  rm -rf "${DIR_HOME_CONF}"/wezterm
+  rm -rf "${HOME_DIR_CONF}"/wezterm
 fi
 
-color green "[*] Copy new config..."
-cp -rv "${DIR_TEMP_CONF}"/wezterm "${DIR_HOME_CONF}"/ 
+color green "[*] Copy new config..."${SCRIPT_DIR_CONF}"/wezterm "${HOME_DIR_CONF}"/"
+cp -rv "${SCRIPT_DIR_CONF}"/wezterm "${HOME_DIR_CONF}"/ 
+

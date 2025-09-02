@@ -1,11 +1,12 @@
 #!/bin/bash
 #set -e
 
-if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
+
+# HOME .config
+HOME_DIR_CONF="${HOME}"/.config
   
 function color() {
   case "$1" in
@@ -22,9 +23,9 @@ function color() {
 }
 
 # Del если есть nvim
-if [[ -d "${DIR_HOME_CONF}"/nvim ]]; then
+if [[ -d "${HOME_DIR_CONF}"/nvim ]]; then
   color red "[*] Deleting a folder nvim..."
-  rm -rf "${DIR_HOME_CONF}"/nvim
+  rm -rf "${HOME_DIR_CONF}"/nvim
   rm -rf ~/.local/share/nvim
   rm -rf ~/.local/state/nvim
   rm -rf ~/.cache/nvim
@@ -41,5 +42,5 @@ git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Копирование конфига
 color green "[*] Copy settings custom..."
-cp -rfv "${DIR_TEMP_CONF}"/nvim "${DIR_HOME_CONF}"/
+cp -rfv "${SCRIPT_DIR_CONF}"/nvim "${HOME_DIR_CONF}"/
 nvim
