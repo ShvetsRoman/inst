@@ -2,3 +2,7 @@
 [character] # Назва модуля, який ми налаштовуємо – 'character'
 success_symbol = '[➜](bold green)' # Частина 'success_symbol' буде використовувати символ '➜' підсвічений значенням 'bold green'
 error_symbol = '[✗](bold red) '
+
+[directory]
+truncation_length = 10
+truncation_symbol = '…/'
