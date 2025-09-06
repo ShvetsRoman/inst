@@ -27,5 +27,6 @@
     hunspellDicts.uk_UA
     gimp3
     inkscape
+    vlc
   ];
 }
