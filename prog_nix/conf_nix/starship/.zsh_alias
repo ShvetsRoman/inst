@@ -140,7 +140,7 @@ alias gpl='git pull'
 
 # NIXOS
 alias snrs="sudo nixos-rebuild switch"
-alias snrsu"sudo nixos-rebuild switch --upgrade"
+alias snrsu="sudo nixos-rebuild switch --upgrade"
 alias snp="sudo nvim /etc/nixos/programs.nix"
 alias snnc="sudo nvim /etc/nixos/configuration.nix"
 alias snc="sudo nvim /etc/nixos/config.nix"
