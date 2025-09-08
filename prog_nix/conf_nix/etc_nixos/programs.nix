@@ -28,5 +28,7 @@
     gimp3
     inkscape
     vlc
+    neofetch
+    kdePackages.ktorrent
   ];
 }
