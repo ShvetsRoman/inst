@@ -11,4 +11,8 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
+
+  # Pick one
+    virtualisation.docker.enable = true;
+    virtualisation.podman.enable = true;
 }

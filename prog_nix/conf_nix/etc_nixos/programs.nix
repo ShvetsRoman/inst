@@ -28,7 +28,9 @@
     gimp3
     inkscape
     vlc
+    deadbeef
     neofetch
     kdePackages.ktorrent
+    docker-compose
   ];
 }
