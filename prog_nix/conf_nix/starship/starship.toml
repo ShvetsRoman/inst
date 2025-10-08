@@ -1,3 +1,9 @@
+# Рядок праворуч
+right_format = """
+$time\
+$battery\
+"""
+
 # Заміняти символ '❯' в командному рядку на символ  '➜'
 [character] # Назва модуля, який ми налаштовуємо – 'character'
 success_symbol = '[➜](bold green)' # Частина 'success_symbol' буде використовувати символ '➜' підсвічений значенням 'bold green'
@@ -7,6 +13,12 @@ error_symbol = '[✗](bold red)'
 truncation_length = 10
 truncation_symbol = '…/'
 read_only = ' 🔒'
+
+[time]
+disabled = false
+format = '🕙[ $time ]($style) '
+time_format = '%T'
+# utc_time_offset = '-5'
 
 [[battery.display]]
 threshold = 100
