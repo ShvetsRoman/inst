@@ -1,9 +1,28 @@
 # Заміняти символ '❯' в командному рядку на символ  '➜'
 [character] # Назва модуля, який ми налаштовуємо – 'character'
 success_symbol = '[➜](bold green)' # Частина 'success_symbol' буде використовувати символ '➜' підсвічений значенням 'bold green'
-error_symbol = '[✗](bold red) '
+error_symbol = '[✗](bold red)'
 
 [directory]
 truncation_length = 10
 truncation_symbol = '…/'
 read_only = ' 🔒'
+
+[[battery.display]]
+threshold = 100
+style = 'green'
+
+[[battery.display]]
+threshold = 60
+style = 'yellow'
+
+[[battery.display]]
+threshold = 30
+style = 'bold red'
+
+[battery]
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+unknown_symbol = '󰁽 '
+empty_symbol = '󰂎 '

@@ -99,6 +99,6 @@ fi
 #------------------------------
 # Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
 #------------------------------
-# if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-#     source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# fi
+if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi

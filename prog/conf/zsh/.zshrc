@@ -1,69 +1,34 @@
-# Remove older command from the history if a duplicate is to be added.
-setopt HIST_IGNORE_ALL_DUPS
+#-----------------------------
+# Starship
+#-----------------------------
+eval "$(starship init zsh)"
 
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
-
-# Remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
-
-# Disable automatic widget re-binding on each precmd. This can be set when
-# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
-# Set what highlighters will be used.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
-# ------------------
-# Initialize modules
-# ------------------
-
-ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
+#-----------------------------
+# Spaceship
+#-----------------------------
+if [[ -f ${HOME}/.config/spaceship/spaceship.zsh ]]; then
+    source ${HOME}/.config/spaceship/spaceship.zsh
+    export SPACESHIP_NODE_SHOW=false
+    # Уникнути повторного виклику PROMPT або рекурсії
+    export SPACESHIP_PROMPT_ADD_NEWLINE=false
 fi
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
+
+if [[ -f ${HOME}/.config/spaceship_arch.zsh ]]; then
+    source ${HOME}/.config/spaceship_arch.zsh
 fi
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
-
-# zsh-history-substring-search
-zmodload -F zsh/terminfo +p:terminfo
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
-for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
-for key ('k') bindkey -M vicmd ${key} history-substring-search-up
-for key ('j') bindkey -M vicmd ${key} history-substring-search-down
-unset key
-# }}} End configuration added by Zim install
-
 
 #-----------------------------
 # Alias
 #-----------------------------
-if [[ -f ${HOME}/.config/zsh/zsh_alias ]]; then
-    source ${HOME}/.config/zsh/zsh_alias
-elif [[ -f ${HOME}/.zsh_alias ]]; then
-    source ${HOME}/.zsh_alias
+if [[ -f ${HOME}/.zsh_alias ]]; then
+   source ${HOME}/.zsh_alias
 fi
  
 #-----------------------------
 # PATH
 #-----------------------------
-if [[ -f ${HOME}/.config/zsh/zsh_path ]]; then
-    source ${HOME}/.config/zsh/zsh_path
-elif [[ -f ${HOME}/.zsh_path ]]; then
-    source ${HOME}/.zsh_path
+if [[ -f ${HOME}/.zsh_path ]]; then
+   source ${HOME}/.zsh_path
 fi
 
 #-----------------------------
@@ -91,8 +56,6 @@ fi
 # History stuff
 #------------------------------
 if [[ -f ${HOME}/.config/zsh/.zshrc ]]; then
-    HISTFILE=${HOME}/.config/zsh/zsh_history
-else
     HISTFILE=${HOME}/.zsh_history
 fi
 
@@ -111,3 +74,31 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 setopt APPEND_HISTORY            # append to history file (Default)
 setopt HIST_NO_STORE             # Don't store history commands
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history list.
+
+
+#------------------------------
+# Набір автодоповнень для Zsh
+#------------------------------
+autoload -Uz compinit
+compinit
+
+#------------------------------
+# Підказує команди з історії в реальному часі, прямо коли ти вводиш
+#------------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+#------------------------------
+# Додає підсвічування синтаксису в Zsh
+#------------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+#------------------------------
+# Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
+#------------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi

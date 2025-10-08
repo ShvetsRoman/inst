@@ -7,7 +7,9 @@
     clang
     curl
     wget
+    unzip
     mc
+    yazi
     neovim
     wl-clipboard
     xclip

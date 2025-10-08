@@ -54,7 +54,6 @@ alias nzc="nvim ~/.zshrc"
 alias nza="nvim ~/.zsh_alias"
 #alias nzc="nvim ~/.config/zsh/.zshrc"
 #alias nza="nvim ~/.config/zsh/zsh_alias"
-
 #alias nzz="nvim ~/.config/zsh/.zimrc"
 
 alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
@@ -66,9 +65,9 @@ alias mkdir="mkdir -pv"
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
-alias media='/run/media/roman/media/'
-alias cdm='cd /run/media/roman/media/'
-alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
+# alias media='/run/media/roman/media/'
+# alias cdm='cd /run/media/roman/media/'
+# alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
 # Docker-compoce
 alias dcu='docker-compose up'
@@ -101,11 +100,11 @@ alias see='systemctl enable'
 alias sde='systemctl disable'
 
 # IWCTL
-alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
-alias iwctlcon='iwctl station wlan0 connect'
-alias iwctlconhome='iwctl station wlan0 connect HOME_test'
-alias iwctldiscon='iwctl station wlan0 disconnect'
-alias iwctlinfo='iwctl station wlan0 show'
+# alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
+# alias iwctlcon='iwctl station wlan0 connect'
+# alias iwctlconhome='iwctl station wlan0 connect HOME_test'
+# alias iwctldiscon='iwctl station wlan0 disconnect'
+# alias iwctlinfo='iwctl station wlan0 show'
 
 # GIT
 alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
@@ -147,22 +146,22 @@ alias snc="sudo nvim /etc/nixos/config.nix"
 alias sns="sudo nvim /etc/nixos/services.nix"
 
 # Pacman
-alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
-alias mln='sudoedit /etc/pacman.d/mirrorlist'
-alias spfy='sudo pacman -Fy' # Sync data
-alias spu='sudo pacman -Syu'
-alias spss='sudo pacman -Ss'
-alias spi='sudo pacman -S'
-alias spr='sudo pacman -R'
-alias sprns='sudo pacman -Rns'
-alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
+# alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+# alias mln='sudoedit /etc/pacman.d/mirrorlist'
+# alias spfy='sudo pacman -Fy' # Sync data
+# alias spu='sudo pacman -Syu'
+# alias spss='sudo pacman -Ss'
+# alias spi='sudo pacman -S'
+# alias spr='sudo pacman -R'
+# alias sprns='sudo pacman -Rns'
+# alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 
 # Pikaur
-alias pi='pikaur -S --noedit'
-alias pu='pikaur -Syu'
-alias pss='pikaur -Ss'
-alias pr='pikaur -R'
-alias prns='pikaur -Rns'
+# alias pi='pikaur -S --noedit'
+# alias pu='pikaur -Syu'
+# alias pss='pikaur -Ss'
+# alias pr='pikaur -R'
+# alias prns='pikaur -Rns'
 
 # Apt Ubuntu
 # alias sau='sudo apt update && sudo apt upgrade'
