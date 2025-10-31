@@ -11,6 +11,7 @@
       ./programs.nix
       ./config.nix
       ./services.nix
+      ./optimise-store.nix
     ];
 
   # Bootloader.

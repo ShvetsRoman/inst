@@ -6,11 +6,11 @@
 local M = {}
 
 M.base46 = {
-	theme = "vscode_dark",
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+	theme = "onedark",
+	hl_override = {
+		Comment = { italic = true },
+		["@comment"] = { italic = true },
+	},
 }
 
 M.ui = {
