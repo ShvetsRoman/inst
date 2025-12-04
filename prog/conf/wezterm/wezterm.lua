@@ -17,8 +17,9 @@ config.xcursor_theme = "capitaine-cursors"
 -- config.color_scheme = 'Hardcore'
 config.color_scheme = 'Vs Code Dark+ (Gogh)'
 
-config.font = wezterm.font "JetBrainsMono Nerd Font"
-config.font_size = 14.5
+-- config.font = wezterm.font "JetBrainsMono Nerd Font"
+config.font = wezterm.font "FiraCode Nerd Font"
+config.font_size = 14
 -- config.line_height = 1.2
 
 -- config.window_background_opacity = 0.9
