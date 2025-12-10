@@ -44,8 +44,6 @@ if [[ -f "${HOME}"/.zsh_icons ]]; then
     mv "${HOME}"/.zsh_icons "${HOME}"/.zsh_icons.bak
 fi
 
-
-
 # Copy config
 color green "[*] Copy config ZSH..."
 cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
@@ -54,7 +52,11 @@ cp -rfv "${SCRIPT_DIR_CONF}"/starship "${HOME_DIR_CONF}"/
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
 cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root
-sudo mkdir /root/.config/
+if [[ -d /root/.config ]]; then
+  color green "[*] /root/.config існює..."
+else
+  sudo mkdir /root/.config/
+fi
 sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship /root/.config
 
 # Установка Zsh в качестве оболочки по умолчанию
