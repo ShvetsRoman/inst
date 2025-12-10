@@ -4,20 +4,6 @@
 eval "$(starship init zsh)"
 
 #-----------------------------
-# Spaceship
-#-----------------------------
-if [[ -f ${HOME}/.config/spaceship/spaceship.zsh ]]; then
-    source ${HOME}/.config/spaceship/spaceship.zsh
-    export SPACESHIP_NODE_SHOW=false
-    # Уникнути повторного виклику PROMPT або рекурсії
-    export SPACESHIP_PROMPT_ADD_NEWLINE=false
-fi
-
-if [[ -f ${HOME}/.config/spaceship_arch.zsh ]]; then
-    source ${HOME}/.config/spaceship_arch.zsh
-fi
-
-#-----------------------------
 # Alias
 #-----------------------------
 if [[ -f ${HOME}/.zsh_alias ]]; then
@@ -55,10 +41,7 @@ fi
 #------------------------------
 # History stuff
 #------------------------------
-if [[ -f ${HOME}/.config/.zshrc ]]; then
-    HISTFILE=${HOME}/.zsh_history
-fi
-
+HISTFILE=${HOME}/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTORY_IGNORE="(ls|lsa|ll|lla|pwd|exit|x|clear|c)"

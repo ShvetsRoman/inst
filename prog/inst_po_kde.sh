@@ -27,7 +27,7 @@ sudo pacman -Syu --noconfirm --needed gwenview gimp inkscape okular
 sudo pacman -Syu --noconfirm --needed ffmpeg ffmpegthumbnailer vlc
 
 # General utilities/libraries
-sudo pacman -Syu --noconfirm --needed neofetch git openssh p7zip unace unrar unzip ark mc htop gparted kcalc
+sudo pacman -Syu --noconfirm --needed fastfetch git openssh p7zip unace unrar unzip ark mc htop gparted kcalc
 
 # Office
 sudo pacman -Syu --noconfirm --needed libreoffice-still libreoffice-still-uk
