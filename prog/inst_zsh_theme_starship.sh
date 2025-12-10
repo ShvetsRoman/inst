@@ -24,6 +24,7 @@ function color() {
 # Установка ZSH
 color green "[*] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S --noconfirm --needed starship
 # Дополнительное ПО
 sudo pacman -S --noconfirm --needed exa grc bat fzf
  
@@ -43,17 +44,18 @@ if [[ -f "${HOME}"/.zsh_icons ]]; then
     mv "${HOME}"/.zsh_icons "${HOME}"/.zsh_icons.bak
 fi
 
+
+
 # Copy config
 color green "[*] Copy config ZSH..."
-cp -rfv "${SCRIPT_DIR_CONF}"/starship/. "${HOME}"/
-mv -iv "${HOME}"/starship.toml "${HOME_DIR_CONF}"/
-
+cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
+cp -rfv "${SCRIPT_DIR_CONF}"/starship "${HOME_DIR_CONF}"/
 
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
-sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship/. /root/
+cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root
 sudo mkdir /root/.config/
-sudo mv -iv /root/starship.toml /root/.config/ 
+sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship /root/.config
 
 # Установка Zsh в качестве оболочки по умолчанию
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
