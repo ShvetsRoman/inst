@@ -55,7 +55,7 @@ fi
 #------------------------------
 # History stuff
 #------------------------------
-if [[ -f ${HOME}/.config/zsh/.zshrc ]]; then
+if [[ -f ${HOME}/.config/.zshrc ]]; then
     HISTFILE=${HOME}/.zsh_history
 fi
 

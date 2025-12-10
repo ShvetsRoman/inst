@@ -19,7 +19,7 @@ config.color_scheme = 'Vs Code Dark+ (Gogh)'
 
 -- config.font = wezterm.font "JetBrainsMono Nerd Font"
 config.font = wezterm.font "FiraCode Nerd Font"
-config.font_size = 14
+config.font_size = 16
 -- config.line_height = 1.2
 
 -- config.window_background_opacity = 0.9
@@ -27,13 +27,12 @@ config.font_size = 14
 config.enable_tab_bar = false
 config.window_decorations = "TITLE | RESIZE"
 -- config.window_decorations = "RESIZE"
-config.window_close_confirmation = "AlwaysPrompt"
+config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 3000
 config.default_workspace = "home"
 
 config.initial_rows = 35
-config.initial_cols = 110
-
+config.initial_cols = 120
 -- Dim inactive panes
 config.inactive_pane_hsb = {
   saturation = 0.24,
