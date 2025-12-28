@@ -30,7 +30,7 @@ git clone https://github.com/rogts/infinity-icon-theme.git ~/.local/share/icons/
 # Themes GitHub McMojave
 mkdir -p "${HOME}"/.themes/github_themes/
 cd "${HOME}"/.themes/github_themes/ || exit
-## McMojave
+# McMojave
 color green "[*] Installing McMojave-kde"
 git clone https://github.com/vinceliuice/McMojave-kde
 sh "${HOME}"/.themes/github_themes/McMojave-kde/install.sh
@@ -40,14 +40,17 @@ sh "${HOME}"/.themes/github_themes/Mojave-gtk-theme/install.sh
 color green "[*] Installing McMojave-circle"
 git clone https://github.com/vinceliuice/McMojave-circle
 sh "${HOME}"/.themes/github_themes/McMojave-circle/install.sh -t blue
+
 ## WhiteSur
 color green "[*] Installing MhiteSur-kde"
 git clone https://github.com/vinceliuice/WhiteSur-kde
 sh "${HOME}"/.themes/github_themes/WhiteSur-kde/install.sh
+
+# WhiteSur-gtk-theme
 color green "[*] Installing WhiteSur-gtk-theme"
 pikaur -S mojave-gtk-theme-git
-# git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
-# sh "${HOME}"/.themes/github_themes/WhiteSur-gtk-theme/install.sh
+
+# WhiteSur-icon-theme
 color green "[*] Installing WhiteSur-icon-theme"
 git clone https://github.com/vinceliuice/WhiteSur-icon-theme
 sh "${HOME}"/.themes/github_themes/WhiteSur-icon-theme/install.sh
