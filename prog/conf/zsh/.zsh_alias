@@ -33,6 +33,8 @@ alias y='yazi'
 
 #
 alias hs='history -100 | grep'
+#
+alias neofetch='fastfetch'
 
 # Upgrade pip
 alias pip_up='python -m pip install --upgrade pip'
@@ -49,12 +51,11 @@ alias cd.="cd .."
 alias cd..="cd ../.."
 alias cd...="cd ../../.."
 
-alias ezsh='exec ~/.zshrc | echo "ZSH exec .zshrc!"'
 alias nzc="nvim ~/.zshrc"
 alias nza="nvim ~/.zsh_alias"
-#alias nzc="nvim ~/.config/zsh/.zshrc"
-#alias nza="nvim ~/.config/zsh/zsh_alias"
-#alias nzz="nvim ~/.config/zsh/.zimrc"
+#alias nzcc="nvim ~/.config/zsh/.zshrc"
+#alias nzca="nvim ~/.config/zsh/zsh_alias"
+#alias nzcz="nvim ~/.config/zsh/.zimrc"
 
 alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
 alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
@@ -146,22 +147,22 @@ alias snc="sudo nvim /etc/nixos/config.nix"
 alias sns="sudo nvim /etc/nixos/services.nix"
 
 # Pacman
-# alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
-# alias mln='sudoedit /etc/pacman.d/mirrorlist'
-# alias spfy='sudo pacman -Fy' # Sync data
-# alias spu='sudo pacman -Syu'
-# alias spss='sudo pacman -Ss'
-# alias spi='sudo pacman -S'
-# alias spr='sudo pacman -R'
-# alias sprns='sudo pacman -Rns'
-# alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
+alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mln='sudoedit /etc/pacman.d/mirrorlist'
+alias spfy='sudo pacman -Fy' # Sync data
+alias spu='sudo pacman -Syu'
+alias spss='sudo pacman -Ss'
+alias spi='sudo pacman -S'
+alias spr='sudo pacman -R'
+alias sprns='sudo pacman -Rns'
+alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 
-# Pikaur
-# alias pi='pikaur -S --noedit'
-# alias pu='pikaur -Syu'
-# alias pss='pikaur -Ss'
-# alias pr='pikaur -R'
-# alias prns='pikaur -Rns'
+# paru
+alias pi='paru -S --noedit'
+alias pu='paru -Syu'
+alias pss='paru -Ss'
+alias pr='paru -R'
+alias prns='paru -Rns'
 
 # Apt Ubuntu
 # alias sau='sudo apt update && sudo apt upgrade'
@@ -195,11 +196,6 @@ zle -N sudo-command-line
 bindkey -M emacs '\e\e' sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 bindkey -M viins '\e\e' sudo-command-line
-
-# DD
-# ddcp () {
-  # dd bs=4M -- "$1" -- "$2" status=progress oflag=sync && sync
-# }
 
 #### mkcd newdir cd newdir
 mkcd () {
