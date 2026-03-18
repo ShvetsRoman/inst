@@ -22,7 +22,7 @@ function color() {
 
 # Установка paru
 color green "[*] Installing paru..."
-clone https://aur.archlinux.org/paru.git
+git clone https://aur.archlinux.org/paru.git
 cd paru || exit
 makepkg -si
 
