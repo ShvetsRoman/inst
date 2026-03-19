@@ -158,7 +158,7 @@ alias sprns='sudo pacman -Rns'
 alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 
 # paru
-alias pi='paru -S --noedit'
+alias pi='paru -S'
 alias pu='paru -Syu'
 alias pss='paru -Ss'
 alias pr='paru -R'
