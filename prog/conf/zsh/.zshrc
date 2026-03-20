@@ -68,9 +68,9 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command l
 #------------------------------
 # Додає підсвічування синтаксису в Zsh
 #------------------------------
-# if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-#     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# fi
+if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 #------------------------------
 # Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
