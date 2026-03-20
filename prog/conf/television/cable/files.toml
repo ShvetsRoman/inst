@@ -1,0 +1,32 @@
+[metadata]
+name = "files"
+descriptions = "A channel to select files and directories"
+requirements = ["fd", "bat"]
+
+[source]
+command = ["fd -t f", "fd -t f -H", "fd -t f -H -I"]
+
+[preview]
+command = "bat -n --color=always '{}'"
+env = {BAT_THEME = "ansi"}
+
+[keybindings]
+shortcut = "enter"
+enter = "actions:edit"
+ctrl-up = "actions:goto_parent_dir"
+
+[actions.edit]
+descriptions = "Opens files the nvim"
+command ="nvim '{}'"
+# shell = "nu"
+mode = "execute"
+
+[actions.goto_parent_dir]
+descriptions = "Re-opens tv in the parent directory"
+command = "tv files .."
+mode = "execute"
+
+[ui.preview_panel]
+hidden = true
+
+

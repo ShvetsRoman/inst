@@ -4,6 +4,11 @@
 eval "$(starship init zsh)"
 
 #-----------------------------
+# Television Zsh
+#-----------------------------
+# eval "$(tv init zsh)"
+
+#-----------------------------
 # Alias
 #-----------------------------
 if [[ -f ${HOME}/.zsh_alias ]]; then
@@ -31,13 +36,6 @@ if [[ -f ${HOME}/.config/nvim/colors ]]; then
     source ${HOME}/.config/nvim/colors
 fi
 
-#-----------------------------
-# FZF
-#-----------------------------
-if [[ ${+commands[fzf]} ]]; then
-    source <(fzf --zsh)
-fi
-
 #------------------------------
 # History stuff
 #------------------------------
@@ -57,13 +55,6 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 setopt APPEND_HISTORY            # append to history file (Default)
 setopt HIST_NO_STORE             # Don't store history commands
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history list.
-
-
-#------------------------------
-# Набір автодоповнень для Zsh
-#------------------------------
-# autoload -Uz compinit
-# compinit
 
 #------------------------------
 # Додає підсвічування синтаксису в Zsh
@@ -85,4 +76,10 @@ fi
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+#------------------------------
+# Набір автодоповнень для Zsh
+#------------------------------
+# autoload -Uz compinit
+# compinit
 

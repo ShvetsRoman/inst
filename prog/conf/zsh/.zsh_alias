@@ -25,14 +25,12 @@ alias fgrep='fgrep --colour=auto'
 alias cat='bat'
 # alias df='duf'
 
-# fzf
-alias fzfn='nvim $(fzf)'
-
 # yazi
 alias y='yazi'
 
 #
 alias hs='history -100 | grep'
+
 #
 alias neofetch='fastfetch'
 

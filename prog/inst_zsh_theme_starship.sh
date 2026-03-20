@@ -26,7 +26,7 @@ color green "[*] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
 sudo pacman -S --noconfirm --needed starship
 # Дополнительное ПО
-sudo pacman -S --noconfirm --needed exa grc bat fzf
+sudo pacman -S --noconfirm --needed exa grc bat television tldr
  
 # Delete .bashrc
 color green "[*] Delete .bashrc & .bash*..."

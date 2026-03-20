@@ -1,0 +1,19 @@
+[metadata]
+name = "channels"
+description = "A channel to find and select other channels"
+
+[source]
+command = "tv list-channels"
+# output = "$env.XDG_CONFIG_HOME/television/{}"
+
+[keybindings]
+enter = "switch"
+
+[actions.switch]
+description = "Switch to the channel"
+command = "tv '{}'"
+mode = "execute"
+
+[preview]
+command = "bat -n --color=always ~/.config/television/cable/'{}'.toml"
+
