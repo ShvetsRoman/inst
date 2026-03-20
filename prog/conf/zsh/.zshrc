@@ -62,8 +62,22 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command l
 #------------------------------
 # Набір автодоповнень для Zsh
 #------------------------------
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
+
+#------------------------------
+# Додає підсвічування синтаксису в Zsh
+#------------------------------
+# if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+#     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
+
+#------------------------------
+# Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
+#------------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
 
 #------------------------------
 # Підказує команди з історії в реальному часі, прямо коли ти вводиш
@@ -72,16 +86,3 @@ if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-#------------------------------
-# Додає підсвічування синтаксису в Zsh
-#------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-#------------------------------
-# Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
-#------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-fi
