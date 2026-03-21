@@ -22,20 +22,6 @@ if [[ -f ${HOME}/.zsh_path ]]; then
    source ${HOME}/.zsh_path
 fi
 
-#-----------------------------
-# ICONS 
-#-----------------------------
-if [[ -f ${HOME}/.config/nvim/icons ]]; then
-    source ${HOME}/.config/nvim/icons
-fi
-
-#-----------------------------
-# COLORS 
-#-----------------------------
-if [[ -f ${HOME}/.config/nvim/colors ]]; then
-    source ${HOME}/.config/nvim/colors
-fi
-
 #------------------------------
 # History stuff
 #------------------------------
