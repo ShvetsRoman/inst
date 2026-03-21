@@ -23,10 +23,10 @@ function color() {
 
 # Установка ZSH
 color green "[*] Installing ZSH..."
-sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
+sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autocomplete zsh-autosuggestions
 sudo pacman -S --noconfirm --needed starship
 # Дополнительное ПО
-sudo pacman -S --noconfirm --needed exa grc bat television tldr
+sudo pacman -S --noconfirm --needed eza grc bat television
  
 # Delete .bashrc
 color green "[*] Delete .bashrc & .bash*..."

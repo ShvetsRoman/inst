@@ -1,25 +1,13 @@
 # Цветной вывод команд
-  alias ls='exa --sort=type --icons'
-  alias lsa='exa -a --sort=type --icons'
-  alias ll='exa -lg --sort=type --icons'
-  alias ll1='exa -lTg --sort=type --level=1 --icons'
-  alias ll2='exa -lTg --sort=type --level=2 --icons'
-  alias ll3='exa -lTg --sort=type --level=3 --icons'
-  alias lla='exa -lag --sort=type --icons'
-  alias lla1='exa -lTag --sort=type --level=1 --icons'
-  alias lla2='exa -lTag --sort=type --level=2 --icons'
-  alias lla3='exa -lTag --sort=type --level=3 --icons'
+alias l='eza -l -g --header --group-directories-first --icons --git'
+alias la='eza -l -g -a --header --group-directories-first --icons --git'
+alias lt='eza -l -g -a --tree --level=2 --header --group-directories-first --icons --git'
 
 if [ -f /usr/bin/grc ]; then
   alias ping="grc --colour=auto ping -c 4"
 else
   alias ping='ping -c 4'
 fi
-
-#
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
 
 #
 alias cat='bat'
@@ -98,16 +86,7 @@ alias srt='systemctl restart'
 alias see='systemctl enable'
 alias sde='systemctl disable'
 
-# IWCTL
-# alias iwctlscan='iwctl station wlan0 scan && iwctl station wlan0 get-networks'
-# alias iwctlcon='iwctl station wlan0 connect'
-# alias iwctlconhome='iwctl station wlan0 connect HOME_test'
-# alias iwctldiscon='iwctl station wlan0 disconnect'
-# alias iwctlinfo='iwctl station wlan0 show'
-
 # GIT
-alias sshadd='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
-alias sa='eval $(ssh-agent -s) && ssh-add ~/.ssh/git_ssh'
 alias gits='git status'
 alias gs='git status'
 alias gita='git add .'
@@ -258,22 +237,3 @@ pk () {
     color_red "$1 не може бути упакований за допомогою pk, вкажіть метод стиснення\n(tbz, tgz, tar, bz, gz, zip, 7z)"
   fi
 }
-
-# ripgrep->fzf->vim [QUERY]
-rfv() (
-  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-            nvim {1} +{2}     # No selection. Open the current line in Vim.
-          else
-            nvim +cw -q {+f}  # Build quickfix list for the selected items.
-          fi'
-  fzf --disabled --ansi --multi \
-      --bind "start:$RELOAD" --bind "change:$RELOAD" \
-      --bind "enter:become:$OPENER" \
-      --bind "ctrl-o:execute:$OPENER" \
-      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-      --delimiter : \
-      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-      --preview-window '~4,+{2}+4/3,<80(up)' \
-      --query "$*"
-)
