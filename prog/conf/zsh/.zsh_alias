@@ -1,62 +1,57 @@
-# Цветной вывод команд
+# ls > eza + icons
 alias l='eza -l -g --header --group-directories-first --icons --git'
 alias la='eza -l -g -a --header --group-directories-first --icons --git'
 alias lt='eza -l -g -a --tree --level=2 --header --group-directories-first --icons --git'
 
+# ping color + 4
 if [ -f /usr/bin/grc ]; then
   alias ping="grc --colour=auto ping -c 4"
 else
   alias ping='ping -c 4'
 fi
 
-#
+# cat > bat
 alias cat='bat'
-# alias df='duf'
 
 # yazi
 alias y='yazi'
 
-#
+# history grep
 alias hs='history -100 | grep'
 
-#
+# fastfetch
 alias neofetch='fastfetch'
 
-# Upgrade pip
+# upgrade pip
 alias pip_up='python -m pip install --upgrade pip'
+# python
 alias py='python'
 
-# Alias
+# nvim
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias n="nvim"
 alias nv="nvim"
 
-alias cd.="cd .."
-alias cd..="cd ../.."
-alias cd...="cd ../../.."
-
+# config zsh
 alias nzc="nvim ~/.zshrc"
 alias nza="nvim ~/.zsh_alias"
 #alias nzcc="nvim ~/.config/zsh/.zshrc"
 #alias nzca="nvim ~/.config/zsh/zsh_alias"
 #alias nzcz="nvim ~/.config/zsh/.zimrc"
 
+# utils
 alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
 alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
 alias rm="rm -Ivfr"
 alias md="mkdir -pv"
 alias mkdir="mkdir -pv"
-
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
-# alias media='/run/media/roman/media/'
-# alias cdm='cd /run/media/roman/media/'
-# alias sxh='nvim ~/.config/sxhkd/sxhkdrc'
 
-# Docker-compoce
+# docker-compoce
 alias dcu='docker-compose up'
 alias dcud='docker-compose up -d'
 alias dcd='docker-compose down'
@@ -70,11 +65,11 @@ alias dcsp='docker-compose stop'
 alias dcr='docker-compose restart'
 alias dcl='docker-compose logs'
 
-# Docker
+# docker
 alias dsp='docker system prune'
 alias dspa='docker system prune -a'
 
-# Systemctl run service
+# systemctl run service
 alias sysservice='systemctl list-units  --type=service'
 alias sysrunservice='systemctl list-units  --type=service  --state=running'
 alias sst='systemctl start'
@@ -101,6 +96,7 @@ gitc() {
   fi
   git commit -m "$com"
 }
+
 gtc() {
   if [[ -z "$1" ]] ; then
     com="add"
@@ -123,7 +119,7 @@ alias snnc="sudo nvim /etc/nixos/configuration.nix"
 alias snc="sudo nvim /etc/nixos/config.nix"
 alias sns="sudo nvim /etc/nixos/services.nix"
 
-# Pacman
+# pacman
 alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias mln='sudoedit /etc/pacman.d/mirrorlist'
 alias spfy='sudo pacman -Fy' # Sync data
@@ -174,17 +170,17 @@ bindkey -M emacs '\e\e' sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 bindkey -M viins '\e\e' sudo-command-line
 
-#### mkcd newdir cd newdir
+# mkcd newdir cd newdir
 mkcd () {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
-#### mknf newdir + newfilename
+# mknf newdir + newfilename
 mknf () {
 	mkdir -p -- "$1" && touch -- "$1"/"$2" && nvim -- "$1"/"$2"
 }
 
-# Чтобы распаковать архив не указывая тип распаковщика ex имя_архива.bz2 папка для распаковки (опционально)
+# Щоб розпакувати архів не вказуючи тип розпакувальника ex ім'я_архіву.bz2 папка для розпакування (опціонально)
 ex () {
   color_red() { echo -e "\033[31m$1\033[0m"; }
   color_yellow() { echo -e "\033[33m$1\033[0m"; }
@@ -216,7 +212,7 @@ ex () {
   fi
 }
 
-# Упаковка в архив командой pk метод зжатия /что/мы/пакуем
+# Упаковка в архів командою pk метод стиснення /що/ми/пакуємо
 pk () {
   color_red() { echo -e "\033[31m$1\033[0m"; }
   color_yellow() { echo -e "\033[33m$1\033[0m"; }
