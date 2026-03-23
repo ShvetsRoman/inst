@@ -1,10 +1,8 @@
 #!/bin/bash
  
-if [[ -f "${HOME}"/00_setup/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_setup/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
 
 DIR_FONT="$HOME"/.local/share/fonts
 
@@ -22,18 +20,18 @@ function color() {
   esac
 }
 
- # Install Fonts
+# Install Fonts
 install_fonts() {
   color green "\n[*] Installing fonts..."
   if [[ -d "$DIR_FONT" ]]; then
-    cp -rf "$DIR_TEMP_CONF"/fonts/* "$DIR_FONT"
+    cp -rf "$SCRIPT_DIR_CONF"/fonts/* "$DIR_FONT"
   else
     mkdir -p "$DIR_FONT"
-    cp -rf "$DIR_TEMP_CONF"/fonts/* "$DIR_FONT"
+    cp -rf "$SCRIPT_DIR_CONF"/fonts/* "$DIR_FONT"
   fi
-#  mv "$DIR_FONT"/.fonts.conf "$HOME"/
 }
- # Main
+
+# Main
 main() {
   clear
   install_fonts

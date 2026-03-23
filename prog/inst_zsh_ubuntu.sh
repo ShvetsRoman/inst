@@ -1,10 +1,8 @@
 #!/bin/bash
 
-if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
 
 function color() {
   case "$1" in
@@ -46,11 +44,11 @@ sudo apt install -y zsh-autosuggestions
 
 # Copy config
 color green "[*] Copy config ZSH..."
-cp -rfv "${DIR_TEMP_CONF}"/zsh/. "${HOME}"/
+cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
 
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
-sudo cp -rfv "${DIR_TEMP_CONF}"/zsh/. /root/
+sudo cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root/
 
 # Установка Zsh в качестве оболочки по умолчанию
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."

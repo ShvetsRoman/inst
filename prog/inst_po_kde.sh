@@ -35,5 +35,5 @@ sudo pacman -Syu --noconfirm --needed libreoffice-still libreoffice-still-uk
 
 ### Install AUR ###
 # pikaur -S deadbeef google-chrome
-pikaur -S  google-chrome
-pikaur -S  sayonara-player
+paru -S  google-chrome
+paru -S  deadbeef

@@ -88,7 +88,7 @@ alias gita='git add .'
 alias ga='git add .'
 # alias gitc='git commit -m "add"'
 # alias gc='git commit -m "add"'
-gitc() {
+gc() {
   if [[ -z "$1" ]] ; then
     com="add"
   else
@@ -105,6 +105,7 @@ gtc() {
   fi
   git commit -m "$com"
 }
+
 alias gitp='git push'
 alias gp='git push'
 
@@ -133,9 +134,9 @@ alias sprs='sudo pacman -Qqd | sudo pacman -Rsu -'
 # paru
 alias pi='paru -S'
 alias pu='paru -Syu'
+alias pua='paru -Sua'
 alias pss='paru -Ss'
 alias pr='paru -R'
-alias prns='paru -Rns'
 
 # Apt Ubuntu
 # alias sau='sudo apt update && sudo apt upgrade'

@@ -1,11 +1,9 @@
 #!/bin/bash
 #set -e
 
-if [[ -f "${HOME}"/00_setup/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_setup/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
 
 # Установка SAMBA
 sudo pacman -S --noconfirm --needed samba smbclient gvfs-smb kdenetwork-filesharing
@@ -30,7 +28,7 @@ sudo chown root:sambashare /var/lib/samba/usershares
 sudo chmod 1770 /var/lib/samba/usershares
 
 # Файл конфигурации
-sudo cp -rfv "${DIR_TEMP_CONF}"/smb/smb.conf /etc/samba/ 
+sudo cp -rfv "${SCRIPT_DIR_CONF}"/smb/smb.conf /etc/samba/ 
 
 sudo sed -i 's/^hosts:.*/hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns wins/g' /etc/nsswitch.conf
 

@@ -1,12 +1,12 @@
 #!/bin/bash
 #set -e
  
-if [[ -f "${HOME}"/00_project/sh/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/00_project/sh/inst/prog/source_dir.sh
-elif [[ -f "${HOME}"/temp/inst/prog/source_dir.sh ]]; then
-  source "${HOME}"/temp/inst/prog/source_dir.sh
-fi
+# Визначити абсолютний шлях до директорії, де лежить цей скрипт
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR_CONF="${SCRIPT_DIR}"/conf
  
+DIR_HOME_CONF="${HOME}"/.config
+
 function color() {
   case "$1" in
     red)
@@ -32,4 +32,4 @@ if [[ -d "${DIR_HOME_CONF}"/yazi ]]; then
 fi
 
 color green "[*] Copy new config..."
-cp -rv "${DIR_TEMP_CONF}"/yazi "${DIR_HOME_CONF}"/ 
+cp -rv "${SCRIPT_DIR_CONF}"/yazi "${DIR_HOME_CONF}"/ 
