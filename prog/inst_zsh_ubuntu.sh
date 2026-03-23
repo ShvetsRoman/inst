@@ -21,7 +21,7 @@ function color() {
 # zsh
 color green "[*] Installing ZSH..."
 sudo apt install -y zsh
-sudo apt install -y exa grc
+sudo apt install -y eza grc bat television
 
 # Install Theme ZSH
 color green "[*] Installing Theme ZSH..."
@@ -50,7 +50,7 @@ cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
 color green "[*] Install configs ROOT ZSH..."
 sudo cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root/
 
-# Установка Zsh в качестве оболочки по умолчанию
+# Встановленн Zsh в якості оболонки за вмочуванням
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
 sudo chsh -s $(which zsh) "${USER}"
 sudo chsh -s $(which zsh) root

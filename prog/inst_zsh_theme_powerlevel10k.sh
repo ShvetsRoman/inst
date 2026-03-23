@@ -18,15 +18,16 @@ function color() {
   esac
 }
 
-# Установка ZSH
+# Встановлення ZSH
 color green "[*] Installing ZSH..."
-sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
-# Дополнительное ПО
-sudo pacman -S --noconfirm --needed exa grc bat
+sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autocomplete zsh-autosuggestions
+
+# Додаткове ПО
+sudo pacman -S --noconfirm --needed eza grc bat television
  
 # Install Theme ZSH
 color green "[*] Installing Theme ZSH..."
-pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git zsh-autocomplete
+pikaur -S --noconfirm --noedit zsh-theme-powerlevel10k-git
  
 # Install Font 
 color green "[*] Installing Font ZSH..."
@@ -64,7 +65,7 @@ cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
 color green "[*] Install configs ROOT ZSH..."
 sudo cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root/
 
-# Установка Zsh в качестве оболочки по умолчанию
+# Встановленн Zsh в якості оболонки за вмочуванням
 color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
 sudo chsh -s $(which zsh) "${USER}"
 sudo chsh -s $(which zsh) root
