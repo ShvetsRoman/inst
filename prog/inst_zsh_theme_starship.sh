@@ -24,9 +24,11 @@ function color() {
 # Встановлення ZSH
 color green "[*] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autocomplete zsh-autosuggestions
-
+# Встановлення Starship
+color green "[*] Installing Starship..."
 sudo pacman -S --noconfirm --needed starship
 # Додаткове ПО
+color green "[*] Installing PO..."
 sudo pacman -S --noconfirm --needed eza grc bat television
  
 # Delete .bashrc
@@ -48,19 +50,22 @@ fi
 # Copy config
 color green "[*] Copy config ZSH..."
 cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
+color green "[*] Copy config Starship..."
 cp -rfv "${SCRIPT_DIR_CONF}"/starship "${HOME_DIR_CONF}"/
 
 # Install configs ROOT
 color green "[*] Install configs ROOT ZSH..."
-cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root
 if [[ -d /root/.config ]]; then
   color green "[*] /root/.config існює..."
 else
   sudo mkdir /root/.config/
 fi
-sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship /root/.config
+color green "[*] Copy config ROOT ZSH..."
+sudo cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root/
+color green "[*] Copy config ROOT Starship..."
+sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship /root/.config/
 
 # Встановленн Zsh в якості оболонки за вмочуванням
-color green "[*] Установка Zsh в качестве оболочки по умолчанию..."
+color green "[*] ROOT & USER ZSH..."
 sudo chsh -s $(which zsh) "${USER}"
 sudo chsh -s $(which zsh) root
