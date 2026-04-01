@@ -16,6 +16,10 @@ alias cat='bat'
 # yazi
 alias y='yazi'
 
+# TV
+alias tvf='tv files'
+alias tvt='tv text'
+
 # history grep
 alias hs='history -100 | grep'
 
