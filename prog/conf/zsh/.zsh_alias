@@ -10,6 +10,9 @@ else
   alias ping='ping -c 4'
 fi
 
+# MC & US
+alias mc="LANG=C.UTF-8 LC_ALL=C.UTF-8 mc"
+
 # cat > bat
 alias cat='bat'
 
@@ -17,11 +20,9 @@ alias cat='bat'
 alias y='yazi'
 
 # TV
-alias tvf='tv files'
-alias tvt='tv text'
-
-# history grep
-alias hs='history -100 | grep'
+alias ff="tv files"
+alias ft="tv text"
+alias fh="history -50 | tv"
 
 # fastfetch
 alias neofetch='fastfetch'
