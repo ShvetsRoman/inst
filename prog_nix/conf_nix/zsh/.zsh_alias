@@ -20,9 +20,10 @@ alias cat='bat'
 alias y='yazi'
 
 # TV
+alias fd="tv dirs"
 alias ff="tv files"
 alias ft="tv text"
-alias fh="history -50 | tv"
+alias fh="history -20 | tv"
 
 # fastfetch
 alias neofetch='fastfetch'
