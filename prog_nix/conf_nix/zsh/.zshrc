@@ -4,20 +4,6 @@
 eval "$(starship init zsh)"
 
 #-----------------------------
-# Spaceship
-#-----------------------------
-if [[ -f ${HOME}/.config/spaceship/spaceship.zsh ]]; then
-    source ${HOME}/.config/spaceship/spaceship.zsh
-    export SPACESHIP_NODE_SHOW=false
-    # Уникнути повторного виклику PROMPT або рекурсії
-    export SPACESHIP_PROMPT_ADD_NEWLINE=false
-fi
-
-if [[ -f ${HOME}/.config/spaceship_arch.zsh ]]; then
-    source ${HOME}/.config/spaceship_arch.zsh
-fi
-
-#-----------------------------
 # Alias
 #-----------------------------
 if [[ -f ${HOME}/.zsh_alias ]]; then
@@ -31,34 +17,10 @@ if [[ -f ${HOME}/.zsh_path ]]; then
    source ${HOME}/.zsh_path
 fi
 
-#-----------------------------
-# ICONS 
-#-----------------------------
-if [[ -f ${HOME}/.config/nvim/icons ]]; then
-    source ${HOME}/.config/nvim/icons
-fi
-
-#-----------------------------
-# COLORS 
-#-----------------------------
-if [[ -f ${HOME}/.config/nvim/colors ]]; then
-    source ${HOME}/.config/nvim/colors
-fi
-
-#-----------------------------
-# FZF
-#-----------------------------
-if [[ ${+commands[fzf]} ]]; then
-    source <(fzf --zsh)
-fi
-
 #------------------------------
 # History stuff
 #------------------------------
-if [[ -f ${HOME}/.config/zsh/.zshrc ]]; then
-    HISTFILE=${HOME}/.zsh_history
-fi
-
+HISTFILE=${HOME}/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTORY_IGNORE="(ls|lsa|ll|lla|pwd|exit|x|clear|c)"
@@ -75,20 +37,6 @@ setopt APPEND_HISTORY            # append to history file (Default)
 setopt HIST_NO_STORE             # Don't store history commands
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history list.
 
-
-#------------------------------
-# Набір автодоповнень для Zsh
-#------------------------------
-autoload -Uz compinit
-compinit
-
-#------------------------------
-# Підказує команди з історії в реальному часі, прямо коли ти вводиш
-#------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
 #------------------------------
 # Додає підсвічування синтаксису в Zsh
 #------------------------------
@@ -102,3 +50,21 @@ fi
 if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
+
+#------------------------------
+# Підказує команди з історії в реальному часі, прямо коли ти вводиш
+#------------------------------
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+#------------------------------
+# Набір автодоповнень для Zsh
+#------------------------------
+# autoload -Uz compinit
+# compinit
+
+#-----------------------------
+# Television Zsh
+#-----------------------------
+eval "$(tv init zsh)"

@@ -4,11 +4,6 @@
 eval "$(starship init zsh)"
 
 #-----------------------------
-# Television Zsh
-#-----------------------------
-# eval "$(tv init zsh)"
-
-#-----------------------------
 # Alias
 #-----------------------------
 if [[ -f ${HOME}/.zsh_alias ]]; then
@@ -69,3 +64,7 @@ fi
 # autoload -Uz compinit
 # compinit
 
+#-----------------------------
+# Television Zsh
+#-----------------------------
+eval "$(tv init zsh)"
