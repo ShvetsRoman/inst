@@ -24,7 +24,7 @@ sudo pacman -Syu --noconfirm --needed ktorrent
 sudo pacman -Syu --noconfirm --needed gwenview gimp inkscape okular
 
 # Video, Audio
-sudo pacman -Syu --noconfirm --needed ffmpeg ffmpegthumbnailer vlc
+sudo pacman -Syu --noconfirm --needed ffmpeg ffmpegthumbnailer vlc vlc-plugins-all
 
 # General utilities/libraries
 sudo pacman -Syu --noconfirm --needed fastfetch git openssh p7zip unace unrar unzip ark mc htop gparted kcalc

@@ -1,0 +1,32 @@
+[global]
+   workgroup = HOME
+   server string = Samba Server
+   netbios name = server-pc
+   server role = standalone server
+
+   # Безпека
+   security = user
+   map to guest = Bad User
+   guest account = nobody
+
+   # Протоколи
+   server min protocol = SMB2
+   server max protocol = SMB3
+
+   # Логи
+   log file = /var/log/samba/%m.log
+   max log size = 50
+   logging = syslog
+
+   unix charset = UTF-8
+
+
+[server_media]
+   comment = Server PC
+   path = /run/media/serv/media/
+
+   valid users = @sambashare
+   read only = no
+
+   create mask = 0664
+   directory mask = 2775
