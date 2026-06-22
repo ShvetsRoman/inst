@@ -19,7 +19,7 @@
     starship
     git
     fzf
-    htop
+    btop
     bat
     eza
     rsync
@@ -31,7 +31,7 @@
     inkscape
     vlc
     deadbeef
-    neofetch
+    fastfetch
     kdePackages.ktorrent
     docker-compose
   ];

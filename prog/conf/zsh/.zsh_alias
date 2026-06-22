@@ -23,10 +23,13 @@ alias y='yazi'
 alias fd="tv dirs"
 alias ff="tv files"
 alias ft="tv text"
-alias fh="history -20 | tv"
 
 # fastfetch
 alias neofetch='fastfetch'
+
+# ZELLIJ
+alias ze="zellij"
+alias zz="zellij"
 
 # upgrade pip
 alias pip_up='python -m pip install --upgrade pip'
@@ -48,6 +51,7 @@ alias nza="nvim ~/.zsh_alias"
 #alias nzcz="nvim ~/.config/zsh/.zimrc"
 
 # utils
+alias rcp="rsync -avPh"
 alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
 alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
 alias rm="rm -Ivfr"
@@ -127,7 +131,8 @@ alias snc="sudo nvim /etc/nixos/config.nix"
 alias sns="sudo nvim /etc/nixos/services.nix"
 
 # pacman
-alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mlu='sudo reflector --country UA,PL,DE,MD,RO --protocol https --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
+# alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias mln='sudoedit /etc/pacman.d/mirrorlist'
 alias spfy='sudo pacman -Fy' # Sync data
 alias spu='sudo pacman -Syu'
@@ -154,7 +159,7 @@ alias pr='paru -R'
 # alias sal='sudo apt list --installed'
 
 # Mikrotik
-alias mikreboot="ssh roman@192.168.88.1 reboot system"
+alias mikreboot="ssh -p 2240 -i ~/.ssh/id_mik roman@192.168.88.1 reboot system"
 
 # SUDO
 # Defined shortcut keys: [Esc] [Esc]
