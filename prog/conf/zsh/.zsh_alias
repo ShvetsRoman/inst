@@ -5,7 +5,7 @@ alias lt='eza -l -g -a --tree --level=2 --header --group-directories-first --ico
 
 # ping color + 4
 if [ -f /usr/bin/grc ]; then
-  alias ping="grc --colour=auto ping -c 4"
+  alias ping='grc --colour=auto ping -c 4'
 else
   alias ping='ping -c 4'
 fi
@@ -20,16 +20,16 @@ alias cat='bat'
 alias y='yazi'
 
 # TV
-alias fd="tv dirs"
-alias ff="tv files"
-alias ft="tv text"
+alias tvd='cd $(tv dirs)'
+alias tvf='nvim $(tv files)'
+alias tvt='nvim $(tv text)'
 
 # fastfetch
 alias neofetch='fastfetch'
 
 # ZELLIJ
-alias ze="zellij"
-alias zz="zellij"
+alias ze='zellij'
+alias zz='zellij'
 
 # upgrade pip
 alias pip_up='python -m pip install --upgrade pip'
@@ -37,26 +37,26 @@ alias pip_up='python -m pip install --upgrade pip'
 alias py='python'
 
 # nvim
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
-alias n="nvim"
-alias nv="nvim"
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias n='nvim'
+alias nv='nvim'
 
 # config zsh
-alias nzc="nvim ~/.zshrc"
-alias nza="nvim ~/.zsh_alias"
-#alias nzcc="nvim ~/.config/zsh/.zshrc"
-#alias nzca="nvim ~/.config/zsh/zsh_alias"
-#alias nzcz="nvim ~/.config/zsh/.zimrc"
+alias nzc='nvim ~/.zshrc'
+alias nza='nvim ~/.zsh_alias'
+#alias nzcc='nvim ~/.config/zsh/.zshrc'
+#alias nzca='nvim ~/.config/zsh/zsh_alias'
+#alias nzcz='nvim ~/.config/zsh/.zimrc'
 
 # utils
-alias rcp="rsync -avPh"
-alias cp="cp -uv"	# перезаписати файл, якщо він був змінений + вивід
-alias mv="mv -iv"	# втвід інформації про кожен файл який обробляє mv
-alias rm="rm -Ivfr"
-alias md="mkdir -pv"
-alias mkdir="mkdir -pv"
+alias rcp='rsync -avPh'
+alias cp='cp -uv'	# перезаписати файл, якщо він був змінений + вивід
+alias mv='mv -iv'	# втвід інформації про кожен файл який обробляє mv
+alias rm='rm -Ivfr'
+alias md='mkdir -pv'
+alias mkdir='mkdir -pv'
 alias c='clear'
 alias x='exit'
 alias ln='ln -s'
@@ -123,12 +123,12 @@ alias gitpl='git pull'
 alias gpl='git pull'
 
 # NIXOS
-alias snrs="sudo nixos-rebuild switch"
-alias snrsu="sudo nixos-rebuild switch --upgrade"
-alias snp="sudo nvim /etc/nixos/programs.nix"
-alias snnc="sudo nvim /etc/nixos/configuration.nix"
-alias snc="sudo nvim /etc/nixos/config.nix"
-alias sns="sudo nvim /etc/nixos/services.nix"
+alias snrs='sudo nixos-rebuild switch'
+alias snrsu='sudo nixos-rebuild switch --upgrade'
+alias snp='sudo nvim /etc/nixos/programs.nix'
+alias snnc='sudo nvim /etc/nixos/configuration.nix'
+alias snc='sudo nvim /etc/nixos/config.nix'
+alias sns='sudo nvim /etc/nixos/services.nix'
 
 # pacman
 alias mlu='sudo reflector --country UA,PL,DE,MD,RO --protocol https --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
@@ -159,7 +159,7 @@ alias pr='paru -R'
 # alias sal='sudo apt list --installed'
 
 # Mikrotik
-alias mikreboot="ssh -p 2240 -i ~/.ssh/id_mik roman@192.168.88.1 reboot system"
+alias mikreboot='ssh -p 2240 -i ~/.ssh/id_mik roman@192.168.88.1 reboot system'
 
 # SUDO
 # Defined shortcut keys: [Esc] [Esc]

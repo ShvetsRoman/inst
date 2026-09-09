@@ -1,8 +1,6 @@
 require "nvchad.options"
 
-
 -- add yours here!
-
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
@@ -35,7 +33,7 @@ o.incsearch = true  -- Пошук "на льоту"
 
 -- Відображення
 o.wrap = false           -- Краще вимкнути (зручніше для коду)
-o.colorcolumn = "80,100" -- Ліміти ширини
+o.colorcolumn = "100" -- Ліміти ширини
 o.signcolumn = "yes"     -- Завжди показувати колонку знаків (LSP, git)
 
 -- Табуляція
@@ -53,6 +51,8 @@ o.cursorline = true -- Підсвітка поточного рядка
 o.termguicolors = true
 o.splitright = true -- Вертикальні спліти справа
 o.splitbelow = true -- Горизонтальні знизу
+o.wrap = true -- Включення переносу
+o.linebreak = true -- Переносити по слову
 
 -- Швидкість
 o.updatetime = 250 -- Швидше оновлення (для LSP, git signs)
@@ -63,5 +63,4 @@ o.encoding = "utf-8"
 o.fileencoding = "utf-8"
 
 -- Мапінг розкладки (укр/рос → англ)
-o.langmap =
-"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
