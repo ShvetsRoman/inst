@@ -1,0 +1,4 @@
+ENTRY "Home_pc" URL "/home/roman/"
+ENTRY "Serv" URL "/sftp://serv/home/serv/"
+ENTRY "Serv_media" URL "/sftp://serv/run/media/serv/media/"
+ENTRY "Work_serv" URL "/sftp://work_serv/home/cbm"
