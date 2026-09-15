@@ -14,10 +14,10 @@ config.enable_wayland = true
 -- Settings
 config.xcursor_theme = "capitaine-cursors"
 
--- config.color_scheme = "nord"
+config.color_scheme = "nord"
 -- config.color_scheme = 'DotGov'
 -- config.color_scheme = 'Hardcore'
-config.color_scheme = 'Vs Code Dark+ (Gogh)'
+-- config.color_scheme = 'Vs Code Dark+ (Gogh)'
 
 -- config.font = wezterm.font "JetBrainsMono Nerd Font"
 config.font = wezterm.font "FiraCode Nerd Font"

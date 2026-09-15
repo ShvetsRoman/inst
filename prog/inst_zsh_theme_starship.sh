@@ -22,17 +22,17 @@ function color() {
 }
 
 # Встановлення ZSH
-color green "[*] Installing ZSH..."
+color green "[***] Installing ZSH..."
 sudo pacman -S --noconfirm --needed zsh zsh-completions zsh-syntax-highlighting zsh-autocomplete zsh-autosuggestions
 # Встановлення Starship
-color green "[*] Installing Starship..."
+color green "[***] Installing Starship..."
 sudo pacman -S --noconfirm --needed starship
 # Додаткове ПО
-color green "[*] Installing PO..."
+color green "[***] Installing PO..."
 sudo pacman -S --noconfirm --needed eza grc bat television
  
 # Delete .bashrc
-color green "[*] Delete .bashrc & .bash*..."
+color green "[***] Delete .bashrc & .bash*..."
 if [[ -f "${HOME}"/.bashrc ]]; then
 rm -r "${HOME}"/.bash*
 fi
@@ -48,24 +48,24 @@ if [[ -f "${HOME}"/.zsh_icons ]]; then
 fi
 
 # Copy config
-color green "[*] Copy config ZSH..."
+color green "[***] Copy config ZSH..."
 cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. "${HOME}"/
-color green "[*] Copy config Starship..."
+color green "[***] Copy config Starship..."
 cp -rfv "${SCRIPT_DIR_CONF}"/starship "${HOME_DIR_CONF}"/
 
 # Install configs ROOT
-color green "[*] Install configs ROOT ZSH..."
+color green "[***] Install configs ROOT ZSH..."
 if [[ -d /root/.config ]]; then
-  color green "[*] /root/.config існює..."
+  color green "[***] /root/.config існює..."
 else
-  sudo mkdir /root/.config/
+  sudo mkdir -p /root/.config/
 fi
-color green "[*] Copy config ROOT ZSH..."
+color green "[***] Copy config ROOT ZSH..."
 sudo cp -rfv "${SCRIPT_DIR_CONF}"/zsh/. /root/
-color green "[*] Copy config ROOT Starship..."
+color green "[***] Copy config ROOT Starship..."
 sudo cp -rfv "${SCRIPT_DIR_CONF}"/starship /root/.config/
 
 # Встановленн Zsh в якості оболонки за вмочуванням
-color green "[*] ROOT & USER ZSH..."
+color green "[***] ROOT & USER ZSH..."
 sudo chsh -s $(which zsh) "${USER}"
 sudo chsh -s $(which zsh) root
