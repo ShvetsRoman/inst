@@ -37,7 +37,16 @@ config.default_workspace = "home"
 config.initial_rows = 35
 config.initial_cols = 105
 
+-- Отключает мигание экрана (визуальный сигнал)
+config.visual_bell = {
+  fade_in_duration_ms = 0,
+  fade_out_duration_ms = 0,
+  target = 'BackgroundColor',
+}
+-- (Опционально) Отключает также звуковой сигнал, если он вам мешает
+config.audible_bell = 'Disabled'
 -- Затемнення неактивних панелей (зручно у vim-сплітах)
+
 config.inactive_pane_hsb = {
   saturation = 0.24,
   brightness = 0.5,
