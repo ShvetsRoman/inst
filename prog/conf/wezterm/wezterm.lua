@@ -5,17 +5,17 @@ local act = wezterm.action
 -- Config builder (важливо: зберігаємо результат!)
 local config = wezterm.config_builder and wezterm.config_builder() or {}
 
--- ─── Wayland / X11 ───────────────────────────────────────────────
+-- Wayland / X11
 config.enable_wayland = true
 config.xcursor_theme = "capitaine-cursors"
 
--- ─── Зовнішній вигляд ────────────────────────────────────────────
+-- Зовнішній вигляд
 config.color_scheme = "nord"
 config.font = wezterm.font "FiraCode Nerd Font"
 config.font_size = 16
 config.window_background_opacity = 0.95
 
--- ─── Таб-бар ─────────────────────────────────────────────────────
+-- Таб-бар
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = false      -- true — внизу
 config.use_fancy_tab_bar = false      -- false = "retro" стиль, легше кастомізувати
@@ -28,10 +28,7 @@ config.window_padding = {
   top = 0, bottom = 0,
 }
 
--- ─── Кольори вкладок (Nord-палітра) ──────────────────────────────
-config.colors = {
-}
-
+-- Title | Resize 
 config.window_decorations = "TITLE | RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 3000
@@ -46,7 +43,7 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 
--- ─── Курсор ──────────────────────────────────────────────────────
+-- Курсор
 config.default_cursor_style = "SteadyBlock"
 config.cursor_blink_rate = 0
 config.cursor_blink_ease_in = "Constant"
@@ -54,7 +51,7 @@ config.cursor_blink_ease_out = "Constant"
 config.cursor_thickness = "2px"
 
 config.colors = {
-  -- корір курсора
+  -- колір курсора
   cursor_bg = "#EBCB8B",   -- Nord yellow
   cursor_fg = "#2E3440",   -- Nord0
   cursor_border = "#EBCB8B",
@@ -132,7 +129,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   }
 end)
 
--- ─── Бел ─────────────────────────────────────────────────────────
+-- Бел
 config.audible_bell = "Disabled"
 config.visual_bell = {
   fade_in_function = "EaseIn",
@@ -141,12 +138,12 @@ config.visual_bell = {
   fade_out_duration_ms = 100,
 }
 
--- ─── Продуктивність ──────────────────────────────────────────────
+-- Продуктивність
 config.front_end = "WebGpu"   -- на Wayland зазвичай швидше за OpenGL
 config.max_fps = 120
 config.animation_fps = 120
 
--- ─── Гарячі клавіші (vim-friendly) ───────────────────────────────
+-- Гарячі клавіші (vim-friendly)
 -- Логіка: усі дії — на Ctrl+Shift+..., щоб не красти Ctrl+h/j/k/l у vim/tmux.
 config.keys = {
   -- Вкладки
@@ -210,21 +207,5 @@ config.keys = {
   { key = "Space", mods = "CTRL|SHIFT", action = act.ActivateCopyMode },
 }
 
--- ─── Copy mode: vim-подібні рухи ─────────────────────────────────
--- За замовчуванням у copy mode вже працюють h/j/k/l, /, n, N, тощо.
--- Але перевизначимо Escape та деякі клавіші явно.
--- config.key_tables = {
---   copy_mode = {
---     { key = "Escape", mods = "NONE", action = act.CopyMode "Close" },
---     -- У vim-стилі: 'v' — почати виділення
---     { key = "v", mods = "NONE", action = act.CopyMode "SetSelectionMode" },
---     { key = "y", mods = "NONE", action = act.Multiple {
---         act.CopyTo "Clipboard",
---         act.CopyMode "Close",
---       }
---     },
---   },
--- }
-
--- ─── Фінал ───────────────────────────────────────────────────────
+-- Фінал
 return config
