@@ -162,15 +162,15 @@ config.keys = {
 
   -- Панелі (спліти)
   -- Ctrl+Shift+\ — вертикальний спліт (|)
-  { key = "\\", mods = "CTRL|SHIFT", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = "\\", mods = "CTRL", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
   -- Ctrl+Shift+- — горизонтальний спліт (—)
-  { key = "-",  mods = "CTRL|SHIFT", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = "-",  mods = "CTRL", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
 
   -- Навігація між панелями (з Shift — не заважає vim Ctrl+h/j/k/l)
-  { key = "h", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection "Left" },
-  { key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection "Right" },
-  { key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection "Up" },
-  { key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection "Down" },
+  { key = "h", mods = "CTRL", action = act.ActivatePaneDirection "Left" },
+  { key = "l", mods = "CTRL", action = act.ActivatePaneDirection "Right" },
+  { key = "k", mods = "CTRL", action = act.ActivatePaneDirection "Up" },
+  { key = "j", mods = "CTRL", action = act.ActivatePaneDirection "Down" },
 
   -- Зміна розміру панелі (Alt+Shift+стрілки — не конфліктує з vim)
   { key = "LeftArrow",  mods = "ALT|SHIFT", action = act.AdjustPaneSize { "Left", 2 } },
