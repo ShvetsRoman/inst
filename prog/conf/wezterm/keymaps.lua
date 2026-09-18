@@ -37,10 +37,16 @@ return {
     },
 
     -- НАВІГАЦІЯ МІЖ ПАНЕЛЯМИ
+    -- Ctrl + h/j/k/l
     { key = "h", mods = "CTRL", action = act.ActivatePaneDirection "Left" },
     { key = "l", mods = "CTRL", action = act.ActivatePaneDirection "Right" },
     { key = "k", mods = "CTRL", action = act.ActivatePaneDirection "Up" },
     { key = "j", mods = "CTRL", action = act.ActivatePaneDirection "Down" },
+    -- Ctrl + стрілки
+    { key = "LeftArrow",  mods = "CTRL", action = act.ActivatePaneDirection "Left" },
+    { key = "RightArrow", mods = "CTRL", action = act.ActivatePaneDirection "Right" },
+    { key = "UpArrow",    mods = "CTRL", action = act.ActivatePaneDirection "Up" },
+    { key = "DownArrow",  mods = "CTRL", action = act.ActivatePaneDirection "Down" },
 
     -- РОЗМІР ПАНЕЛІ
     {
@@ -84,10 +90,10 @@ return {
     },
 
     -- РОЗМІР ШРИФТУ
-    { key = "+", mods = "CTRL", action = act.IncreaseFontSize },
-    { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
-    { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
-    { key = "0", mods = "CTRL", action = act.ResetFontSize },
+    { key = "+", mods = "CTRL|SHIFT", action = act.IncreaseFontSize },
+    { key = "=", mods = "CTRL|SHIFT", action = act.IncreaseFontSize },
+    { key = "-", mods = "CTRL|SHIFT", action = act.DecreaseFontSize },
+    { key = "0", mods = "CTRL|SHIFT", action = act.ResetFontSize },
 
     -- COPY / PASTE
     {
