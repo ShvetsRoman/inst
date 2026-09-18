@@ -14,7 +14,7 @@ config.color_scheme = "nord"
 config.font = wezterm.font "FiraCode Nerd Font"
 config.font_size = 16
 config.window_background_opacity = 0.7
-config.kde_window_background_blur = true
+config.wayland_window_background_blur = true
 
 -- Таб-бар
 config.enable_tab_bar = true
