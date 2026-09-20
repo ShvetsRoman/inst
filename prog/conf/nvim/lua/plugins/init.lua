@@ -27,4 +27,24 @@ return {
       "rcarriga/nvim-notify",
     }
   },
+
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+    "LazyGit",
+    "LazyGitConfig",
+    "LazyGitCurrentFile",
+    "LazyGitFilter",
+    "LazyGitFilterCurrentFile",
+    },
+    -- залежність, необхідна для роботи плагіна
+    dependencies = {
+    "nvim-lua/plenary.nvim",
+    },
+    -- швидке призначення гарячої клавіші (наприклад, <leader>lg)
+    keys = {
+    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" }
+    },
+  },
+
 }
