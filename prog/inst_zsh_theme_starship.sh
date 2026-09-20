@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
 
 # Визначити абсолютний шлях до директорії, де лежить цей скрипт
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -37,15 +39,16 @@ if [[ -f "${HOME}"/.bashrc ]]; then
 rm -r "${HOME}"/.bash*
 fi
 
-if [[ -f "${HOME}"/.zsh_alias ]]; then
-    mv "${HOME}"/.zsh_alias "${HOME}"/.zsh_alias.bak
-fi
-if [[ -f "${HOME}"/.zsh_path ]]; then
-    mv "${HOME}"/.zsh_path "${HOME}"/.zsh_path.bak
-fi
-if [[ -f "${HOME}"/.zsh_icons ]]; then
-    mv "${HOME}"/.zsh_icons "${HOME}"/.zsh_icons.bak
-fi
+readonly ZSH_FILES=(
+    "${HOME}/.zsh_alias"
+    "${HOME}/.zsh_path"
+    "${HOME}/.zsh_icons"
+)
+for file in "${ZSH_FILES[@]}"; do
+    if [[ -f "$file" ]]; then
+        mv "$file" "${file}.bak"
+    fi
+done
 
 # Copy config
 color green "[***] Copy config ZSH..."

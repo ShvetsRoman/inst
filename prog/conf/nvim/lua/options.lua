@@ -17,8 +17,8 @@ o.backup = false   -- Без backup-файлів
 o.undofile = true  -- Постійна історія undo
 
 -- Прокрутка
-o.scrolloff = 8     -- Завжди видно 8 рядків навколо курсора
-o.sidescrolloff = 8 -- Те ж саме по горизонталі
+o.scrolloff = 5     -- Завжди видно 8 рядків навколо курсора
+o.sidescrolloff = 5 -- Те ж саме по горизонталі
 
 -- Нумерація
 o.number = true         -- Абсолютний номер рядка
@@ -35,7 +35,7 @@ o.incsearch = true  -- Пошук "на льоту"
 
 -- Відображення
 o.wrap = false           -- Краще вимкнути (зручніше для коду)
-o.colorcolumn = "100" -- Ліміти ширини
+o.colorcolumn = "100"    -- Ліміти ширини
 o.signcolumn = "yes"     -- Завжди показувати колонку знаків (LSP, git)
 
 -- Табуляція
@@ -53,7 +53,6 @@ o.cursorline = true -- Підсвітка поточного рядка
 o.termguicolors = true
 o.splitright = true -- Вертикальні спліти справа
 o.splitbelow = true -- Горизонтальні знизу
-o.wrap = true -- Включення переносу
 o.linebreak = true -- Переносити по слову
 
 -- Швидкість

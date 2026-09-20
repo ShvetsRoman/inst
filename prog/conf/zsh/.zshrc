@@ -68,3 +68,8 @@ fi
 # Television Zsh
 #-----------------------------
 eval "$(tv init zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/roman/.lmstudio/bin"
+# End of LM Studio CLI section
+

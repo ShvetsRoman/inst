@@ -19,6 +19,9 @@ alias cat='bat'
 # yazi
 alias y='yazi'
 
+# ZEDITOR
+alias zed='zeditor'
+
 # TV
 alias tvd='cd $(tv dirs)'
 alias tvf='nvim $(tv files)'
@@ -62,18 +65,18 @@ alias x='exit'
 alias ln='ln -s'
 
 # docker-compoce
-alias dcu='docker-compose up'
-alias dcud='docker-compose up -d'
-alias dcd='docker-compose down'
-alias dcdv='docker-compose down --volumes'
-alias dcps='docker-compose ps'
-alias dcpsa='docker-compose ps -a'
-alias dci='docker-compose images'
-alias dcv='docker-compose volumes'
-alias dcst='docker-compose start'
-alias dcsp='docker-compose stop'
-alias dcr='docker-compose restart'
-alias dcl='docker-compose logs'
+alias dcu='docker compose up'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
+alias dcdv='docker compose down --volumes'
+alias dcps='docker compose ps'
+alias dcpsa='docker compose ps -a'
+alias dci='docker compose images'
+alias dcv='docker compose volumes'
+alias dcst='docker compose start'
+alias dcsp='docker compose stop'
+alias dcr='docker compose restart'
+alias dcl='docker compose logs'
 
 # docker
 alias dsp='docker system prune'
