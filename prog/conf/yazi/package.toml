@@ -1,22 +1,27 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "58c4f4e"
+rev = "f703392"
 hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
-use = "imsi32/yatline"
-rev = "c5d4b48"
-hash = "e6e98d12b1648d1894c2b560d85eeaa7"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "58c4f4e"
+rev = "f703392"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "58c4f4e"
+rev = "f703392"
 hash = "87472b05a8c420100f6a2b9cde1e7746"
+
+[[plugin.deps]]
+use = "llanosrocas/yaziline"
+rev = "029b27d"
+hash = "ceeb45e796faf0d9eed10831ffec7701"
+
+[[plugin.deps]]
+use = "llanosrocas/githead"
+rev = "317d09f"
+hash = "41dc37a724b2afd21da4f1ea6c1182d8"
 
 [[flavor.deps]]
 use = "AdithyanA2005/nord"

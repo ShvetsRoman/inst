@@ -1,97 +1,77 @@
-require("full-border"):setup {
-	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+require("full-border"):setup({
+	-- Available values: ui.Border.PLAIN,ui.Border.ROUNDED
 	-- type = ui.Border.ROUNDED,
-}
-
-require("yatline"):setup({
-	section_separator = { open = "", close = "" },
-	part_separator = { open = "", close = "" },
-	inverse_separator = { open = "", close = "" },
-
-	padding = { inner = 1, outer = 1 },
-
-	style_a = {
-		bg = "white",
-		fg = "black",
-		bg_mode = {
-			normal = "white",
-			select = "brightyellow",
-			un_set = "brightred",
-		},
-	},
-	style_b = { bg = "brightblack", fg = "brightwhite" },
-	style_c = { bg = "black", fg = "brightwhite" },
-
-	permissions_t_fg = "green",
-	permissions_r_fg = "yellow",
-	permissions_w_fg = "red",
-	permissions_x_fg = "cyan",
-	permissions_s_fg = "white",
-
-	tab_width = 20,
-
-	selected = { icon = "󰻭", fg = "yellow" },
-	copied = { icon = "", fg = "green" },
-	cut = { icon = "", fg = "red" },
-
-	files = { icon = "", fg = "blue" },
-	filtereds = { icon = "", fg = "magenta" },
-
-	total = { icon = "󰮍", fg = "yellow" },
-	success = { icon = "", fg = "green" },
-	failed = { icon = "", fg = "red" },
-
-	show_background = true,
-
-	display_header_line = true,
-	display_status_line = true,
-
-	component_positions = { "header", "tab", "status" },
-
-	header_line = {
-		left = {
-			section_a = {
-				{ type = "line", name = "tabs" },
-			},
-			section_b = {},
-			section_c = {},
-		},
-		right = {
-			section_a = {
-				{ type = "string", name = "date", params = { "%A, %d %B %Y" } },
-			},
-			section_b = {
-				{ type = "string", name = "date", params = { "%X" } },
-			},
-			section_c = {},
-		},
-	},
-
-	status_line = {
-		left = {
-			section_a = {
-				{ type = "string", name = "tab_mode" },
-			},
-			section_b = {
-				{ type = "string", name = "hovered_size" },
-			},
-			section_c = {
-				{ type = "string", name = "hovered_path" },
-				{ type = "coloreds", name = "count" },
-			},
-		},
-		right = {
-			section_a = {
-				{ type = "string", name = "cursor_position" },
-			},
-			section_b = {
-				{ type = "string", name = "cursor_percentage" },
-			},
-			section_c = {
-				{ type = "string", name = "hovered_file_extension", params = { true } },
-				{ type = "coloreds", name = "permissions" },
-			},
-		},
-	},
 })
 
+-------------------------------------------------------------------------------
+-- 1. HEADER LINE: githead.yazi (Верхня панель у стилі Nord + Git)
+-------------------------------------------------------------------------------
+require("githead"):setup({
+    -- Основний акцент для поточного шляху / активної папки (Nord8 - Frost)
+    color = "#88c0d0",
+
+    -- Другорядний темний фон для решти інформації (Nord3 - Polar Night)
+    secondary_color = "#3b4252",
+
+    -- Стиль стрілочок ("angly" створює Powerline-кути)
+    separator_style = "liney",
+    -- separator_style = "angly",
+
+    -- Гліфи розділювачів (мають збігатися з нижньою панеллю)
+    -- separator_open       = "",
+    -- separator_close      = "",
+    -- separator_open_thin  = "",
+    -- separator_close_thin = "",
+
+    -- Спеціальні кастомні іконки статусів Git (Nord-палітра)
+    -- Якщо статус спокійний - Nord14 (Зелений),якщо є зміни - Nord13 (Жовтий)
+    git_symbols = {
+        clean     = "✔",
+        staged    = "●",
+        modified  = "✚",
+        untracked = "…",
+        ignored   = "☒",
+        conflict  = "✖",
+    }
+})
+
+-------------------------------------------------------------------------------
+-- 2. STATUS LINE: yaziline.yazi (Нижня панель у стилі Nord)
+-------------------------------------------------------------------------------
+require("yaziline"):setup({
+    -- Колір режиму за замовчуванням (Nord8 - Frost / Блакитний)
+    color = "#88c0d0",
+
+    -- Контрастний фон для інформаційних блоків (Nord3)
+    secondary_color = "#3b4252",
+
+    -- Колір лічильника файлів,коли таб неактивний (Nord4 - Snow Storm)
+    default_files_color = "#d8dee9",
+
+    -- Колір для виділених файлів (Nord14 - Aurora Green / Зелений)
+    selected_files_color = "#a3be8c",
+
+    -- Колір для скопійованих файлів (Nord13 - Aurora Yellow / Жовтий)
+    yanked_files_color = "#ebcb8b",
+
+    -- Колір для вирізаних файлів (Nord11 - Aurora Red / Червоний)
+    cut_files_color = "#bf616a",
+
+    -- Символ виділення
+    select_symbol = "",
+
+    -- Стиль розділювачів
+    separator_style = "liney",
+    -- separator_style = "angly",
+
+    -- Powerline гліфи для побудови статус-бару
+    -- separator_open       = "",
+    -- separator_close      = "",
+    -- separator_open_thin  = "",
+    -- separator_close_thin = "",
+    -- separator_head       = "",
+    -- separator_tail       = "",
+
+    show_background = true,
+    filename_truncate_len = 25,
+})
