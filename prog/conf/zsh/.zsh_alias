@@ -19,6 +19,12 @@ alias cat='bat'
 # yazi
 alias y='yazi'
 
+# LazyGit
+alias lg='lazygit'
+
+# LazyDocker
+alias ld='lazydocker'
+
 # ZEDITOR
 alias zed='zeditor'
 
