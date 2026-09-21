@@ -140,7 +140,21 @@ alias snc='sudo nvim /etc/nixos/config.nix'
 alias sns='sudo nvim /etc/nixos/services.nix'
 
 # pacman
-alias mlu='sudo reflector --country UA,PL,DE,MD,RO --protocol https --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
+alias mlu='sudo reflector \
+    --country Ukraine,Poland,Germany,Czechia,Netherlands \
+    --latest 15 \
+    --protocol https \
+    --sort rate \
+    --download-timeout 15 \
+    --save /etc/pacman.d/mirrorlist'
+alias mls='reflector \
+    --country Ukraine,Poland,Germany,Czechia,Netherlands \
+    --latest 15 \
+    --protocol https \
+    --sort rate \
+    --download-timeout 15'
+# alias mlu='sudo reflector --country UA --protocol https --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
+# alias mlu='sudo reflector --country UA,PL,DE,MD,RO --protocol https --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
 # alias mlu='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias mln='sudoedit /etc/pacman.d/mirrorlist'
 alias spfy='sudo pacman -Fy' # Sync data
