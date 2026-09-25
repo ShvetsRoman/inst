@@ -85,11 +85,16 @@ right = [
 # Buffer navigation
 "H" = "goto_previous_buffer"
 "L" = "goto_next_buffer"
-# File picker
-# Space → file picker
-# "space" = "file_picker"
-# Search
-# / залишаємо стандартним Helix search
+# Enter      → новий рядок нижче → Normal mode
+ret = ["open_below", "normal_mode"]
+# Ctrl+Enter → новий рядок вище → Normal mode
+C-ret = ["open_above", "normal_mode"]
+# відкриває файловий picker Helix в директорії поточного файлу
+F1 = "file_picker_in_current_directory"
+# Відкриває стандартний файловий picker Helix
+F2 = "file_picker"
+# Видалення порожніх рядків через regex selection
+F5 = "@%s^\\s*$<ret>dC-,"
 
 # INSERT MODE
 [keys.insert]

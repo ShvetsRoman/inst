@@ -19,9 +19,13 @@ map("n", "<CR>", "o<ESC>", { desc = "Insert Insert line below" })
 -- map("v", "<", "<gv", { desc = "Unindent and keep selection" })
 -- map("v", ">", ">gv", { desc = "Indent and keep selection" })
 
--- Nvim-tree
+-- Відкриває nvim-tree в директорії проекту
 map("n", "<F1>", "<cmd> :NvimTreeToggle <CR>", { desc = "Nvim-tree" })
-
+-- Відкриває nvim-tree в домашній директорії
+map("n", "<F2>", function()
+  local home = vim.fn.expand("~")
+  require("nvim-tree.api").tree.open({ path = home })
+end, { desc = "Open NvimTree in Home directory" })
 -- Search Replace
 map("n", "<F4>", ":%s///gc<LEFT><LEFT><LEFT><LEFT>", { desc = "Search Пошук та заміна" })
 map("i", "<F4>", "<ESC>:%s///gc<LEFT><LEFT><LEFT><LEFT>", { desc = "Search Пошук та заміна" })
