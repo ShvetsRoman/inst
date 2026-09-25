@@ -1,0 +1,101 @@
+# THEMEs 
+# theme = "onedark"
+theme = "transparent"
+
+# EDITOR
+[editor]
+# Відносні номери рядків
+line-number = "relative"
+# Підсвічування поточного рядка
+cursorline = true
+# Показувати мишу
+mouse = true
+# Автоматичні пари дужок
+auto-pairs = true
+# Автоматичне форматування при збереженні
+auto-format = true
+# True color
+true-color = true
+# Показувати кілька відкритих буферів
+bufferline = "multiple"
+# Автоматично визначати колірні моделі
+color-modes = true
+# Показувати diagnostics в кінці рядка
+end-of-line-diagnostics = "hint"
+
+# CURSOR
+[editor.cursor-shape]
+# Normal mode
+normal = "block"
+# Insert mode
+insert = "bar"
+# Select mode
+select = "underline"
+
+# INDENT GUIDES
+[editor.indent-guides]
+render = true
+character = "│"
+
+# FILE PICKER
+[editor.file-picker]
+# Показувати hidden files
+hidden = true
+# Не показувати gitignored файли
+git-ignore = true
+# Враховувати глобальний gitignore
+git-global = true
+# Враховувати git exclude
+git-exclude = true
+
+# STATUSLINE
+[editor.statusline]
+left = [
+    "mode",
+    "spinner",
+    "file-name",
+    "read-only-indicator",
+    "file-modification-indicator"
+]
+center = [
+    "version-control"
+]
+right = [
+    "diagnostics",
+    "selections",
+    "position",
+    "position-percentage",
+    "file-encoding",
+    "file-line-ending",
+    "file-type"
+]
+
+# NORMAL MODE
+[keys.normal]
+# Command mode
+# ; → :
+";" = "command_mode"
+# goto
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+# Save
+"C-s" = ":write"
+# Quit
+"C-q" = ":quit"
+# Buffer navigation
+"H" = "goto_previous_buffer"
+"L" = "goto_next_buffer"
+# File picker
+# Space → file picker
+# "space" = "file_picker"
+# Search
+# / залишаємо стандартним Helix search
+
+# INSERT MODE
+[keys.insert]
+# Ctrl-[ → Normal mode
+"C-[" = "normal_mode"
+
+# SELECT MODE
+[keys.select]
+"C-[" = "normal_mode"

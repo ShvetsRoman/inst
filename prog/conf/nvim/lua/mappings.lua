@@ -12,8 +12,12 @@ map("i", "jk", "<ESC>")
 map({ "n", "i", "v" }, "<C-s>", "<cmd> :w <CR>")
 
 -- Insert Line Below
---map("n","<C-CR>","O<ESC>",{ desc = "Insert Insert line below UP" })
+map("n","<C-CR>","O<ESC>",{ desc = "Insert Insert line below UP" })
 map("n", "<CR>", "o<ESC>", { desc = "Insert Insert line below" })
+
+-- -- < > text
+-- map("v", "<", "<gv", { desc = "Unindent and keep selection" })
+-- map("v", ">", ">gv", { desc = "Indent and keep selection" })
 
 -- Nvim-tree
 map("n", "<F1>", "<cmd> :NvimTreeToggle <CR>", { desc = "Nvim-tree" })
@@ -21,6 +25,8 @@ map("n", "<F1>", "<cmd> :NvimTreeToggle <CR>", { desc = "Nvim-tree" })
 -- Search Replace
 map("n", "<F4>", ":%s///gc<LEFT><LEFT><LEFT><LEFT>", { desc = "Search Пошук та заміна" })
 map("i", "<F4>", "<ESC>:%s///gc<LEFT><LEFT><LEFT><LEFT>", { desc = "Search Пошук та заміна" })
+
+map("n", "<F5>", ":g/^$/d", { desc = "Видалення абсолютно всіх порожніх рядків" })
 
 map("n", "<F8>", "<cmd> :NvCheatsheet <CR>", { desc = "Mappings" })
 map("n", "<laeder> + <F8>", "<cmd> :Telescope keymaps <CR>", { desc = "Mappings" })

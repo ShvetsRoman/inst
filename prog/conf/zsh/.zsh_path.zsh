@@ -1,0 +1,34 @@
+# default apps
+# export EDITOR="helix"
+# export VISUAL="helix"
+# export SUDO_EDITOR="helix"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export SUDO_EDITOR="nvim"
+export TERMINAL="wezterm"
+# export TERMINAL="kitty"
+# export TERMINAL="konsole"
+# export TERMINAL="alacritty"
+export TERM="xterm-256color"
+export BROWSER="google-chrome-stable"
+export LC_ALL=uk_UA.UTF-8
+
+# Bat themes
+export BAT_THEME="OneHalfDark"
+
+# eza
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+
+# starship
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# pip
+export PATH=$PATH:"$HOME/.local/bin"
+
+# path
+export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/.local/bin/:$PATH"
+
+# cleaning up home folder
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"

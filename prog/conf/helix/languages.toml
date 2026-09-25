@@ -1,0 +1,19 @@
+# Перевизначаємо налаштування для bash-language-server
+[language-server.bash-language-server]
+command = "bash-language-server"
+args = ["start"]
+
+# Вимикаємо рекурсивні зовнішні джерела для shellcheck та обмежуємо патерни файлів
+[language-server.bash-language-server.config]
+bashPattern = ".*\\.sh"
+shellcheckExternalSources = false
+
+# Прив'язуємо оновлений сервер до мови bash
+[[language]]
+name = "bash"
+language-servers = [ "bash-language-server" ]
+
+# Аналіз файлів TOML
+# [[language]]
+# name = "toml"
+# config = {}

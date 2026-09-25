@@ -8,7 +8,7 @@ fi
 #-----------------------------
 # Theme for Zsh
 #-----------------------------
-if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+if [[ -f /usrQ/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
     # powerlevel10k
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -22,15 +22,15 @@ fi
 #-----------------------------
 # Alias
 #-----------------------------
-if [[ -f ${HOME}/.zsh_alias ]]; then
-   source ${HOME}/.zsh_alias
+if [[ -f ${HOME}/.zsh_alias.zsh ]]; then
+   source ${HOME}/.zsh_alias.zsh
 fi
  
 #-----------------------------
 # PATH
 #-----------------------------
-if [[ -f ${HOME}/.zsh_path ]]; then
-   source ${HOME}/.zsh_path
+if [[ -f ${HOME}/.zsh_path.zsh ]]; then
+   source ${HOME}/.zsh_path.zsh
 fi
 
 #------------------------------
@@ -88,4 +88,3 @@ eval "$(tv init zsh)"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/roman/.lmstudio/bin"
 # End of LM Studio CLI section
-

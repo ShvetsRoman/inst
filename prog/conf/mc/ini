@@ -87,7 +87,7 @@ skin=darkfar
 
 [Layout]
 output_lines=0
-left_panel_size=51
+left_panel_size=67
 top_panel_size=17
 message_visible=false
 keybar_visible=true

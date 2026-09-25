@@ -65,3 +65,10 @@ o.fileencoding = "utf-8"
 
 -- Мапінг розкладки (укр/рос → англ)
 o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+desc = "Highlight when yanking (copying) text",
+callback = function()
+    vim.hl.on_yank()
+end,
+})

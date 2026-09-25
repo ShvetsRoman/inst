@@ -7,7 +7,6 @@ local config = wezterm.config_builder()
 config.enable_wayland = true
 config.xcursor_theme = "capitaine-cursors"
 
-
 -- ЗОВНІШНІЙ ВИГЛЯД
 local appearance = require "appearance"
 
