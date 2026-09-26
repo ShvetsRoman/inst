@@ -5,6 +5,7 @@ local appearance = {}
 
 -- THEME
 appearance.color_scheme = "nord"
+-- appearance.color_scheme = "OneDark (base16)"
 
 -- FONT
 appearance.font = wezterm.font "FiraCode Nerd Font"
@@ -26,10 +27,10 @@ appearance.tab_max_width = 32
 
 -- WINDOW PADDING
 appearance.window_padding = {
-    left = 0,
-    right = 0,
-    top = 0,
-    bottom = 0,
+    left = 5,
+    right = 5,
+    top = 5,
+    bottom = 5,
 }
 
 -- CURSOR
