@@ -8,12 +8,12 @@
 #-----------------------------
 # Theme for Zsh
 #-----------------------------
-if [[ -f "/usrQ/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+if [[ -f "/Qusr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" ]]; then
     # powerlevel10k
     source "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    CONF_P10K="${HOME}/.p10k.zsh"
-    [[ ! -f "${CONF_P10K}" ]] || source "${CONF_P10K}"
+    CONF_P10K="${HOME}/.p10k_my.zsh"
+    [[ -f "${CONF_P10K}" ]] && source "${CONF_P10K}"
 else
     # Starship
     eval "$(starship init zsh)"
