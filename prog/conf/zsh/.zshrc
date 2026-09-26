@@ -1,19 +1,19 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 #-----------------------------
 # Theme for Zsh
 #-----------------------------
-if [[ -f /usrQ/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+if [[ -f "/usrQ/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" ]]; then
     # powerlevel10k
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    source "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    CONF_P10K='.p10k.zsh'
-    [[ ! -f ~/"$CONF_P10K" ]] || source ~/"$CONF_P10K"
+    CONF_P10K="${HOME}/.p10k.zsh"
+    [[ ! -f "${CONF_P10K}" ]] || source "${CONF_P10K}"
 else
     # Starship
     eval "$(starship init zsh)"
@@ -22,25 +22,25 @@ fi
 #-----------------------------
 # Alias
 #-----------------------------
-if [[ -f ${HOME}/.zsh_alias.zsh ]]; then
-   source ${HOME}/.zsh_alias.zsh
+if [[ -f "${HOME}/.zsh_alias.zsh" ]]; then
+   source "${HOME}/.zsh_alias.zsh"
 fi
  
 #-----------------------------
 # PATH
 #-----------------------------
-if [[ -f ${HOME}/.zsh_path.zsh ]]; then
-   source ${HOME}/.zsh_path.zsh
+if [[ -f "${HOME}/.zsh_path.zsh" ]]; then
+   source "${HOME}/.zsh_path.zsh"
 fi
 
 #------------------------------
 # History stuff
 #------------------------------
-HISTFILE=${HOME}/.zsh_history
+HISTFILE="${HOME}/.zsh_history"
 HISTSIZE=1000
-SAVEHIST=1000
-HISTORY_IGNORE="(l|la|lt|ls|lsa|ll|lla|pwd|exit|x|clear|c)"
-HIST_STAMPS="yyyy-mm-dd"
+# SAVEHIST=1000
+# HISTORY_IGNORE="(l|la|lt|ls|lsa|ll|lla|pwd|exit|x|clear|c)"
+# HIST_STAMPS="yyyy-mm-dd"
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.
@@ -56,22 +56,22 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command l
 #------------------------------
 # Додає підсвічування синтаксису в Zsh
 #------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 #------------------------------
 # Це потужний плагін автодоповнення для Zsh, який поєднує в собі як автодоповнення команд, так і підказки в стилі fish shell
 #------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+if [[ -f "/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]]; then
+    source "/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 fi
 
 #------------------------------
 # Підказує команди з історії в реальному часі, прямо коли ти вводиш
 #------------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 #------------------------------
